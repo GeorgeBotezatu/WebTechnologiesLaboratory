@@ -3,6 +3,10 @@ import colors from "colors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
+//routes
+import userRoutes from "./routes/userRoutes.js";
+
+//app setUp
 dotenv.config();
 const app = express();
 
@@ -12,9 +16,8 @@ app.use(express.json({ extended: false }));
 //connect to db
 connectDB();
 
-app.get("/", (req, res) => {
-	res.send("hello");
-});
+//bind routes
+app.use("/api/user", userRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}...`.yellow.bold));
