@@ -6,11 +6,11 @@ import { validationResult } from "express-validator";
 import CustomStatusCodeError from "../utils/customError.js";
 import { SERVER_ERROR, TOKEN_ERROR, USER_EXIST } from "../utils/textUtils.js";
 
+//Controllers
 const registerUser = async (req, res) => {
 	try {
-		const errors = validationResult(req);
 		const { name, email, password } = req.body;
-		await validateRegistration(email, errors);
+
 		const avatar = gravatar.url(email, {
 			s: "200",
 			r: "pg",
@@ -30,16 +30,8 @@ const registerUser = async (req, res) => {
 	}
 };
 
-async function validateRegistration(email, errors) {
-	if (!errors.isEmpty()) {
-		throw new CustomStatusCodeError(errors.array(), 400);
-	}
+//Functions
 
-	const user = await User.findOne({ email });
-	if (user) {
-		throw new CustomStatusCodeError(USER_EXIST, 400);
-	}
-}
 async function encryptPassword(password) {
 	const salt = await bcrypt.genSalt(10);
 	return await bcrypt.hash(password, salt);
