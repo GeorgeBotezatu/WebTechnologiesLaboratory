@@ -1,4 +1,4 @@
-
+import "./Styles/_default.scss"
 
 function App() {
   return (
