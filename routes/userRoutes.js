@@ -1,11 +1,15 @@
 import express from "express";
 const router = express.Router();
 import { check } from "express-validator";
-import { registerUser } from "../controllers/userController.js";
-import { validateUserRegister } from "../middleware/userMiddleware.js";
+import { loginUser, registerUser } from "../controllers/userController.js";
+import {
+	validateUserLogin,
+	validateUserRegister,
+} from "../middleware/userMiddleware.js";
 import { EMAIL, NAME, PASSWORD } from "../utils/constants.js";
 import {
 	NAME_REQUIRE,
+	PASSWORD_REQUIRED,
 	VALID_EMAIL,
 	VALID_PASSWORD,
 } from "../utils/textUtils.js";
@@ -24,6 +28,11 @@ router.post(
 	registerUser
 );
 
-router.post("/login", []);
+router.post("/login", [
+	check(EMAIL, VALID_EMAIL),
+	check(PASSWORD, PASSWORD_REQUIRED),
+	validateUserLogin,
+	loginUser,
+]);
 
 export default router;
