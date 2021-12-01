@@ -1,11 +1,22 @@
-import "./Styles/_default.scss"
+import "./App.scss";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
-  return (
-    <div >
-      hello
-    </div>
-  );
+	return (
+		<Router>
+			<>
+				<Navbar />
+        {/* landing */}
+        <section className="container">
+        <Routes>
+          {/* here goes all the routes */}
+
+        </Routes>
+        </section>
+			</>
+		</Router>
+	);
 }
 
 export default App;

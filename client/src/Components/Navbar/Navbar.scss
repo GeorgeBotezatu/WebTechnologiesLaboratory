@@ -1,0 +1,76 @@
+@use "../../Styles/default";
+@use "../../Styles/colors";
+
+.wtl-navbar {
+	display: flex;
+	font-size: 2rem;
+	align-items: center;
+	justify-content: space-between;
+	margin: 5rem 10rem;
+	height: 10vh;
+
+	&__logo-links {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		flex: 2;
+
+		&__links-group {
+			display: flex;
+			align-items: center;
+			width: 40%;
+			justify-content: space-around;
+			&--link {
+				a {
+					transition: color 0.3s ease;
+					position: relative;
+				}
+				a::after {
+					transition: all 0.3s ease;
+					height: 5px;
+					content: "";
+					position: absolute;
+					background-color: colors.$mainGreen;
+					width: 0%;
+					bottom: -5px;
+					left: 0;
+				}
+				a:hover::after {
+					width: 100%;
+				}
+			}
+			&--disabled {
+				text-decoration: line-through;
+				opacity: 0.5;
+				a {
+					cursor: not-allowed;
+				}
+			}
+		}
+		&--logo {
+			font-family: "Permanent Marker";
+			font-size: 5rem;
+			border-bottom: 4px solid transparent;
+			transition: border-color 0.3s ease;
+			&:hover {
+				border-color: white;
+			}
+		}
+	}
+	&__auth-group {
+		position: relative;
+		a {
+			margin: 0 0.5rem;
+			transition: color 0.3s ease;
+		}
+		a:first-of-type::after {
+			position: absolute;
+			content: "|";
+			color: white;
+		}
+		a:hover {
+			color: colors.$mainGreen;
+			font-weight: 600;
+		}
+	}
+}
