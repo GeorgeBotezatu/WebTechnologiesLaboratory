@@ -1,0 +1,27 @@
+@use "../../Styles/default";
+@use "../../Styles/colors";
+
+@media (min-width: 601px) {
+	.wtl-side-drawer {
+		display: none;
+	}
+}
+@media (max-width: 600px) {
+	.wtl-side-drawer {
+		height: 100%;
+		background: colors.$backgroud;
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 40%;
+		z-index: 200;
+		box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+		transform: translateX(100%);
+		transition: transform 0.3s ease-out;
+		display: flex;
+		font-size: 2rem;
+	}
+	.wtl-side-drawer.open {
+		transform: translateX(0);
+	}
+}
