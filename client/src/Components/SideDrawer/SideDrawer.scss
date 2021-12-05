@@ -1,27 +1,108 @@
 @use "../../Styles/default";
 @use "../../Styles/colors";
-
+@use "../../Styles/breakPoints";
 @media (min-width: 601px) {
 	.wtl-side-drawer {
 		display: none;
 	}
 }
-@media (max-width: 600px) {
+@media (max-width: breakPoints.$breakPoint600) {
 	.wtl-side-drawer {
 		height: 100%;
 		background: colors.$backgroud;
 		position: fixed;
 		top: 0;
 		right: 0;
-		width: 40%;
+		width: 50%;
 		z-index: 200;
 		box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
 		transform: translateX(100%);
 		transition: transform 0.3s ease-out;
 		display: flex;
 		font-size: 2rem;
+
+		&__links-group {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			margin: 5rem 0 30rem 0;
+			&--disabled {
+				text-decoration: line-through;
+				opacity: 0.5;
+				a {
+					cursor: not-allowed;
+				}
+			}
+			&--link {
+				a {
+					transition: color 0.3s ease;
+					position: relative;
+				}
+				a::after {
+					transition: all 0.3s ease;
+					height: 5px;
+					content: "";
+					position: absolute;
+					background-color: colors.$mainGreen;
+					width: 0%;
+					bottom: -5px;
+					left: 0;
+				}
+				a:hover::after {
+					width: 100%;
+				}
+				&--community {
+					transform: translateX(200%);
+				}
+				&--about {
+					transform: translateX(200%);
+				}
+				&--console {
+					transform: translateX(200%);
+				}
+				&--learning-path {
+					transform: translateX(200%);
+				}
+				&--login {
+					transform: translateX(200%);
+				}
+				&--register {
+					transform: translateX(200%);
+				}
+			}
+		}
 	}
 	.wtl-side-drawer.open {
 		transform: translateX(0);
+	}
+	.wtl-side-drawer__links-group--link.wtl-side-drawer__links-group--link--community.open {
+		transform: translateX(0);
+		transition: transform 0.3s ease-out 0.3s;
+	}
+	.wtl-side-drawer__links-group--link.wtl-side-drawer__links-group--link--about.open {
+		transform: translateX(0);
+		transition: transform 0.3s ease-out 0.4s;
+	}
+	.wtl-side-drawer__links-group--link.wtl-side-drawer__links-group--link--console.open {
+		transform: translateX(0);
+		transition: transform 0.3s ease-out 0.5s;
+	}
+	.wtl-side-drawer__links-group--disabled.wtl-side-drawer__links-group--link--learning-path.open {
+		transform: translateX(0);
+		transition: transform 0.3s ease-out 0.6s;
+	}
+	.wtl-side-drawer__links-group--link.wtl-side-drawer__links-group--link--login.open {
+		transform: translateX(0);
+		transition: transform 0.3s ease-out 0.7s;
+	}
+	.wtl-side-drawer__links-group--link.wtl-side-drawer__links-group--link--register.open {
+		transform: translateX(0);
+		transition: transform 0.3s ease-out 0.8s;
+	}
+}
+
+@media (max-width: 400px) {
+	.wtl-side-drawer {
+		width: 60%;
 	}
 }

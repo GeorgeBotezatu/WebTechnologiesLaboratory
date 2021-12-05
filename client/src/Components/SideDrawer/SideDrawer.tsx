@@ -2,7 +2,6 @@ import "./SideDrawer.scss";
 import {
 	COMMUNITY,
 	LOGIN,
-	LOGO,
 	REGISTER,
 	ABOUT,
 	CONSOLE,
@@ -16,27 +15,49 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 	const linksGroupClass = `${componentClass}__links-group`;
 	const linkClass = `${linksGroupClass}--link`;
 	const linkDisabledClass = `${linksGroupClass}--disabled`;
+	const communityClass = `${linkClass}--community`;
+	const aboutClass = `${linkClass}--about`;
+	const consoleClass = `${linkClass}--console`;
+	const learningPathClass = `${linkClass}--learning-path`;
+	const loginClass = `${linkClass}--login`;
+	const registerClass = `${linkClass}--register`;
 
 	return (
 		<div className={show ? `${componentClass} open` : componentClass}>
 			<ul className={linksGroupClass}>
-				<li className={linkClass}>
-					<a href="">{COMMUNITY}</a>
+				<li
+					className={
+						show ? `${linkClass} ${communityClass} open` : communityClass
+					}
+				>
+					<a href="/">{COMMUNITY}</a>
 				</li>
-				<li className={linkClass}>
-					<a href="">{ABOUT}</a>
+				<li className={show ? `${linkClass} ${aboutClass} open` : aboutClass}>
+					<a href="/">{ABOUT}</a>
 				</li>
-				<li className={linkClass}>
-					<a href="">{CONSOLE}</a>
+				<li
+					className={show ? `${linkClass} ${consoleClass} open` : consoleClass}
+				>
+					<a href="/">{CONSOLE}</a>
 				</li>
-				<li className={linkDisabledClass}>
-					<a href="">{LEARNING_PATH}</a>
+				<li
+					className={
+						show
+							? `${linkDisabledClass} ${learningPathClass} open`
+							: learningPathClass
+					}
+				>
+					<a href="/">{LEARNING_PATH}</a>
 				</li>
-				<li className={linkDisabledClass}>
-					<a href="">{LOGIN}</a>
+				<li className={show ? `${linkClass} ${loginClass} open` : loginClass}>
+					<a href="/">{LOGIN}</a>
 				</li>
-				<li className={linkDisabledClass}>
-					<a href="">{REGISTER}</a>
+				<li
+					className={
+						show ? `${linkClass} ${registerClass} open` : registerClass
+					}
+				>
+					<a href="/">{REGISTER}</a>
 				</li>
 			</ul>
 		</div>

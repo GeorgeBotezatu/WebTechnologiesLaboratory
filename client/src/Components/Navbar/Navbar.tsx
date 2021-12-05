@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
 		<div className="wtl-main-navbar">
 			<SideDrawer show={drawerState} />
 			{drawerState ? <Backdrop close={backdropClickHandler} /> : <></>}
-			<NavLinks toggle={drawerToggleClickHandler} />
+			<NavLinks toggle={drawerToggleClickHandler} show={drawerState} />
 		</div>
 	);
 };

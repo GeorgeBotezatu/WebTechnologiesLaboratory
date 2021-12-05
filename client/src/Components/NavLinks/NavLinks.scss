@@ -1,5 +1,6 @@
 @use "../../Styles/default";
 @use "../../Styles/colors";
+@use "../../Styles/breakPoints";
 
 .wtl-navbar {
 	display: flex;
@@ -8,7 +9,7 @@
 	justify-content: space-between;
 	margin: 5rem 10rem;
 	height: 10vh;
-
+	position: relative;
 	&__logo-links {
 		display: flex;
 		flex-direction: row;
@@ -74,7 +75,7 @@
 		}
 	}
 }
-@media (max-width: 1600px) {
+@media (max-width: breakPoints.$breakPoint1600) {
 	.wtl-navbar {
 		&__logo-links {
 			&__links-group {
@@ -84,7 +85,7 @@
 	}
 }
 
-@media (max-width: 1366px) {
+@media (max-width: breakPoints.$breakPoint1366) {
 	.wtl-navbar {
 		&__logo-links {
 			&__links-group {
@@ -94,7 +95,7 @@
 	}
 }
 
-@media (max-width: 1080px) {
+@media (max-width: breakPoints.$breakPoint1080) {
 	.wtl-navbar {
 		margin: 5rem 5rem;
 		font-size: 1.6rem;
@@ -111,7 +112,7 @@
 	}
 }
 
-@media (max-width: 800px) {
+@media (max-width: breakPoints.$breakPoint800) {
 	.wtl-navbar {
 		font-size: 1.4rem;
 		margin: 5rem 3rem;
@@ -119,7 +120,7 @@
 			&__links-group {
 				padding-left: 2rem;
 				justify-content: space-between;
-				width: 80%;
+				width: 75%;
 			}
 			&--logo {
 				font-size: 3rem;
@@ -128,7 +129,7 @@
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: breakPoints.$breakPoint600) {
 	.wtl-navbar {
 		font-size: 1.4rem;
 		margin: 1rem 8rem;
@@ -147,9 +148,15 @@
 			&--line {
 				background: colors.$white;
 				display: block;
-				padding: 0.3rem 3rem;
-				margin: 0.8rem 0;
+				padding: 0.2rem 3rem;
+				margin: 1.2rem 0;
 			}
 		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-navbar {
+		margin: 1rem 2rem;
 	}
 }

@@ -11,9 +11,10 @@ import "./NavLinks.scss";
 
 interface navLinksPropsInterface {
 	toggle(): void;
+	show: boolean;
 }
 
-const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle }) => {
+const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
 	const burgerLinesClass = `${burgerClass}--line`;
@@ -32,27 +33,48 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle }) => {
 				<h3 className={logoClass}>{LOGO}</h3>
 				<ul className={linksGroupClass}>
 					<li className={linkClass}>
-						<a href="">{COMMUNITY}</a>
+						<a href="/">{COMMUNITY}</a>
 					</li>
 					<li className={linkClass}>
-						<a href="">{ABOUT}</a>
+						<a href="/">{ABOUT}</a>
 					</li>
 					<li className={linkClass}>
-						<a href="">{CONSOLE}</a>
+						<a href="/">{CONSOLE}</a>
 					</li>
 					<li className={linkDisabledClass}>
-						<a href="">{LEARNING_PATH}</a>
+						<a href="/">{LEARNING_PATH}</a>
 					</li>
 				</ul>
 			</div>
 			<div className={authGroupLinks}>
-				<a href="">{LOGIN}</a>
-				<a href="">{REGISTER}</a>
+				<a href="/">{LOGIN}</a>
+				<a href="/">{REGISTER}</a>
 			</div>
-			<div className={burgerClass} onClick={toggle}>
-				<span className={`${burgerLinesClass} ${burgerLineOneClass}`}></span>
-				<span className={`${burgerLinesClass} ${burgerLineTwoClass}`}></span>
-				<span className={`${burgerLinesClass} ${burgerLineThreeClass}`}></span>
+			<div
+				className={show ? `${burgerClass}  open` : `${burgerClass}`}
+				onClick={toggle}
+			>
+				<span
+					className={
+						show
+							? `${burgerLineOneClass} ${burgerLinesClass} open`
+							: `${burgerLineOneClass} ${burgerLinesClass}`
+					}
+				></span>
+				<span
+					className={
+						show
+							? `${burgerLineTwoClass} ${burgerLinesClass} open`
+							: `${burgerLineTwoClass} ${burgerLinesClass}`
+					}
+				></span>
+				<span
+					className={
+						show
+							? `${burgerLineThreeClass} ${burgerLinesClass} open`
+							: `${burgerLineThreeClass} ${burgerLinesClass}`
+					}
+				></span>
 			</div>
 		</nav>
 	);
