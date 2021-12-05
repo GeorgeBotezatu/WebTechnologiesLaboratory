@@ -1,0 +1,11 @@
+@use "../../Styles/default";
+@use "../../Styles/colors";
+.wtl-backdrop {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: colors.$blackHalfTransparent;
+	z-index: 100;
+	top: 0;
+	right: 0;
+}

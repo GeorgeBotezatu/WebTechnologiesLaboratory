@@ -8,15 +8,17 @@ import {
 	CONSOLE,
 	LEARNING_PATH,
 } from "../../Utils/constants";
-
-const SideDrawer: React.FC = () => {
+interface sideDrawerProps {
+	show: boolean;
+}
+const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 	const componentClass = "wtl-side-drawer";
 	const linksGroupClass = `${componentClass}__links-group`;
 	const linkClass = `${linksGroupClass}--link`;
 	const linkDisabledClass = `${linksGroupClass}--disabled`;
 
 	return (
-		<div className={`${componentClass} `}>
+		<div className={show ? `${componentClass} open` : componentClass}>
 			<ul className={linksGroupClass}>
 				<li className={linkClass}>
 					<a href="">{COMMUNITY}</a>

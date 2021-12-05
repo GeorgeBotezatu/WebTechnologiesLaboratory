@@ -9,7 +9,11 @@ import {
 } from "../../Utils/constants";
 import "./NavLinks.scss";
 
-const NavLinks: React.FC = () => {
+interface navLinksPropsInterface {
+	toggle(): void;
+}
+
+const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle }) => {
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
 	const burgerLinesClass = `${burgerClass}--line`;
@@ -45,10 +49,10 @@ const NavLinks: React.FC = () => {
 				<a href="">{LOGIN}</a>
 				<a href="">{REGISTER}</a>
 			</div>
-			<div className={burgerClass}>
+			<div className={burgerClass} onClick={toggle}>
 				<span className={`${burgerLinesClass} ${burgerLineOneClass}`}></span>
-				<span className={`${burgerLinesClass} ${burgerLineOneClass}`}></span>
-				<span className={`${burgerLinesClass} ${burgerLineOneClass}`}></span>
+				<span className={`${burgerLinesClass} ${burgerLineTwoClass}`}></span>
+				<span className={`${burgerLinesClass} ${burgerLineThreeClass}`}></span>
 			</div>
 		</nav>
 	);
