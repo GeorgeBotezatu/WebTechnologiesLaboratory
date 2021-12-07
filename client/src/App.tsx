@@ -1,19 +1,8 @@
 import "./App.scss";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Moleculs/Navbar/Navbar";
+import PlatformRoutes from "./Routes/Routes";
 
 function App() {
-	return (
-		<Router>
-			<>
-				<Navbar />
-				{/* landing */}
-				<section className="container">
-					<Routes>{/* here goes all the routes */}</Routes>
-				</section>
-			</>
-		</Router>
-	);
+	return <PlatformRoutes />;
 }
 
 export default App;

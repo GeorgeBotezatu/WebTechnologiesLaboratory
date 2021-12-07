@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { REGISTER_PATH } from "../../../Routes/routesPath";
 import {
 	ABOUT,
 	COMMUNITY,
@@ -48,7 +50,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 			</div>
 			<div className={authGroupLinks}>
 				<a href="/">{LOGIN}</a>
-				<a href="/">{REGISTER}</a>
+				<Link to={REGISTER_PATH}>{REGISTER}</Link>
 			</div>
 			<div
 				className={show ? `${burgerClass}  open` : `${burgerClass}`}
