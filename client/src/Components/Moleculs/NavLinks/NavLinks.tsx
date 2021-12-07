@@ -10,7 +10,7 @@ import {
 	REGISTER,
 } from "../../../Utils/constants";
 import "./NavLinks.scss";
-
+import classNames from "classnames";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
@@ -20,9 +20,6 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
 	const burgerLinesClass = `${burgerClass}--line`;
-	const burgerLineOneClass = `${burgerClass}--line-one`;
-	const burgerLineTwoClass = `${burgerClass}--line-two`;
-	const burgerLineThreeClass = `${burgerClass}--line-three`;
 	const logoLinksClass = `${componentClass}__logo-links`;
 	const logoClass = `${logoLinksClass}--logo`;
 	const linksGroupClass = `${logoLinksClass}__links-group`;
@@ -53,28 +50,22 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 				<Link to={REGISTER_PATH}>{REGISTER}</Link>
 			</div>
 			<div
-				className={show ? `${burgerClass}  open` : `${burgerClass}`}
+				className={show ? classNames(burgerClass, "open") : burgerClass}
 				onClick={toggle}
 			>
 				<span
 					className={
-						show
-							? `${burgerLineOneClass} ${burgerLinesClass} open`
-							: `${burgerLineOneClass} ${burgerLinesClass}`
+						show ? classNames(burgerLinesClass, "open") : burgerLinesClass
 					}
 				></span>
 				<span
 					className={
-						show
-							? `${burgerLineTwoClass} ${burgerLinesClass} open`
-							: `${burgerLineTwoClass} ${burgerLinesClass}`
+						show ? classNames(burgerLinesClass, "open") : burgerLinesClass
 					}
 				></span>
 				<span
 					className={
-						show
-							? `${burgerLineThreeClass} ${burgerLinesClass} open`
-							: `${burgerLineThreeClass} ${burgerLinesClass}`
+						show ? classNames(burgerLinesClass, "open") : burgerLinesClass
 					}
 				></span>
 			</div>

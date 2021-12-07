@@ -5,3 +5,4 @@ export const CONSOLE = "Console";
 export const LEARNING_PATH = "LearningPath";
 export const LOGIN = "Login";
 export const REGISTER = "Register";
+export const OPEN = "open";

@@ -1,4 +1,5 @@
 import "./SideDrawer.scss";
+import { useEffect, useState } from "react";
 import {
 	COMMUNITY,
 	LOGIN,
@@ -6,10 +7,16 @@ import {
 	ABOUT,
 	CONSOLE,
 	LEARNING_PATH,
+	OPEN,
 } from "../../../Utils/constants";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
+import { REGISTER_PATH } from "../../../Routes/routesPath";
+
 interface sideDrawerProps {
 	show: boolean;
 }
+
 const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 	const componentClass = "wtl-side-drawer";
 	const linksGroupClass = `${componentClass}__links-group`;
@@ -23,41 +30,51 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 	const registerClass = `${linkClass}--register`;
 
 	return (
-		<div className={show ? `${componentClass} open` : componentClass}>
+		<div className={show ? classNames(componentClass, OPEN) : componentClass}>
 			<ul className={linksGroupClass}>
 				<li
 					className={
-						show ? `${linkClass} ${communityClass} open` : communityClass
+						show ? classNames(linkClass, communityClass, OPEN) : communityClass
 					}
 				>
 					<a href="/">{COMMUNITY}</a>
 				</li>
-				<li className={show ? `${linkClass} ${aboutClass} open` : aboutClass}>
+				<li
+					className={
+						show ? classNames(linkClass, aboutClass, OPEN) : aboutClass
+					}
+				>
 					<a href="/">{ABOUT}</a>
 				</li>
 				<li
-					className={show ? `${linkClass} ${consoleClass} open` : consoleClass}
+					className={
+						show ? classNames(linkClass, consoleClass, OPEN) : consoleClass
+					}
 				>
 					<a href="/">{CONSOLE}</a>
 				</li>
 				<li
 					className={
 						show
-							? `${linkDisabledClass} ${learningPathClass} open`
+							? classNames(linkDisabledClass, learningPathClass, OPEN)
 							: learningPathClass
 					}
 				>
 					<a href="/">{LEARNING_PATH}</a>
 				</li>
-				<li className={show ? `${linkClass} ${loginClass} open` : loginClass}>
+				<li
+					className={
+						show ? classNames(linkClass, loginClass, OPEN) : loginClass
+					}
+				>
 					<a href="/">{LOGIN}</a>
 				</li>
 				<li
 					className={
-						show ? `${linkClass} ${registerClass} open` : registerClass
+						show ? classNames(linkClass, registerClass, OPEN) : registerClass
 					}
 				>
-					<a href="/">{REGISTER}</a>
+					<Link to={REGISTER_PATH}>{REGISTER}</Link>
 				</li>
 			</ul>
 		</div>
