@@ -1,6 +1,6 @@
-@use "../../Styles/default";
-@use "../../Styles/colors";
-@use "../../Styles/breakPoints";
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
 @media (min-width: 601px) {
 	.wtl-side-drawer {
 		display: none;

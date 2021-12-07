@@ -6,7 +6,7 @@ import {
 	LOGIN,
 	LOGO,
 	REGISTER,
-} from "../../Utils/constants";
+} from "../../../Utils/constants";
 import "./NavLinks.scss";
 
 interface navLinksPropsInterface {

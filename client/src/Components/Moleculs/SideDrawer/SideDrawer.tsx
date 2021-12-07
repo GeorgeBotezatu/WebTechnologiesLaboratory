@@ -6,7 +6,7 @@ import {
 	ABOUT,
 	CONSOLE,
 	LEARNING_PATH,
-} from "../../Utils/constants";
+} from "../../../Utils/constants";
 interface sideDrawerProps {
 	show: boolean;
 }

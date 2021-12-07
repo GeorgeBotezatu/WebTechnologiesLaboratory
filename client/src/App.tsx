@@ -1,19 +1,16 @@
 import "./App.scss";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from "./Components/Moleculs/Navbar/Navbar";
 
 function App() {
 	return (
 		<Router>
 			<>
 				<Navbar />
-        {/* landing */}
-        <section className="container">
-        <Routes>
-          {/* here goes all the routes */}
-
-        </Routes>
-        </section>
+				{/* landing */}
+				<section className="container">
+					<Routes>{/* here goes all the routes */}</Routes>
+				</section>
 			</>
 		</Router>
 	);
