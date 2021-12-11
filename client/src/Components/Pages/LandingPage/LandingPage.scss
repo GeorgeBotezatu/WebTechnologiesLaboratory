@@ -11,7 +11,6 @@
 	color: $col;
 }
 .wtl-landing {
-	overflow: hidden;
 	min-height: calc(90vh - 20rem);
 	display: flex;
 	justify-content: space-between;
@@ -31,6 +30,9 @@
 			&--highlighted {
 				color: colors.$mainGreen;
 			}
+		}
+		&--phone-SVG {
+			display: none;
 		}
 		&__success-section {
 			display: flex;
@@ -118,7 +120,131 @@
 		}
 	}
 }
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-landing {
+		&__text-side {
+			&--description {
+				font-size: 4rem;
+			}
+			&__success-section {
+				&--title {
+					font-size: 3.5rem;
+				}
+				&__steps {
+					font-size: 2rem;
+					padding-left: 8rem;
+				}
+				&__fancy-button {
+					&__button-container {
+						font-size: 2rem;
+					}
+					&__mas {
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+		&__SVG {
+			right: -5%;
+			bottom: 30%;
+			transform: rotateZ(-45deg);
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-landing {
+		&__text-side {
+			width: 60%;
+		}
+		&__SVG {
+			right: -23rem;
+			transform: rotateZ(-90deg);
+		}
+	}
+}
 
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-landing {
+		&__text-side {
+			width: 65%;
+			padding-left: 4rem;
+			&--description {
+				font-size: 2.8rem;
+			}
+			&__success-section {
+				&--title {
+					font-size: 2.5rem;
+				}
+				&__steps {
+					font-size: 1.8rem;
+					padding-left: 5rem;
+				}
+				&__fancy-button {
+					&__button-container {
+						font-size: 1.5rem;
+					}
+					&__mas {
+						font-size: 1.5rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-landing {
+		&__text-side {
+			width: 90%;
+			margin: 0 auto;
+			padding-left: 0;
+			&--phone-SVG {
+				display: flex;
+				width: 100%;
+
+				svg {
+					margin: 2rem auto;
+					#Vector {
+						transform-origin: center center;
+						animation: Plant 15s linear infinite;
+					}
+				}
+			}
+			&--description {
+				font-size: 2.5rem;
+			}
+			&__success-section {
+				&--title {
+					font-size: 2.5rem;
+				}
+				&__steps {
+					font-size: 1.5rem;
+					padding-left: 4rem;
+				}
+				&__fancy-button {
+					&__button-container {
+						font-size: 1.4rem;
+					}
+					&__mas {
+						font-size: 1.4rem;
+					}
+				}
+			}
+		}
+		&__SVG {
+			display: none;
+		}
+	}
+}
+
+@keyframes Plant {
+	from {
+		transform: rotate(-360deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
 @keyframes star_1 {
 	0% {
 		transform: translateX(0);

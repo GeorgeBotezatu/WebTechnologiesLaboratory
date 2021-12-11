@@ -98,7 +98,7 @@
 
 @media (max-width: breakPoints.$breakPoint1080) {
 	.wtl-navbar {
-		margin: 5rem 5rem;
+		margin: 0 5rem;
 		font-size: 1.6rem;
 
 		&__logo-links {
@@ -116,7 +116,7 @@
 @media (max-width: breakPoints.$breakPoint800) {
 	.wtl-navbar {
 		font-size: 1.4rem;
-		margin: 5rem 3rem;
+		margin: 0 3rem;
 		&__logo-links {
 			&__links-group {
 				padding-left: 2rem;
@@ -133,7 +133,7 @@
 @media (max-width: breakPoints.$breakPoint600) {
 	.wtl-navbar {
 		font-size: 1.4rem;
-		margin: 1rem 8rem;
+		margin: 0 8rem;
 		&__logo-links {
 			&__links-group {
 				display: none;
@@ -158,6 +158,6 @@
 
 @media (max-width: breakPoints.$breakPoint400) {
 	.wtl-navbar {
-		margin: 1rem 2rem;
+		margin: 0 2rem;
 	}
 }
