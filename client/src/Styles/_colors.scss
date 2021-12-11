@@ -3,3 +3,13 @@ $backgroud: #0d1117;
 $black: #000;
 $white: #fff;
 $blackHalfTransparent: rgba(0, 0, 0, 0.5);
+
+//svg Particles and stars
+
+$starMainYellow: yellow;
+$starDropShadow: drop-shadow(0px 0px 15px rgb(255, 251, 0));
+$starInitialFill: rgba(255, 255, 0, 0.562);
+
+$particleColor: rgb(25, 144, 199);
+$particleLaterColor: rgba(12, 32, 148, 0.979);
+$particleDropShadow: drop-shadow(0px 0px 15px rgb(11, 156, 67));

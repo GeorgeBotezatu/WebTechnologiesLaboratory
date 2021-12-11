@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { REGISTER_PATH } from "../../../Routes/routesPath";
+import { LANDING_PATH, REGISTER_PATH } from "../../../Routes/routesPath";
 import {
 	ABOUT,
 	COMMUNITY,
@@ -29,7 +29,9 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 	return (
 		<nav className={componentClass}>
 			<div className={logoLinksClass}>
-				<h3 className={logoClass}>{LOGO}</h3>
+				<Link to={LANDING_PATH} className={logoClass}>
+					{LOGO}
+				</Link>
 				<ul className={linksGroupClass}>
 					<li className={linkClass}>
 						<a href="/">{COMMUNITY}</a>
