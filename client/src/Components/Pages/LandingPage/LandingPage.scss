@@ -1,0 +1,334 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+@mixin button($bcolor, $url, $x1, $y1, $col) {
+	background: $bcolor;
+	-webkit-mask: url($url);
+	mask: url($url);
+	-webkit-mask-size: $x1 $y1;
+	mask-size: $x1 $y1;
+	color: $col;
+}
+.wtl-landing {
+	min-height: calc(90vh - 20rem);
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+
+	&__text-side {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+		padding-left: 10rem;
+		&--description {
+			font-size: 5rem;
+			font-weight: 300;
+			&--bold {
+				font-weight: 700;
+			}
+			&--highlighted {
+				color: colors.$mainGreen;
+			}
+		}
+		&--phone-SVG {
+			display: none;
+		}
+		&__success-section {
+			display: flex;
+			flex-direction: column;
+			&--title {
+				font-size: 4.5rem;
+				font-weight: 700;
+			}
+			&__steps {
+				font-size: 2.5rem;
+				padding-left: 10rem;
+			}
+			&__fancy-button {
+				position: relative;
+				&__button-container {
+					position: absolute;
+					transition: 1s;
+					letter-spacing: 1px;
+					width: 100%;
+					font-size: 2.5rem;
+					margin-top: 2rem;
+					text-align: center;
+					border-radius: 50px;
+					padding: 1rem 0;
+					border: 2px solid colors.$mainGreen;
+					@include button(
+						colors.$mainGreen,
+						"../../../Assets/Images/buttonMask.png",
+						3000%,
+						100%,
+						colors.$white
+					);
+					cursor: pointer;
+					animation: ani2 0.7s steps(29) forwards;
+					&:hover {
+						animation: ani 0.7s steps(29) forwards;
+					}
+				}
+				&__mas {
+					position: absolute;
+					transition: 1s;
+					letter-spacing: 1px;
+					width: 100%;
+					font-size: 2.5rem;
+					margin-top: 2rem;
+					text-align: center;
+					padding: 1rem 0;
+					z-index: -1;
+					border: 2px solid colors.$mainGreen;
+					border-radius: 50px;
+				}
+			}
+		}
+	}
+	&__SVG {
+		position: absolute;
+		bottom: 20%;
+		right: 5%;
+
+		svg {
+			#Star {
+				animation: star_1 4s linear infinite alternate;
+			}
+			#Star_2 {
+				animation: star_2 10s linear infinite alternate;
+			}
+			#Star_3 {
+				animation: star_3 10s linear infinite alternate;
+			}
+
+			#Hat {
+				transform-origin: center center;
+				animation: Hat 3s linear infinite alternate;
+			}
+			#Particle {
+				animation: particle 3s linear infinite alternate;
+			}
+			#Particle_2 {
+				animation: particle 3s linear infinite alternate;
+			}
+			#Particle_3 {
+				transform: translateY(20px);
+				animation: particle 3s linear infinite alternate;
+			}
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-landing {
+		&__text-side {
+			&--description {
+				font-size: 4rem;
+			}
+			&__success-section {
+				&--title {
+					font-size: 3.5rem;
+				}
+				&__steps {
+					font-size: 2rem;
+					padding-left: 8rem;
+				}
+				&__fancy-button {
+					&__button-container {
+						font-size: 2rem;
+					}
+					&__mas {
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+		&__SVG {
+			right: -5%;
+			bottom: 30%;
+			transform: rotateZ(-45deg);
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-landing {
+		&__text-side {
+			width: 60%;
+		}
+		&__SVG {
+			right: -23rem;
+			transform: rotateZ(-90deg);
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-landing {
+		&__text-side {
+			width: 65%;
+			padding-left: 4rem;
+			&--description {
+				font-size: 2.8rem;
+			}
+			&__success-section {
+				&--title {
+					font-size: 2.5rem;
+				}
+				&__steps {
+					font-size: 1.8rem;
+					padding-left: 5rem;
+				}
+				&__fancy-button {
+					&__button-container {
+						font-size: 1.5rem;
+					}
+					&__mas {
+						font-size: 1.5rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-landing {
+		&__text-side {
+			width: 90%;
+			margin: 0 auto;
+			padding-left: 0;
+			&--phone-SVG {
+				display: flex;
+				width: 100%;
+
+				svg {
+					margin: 2rem auto;
+					#Vector {
+						transform-origin: center center;
+						animation: Plant 15s linear infinite;
+					}
+				}
+			}
+			&--description {
+				font-size: 2.5rem;
+			}
+			&__success-section {
+				&--title {
+					font-size: 2.5rem;
+				}
+				&__steps {
+					font-size: 1.5rem;
+					padding-left: 4rem;
+				}
+				&__fancy-button {
+					&__button-container {
+						font-size: 1.3rem;
+					}
+					&__mas {
+						font-size: 1.3rem;
+					}
+				}
+			}
+		}
+		&__SVG {
+			display: none;
+		}
+	}
+}
+
+@keyframes Plant {
+	from {
+		transform: rotate(-360deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+@keyframes star_1 {
+	0% {
+		transform: translateX(0);
+		fill: colors.$starInitialFill;
+	}
+	50% {
+		transform: translateX(-2rem);
+	}
+	100% {
+		transform: translateY(-2rem);
+		fill: colors.$starMainYellow;
+		filter: colors.$starDropShadow;
+	}
+}
+
+@keyframes star_2 {
+	0% {
+		fill: colors.$starInitialFill;
+		transform: translateX(15rem) translateY(-15rem);
+	}
+	50% {
+		transform: translateX(-5rem) translateY(-5rem);
+	}
+	100% {
+		fill: colors.$starMainYellow;
+		transform: translateY(-15rem);
+		filter: colors.$starDropShadow;
+	}
+}
+
+@keyframes star_3 {
+	0% {
+		transform: translateY(2rem);
+		fill: colors.$starInitialFill;
+	}
+	25% {
+		transform: translateX(3rem);
+	}
+
+	50% {
+		transform: translateY(-7rem);
+	}
+	100% {
+		transform: translateX(-15rem);
+		fill: colors.$starMainYellow;
+		filter: colors.$starDropShadow;
+	}
+}
+
+@keyframes particle {
+	from {
+		fill: colors.$particleColor;
+	}
+	to {
+		fill: colors.$particleLaterColor;
+		filter: colors.$particleDropShadow;
+	}
+}
+
+@keyframes ani {
+	from {
+		mask-position: 0 0;
+	}
+
+	to {
+		mask-position: 100% 0;
+	}
+}
+
+@keyframes ani2 {
+	from {
+		mask-position: 100% 0;
+	}
+
+	to {
+		mask-position: 0 0;
+	}
+}
+
+@keyframes Hat {
+	from {
+		transform: translateX(0) translateY(0);
+	}
+	to {
+		transform: translateX(-10%) translateY(-10%);
+	}
+}

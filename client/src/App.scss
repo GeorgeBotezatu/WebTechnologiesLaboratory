@@ -1,0 +1,14 @@
+@use "./Styles/default";
+@use "./Styles/colors";
+body {
+	background: colors.$backgroud;
+	color: colors.$white;
+	overflow-x: hidden;
+}
+a {
+	color: white;
+	text-decoration: none;
+}
+ul li {
+	list-style-type: none;
+}

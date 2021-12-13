@@ -1,0 +1,343 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-register-form {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 70%;
+	justify-content: space-around;
+	align-items: center;
+	&__form-side {
+		display: flex;
+		flex-direction: column;
+		background: white;
+		width: 50%;
+		height: 100%;
+		gap: 1rem;
+		color: black;
+		border-radius: 50px 0 0 50px;
+		&--header {
+			font-size: 3rem;
+			font-weight: 700;
+			padding: 4rem 4rem 0 4rem;
+			&--special {
+				color: colors.$darkPink;
+			}
+		}
+		&__form {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			align-items: center;
+			height: 100%;
+			&__input-container {
+				position: relative;
+				padding: 1.5rem 0 0;
+				width: 70%;
+				&--input {
+					width: 100%;
+					border: 0;
+					border-bottom: 3px solid colors.$mainGray;
+					outline: 0;
+					font-size: 1.8rem;
+					color: colors.$black;
+					padding: 0.7rem 0;
+					background: transparent;
+					transition: border-color 0.2s;
+					&::placeholder {
+						color: transparent;
+					}
+					&:focus {
+						padding-bottom: 0.6rem;
+						font-weight: 700;
+						border-width: 4px;
+						border-image: linear-gradient(to right, #11998e, #38ef7d);
+						border-image-slice: 1;
+					}
+					&:invalid {
+						box-shadow: none;
+					}
+					&:required {
+						box-shadow: none;
+					}
+				}
+				&--label {
+					position: absolute;
+					top: 0;
+					display: block;
+					transition: 0.2s;
+					font-size: 1.5rem;
+					color: colors.$mainGray;
+				}
+			}
+			&--submit {
+				border: none;
+				color: colors.$white;
+				background: colors.$darkPink;
+				padding: 0.5rem 0;
+				width: 70%;
+				margin-top: 2rem;
+				font-size: 1.8rem;
+				font-weight: 700;
+				border-radius: 50px;
+				border: 1px solid colors.$darkPink;
+				transition: all 0.3s ease;
+				&:hover {
+					border: 1px solid colors.$darkPink;
+					background: colors.$white;
+					color: colors.$darkPink;
+				}
+			}
+			&--extra {
+				padding-top: 1rem;
+				text-align: center;
+				width: 70%;
+				font-size: 1.2em;
+				font-weight: 500;
+				span {
+					font-size: 2rem;
+					color: red;
+				}
+			}
+			&__redirect {
+				padding-top: 1rem;
+				font-size: 1.2rem;
+				&--link {
+					color: colors.$darkPink;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+	&__text-side {
+		position: relative;
+		background: colors.$darkPink;
+		width: 50%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		border-radius: 0 50px 50px 0;
+
+		&--random-title {
+			padding: 4rem 4rem;
+			font-size: 3.5rem;
+			margin: 0 auto;
+			width: 90%;
+			font-weight: 700;
+			padding-bottom: 6rem;
+
+			&--special {
+				color: colors.$mainGreen;
+				font-weight: 900;
+			}
+		}
+
+		&--random-fact {
+			margin: 0 auto;
+			width: 90%;
+			font-size: 3rem;
+			padding: 0 4rem;
+			&--first-quote {
+				margin-left: -4rem;
+				color: colors.$mainGreen;
+				display: block;
+				font-size: 10rem;
+				line-height: 0%;
+			}
+			&--last-quote {
+				margin-left: -4rem;
+				color: colors.$mainGreen;
+				display: block;
+				font-size: 10rem;
+				text-align: right;
+			}
+		}
+		&--rectangle-one {
+			position: absolute;
+			padding: 1.8rem 21rem;
+			background: colors.$mainGreen;
+			transform: rotateZ(-90deg);
+			right: -17rem;
+			top: 44%;
+			box-shadow: -2px 3px 10px 2px rgba(10, 10, 10, 0.705);
+		}
+		&--rectangle-two {
+			position: absolute;
+			padding: 1.8rem 20rem;
+			background: colors.$mainGreen;
+			right: 15%;
+			top: 85%;
+			box-shadow: -2px 3px 10px 2px rgba(10, 10, 10, 0.705);
+		}
+	}
+}
+
+.form__field:placeholder-shown ~ .form__label {
+	font-size: 2rem;
+	cursor: text;
+	top: 20px;
+}
+
+.form__field:focus ~ .form__label {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1.5rem;
+	color: #11998e;
+	font-weight: 700;
+}
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-register-form {
+		&__text-side {
+			&--rectangle-one {
+				padding: 1.5rem 21rem;
+				right: -18rem;
+			}
+			&--rectangle-two {
+				padding: 1.5rem 17rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-register-form {
+		&__form-side {
+			&--header {
+				font-size: 2.5rem;
+			}
+			&__form {
+				&__input-container {
+					&--input {
+						font-size: 1.3rem;
+						margin-top: 0.5rem;
+					}
+					&--label {
+						font-size: 1.3rem;
+					}
+				}
+			}
+		}
+
+		&__text-side {
+			&--random-title {
+				font-size: 3rem;
+			}
+
+			&--random-fact {
+				margin: 0 auto;
+				width: 90%;
+				font-size: 2.5rem;
+				padding: 0 4rem;
+				padding-top: 8rem;
+				&--first-quote {
+					font-size: 8rem;
+				}
+				&--last-quote {
+					font-size: 8rem;
+				}
+			}
+			&--rectangle-two {
+				padding: 1.5rem 14rem;
+			}
+		}
+	}
+
+	.form__field:placeholder-shown ~ .form__label {
+		font-size: 1.3rem;
+	}
+
+	.form__field:focus ~ .form__label {
+		font-size: 1.3rem;
+	}
+}
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-register-form {
+		&__form-side {
+			&--header {
+				font-size: 2rem;
+				padding: 4rem 2rem 0 4rem;
+			}
+			&__form {
+				&__input-container {
+					width: 90%;
+				}
+				&--submit {
+					width: 90%;
+				}
+				&--extra {
+					width: 90%;
+				}
+			}
+		}
+
+		&__text-side {
+			&--random-title {
+				padding: 4rem 2rem;
+				font-size: 2.5rem;
+			}
+
+			&--random-fact {
+				padding: 0 2rem;
+				padding-top: 8rem;
+
+				&--first-quote {
+					margin-left: -2rem;
+					font-size: 8rem;
+				}
+				&--last-quote {
+					font-size: 8rem;
+					margin-left: -2rem;
+				}
+			}
+			&--rectangle-one {
+				display: none;
+			}
+			&--rectangle-two {
+				display: none;
+			}
+		}
+	}
+
+	.form__field:placeholder-shown ~ .form__label {
+		font-size: 1.3rem;
+	}
+
+	.form__field:focus ~ .form__label {
+		font-size: 1.3rem;
+	}
+}
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-register-form {
+		&__form-side {
+			width: 90%;
+			border-radius: 0px;
+			background: none;
+			color: white;
+			&--header {
+				padding: 0;
+				font-size: 2.2rem;
+				width: 90%;
+				margin: 0 auto;
+			}
+			&__form {
+				&__input-container {
+					width: 90%;
+				}
+				&--submit {
+					width: 90%;
+				}
+				&--extra {
+					width: 90%;
+				}
+			}
+		}
+
+		&__text-side {
+			display: none;
+		}
+	}
+}
