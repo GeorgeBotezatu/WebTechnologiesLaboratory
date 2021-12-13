@@ -1,6 +1,7 @@
 import "./RegisterForm.scss";
 import React from "react";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 const RegisterForm: React.FC = () => {
 	const componentClass = "wtl-register-form";
@@ -8,6 +9,9 @@ const RegisterForm: React.FC = () => {
 	const textSideClass = `${componentClass}__text-side`;
 	const headerClass = `${formSideClass}--header`;
 	const formClass = `${formSideClass}__form`;
+	const extraMessageClass = `${formClass}--extra`;
+	const redirectMessageClass = `${formClass}__redirect`;
+	const linkRedirectClass = `${redirectMessageClass}--link`;
 	const submitButtonClass = `${formClass}--submit`;
 	const inputContainerClass = `${formClass}__input-container`;
 	const inputClass = `${inputContainerClass}--input`;
@@ -85,6 +89,16 @@ const RegisterForm: React.FC = () => {
 					<button className={submitButtonClass} type="submit">
 						Submit
 					</button>
+					<p className={extraMessageClass}>
+						<span>*</span>This site uses Gravatar so if you want a profile
+						image, use a Gravatar email !
+					</p>
+					<p className={redirectMessageClass}>
+						Already Learner?{" "}
+						<Link to="login" className={linkRedirectClass}>
+							Click Me
+						</Link>
+					</p>
 				</form>
 			</div>
 			<div className={textSideClass}>
@@ -92,6 +106,7 @@ const RegisterForm: React.FC = () => {
 					Random fact about web{" "}
 					<span className={`${titleRandomClass}--special`}>design :</span>
 				</p>
+
 				<p className={randomFactClass}>
 					<span className={`${randomFactClass}--first-quote`}>"</span>
 					86% of visitors want info about prosucts/service on the hompage

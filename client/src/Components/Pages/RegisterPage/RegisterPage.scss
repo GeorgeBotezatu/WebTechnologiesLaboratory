@@ -7,3 +7,27 @@
 	margin: 0 auto;
 	height: 90vh;
 }
+
+@media (max-width: 1750px) {
+	.wtl-register-page {
+		width: 60%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-register-page {
+		width: 70%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-register-page {
+		width: 80%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-register-page {
+		width: 90%;
+	}
+}
