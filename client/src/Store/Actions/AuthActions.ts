@@ -11,8 +11,9 @@ const registerSuccess = (payload: string): AuthActionInterface => ({
 	payload,
 });
 
-const registerFail = (): AuthActionInterface => ({
+const registerFail = (payload: any): AuthActionInterface => ({
 	type: AuthActionTypes.REGISTER_FAIL,
+	payload,
 });
 
 export const register =
