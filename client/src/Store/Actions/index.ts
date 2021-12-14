@@ -1,1 +1,2 @@
-export default 1;
+import * as AlertAction from "./AlertActions";
+import * as AuthAction from "./AuthActions";

@@ -1,5 +1,9 @@
 import { v4 as uuid } from "uuid";
-import { AlertActionInterface, AlertPayloadInterface } from "../../Interfaces";
+import {
+	AlertActionInterface,
+	AlertPayloadInterface,
+	AsyncActionCreatorInterface,
+} from "../../Interfaces";
 import { AlertActionTypes } from "./ActionTypes";
 
 const setAlert = (payload: AlertPayloadInterface[]): AlertActionInterface => ({
@@ -12,15 +16,15 @@ const removeAlert = (id: string): AlertActionInterface => ({
 	payload: id,
 });
 
-export const triggerAlert = (
-	msg: string,
-	alertType: string,
-	timeout = 5000
-) => {
-	(dispatch: any) => {
+export const triggerAlert =
+	(
+		msg: string,
+		alertType: string,
+		timeout = 5000
+	): AsyncActionCreatorInterface =>
+	(dispatch) => {
 		const id = uuid();
 		const payload = [{ msg, alertType, id }];
 		dispatch(setAlert(payload));
 		setTimeout(() => dispatch(removeAlert(id)), timeout);
 	};
-};
