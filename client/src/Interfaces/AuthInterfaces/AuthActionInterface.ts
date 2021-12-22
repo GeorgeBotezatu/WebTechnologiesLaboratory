@@ -8,7 +8,7 @@ interface RegisterSuccess extends ActionInterface {
 
 interface RegisterFail extends ActionInterface {
 	type: AuthActionTypes.REGISTER_FAIL;
-	payload: any;
+	payload?: any;
 }
 
 type AuthActionInterface = RegisterSuccess | RegisterFail;

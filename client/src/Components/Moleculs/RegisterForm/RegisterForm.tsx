@@ -3,7 +3,40 @@ import React from "react";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import {
+	registerFail,
+	registerInit,
+	registerSuccess,
+} from "../../../Store/features/registerSlice";
+import { userRegister } from "../../../API/authApi";
+
+interface IRegisterResponse {
+	token: string;
+}
+
 const RegisterForm: React.FC = () => {
+	const dispatch = useDispatch();
+
+	const submitHandler = async (e: any) => {
+		e.preventDefault();
+
+		dispatch(registerInit());
+		try {
+			const registerResponse = (await userRegister({
+				email: "george.botezatu3213123231252321@yahoo.com",
+				name: "el",
+				password: "12342567",
+			})) as IRegisterResponse;
+			if (!registerResponse.token) {
+				dispatch(registerFail("Could not register"));
+			}
+			dispatch(registerSuccess());
+		} catch (error: any) {
+			dispatch(registerFail(error.message));
+		}
+	};
+
 	const componentClass = "wtl-register-form";
 	const formSideClass = `${componentClass}__form-side`;
 	const textSideClass = `${componentClass}__text-side`;
@@ -29,7 +62,7 @@ const RegisterForm: React.FC = () => {
 					Welcome to <span className={`${headerClass}--special`}>wtl. </span>
 					Complete a few steps to join our community!
 				</p>
-				<form className={formClass}>
+				<form className={formClass} onSubmit={(e) => submitHandler(e)}>
 					<div className={inputContainerClass}>
 						<input
 							className={classNames(inputClass, extraInput)}
