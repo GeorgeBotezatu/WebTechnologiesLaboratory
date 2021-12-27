@@ -10,27 +10,62 @@ import {
 	registerSuccess,
 } from "../../../Store/features/registerSlice";
 import { userRegister } from "../../../API/authApi";
-
+import TextInput from "../../Atoms/TextInput/TextInput";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 interface IRegisterResponse {
 	token: string;
+}
+interface FormValues {
+	username: string;
+	email: string;
+	password: string;
+	rePassword: string;
 }
 
 const RegisterForm: React.FC = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const initialValues: FormValues = {
+		username: "",
+		email: "",
+		password: "",
+		rePassword: "",
+	};
 
-	const submitHandler = async (e: any) => {
-		e.preventDefault();
+	const validate = Yup.object({
+		username: Yup.string().required("Username can't be empty"),
+		email: Yup.string()
+			.email("Provide a valid email")
+			.required("Email can't be empty"),
+		password: Yup.string()
+			.required("Password can't be empty")
+			.matches(
+				/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
+				"MIN 6 = MIN(1Up, 1Low, 1Special, 1Number)"
+			),
+		rePassword: Yup.string()
+			.oneOf([Yup.ref("password"), null], "Password must match")
+			.required("Re-Password can't be empty"),
+	});
 
+	const submitHandler = async (values: FormValues) => {
+		console.log(values.email);
 		dispatch(registerInit());
 		try {
-			const registerResponse = (await userRegister({
-				email: "george.botezatu3213123231252321@yahoo.com",
-				name: "el",
-				password: "12342567",
-			})) as IRegisterResponse;
+			const registerValues = {
+				email: values.email,
+				name: values.username,
+				password: values.password,
+			};
+			const registerResponse = (await userRegister(
+				registerValues
+			)) as IRegisterResponse;
 			if (!registerResponse.token) {
 				dispatch(registerFail("Could not register"));
 			}
+			navigate("/");
 			dispatch(registerSuccess());
 		} catch (error: any) {
 			dispatch(registerFail(error.message));
@@ -56,99 +91,97 @@ const RegisterForm: React.FC = () => {
 	const extraInput = "form__field";
 	const extraLabel = "form__label";
 	return (
-		<div className={componentClass}>
-			<div className={formSideClass}>
-				<p className={headerClass}>
-					Welcome to <span className={`${headerClass}--special`}>wtl. </span>
-					Complete a few steps to join our community!
-				</p>
-				<form className={formClass} onSubmit={(e) => submitHandler(e)}>
-					<div className={inputContainerClass}>
-						<input
-							className={classNames(inputClass, extraInput)}
-							type="text"
-							id="username"
-							placeholder="Username"
-						/>
-						<label
-							className={classNames(labelClass, extraLabel)}
-							htmlFor="username"
-						>
-							Username
-						</label>
-					</div>
-					<div className={inputContainerClass}>
-						<input
-							className={classNames(inputClass, extraInput)}
-							type="email"
-							id="email"
-							placeholder="Email"
-						/>
-						<label
-							className={classNames(labelClass, extraLabel)}
-							htmlFor="Email"
-						>
-							Email
-						</label>
-					</div>
-					<div className={inputContainerClass}>
-						<input
-							className={classNames(inputClass, extraInput)}
-							type="password"
-							id="password"
-							placeholder="Password"
-						/>
-						<label
-							className={classNames(labelClass, extraLabel)}
-							htmlFor="password"
-						>
-							Password
-						</label>
-					</div>
-					<div className={inputContainerClass}>
-						<input
-							className={classNames(inputClass, extraInput)}
-							type="password"
-							id="confirm_password"
-							placeholder="Re-Passsword"
-						/>
-						<label
-							className={classNames(labelClass, extraLabel)}
-							htmlFor="confirm_password"
-						>
-							Confirm Password
-						</label>
-					</div>
-					<button className={submitButtonClass} type="submit">
-						Submit
-					</button>
-					<p className={extraMessageClass}>
-						<span>*</span>This site uses Gravatar so if you want a profile
-						image, use a Gravatar email !
-					</p>
-					<p className={redirectMessageClass}>
-						Already Learner?{" "}
-						<Link to="login" className={linkRedirectClass}>
-							Click Me
-						</Link>
-					</p>
-				</form>
-			</div>
-			<div className={textSideClass}>
-				<p className={titleRandomClass}>
-					Random fact about web{" "}
-					<span className={`${titleRandomClass}--special`}>design :</span>
-				</p>
+		<Formik
+			initialValues={initialValues}
+			validationSchema={validate}
+			onSubmit={(values) => {
+				submitHandler(values);
+			}}
+		>
+			{(formik) => (
+				<div className={componentClass}>
+					<div className={formSideClass}>
+						<p className={headerClass}>
+							Welcome to{" "}
+							<span className={`${headerClass}--special`}>wtl. </span>
+							Complete a few steps to join our community!
+						</p>
+						<Form className={formClass}>
+							<TextInput
+								inputContainerClass={inputContainerClass}
+								inputClass={classNames(inputClass, extraInput)}
+								type="text"
+								id="username"
+								name="username"
+								placeholder="Username"
+								labelClass={classNames(labelClass, extraLabel)}
+								labelText="Username"
+							/>
+							<TextInput
+								inputContainerClass={inputContainerClass}
+								inputClass={classNames(inputClass, extraInput)}
+								type="email"
+								id="email"
+								name="email"
+								placeholder="Email"
+								labelClass={classNames(labelClass, extraLabel)}
+								labelText="Email"
+							/>
 
-				<p className={randomFactClass}>
-					<span className={`${randomFactClass}--first-quote`}>"</span>
-					86% of visitors want info about prosucts/service on the hompage
-					<span className={`${randomFactClass}--last-quote`}>"</span>
-				</p>
-				<div className={rectangleOneClass}></div>
-				<div className={rectangleTwoClass}></div>
-			</div>
-		</div>
+							<TextInput
+								inputContainerClass={inputContainerClass}
+								inputClass={classNames(inputClass, extraInput)}
+								type="password"
+								id="password"
+								name="password"
+								placeholder="Password"
+								labelClass={classNames(labelClass, extraLabel)}
+								labelText="Password"
+							/>
+
+							<TextInput
+								inputContainerClass={inputContainerClass}
+								inputClass={classNames(inputClass, extraInput)}
+								type="password"
+								id="rePassword"
+								name="rePassword"
+								placeholder="Re-Passsword"
+								labelClass={classNames(labelClass, extraLabel)}
+								labelText="Re-Password"
+							/>
+
+							<button className={submitButtonClass} type="submit">
+								Submit
+							</button>
+							<p className={extraMessageClass}>
+								<span>*</span>This site uses Gravatar so if you want a profile
+								image, use a Gravatar email !
+							</p>
+							<p className={redirectMessageClass}>
+								Already Learner?{" "}
+								<Link to="login" className={linkRedirectClass}>
+									Click Me
+								</Link>
+							</p>
+						</Form>
+					</div>
+					<div className={textSideClass}>
+						<p className={titleRandomClass}>
+							Random fact about web{" "}
+							<span className={`${titleRandomClass}--special`}>design :</span>
+						</p>
+
+						<p className={randomFactClass}>
+							<span className={`${randomFactClass}--first-quote`}>"</span>
+							86% of visitors want info about prosucts/service on the hompage
+							<span className={`${randomFactClass}--last-quote`}>"</span>
+						</p>
+						<div className={rectangleOneClass}></div>
+						<div className={rectangleTwoClass}></div>
+					</div>
+				</div>
+			)}
+		</Formik>
 	);
 };
 
