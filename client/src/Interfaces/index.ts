@@ -8,8 +8,7 @@ import { AlertReducerStateArrayInterface } from "./AlertInterfaces/AlertReducerS
 import AlertActionInterface from "./AlertInterfaces/AlertActionInterface";
 import { AlertReducerStateInterface } from "./AlertInterfaces/AlertReducerStateInterface";
 //AUTH
-import AuthActionInterface from "./AuthInterfaces/AuthActionInterface";
-import { AuthReducerStateInterfaces } from "./AuthInterfaces/AuthReducerStateInterface";
+
 export type {
 	AsyncActionCreatorInterface,
 	ActionInterface,
@@ -18,7 +17,4 @@ export type {
 	AlertActionInterface,
 	AlertReducerStateInterface,
 	AlertReducerStateArrayInterface,
-	//AUTH
-	AuthActionInterface,
-	AuthReducerStateInterfaces,
 };

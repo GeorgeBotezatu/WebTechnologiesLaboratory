@@ -14,6 +14,16 @@ import TextInput from "../../Atoms/TextInput/TextInput";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import {
+	COULD_NOT_REGISTER,
+	YUP_EMPTY_EMAIL,
+	YUP_EMPTY_PASSWORD,
+	YUP_EMPTY_RE_PASSWORD,
+	YUP_EMPTY_USERNAME,
+	YUP_MATCH_RE_PASSWORD,
+	YUP_VALID_EMAIL,
+	YUP_VALID_PASSWORD,
+} from "../../../Utils/constants";
 interface IRegisterResponse {
 	token: string;
 }
@@ -35,23 +45,20 @@ const RegisterForm: React.FC = () => {
 	};
 
 	const validate = Yup.object({
-		username: Yup.string().required("Username can't be empty"),
-		email: Yup.string()
-			.email("Provide a valid email")
-			.required("Email can't be empty"),
+		username: Yup.string().required(YUP_EMPTY_USERNAME),
+		email: Yup.string().email(YUP_VALID_EMAIL).required(YUP_EMPTY_EMAIL),
 		password: Yup.string()
-			.required("Password can't be empty")
+			.required(YUP_EMPTY_PASSWORD)
 			.matches(
 				/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
-				"MIN 6 = MIN(1Up, 1Low, 1Special, 1Number)"
+				YUP_VALID_PASSWORD
 			),
 		rePassword: Yup.string()
-			.oneOf([Yup.ref("password"), null], "Password must match")
-			.required("Re-Password can't be empty"),
+			.oneOf([Yup.ref("password"), null], YUP_MATCH_RE_PASSWORD)
+			.required(YUP_EMPTY_RE_PASSWORD),
 	});
 
 	const submitHandler = async (values: FormValues) => {
-		console.log(values.email);
 		dispatch(registerInit());
 		try {
 			const registerValues = {
@@ -63,7 +70,7 @@ const RegisterForm: React.FC = () => {
 				registerValues
 			)) as IRegisterResponse;
 			if (!registerResponse.token) {
-				dispatch(registerFail("Could not register"));
+				dispatch(registerFail(COULD_NOT_REGISTER));
 			}
 			navigate("/");
 			dispatch(registerSuccess());
