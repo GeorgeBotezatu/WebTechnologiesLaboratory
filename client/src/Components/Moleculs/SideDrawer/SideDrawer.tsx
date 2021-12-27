@@ -1,5 +1,5 @@
 import "./SideDrawer.scss";
-import { useEffect, useState } from "react";
+
 import {
 	COMMUNITY,
 	LOGIN,

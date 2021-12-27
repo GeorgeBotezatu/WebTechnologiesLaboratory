@@ -6,17 +6,17 @@
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	height: 70%;
+	height: 75%;
 	justify-content: space-around;
 	align-items: center;
 	&__form-side {
 		display: flex;
 		flex-direction: column;
-		background: white;
+		background: colors.$white;
 		width: 50%;
 		height: 100%;
 		gap: 1rem;
-		color: black;
+		color: colors.$black;
 		border-radius: 50px 0 0 50px;
 		&--header {
 			font-size: 3rem;
@@ -63,6 +63,7 @@
 						box-shadow: none;
 					}
 				}
+
 				&--label {
 					position: absolute;
 					top: 0;
@@ -91,7 +92,7 @@
 				}
 			}
 			&--extra {
-				padding-top: 1rem;
+				padding-top: 2rem;
 				text-align: center;
 				width: 70%;
 				font-size: 1.2em;
@@ -126,7 +127,7 @@
 			margin: 0 auto;
 			width: 90%;
 			font-weight: 700;
-			padding-bottom: 6rem;
+			padding-bottom: 2rem;
 
 			&--special {
 				color: colors.$mainGreen;
@@ -139,20 +140,6 @@
 			width: 90%;
 			font-size: 3rem;
 			padding: 0 4rem;
-			&--first-quote {
-				margin-left: -4rem;
-				color: colors.$mainGreen;
-				display: block;
-				font-size: 10rem;
-				line-height: 0%;
-			}
-			&--last-quote {
-				margin-left: -4rem;
-				color: colors.$mainGreen;
-				display: block;
-				font-size: 10rem;
-				text-align: right;
-			}
 		}
 		&--rectangle-one {
 			position: absolute;
@@ -187,6 +174,15 @@
 	transition: 0.2s;
 	font-size: 1.5rem;
 	color: #11998e;
+	font-weight: 700;
+}
+.form__field-error:focus ~ .form__label-error {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1.5rem;
+	color: red;
 	font-weight: 700;
 }
 @media (max-width: breakPoints.$breakPoint1366) {
@@ -232,7 +228,7 @@
 				width: 90%;
 				font-size: 2.5rem;
 				padding: 0 4rem;
-				padding-top: 8rem;
+				padding-top: 2rem;
 				&--first-quote {
 					font-size: 8rem;
 				}
@@ -251,6 +247,9 @@
 	}
 
 	.form__field:focus ~ .form__label {
+		font-size: 1.3rem;
+	}
+	.form__field-error:focus ~ .form__label-error {
 		font-size: 1.3rem;
 	}
 }
@@ -282,7 +281,6 @@
 
 			&--random-fact {
 				padding: 0 2rem;
-				padding-top: 8rem;
 
 				&--first-quote {
 					margin-left: -2rem;
@@ -301,14 +299,6 @@
 			}
 		}
 	}
-
-	.form__field:placeholder-shown ~ .form__label {
-		font-size: 1.3rem;
-	}
-
-	.form__field:focus ~ .form__label {
-		font-size: 1.3rem;
-	}
 }
 @media (max-width: breakPoints.$breakPoint600) {
 	.wtl-register-form {
@@ -316,7 +306,7 @@
 			width: 90%;
 			border-radius: 0px;
 			background: none;
-			color: white;
+			color: colors.$white;
 			&--header {
 				padding: 0;
 				font-size: 2.2rem;
@@ -326,6 +316,9 @@
 			&__form {
 				&__input-container {
 					width: 90%;
+					&--input {
+						color: colors.$white;
+					}
 				}
 				&--submit {
 					width: 90%;
