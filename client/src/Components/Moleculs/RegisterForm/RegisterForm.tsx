@@ -1,7 +1,7 @@
 import "./RegisterForm.scss";
 import React from "react";
 import classNames from "classnames";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import {
@@ -13,7 +13,7 @@ import { userRegister } from "../../../API/authApi";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+
 import {
 	COULD_NOT_REGISTER,
 	YUP_EMPTY_EMAIL,
@@ -171,7 +171,7 @@ const RegisterForm: React.FC = () => {
 							<p className={redirectMessageClass}>
 								Already Learner?{" "}
 								<Link to={LOGIN_PATH} className={linkRedirectClass}>
-									Click Me
+									Click Me!
 								</Link>
 							</p>
 						</Form>

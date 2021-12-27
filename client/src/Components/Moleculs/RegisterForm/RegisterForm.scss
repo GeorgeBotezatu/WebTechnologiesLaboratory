@@ -21,6 +21,7 @@
 		color: colors.$black;
 		border-radius: 10px 0 0 10px;
 		&--header {
+			text-align: center;
 			font-size: 3rem;
 			font-weight: 700;
 			padding: 4rem 4rem 0 4rem;
@@ -38,6 +39,7 @@
 				position: relative;
 				padding: 1.5rem 0 0;
 				width: 70%;
+				margin-top: 1rem;
 				&--input {
 					width: 100%;
 					border: 0;
@@ -145,11 +147,11 @@
 		}
 		&--rectangle-one {
 			position: absolute;
-			padding: 1.8rem 21rem;
+			padding: 1.8rem 27rem;
 			background: colors.$mainGreen;
 			transform: rotateZ(-90deg);
-			right: -17rem;
-			top: 44%;
+			right: -23rem;
+			top: 46%;
 			box-shadow: -2px 3px 10px 2px rgba(10, 10, 10, 0.705);
 		}
 		&--rectangle-two {
@@ -189,13 +191,28 @@
 }
 @media (max-width: breakPoints.$breakPoint1366) {
 	.wtl-register-form {
+		&__form-side {
+			gap: 0.5rem;
+
+			&--header {
+				font-size: 2.5rem;
+			}
+		}
 		&__text-side {
+			&--random-title {
+				padding: 4rem 4rem;
+				font-size: 3rem;
+			}
+
+			&--random-fact {
+				font-size: 2.5rem;
+				padding: 0 4.5rem;
+			}
 			&--rectangle-one {
-				padding: 1.5rem 21rem;
-				right: -18rem;
+				padding: 1.8rem 27rem;
 			}
 			&--rectangle-two {
-				padding: 1.5rem 17rem;
+				padding: 1.8rem 17rem;
 			}
 		}
 	}
@@ -230,16 +247,9 @@
 				width: 90%;
 				font-size: 2.5rem;
 				padding: 0 4rem;
-				padding-top: 2rem;
-				&--first-quote {
-					font-size: 8rem;
-				}
-				&--last-quote {
-					font-size: 8rem;
-				}
 			}
 			&--rectangle-two {
-				padding: 1.5rem 14rem;
+				padding: 1.8rem 15rem;
 			}
 		}
 	}
@@ -277,21 +287,18 @@
 
 		&__text-side {
 			&--random-title {
-				padding: 4rem 2rem;
+				padding: 4rem 3rem;
+				margin: 0;
+				width: 100%;
 				font-size: 2.5rem;
+				text-align: center;
 			}
 
 			&--random-fact {
-				padding: 0 2rem;
-
-				&--first-quote {
-					margin-left: -2rem;
-					font-size: 8rem;
-				}
-				&--last-quote {
-					font-size: 8rem;
-					margin-left: -2rem;
-				}
+				text-align: center;
+				padding: 0 3rem;
+				width: 100%;
+				margin: 0;
 			}
 			&--rectangle-one {
 				display: none;
@@ -311,6 +318,7 @@
 			color: colors.$white;
 			&--header {
 				padding: 0;
+				padding-top: 6rem;
 				font-size: 2.2rem;
 				width: 90%;
 				margin: 0 auto;
