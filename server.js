@@ -2,7 +2,7 @@ import express from "express";
 import colors from "colors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-
+import cors from "cors";
 //routes
 import userRoutes from "./routes/userRoutes.js";
 
@@ -12,6 +12,12 @@ const app = express();
 
 //use this  for get data from url
 app.use(express.json({ extended: false }));
+app.use(
+	cors({
+		origin: process.env.CORS_URL,
+		credentials: true,
+	})
+);
 
 //connect to db
 connectDB();
