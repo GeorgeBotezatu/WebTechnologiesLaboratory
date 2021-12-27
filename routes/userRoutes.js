@@ -27,7 +27,9 @@ router.post(
 	validateUserRegister,
 	registerUser
 );
-
+//@roaute POST api/user/login
+//@desc   Authenticate user & get token
+//@access Public
 router.post("/login", [
 	check(EMAIL, VALID_EMAIL),
 	check(PASSWORD, PASSWORD_REQUIRED),
