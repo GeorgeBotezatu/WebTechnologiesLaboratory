@@ -127,7 +127,7 @@
 			margin: 0 auto;
 			width: 90%;
 			font-weight: 700;
-			padding-bottom: 6rem;
+			padding-bottom: 2rem;
 
 			&--special {
 				color: colors.$mainGreen;
@@ -140,20 +140,6 @@
 			width: 90%;
 			font-size: 3rem;
 			padding: 0 4rem;
-			&--first-quote {
-				margin-left: -4rem;
-				color: colors.$mainGreen;
-				display: block;
-				font-size: 10rem;
-				line-height: 0%;
-			}
-			&--last-quote {
-				margin-left: -4rem;
-				color: colors.$mainGreen;
-				display: block;
-				font-size: 10rem;
-				text-align: right;
-			}
 		}
 		&--rectangle-one {
 			position: absolute;
@@ -242,7 +228,7 @@
 				width: 90%;
 				font-size: 2.5rem;
 				padding: 0 4rem;
-				padding-top: 8rem;
+				padding-top: 2rem;
 				&--first-quote {
 					font-size: 8rem;
 				}
@@ -295,7 +281,6 @@
 
 			&--random-fact {
 				padding: 0 2rem;
-				padding-top: 8rem;
 
 				&--first-quote {
 					margin-left: -2rem;

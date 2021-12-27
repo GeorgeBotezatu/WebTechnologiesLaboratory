@@ -24,6 +24,8 @@ import {
 	YUP_VALID_EMAIL,
 	YUP_VALID_PASSWORD,
 } from "../../../Utils/constants";
+import { getRandomNumber } from "../../../Utils/utilFunctions";
+import { randomFactsArr } from "../../../Utils/randomFacts";
 interface IRegisterResponse {
 	token: string;
 }
@@ -179,9 +181,7 @@ const RegisterForm: React.FC = () => {
 						</p>
 
 						<p className={randomFactClass}>
-							<span className={`${randomFactClass}--first-quote`}>"</span>
-							86% of visitors want info about prosucts/service on the hompage
-							<span className={`${randomFactClass}--last-quote`}>"</span>
+							{randomFactsArr[getRandomNumber(0, randomFactsArr.length - 1)]}
 						</p>
 						<div className={rectangleOneClass}></div>
 						<div className={rectangleTwoClass}></div>
