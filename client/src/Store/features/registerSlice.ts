@@ -26,10 +26,28 @@ export const registerSlice = createSlice({
 			state.isAuthenticated = false;
 			state.error = action.payload;
 		},
+		loginInit: (state) => {
+			state.loading = true;
+		},
+		loginSuccess: (state) => {
+			state.loading = false;
+			state.isAuthenticated = true;
+		},
+		loginFail: (state, action) => {
+			state.loading = false;
+			state.isAuthenticated = false;
+			state.error = action.payload;
+		},
 	},
 });
 
-export const { registerInit, registerSuccess, registerFail } =
-	registerSlice.actions;
+export const {
+	registerInit,
+	registerSuccess,
+	registerFail,
+	loginFail,
+	loginInit,
+	loginSuccess,
+} = registerSlice.actions;
 // export const selectUser = (state: IAuthState) => state.user;
 export default registerSlice.reducer;

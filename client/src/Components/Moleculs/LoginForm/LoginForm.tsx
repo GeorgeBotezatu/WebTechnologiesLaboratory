@@ -1,9 +1,10 @@
 import "./LoginForm.scss";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
+	COULD_NOT_LOGIN,
 	YUP_EMPTY_EMAIL,
 	YUP_EMPTY_PASSWORD,
 	YUP_VALID_EMAIL,
@@ -12,12 +13,24 @@ import LoginBadge from "../../../Assets/Images/LoginBadge.svg";
 import classNames from "classnames";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import { REGISTER_PATH } from "../../../Routes/routesPath";
+import { useDispatch } from "react-redux";
+import {
+	loginFail,
+	loginInit,
+	loginSuccess,
+} from "../../../Store/features/registerSlice";
+import { userLogin } from "../../../API/loginAuth";
 interface FormValues {
 	email: string;
 	password: string;
 }
+interface ILoginResponse {
+	token: string;
+}
 
 const LoginForm: React.FC = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const initialValues: FormValues = {
 		email: "",
 		password: "",
@@ -26,6 +39,24 @@ const LoginForm: React.FC = () => {
 		email: Yup.string().email(YUP_VALID_EMAIL).required(YUP_EMPTY_EMAIL),
 		password: Yup.string().required(YUP_EMPTY_PASSWORD),
 	});
+
+	const submitHandler = async (values: FormValues) => {
+		dispatch(loginInit());
+		try {
+			const loginValues = {
+				email: values.email,
+				password: values.password,
+			};
+			const loginResponse = (await userLogin(loginValues)) as ILoginResponse;
+			if (!loginResponse.token) {
+				dispatch(loginFail(COULD_NOT_LOGIN));
+			}
+			navigate("/");
+			dispatch(loginSuccess());
+		} catch (error: any) {
+			dispatch(loginFail(error.message));
+		}
+	};
 
 	const componentClass = "wtl-login-form";
 	const formSideClass = `${componentClass}__form-side`;
@@ -49,8 +80,8 @@ const LoginForm: React.FC = () => {
 		<Formik
 			initialValues={initialValues}
 			validationSchema={validate}
-			onSubmit={() => {
-				console.log("not yet");
+			onSubmit={(values) => {
+				submitHandler(values);
 			}}
 		>
 			{(formik) => (

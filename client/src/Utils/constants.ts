@@ -15,3 +15,4 @@ export const YUP_VALID_PASSWORD = "min 6 length = 0-9,a-z,A-Z and specials";
 export const YUP_MATCH_RE_PASSWORD = "Password must match!";
 export const YUP_EMPTY_RE_PASSWORD = "Re-Password can't be empty!";
 export const COULD_NOT_REGISTER = "Could not register!";
+export const COULD_NOT_LOGIN = "Could not Login!";
