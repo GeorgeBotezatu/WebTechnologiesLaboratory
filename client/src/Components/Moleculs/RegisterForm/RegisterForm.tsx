@@ -26,6 +26,7 @@ import {
 } from "../../../Utils/constants";
 import { getRandomNumber } from "../../../Utils/utilFunctions";
 import { randomFactsArr } from "../../../Utils/randomFacts";
+import { LOGIN_PATH } from "../../../Routes/routesPath";
 interface IRegisterResponse {
 	token: string;
 }
@@ -39,6 +40,7 @@ interface FormValues {
 const RegisterForm: React.FC = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const randomNumber: number = getRandomNumber(0, randomFactsArr.length - 1);
 	const initialValues: FormValues = {
 		username: "",
 		email: "",
@@ -168,7 +170,7 @@ const RegisterForm: React.FC = () => {
 							</p>
 							<p className={redirectMessageClass}>
 								Already Learner?{" "}
-								<Link to="login" className={linkRedirectClass}>
+								<Link to={LOGIN_PATH} className={linkRedirectClass}>
 									Click Me
 								</Link>
 							</p>
@@ -180,9 +182,7 @@ const RegisterForm: React.FC = () => {
 							<span className={`${titleRandomClass}--special`}>design :</span>
 						</p>
 
-						<p className={randomFactClass}>
-							{randomFactsArr[getRandomNumber(0, randomFactsArr.length - 1)]}
-						</p>
+						<p className={randomFactClass}>{randomFactsArr[randomNumber]}</p>
 						<div className={rectangleOneClass}></div>
 						<div className={rectangleTwoClass}></div>
 					</div>

@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-import { LANDING_PATH, REGISTER_PATH } from "../../../Routes/routesPath";
+import {
+	LANDING_PATH,
+	LOGIN_PATH,
+	REGISTER_PATH,
+} from "../../../Routes/routesPath";
 import {
 	ABOUT,
 	COMMUNITY,
@@ -48,7 +52,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 				</ul>
 			</div>
 			<div className={authGroupLinks}>
-				<a href="/">{LOGIN}</a>
+				<Link to={LOGIN_PATH}>{LOGIN}</Link>
 				<Link to={REGISTER_PATH}>{REGISTER}</Link>
 			</div>
 			<div

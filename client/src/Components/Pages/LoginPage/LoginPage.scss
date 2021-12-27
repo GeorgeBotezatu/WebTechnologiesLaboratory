@@ -1,0 +1,33 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-login-page {
+	width: 55%;
+	margin: 0 auto;
+	height: 90vh;
+}
+
+@media (max-width: 1750px) {
+	.wtl-login-page {
+		width: 60%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-login-page {
+		width: 70%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-login-page {
+		width: 80%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-login-page {
+		width: 90%;
+	}
+}

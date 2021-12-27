@@ -9,6 +9,8 @@
 	height: 75%;
 	justify-content: space-around;
 	align-items: center;
+	border-radius: 10px;
+	box-shadow: rgb(0, 0, 0) 0px 15px 30px 5px;
 	&__form-side {
 		display: flex;
 		flex-direction: column;
@@ -17,7 +19,7 @@
 		height: 100%;
 		gap: 1rem;
 		color: colors.$black;
-		border-radius: 50px 0 0 50px;
+		border-radius: 10px 0 0 10px;
 		&--header {
 			font-size: 3rem;
 			font-weight: 700;
@@ -53,7 +55,7 @@
 						padding-bottom: 0.6rem;
 						font-weight: 700;
 						border-width: 4px;
-						border-image: linear-gradient(to right, #11998e, #38ef7d);
+						border-image: colors.$formInputGradient;
 						border-image-slice: 1;
 					}
 					&:invalid {
@@ -99,7 +101,7 @@
 				font-weight: 500;
 				span {
 					font-size: 2rem;
-					color: red;
+					color: colors.$red;
 				}
 			}
 			&__redirect {
@@ -119,7 +121,7 @@
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-		border-radius: 0 50px 50px 0;
+		border-radius: 0 10px 10px 0;
 
 		&--random-title {
 			padding: 4rem 4rem;
@@ -182,7 +184,7 @@
 	display: block;
 	transition: 0.2s;
 	font-size: 1.5rem;
-	color: red;
+	color: colors.$red;
 	font-weight: 700;
 }
 @media (max-width: breakPoints.$breakPoint1366) {

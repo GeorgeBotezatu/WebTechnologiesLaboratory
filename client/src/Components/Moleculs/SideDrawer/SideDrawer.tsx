@@ -11,7 +11,7 @@ import {
 } from "../../../Utils/constants";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import { REGISTER_PATH } from "../../../Routes/routesPath";
+import { LOGIN_PATH, REGISTER_PATH } from "../../../Routes/routesPath";
 
 interface sideDrawerProps {
 	show: boolean;
@@ -67,7 +67,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 						show ? classNames(linkClass, loginClass, OPEN) : loginClass
 					}
 				>
-					<a href="/">{LOGIN}</a>
+					<Link to={LOGIN_PATH}>{LOGIN}</Link>
 				</li>
 				<li
 					className={
