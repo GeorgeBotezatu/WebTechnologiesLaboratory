@@ -46,6 +46,9 @@ export const registerSlice = createSlice({
 			state.isAuthenticated = false;
 			state.error = action.payload;
 		},
+		logout: (state) => {
+			state.isAuthenticated = false;
+		},
 	},
 });
 
@@ -56,6 +59,7 @@ export const {
 	loginFail,
 	loginInit,
 	loginSuccess,
+	logout,
 } = registerSlice.actions;
 // export const selectUser = (state: IAuthState) => state.user;
 export default registerSlice.reducer;

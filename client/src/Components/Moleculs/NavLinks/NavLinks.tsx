@@ -19,8 +19,9 @@ import {
 import "./NavLinks.scss";
 import classNames from "classnames";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Store/Store";
+import { logout } from "../../../Store/features/registerSlice";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
@@ -28,7 +29,9 @@ interface navLinksPropsInterface {
 
 const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
-	console.log(isAuthenticated);
+	const dispatch = useDispatch();
+	const cookies = new Cookies();
+
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
 	const burgerLinesClass = `${burgerClass}--line`;
@@ -61,7 +64,15 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 			</div>
 			<div className={authGroupLinks}>
 				{isAuthenticated ? (
-					<Link to="/logout">{LOGOUT}</Link>
+					<Link
+						onClick={() => {
+							cookies.remove(TOKEN);
+							dispatch(logout());
+						}}
+						to="/"
+					>
+						{LOGOUT}
+					</Link>
 				) : (
 					<>
 						<Link className={`${authGroupLinks}--bar`} to={LOGIN_PATH}>
