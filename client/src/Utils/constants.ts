@@ -5,6 +5,7 @@ export const CONSOLE = "Console";
 export const LEARNING_PATH = "LearningPath";
 export const LOGIN = "Login";
 export const REGISTER = "Register";
+export const LOGOUT = "Logout";
 export const OPEN = "open";
 export const TOKEN = "TOKEN";
 export const YUP_EMPTY_USERNAME = "Username can't be empty!";

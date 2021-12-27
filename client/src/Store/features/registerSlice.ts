@@ -1,12 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import Cookies from "universal-cookie";
+import { TOKEN } from "../../Utils/constants";
+const cookie = new Cookies();
+const token: string = cookie.get(TOKEN);
+function existToken() {
+	if (token) return true;
+	else return false;
+}
+const isAuthenticated: boolean = existToken();
 interface IAuthState {
 	isAuthenticated: boolean;
 	loading: boolean;
 	error: string | null;
 }
 const initialState: IAuthState = {
-	isAuthenticated: false,
+	isAuthenticated: isAuthenticated,
 	loading: false,
 	error: null,
 };

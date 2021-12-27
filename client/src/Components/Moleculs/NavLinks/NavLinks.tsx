@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 import {
 	LANDING_PATH,
 	LOGIN_PATH,
@@ -11,16 +12,23 @@ import {
 	LEARNING_PATH,
 	LOGIN,
 	LOGO,
+	LOGOUT,
 	REGISTER,
+	TOKEN,
 } from "../../../Utils/constants";
 import "./NavLinks.scss";
 import classNames from "classnames";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../Store/Store";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
 }
 
 const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	console.log(isAuthenticated);
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
 	const burgerLinesClass = `${burgerClass}--line`;
@@ -52,8 +60,16 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 				</ul>
 			</div>
 			<div className={authGroupLinks}>
-				<Link to={LOGIN_PATH}>{LOGIN}</Link>
-				<Link to={REGISTER_PATH}>{REGISTER}</Link>
+				{isAuthenticated ? (
+					<Link to="/logout">{LOGOUT}</Link>
+				) : (
+					<>
+						<Link className={`${authGroupLinks}--bar`} to={LOGIN_PATH}>
+							{LOGIN}
+						</Link>
+						<Link to={REGISTER_PATH}>{REGISTER}</Link>
+					</>
+				)}
 			</div>
 			<div
 				className={show ? classNames(burgerClass, "open") : burgerClass}
