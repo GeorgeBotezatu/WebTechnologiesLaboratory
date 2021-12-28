@@ -2,7 +2,7 @@
 @use "../../../Styles/colors";
 @use "../../../Styles/breakPoints";
 
-.wtl-register-form {
+.wtl-login-form {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
@@ -17,7 +17,7 @@
 		background: colors.$white;
 		width: 50%;
 		height: 100%;
-		gap: 1rem;
+		gap: 2rem;
 		color: colors.$black;
 		border-radius: 10px 0 0 10px;
 		&--header {
@@ -39,7 +39,7 @@
 				position: relative;
 				padding: 1.5rem 0 0;
 				width: 70%;
-				margin-top: 1rem;
+				margin-top: 1.5rem;
 				&--input {
 					width: 100%;
 					border: 0;
@@ -83,7 +83,7 @@
 				background: colors.$darkPink;
 				padding: 0.5rem 0;
 				width: 70%;
-				margin-top: 2rem;
+				margin-top: 8rem;
 				font-size: 1.8rem;
 				font-weight: 700;
 				border-radius: 50px;
@@ -138,12 +138,8 @@
 				font-weight: 900;
 			}
 		}
-
-		&--random-fact {
-			margin: 0 auto;
-			width: 90%;
-			font-size: 3rem;
-			padding: 0 4rem;
+		&--badge {
+			height: 25rem;
 		}
 		&--rectangle-one {
 			position: absolute;
@@ -190,7 +186,7 @@
 	font-weight: 700;
 }
 @media (max-width: breakPoints.$breakPoint1366) {
-	.wtl-register-form {
+	.wtl-login-form {
 		&__form-side {
 			gap: 0.5rem;
 
@@ -204,10 +200,10 @@
 				font-size: 3rem;
 			}
 
-			&--random-fact {
-				font-size: 2.5rem;
-				padding: 0 4.5rem;
+			&--badge {
+				height: 20rem;
 			}
+
 			&--rectangle-one {
 				padding: 1.8rem 27rem;
 			}
@@ -219,7 +215,7 @@
 }
 
 @media (max-width: breakPoints.$breakPoint1080) {
-	.wtl-register-form {
+	.wtl-login-form {
 		&__form-side {
 			&--header {
 				font-size: 2.5rem;
@@ -238,16 +234,13 @@
 		}
 
 		&__text-side {
+			&--badge {
+				height: 18rem;
+			}
 			&--random-title {
 				font-size: 3rem;
 			}
 
-			&--random-fact {
-				margin: 0 auto;
-				width: 90%;
-				font-size: 2.5rem;
-				padding: 0 4rem;
-			}
 			&--rectangle-two {
 				padding: 1.8rem 15rem;
 			}
@@ -266,7 +259,7 @@
 	}
 }
 @media (max-width: breakPoints.$breakPoint800) {
-	.wtl-register-form {
+	.wtl-login-form {
 		&__form-side {
 			&--header {
 				font-size: 2rem;
@@ -286,6 +279,7 @@
 		}
 
 		&__text-side {
+			gap: 10rem;
 			&--random-title {
 				padding: 4rem 3rem;
 				margin: 0;
@@ -295,7 +289,6 @@
 			}
 
 			&--random-fact {
-				text-align: center;
 				padding: 0 3rem;
 				width: 100%;
 				margin: 0;
@@ -310,7 +303,7 @@
 	}
 }
 @media (max-width: breakPoints.$breakPoint600) {
-	.wtl-register-form {
+	.wtl-login-form {
 		&__form-side {
 			width: 90%;
 			border-radius: 0px;

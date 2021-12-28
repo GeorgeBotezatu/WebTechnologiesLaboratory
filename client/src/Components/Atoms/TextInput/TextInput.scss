@@ -19,7 +19,7 @@
 		padding-bottom: 0.6rem;
 		font-weight: 700;
 		border-width: 4px;
-		border-image: linear-gradient(to right, #11998e, red);
+		border-image: colors.$formInputGradientError;
 		border-image-slice: 1;
 	}
 	&:invalid {

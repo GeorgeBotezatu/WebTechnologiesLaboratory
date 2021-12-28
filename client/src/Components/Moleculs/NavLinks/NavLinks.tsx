@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import { LANDING_PATH, REGISTER_PATH } from "../../../Routes/routesPath";
+import Cookies from "universal-cookie";
+import {
+	LANDING_PATH,
+	LOGIN_PATH,
+	REGISTER_PATH,
+} from "../../../Routes/routesPath";
 import {
 	ABOUT,
 	COMMUNITY,
@@ -7,16 +12,25 @@ import {
 	LEARNING_PATH,
 	LOGIN,
 	LOGO,
+	LOGOUT,
 	REGISTER,
+	TOKEN,
 } from "../../../Utils/constants";
 import "./NavLinks.scss";
 import classNames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../Store/Store";
+import { logout } from "../../../Store/features/registerSlice";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
 }
 
 const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const dispatch = useDispatch();
+	const cookies = new Cookies();
+
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
 	const burgerLinesClass = `${burgerClass}--line`;
@@ -42,14 +56,30 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 					<li className={linkClass}>
 						<a href="/">{CONSOLE}</a>
 					</li>
-					<li className={linkDisabledClass}>
+					<li className={isAuthenticated ? linkClass : linkDisabledClass}>
 						<a href="/">{LEARNING_PATH}</a>
 					</li>
 				</ul>
 			</div>
 			<div className={authGroupLinks}>
-				<a href="/">{LOGIN}</a>
-				<Link to={REGISTER_PATH}>{REGISTER}</Link>
+				{isAuthenticated ? (
+					<Link
+						onClick={() => {
+							cookies.remove(TOKEN);
+							dispatch(logout());
+						}}
+						to="/"
+					>
+						{LOGOUT}
+					</Link>
+				) : (
+					<>
+						<Link className={`${authGroupLinks}--bar`} to={LOGIN_PATH}>
+							{LOGIN}
+						</Link>
+						<Link to={REGISTER_PATH}>{REGISTER}</Link>
+					</>
+				)}
 			</div>
 			<div
 				className={show ? classNames(burgerClass, "open") : burgerClass}

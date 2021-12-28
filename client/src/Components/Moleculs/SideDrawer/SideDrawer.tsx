@@ -1,5 +1,5 @@
 import "./SideDrawer.scss";
-
+import Cookies from "universal-cookie";
 import {
 	COMMUNITY,
 	LOGIN,
@@ -8,16 +8,24 @@ import {
 	CONSOLE,
 	LEARNING_PATH,
 	OPEN,
+	TOKEN,
+	LOGOUT,
 } from "../../../Utils/constants";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import { REGISTER_PATH } from "../../../Routes/routesPath";
+import { LOGIN_PATH, REGISTER_PATH } from "../../../Routes/routesPath";
+import { RootState } from "../../../Store/Store";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../Store/features/registerSlice";
 
 interface sideDrawerProps {
 	show: boolean;
 }
 
 const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const dispatch = useDispatch();
+	const cookies = new Cookies();
 	const componentClass = "wtl-side-drawer";
 	const linksGroupClass = `${componentClass}__links-group`;
 	const linkClass = `${linksGroupClass}--link`;
@@ -53,29 +61,64 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 				>
 					<a href="/">{CONSOLE}</a>
 				</li>
-				<li
-					className={
-						show
-							? classNames(linkDisabledClass, learningPathClass, OPEN)
-							: learningPathClass
-					}
-				>
-					<a href="/">{LEARNING_PATH}</a>
-				</li>
-				<li
-					className={
-						show ? classNames(linkClass, loginClass, OPEN) : loginClass
-					}
-				>
-					<a href="/">{LOGIN}</a>
-				</li>
-				<li
-					className={
-						show ? classNames(linkClass, registerClass, OPEN) : registerClass
-					}
-				>
-					<Link to={REGISTER_PATH}>{REGISTER}</Link>
-				</li>
+				{isAuthenticated ? (
+					<li
+						className={
+							show
+								? classNames(linkClass, consoleClass, OPEN)
+								: learningPathClass
+						}
+					>
+						<a href="/">{LEARNING_PATH}</a>
+					</li>
+				) : (
+					<li
+						className={
+							show
+								? classNames(linkDisabledClass, learningPathClass, OPEN)
+								: learningPathClass
+						}
+					>
+						<a href="/">{LEARNING_PATH}</a>
+					</li>
+				)}
+
+				{isAuthenticated ? (
+					<li
+						className={
+							show ? classNames(linkClass, loginClass, OPEN) : loginClass
+						}
+					>
+						<Link
+							onClick={() => {
+								cookies.remove(TOKEN);
+								dispatch(logout());
+							}}
+							to="/"
+						>
+							{LOGOUT}
+						</Link>
+					</li>
+				) : (
+					<>
+						<li
+							className={
+								show ? classNames(linkClass, loginClass, OPEN) : loginClass
+							}
+						>
+							<Link to={LOGIN_PATH}>{LOGIN}</Link>
+						</li>
+						<li
+							className={
+								show
+									? classNames(linkClass, registerClass, OPEN)
+									: registerClass
+							}
+						>
+							<Link to={REGISTER_PATH}>{REGISTER}</Link>
+						</li>
+					</>
+				)}
 			</ul>
 		</div>
 	);

@@ -65,7 +65,7 @@
 			margin: 0 0.5rem;
 			transition: color 0.3s ease;
 		}
-		a:first-of-type::after {
+		&--bar::after {
 			position: absolute;
 			content: "|";
 			color: colors.$white;

@@ -1,12 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import Cookies from "universal-cookie";
+import { TOKEN } from "../../Utils/constants";
+const cookie = new Cookies();
+const token: string = cookie.get(TOKEN);
+function existToken() {
+	if (token) return true;
+	else return false;
+}
+const isAuthenticated: boolean = existToken();
 interface IAuthState {
 	isAuthenticated: boolean;
 	loading: boolean;
 	error: string | null;
 }
 const initialState: IAuthState = {
-	isAuthenticated: false,
+	isAuthenticated: isAuthenticated,
 	loading: false,
 	error: null,
 };
@@ -26,10 +34,32 @@ export const registerSlice = createSlice({
 			state.isAuthenticated = false;
 			state.error = action.payload;
 		},
+		loginInit: (state) => {
+			state.loading = true;
+		},
+		loginSuccess: (state) => {
+			state.loading = false;
+			state.isAuthenticated = true;
+		},
+		loginFail: (state, action) => {
+			state.loading = false;
+			state.isAuthenticated = false;
+			state.error = action.payload;
+		},
+		logout: (state) => {
+			state.isAuthenticated = false;
+		},
 	},
 });
 
-export const { registerInit, registerSuccess, registerFail } =
-	registerSlice.actions;
+export const {
+	registerInit,
+	registerSuccess,
+	registerFail,
+	loginFail,
+	loginInit,
+	loginSuccess,
+	logout,
+} = registerSlice.actions;
 // export const selectUser = (state: IAuthState) => state.user;
 export default registerSlice.reducer;
