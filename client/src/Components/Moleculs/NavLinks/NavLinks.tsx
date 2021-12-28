@@ -18,7 +18,6 @@ import {
 } from "../../../Utils/constants";
 import "./NavLinks.scss";
 import classNames from "classnames";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Store/Store";
 import { logout } from "../../../Store/features/registerSlice";
@@ -57,7 +56,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 					<li className={linkClass}>
 						<a href="/">{CONSOLE}</a>
 					</li>
-					<li className={linkDisabledClass}>
+					<li className={isAuthenticated ? linkClass : linkDisabledClass}>
 						<a href="/">{LEARNING_PATH}</a>
 					</li>
 				</ul>

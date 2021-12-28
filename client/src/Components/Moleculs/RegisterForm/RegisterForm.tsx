@@ -1,9 +1,9 @@
 import "./RegisterForm.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	registerFail,
 	registerInit,
@@ -27,6 +27,7 @@ import {
 import { getRandomNumber } from "../../../Utils/utilFunctions";
 import { randomFactsArr } from "../../../Utils/randomFacts";
 import { LOGIN_PATH } from "../../../Routes/routesPath";
+import { RootState } from "../../../Store/Store";
 interface IRegisterResponse {
 	token: string;
 }
@@ -38,6 +39,7 @@ interface FormValues {
 }
 
 const RegisterForm: React.FC = () => {
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const randomNumber: number = getRandomNumber(0, randomFactsArr.length - 1);
@@ -47,6 +49,10 @@ const RegisterForm: React.FC = () => {
 		password: "",
 		rePassword: "",
 	};
+
+	useEffect(() => {
+		if (isAuthenticated) navigate("/");
+	}, [isAuthenticated]);
 
 	const validate = Yup.object({
 		username: Yup.string().required(YUP_EMPTY_USERNAME),

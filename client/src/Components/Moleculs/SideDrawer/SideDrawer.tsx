@@ -61,15 +61,28 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 				>
 					<a href="/">{CONSOLE}</a>
 				</li>
-				<li
-					className={
-						show
-							? classNames(linkDisabledClass, learningPathClass, OPEN)
-							: learningPathClass
-					}
-				>
-					<a href="/">{LEARNING_PATH}</a>
-				</li>
+				{isAuthenticated ? (
+					<li
+						className={
+							show
+								? classNames(linkClass, consoleClass, OPEN)
+								: learningPathClass
+						}
+					>
+						<a href="/">{LEARNING_PATH}</a>
+					</li>
+				) : (
+					<li
+						className={
+							show
+								? classNames(linkDisabledClass, learningPathClass, OPEN)
+								: learningPathClass
+						}
+					>
+						<a href="/">{LEARNING_PATH}</a>
+					</li>
+				)}
+
 				{isAuthenticated ? (
 					<li
 						className={

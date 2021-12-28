@@ -1,5 +1,5 @@
 import "./LoginForm.scss";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -13,13 +13,14 @@ import LoginBadge from "../../../Assets/Images/LoginBadge.svg";
 import classNames from "classnames";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import { REGISTER_PATH } from "../../../Routes/routesPath";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	loginFail,
 	loginInit,
 	loginSuccess,
 } from "../../../Store/features/registerSlice";
 import { userLogin } from "../../../API/loginAuth";
+import { RootState } from "../../../Store/Store";
 interface FormValues {
 	email: string;
 	password: string;
@@ -29,12 +30,18 @@ interface ILoginResponse {
 }
 
 const LoginForm: React.FC = () => {
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const initialValues: FormValues = {
 		email: "",
 		password: "",
 	};
+
+	useEffect(() => {
+		if (isAuthenticated) navigate("/");
+	}, [isAuthenticated]);
+
 	const validate = Yup.object({
 		email: Yup.string().email(YUP_VALID_EMAIL).required(YUP_EMPTY_EMAIL),
 		password: Yup.string().required(YUP_EMPTY_PASSWORD),
