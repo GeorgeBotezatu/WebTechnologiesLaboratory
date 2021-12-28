@@ -1,12 +1,12 @@
 import { validationResult } from "express-validator";
 import CustomStatusCodeError from "../utils/customError.js";
 import {
-	INPUTS_DOSE_NOT_MATCH,
 	SERVER_ERROR,
 	USER_EXIST,
 	USER_NOT_FOUND,
 } from "../utils/textUtils.js";
 import User from "../models/userScehma.js";
+import { matchInputs, verifyInputErrors } from "../utils/utilFunctions.js";
 //|----------------|
 //|---Middlewares--|
 //|----------------|
@@ -65,24 +65,6 @@ async function validateRegistration(email, errors) {
 	}
 }
 
-function matchInputs(arrived, valid) {
-	let counter = 0;
-	for (let attr in valid) {
-		for (let at in arrived)
-			if (attr === at) {
-				counter++;
-			}
-	}
-	if (counter != Object.keys(arrived).length) {
-		throw new CustomStatusCodeError(INPUTS_DOSE_NOT_MATCH, 400);
-	}
-}
-
-function verifyInputErrors(errors) {
-	if (!errors.isEmpty()) {
-		throw new CustomStatusCodeError(errors.array(), 400);
-	}
-}
 async function verifyIfUserExist(email) {
 	const user = await User.findOne({ email });
 	if (!user) throw new CustomStatusCodeError(USER_NOT_FOUND, 404);

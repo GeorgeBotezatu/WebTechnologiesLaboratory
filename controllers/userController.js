@@ -2,13 +2,12 @@ import User from "../models/userScehma.js";
 import gravatar from "gravatar";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { validationResult } from "express-validator";
+
 import CustomStatusCodeError from "../utils/customError.js";
 import {
 	INVALID_CREDENTIALS,
 	SERVER_ERROR,
 	TOKEN_ERROR,
-	USER_EXIST,
 } from "../utils/textUtils.js";
 
 //|----------------|
