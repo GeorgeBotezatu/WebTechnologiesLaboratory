@@ -17,3 +17,4 @@ export const YUP_MATCH_RE_PASSWORD = "Password must match!";
 export const YUP_EMPTY_RE_PASSWORD = "Re-Password can't be empty!";
 export const COULD_NOT_REGISTER = "Could not register!";
 export const COULD_NOT_LOGIN = "Could not Login!";
+export const COULD_NOT_LOAD_PROFILE = "Could not load your profile!";

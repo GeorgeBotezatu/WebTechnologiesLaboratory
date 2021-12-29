@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
+	COULD_NOT_LOAD_PROFILE,
 	COULD_NOT_LOGIN,
 	YUP_EMPTY_EMAIL,
 	YUP_EMPTY_PASSWORD,
@@ -21,6 +22,14 @@ import {
 } from "../../../Store/features/registerSlice";
 import { userLogin } from "../../../API/loginAuth";
 import { RootState } from "../../../Store/Store";
+import { loadProfile } from "../../../API/profileAPI";
+import { getToken } from "../../../Utils/utilFunctions";
+import { IUserState } from "../../../Interfaces";
+import {
+	profileLoadFail,
+	profileLoadInit,
+	profileLoadSuccess,
+} from "../../../Store/features/profileSlice";
 interface FormValues {
 	email: string;
 	password: string;
@@ -40,7 +49,7 @@ const LoginForm: React.FC = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) navigate("/");
-	}, [isAuthenticated]);
+	}, [isAuthenticated, navigate]);
 
 	const validate = Yup.object({
 		email: Yup.string().email(YUP_VALID_EMAIL).required(YUP_EMPTY_EMAIL),
@@ -49,6 +58,7 @@ const LoginForm: React.FC = () => {
 
 	const submitHandler = async (values: FormValues) => {
 		dispatch(loginInit());
+		dispatch(profileLoadInit());
 		try {
 			const loginValues = {
 				email: values.email,
@@ -58,10 +68,18 @@ const LoginForm: React.FC = () => {
 			if (!loginResponse.token) {
 				dispatch(loginFail(COULD_NOT_LOGIN));
 			}
-			navigate("/");
+
+			const profileLoadResponse = (await loadProfile(getToken())) as IUserState;
+			if (!profileLoadResponse) {
+				dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
+			}
+
 			dispatch(loginSuccess());
+			dispatch(profileLoadSuccess(profileLoadResponse));
+			navigate("/");
 		} catch (error: any) {
 			dispatch(loginFail(error.message));
+			dispatch(profileLoadFail(error.message));
 		}
 	};
 

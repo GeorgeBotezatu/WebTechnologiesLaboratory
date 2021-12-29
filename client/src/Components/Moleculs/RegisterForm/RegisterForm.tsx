@@ -15,6 +15,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import {
+	COULD_NOT_LOAD_PROFILE,
 	COULD_NOT_REGISTER,
 	YUP_EMPTY_EMAIL,
 	YUP_EMPTY_PASSWORD,
@@ -28,6 +29,13 @@ import { getRandomNumber } from "../../../Utils/utilFunctions";
 import { randomFactsArr } from "../../../Utils/randomFacts";
 import { LOGIN_PATH } from "../../../Routes/routesPath";
 import { RootState } from "../../../Store/Store";
+import { createProfile, loadProfile } from "../../../API/profileAPI";
+import {
+	profileLoadFail,
+	profileLoadInit,
+	profileLoadSuccess,
+} from "../../../Store/features/profileSlice";
+import { IUserState } from "../../../Interfaces";
 interface IRegisterResponse {
 	token: string;
 }
@@ -52,7 +60,7 @@ const RegisterForm: React.FC = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) navigate("/");
-	}, [isAuthenticated]);
+	}, [isAuthenticated, navigate]);
 
 	const validate = Yup.object({
 		username: Yup.string().required(YUP_EMPTY_USERNAME),
@@ -70,6 +78,7 @@ const RegisterForm: React.FC = () => {
 
 	const submitHandler = async (values: FormValues) => {
 		dispatch(registerInit());
+		dispatch(profileLoadInit());
 		try {
 			const registerValues = {
 				email: values.email,
@@ -82,10 +91,21 @@ const RegisterForm: React.FC = () => {
 			if (!registerResponse.token) {
 				dispatch(registerFail(COULD_NOT_REGISTER));
 			}
-			navigate("/");
+			await createProfile(registerResponse.token);
+
+			const profileLoadResponse = (await loadProfile(
+				registerResponse.token
+			)) as IUserState;
+			if (!profileLoadResponse) {
+				dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
+			}
+
 			dispatch(registerSuccess());
+			dispatch(profileLoadSuccess(profileLoadResponse));
+			navigate("/");
 		} catch (error: any) {
 			dispatch(registerFail(error.message));
+			dispatch(profileLoadFail(error.message));
 		}
 	};
 

@@ -21,6 +21,7 @@ import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Store/Store";
 import { logout } from "../../../Store/features/registerSlice";
+import { profileClear } from "../../../Store/features/profileSlice";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
@@ -66,6 +67,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 					<Link
 						onClick={() => {
 							cookies.remove(TOKEN);
+							dispatch(profileClear());
 							dispatch(logout());
 						}}
 						to="/"
