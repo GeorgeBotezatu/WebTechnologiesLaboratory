@@ -1,3 +1,12 @@
 export const EMAIL = "email";
 export const NAME = "name";
 export const PASSWORD = "password";
+export const STATUS = "status";
+export const SKILLS = "skills";
+export const GITHUB = "githubusername";
+export const TITLE = "title";
+export const COMPANY = "company";
+export const FROM = "from";
+export const SCHOOL = "school";
+export const DEGREE = "degree";
+export const FIELD_OF_STUDY = "fieldofstudy";
