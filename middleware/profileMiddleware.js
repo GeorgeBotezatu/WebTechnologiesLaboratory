@@ -97,6 +97,33 @@ const validateExperience = async (req, res, next) => {
 		res.status(500).send({ msg: SERVER_ERROR });
 	}
 };
+
+const validateEducation = async (req, res, next) => {
+	try {
+		const errors = validationResult(req);
+		verifyInputErrors(errors);
+		const userId = req.user.id;
+		await verifyIfProfileDoesNotExist(userId);
+		const data = req.body;
+		const validInputs = {
+			school: "",
+			degree: "",
+			fieldofstudy: "",
+			from: "",
+			to: "",
+			current: "",
+			description: "",
+		};
+		matchInputs(data, validInputs);
+		next();
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
 //|----------------|
 //|---Functions----|
 //|----------------|
@@ -111,4 +138,5 @@ export {
 	validateAddGithubName,
 	validateSocialSection,
 	validateExperience,
+	validateEducation,
 };

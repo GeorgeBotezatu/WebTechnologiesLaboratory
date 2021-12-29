@@ -3,31 +3,41 @@ const router = express.Router();
 import { check } from "express-validator";
 import {
 	addAboutSection,
+	addEducation,
 	addExperience,
 	addGithubName,
 	addSocialSection,
 	createProfile,
+	deleteEducation,
+	deleteExperience,
 	getMyProfile,
 } from "../controllers/profileController.js";
 import { auth } from "../middleware/auth.js";
 import {
 	validateAddAboutSection,
 	validateAddGithubName,
+	validateEducation,
 	validateExperience,
 	validateSocialSection,
 } from "../middleware/profileMiddleware.js";
 import {
 	COMPANY,
+	DEGREE,
+	FIELD_OF_STUDY,
 	FROM,
 	GITHUB,
+	SCHOOL,
 	SKILLS,
 	STATUS,
 	TITLE,
 } from "../utils/constants.js";
 import {
 	COMPANY_REQUIRED,
+	DEGREE_REQUIRED,
+	FIELD_OF_STUDY_REQUIRED,
 	FROM_REQUIRED,
 	GITHUB_REQUIRED,
+	SCHOOL_REQUIRED,
 	SKILLS_REQUIRED,
 	STATUS_REQUIRED,
 	TITLE_REQUIRED,
@@ -76,7 +86,6 @@ router.put("/social", auth, validateSocialSection, addSocialSection);
 //@roaute POST api/profile/experience
 //@desc   Create experience section
 //@access private
-
 router.put(
 	"/experience",
 	auth,
@@ -89,4 +98,29 @@ router.put(
 	addExperience
 );
 
+//@roaute DELETE api/profile/experience/:exp_id
+//@desc   Delete education
+//@access private
+router.delete("/experience/:exp_id", auth, deleteExperience);
+
+//@roaute POST api/profile/education
+//@desc   Create education section
+//@access private
+router.put(
+	"/education",
+	auth,
+	[
+		check(SCHOOL, SCHOOL_REQUIRED).not().isEmpty(),
+		check(DEGREE, DEGREE_REQUIRED).not().isEmpty(),
+		check(FIELD_OF_STUDY, FIELD_OF_STUDY_REQUIRED).not().isEmpty(),
+		check(FROM, FROM_REQUIRED).not().isEmpty(),
+	],
+	validateEducation,
+	addEducation
+);
+
+//@roaute DELETE api/profile/education/:edu_id
+//@desc   DELETE education
+//@access private
+router.delete("/education/:edu_id", auth, deleteEducation);
 export default router;
