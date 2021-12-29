@@ -1,3 +1,10 @@
 @use "../../../Styles/default";
 @use "../../../Styles/colors";
 @use "../../../Styles/breakPoints";
+
+.wtl-profile-page {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+	width: 60%;
+	margin: 0 auto;
+}

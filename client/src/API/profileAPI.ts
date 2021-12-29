@@ -1,4 +1,5 @@
 import axiosInstance from "../Axios/AxiosInstance";
+import { IUserState } from "../Interfaces";
 
 export const createProfile = (token: string) => {
 	return new Promise(async (resolve, reject) => {
@@ -21,7 +22,7 @@ export const createProfile = (token: string) => {
 };
 
 export const loadProfile = (token: string) => {
-	return new Promise(async (resolve, reject) => {
+	return new Promise<IUserState>(async (resolve, reject) => {
 		try {
 			const createUrl = "/profile/me";
 			const requestHeader = {
@@ -31,8 +32,8 @@ export const loadProfile = (token: string) => {
 				},
 			};
 			const res = await axiosInstance.get(createUrl, requestHeader);
-			console.log("din api" + res.data);
-			resolve(res.data);
+			const { data }: { data: IUserState } = res;
+			resolve(data);
 		} catch (error) {
 			console.log(error);
 			reject(error);

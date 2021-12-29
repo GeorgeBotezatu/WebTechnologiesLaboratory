@@ -18,3 +18,8 @@ export const addTokenToCookie = (token: string) => {
 export const getToken = () => {
 	return cookies.get(TOKEN);
 };
+export const existToken = () => {
+	const token: string = getToken();
+	if (token) return true;
+	else return false;
+};

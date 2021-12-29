@@ -6,6 +6,7 @@ interface initialStateInterface {
 	error: string | null;
 	userProfile: IUserState;
 }
+
 const initialState: initialStateInterface = {
 	loading: false,
 	error: null,
