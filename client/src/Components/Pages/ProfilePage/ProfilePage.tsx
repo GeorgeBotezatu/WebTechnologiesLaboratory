@@ -5,11 +5,18 @@ import { RootState } from "../../../Store/Store";
 import { useSelector } from "react-redux";
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
+	const github = userProfile.githubusername;
+	const userCard = userProfile.user;
+	const profileDate = userProfile.date;
 	console.log(userProfile);
 	const componentClass = "wtl-profile-page";
 	return (
 		<div className={componentClass}>
-			<ProfileCard />
+			<ProfileCard
+				github={github ? github : false}
+				userCard={userCard}
+				profileDate={profileDate}
+			/>
 		</div>
 	);
 };

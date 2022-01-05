@@ -1,3 +1,81 @@
 @use "../../../Styles/default";
 @use "../../../Styles/colors";
 @use "../../../Styles/breakPoints";
+
+.wtl-profile-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	&__username-container {
+		font-size: 2.5rem;
+		&--p {
+			margin-left: 20rem;
+		}
+	}
+	&__card-container {
+		position: relative;
+		height: auto;
+		background: colors.$profileCardsGray;
+		border-radius: 10px;
+		border: 2px solid rgba(255, 255, 255, 0.6);
+		display: flex;
+		flex-direction: column;
+		font-size: 2.3rem;
+		box-shadow: 0 3px 8px -2px rgb(241, 111, 5);
+		&--email {
+			margin-top: 2rem;
+			margin-left: 20rem;
+		}
+		&__github-container {
+			margin-left: 20rem;
+			display: flex;
+			align-items: center;
+			gap: 5rem;
+		}
+		&--registered {
+			margin-left: 20rem;
+			margin-bottom: 2rem;
+		}
+		&__image-container {
+			position: absolute;
+			top: -8rem;
+			left: 3rem;
+
+			img {
+				height: 150px;
+				width: 150px;
+				border-radius: 50%;
+				border: 2px solid rgba(255, 255, 255, 0.6);
+				animation: rotateShadow 4s linear infinite;
+			}
+		}
+	}
+}
+
+@keyframes shadow {
+	from {
+		box-shadow: 0 3px 8px -2px rgb(241, 111, 5);
+	}
+	to {
+		box-shadow: 0 4px 10px -1px rgb(241, 111, 5);
+	}
+}
+
+@keyframes rotateShadow {
+	0% {
+		box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+	}
+	20% {
+		box-shadow: 4px 3px 8px -2px colors.$profileShadowColor;
+	}
+	60% {
+		box-shadow: 4px -3px 8px -2px colors.$profileShadowColor;
+	}
+	80% {
+		box-shadow: -4px -3px 8px -2px colors.$profileShadowColor;
+	}
+	100% {
+		box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+	}
+}
