@@ -39,6 +39,17 @@ export const profileSlice = createSlice({
 				date: null,
 			};
 		},
+		profileGithubInit: (state) => {
+			state.loading = true;
+		},
+		profileGithubSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile.githubusername = action.payload;
+		},
+		profileGithubFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -47,5 +58,8 @@ export const {
 	profileLoadSuccess,
 	profileLoadFail,
 	profileClear,
+	profileGithubFail,
+	profileGithubInit,
+	profileGithubSuccess,
 } = profileSlice.actions;
 export default profileSlice.reducer;

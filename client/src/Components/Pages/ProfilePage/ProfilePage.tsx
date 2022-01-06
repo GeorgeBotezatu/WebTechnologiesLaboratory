@@ -8,12 +8,12 @@ const ProfilePage = () => {
 	const github = userProfile.githubusername;
 	const userCard = userProfile.user;
 	const profileDate = userProfile.date;
-	console.log(userProfile);
+
 	const componentClass = "wtl-profile-page";
 	return (
 		<div className={componentClass}>
 			<ProfileCard
-				github={github ? github : false}
+				github={github ? github : null}
 				userCard={userCard}
 				profileDate={profileDate}
 			/>

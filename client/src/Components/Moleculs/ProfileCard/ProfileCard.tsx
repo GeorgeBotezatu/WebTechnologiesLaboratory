@@ -1,8 +1,9 @@
 import "./ProfileCard.scss";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import EditableTextField from "../../Atoms/EditableTextField/EditableTextField";
 
 interface CardInterface {
-	github: string | boolean;
+	github: string | null;
 	userCard: {
 		_id: string;
 		name: string;
@@ -17,6 +18,9 @@ const ProfileCard: React.FC<CardInterface> = ({
 	profileDate,
 	userCard,
 }) => {
+	const inputRef =
+		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
+	const [task, setTask] = useState<string>("");
 	const calcultateDays = () => {
 		if (profileDate) {
 			const date = new Date(profileDate);
@@ -27,6 +31,9 @@ const ProfileCard: React.FC<CardInterface> = ({
 		}
 	};
 
+	useEffect(() => {
+		if (github) setTask(github);
+	}, [github]);
 	const componentClass = "wtl-profile-card";
 	const usernameContainerClass = `${componentClass}__username-container`;
 	const cardContainerClass = `${componentClass}__card-container`;
@@ -51,21 +58,29 @@ const ProfileCard: React.FC<CardInterface> = ({
 					Email: {userCard?.email && userCard.email}{" "}
 				</p>
 
-				{github ? (
-					<div className={githubContainerClass}>
-						<p className={`${githubContainerClass}--p`}>GitHub: {github} </p>
+				<div className={githubContainerClass}>
+					<span>GitHub: </span>
+					<EditableTextField
+						text={task}
+						placeholder="Add github username"
+						type="input"
+						childRef={inputRef}
+					>
+						<input
+							ref={inputRef}
+							type="text"
+							name="task"
+							placeholder="Add github username"
+							value={task}
+							onChange={(e) => setTask(e.target.value)}
+						/>
+					</EditableTextField>
+					{/* <p className={`${githubContainerClass}--p`}>GitHub: {github} </p>
 						<button className={`${githubContainerClass}--edit-button`}>
 							Edit GitHub Username
-						</button>
-					</div>
-				) : (
-					<div className={githubContainerClass}>
-						<p className={`${githubContainerClass}--p`}>GitHub: </p>
-						<button className={`${githubContainerClass}--add-button`}>
-							Add GitHub Username
-						</button>
-					</div>
-				)}
+						</button> */}
+				</div>
+
 				<p className={registeredClass}>
 					Registered: {calcultateDays()} days ago
 				</p>

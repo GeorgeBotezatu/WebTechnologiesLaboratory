@@ -3,6 +3,7 @@ import { TOKEN_INVALID, TOKEN_REQUIRED } from "../utils/textUtils.js";
 
 const auth = (req, res, next) => {
 	let token;
+
 	if (
 		req.headers.authorization &&
 		req.headers.authorization.startsWith("Bearer")
