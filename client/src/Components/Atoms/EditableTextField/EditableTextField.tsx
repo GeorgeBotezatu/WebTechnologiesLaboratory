@@ -1,17 +1,15 @@
+import "./EditableTextField.scss";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateGithub } from "../../../API/profileAPI";
-import {
-	profileGithubFail,
-	profileGithubInit,
-	profileGithubSuccess,
-} from "../../../Store/features/profileSlice";
+import editImage from "../../../Assets/Icons/edit-pencil-icon.svg";
+import checkImage from "../../../Assets/Icons/check-icon.svg";
+
 interface IEditableInput {
 	type: string;
 	text: string;
 	placeholder: string;
 	children: JSX.Element;
 	childRef: React.MutableRefObject<HTMLInputElement>;
+	updateFunction: (text: string) => void;
 }
 const EditableTextField: React.FC<IEditableInput> = ({
 	text,
@@ -19,10 +17,11 @@ const EditableTextField: React.FC<IEditableInput> = ({
 	placeholder,
 	children,
 	childRef,
+	updateFunction,
 	...props
 }) => {
 	const [isEditing, setEditing] = useState(false);
-	const dispatch = useDispatch();
+
 	useEffect(() => {
 		if (childRef && childRef.current && isEditing === true) {
 			childRef.current.focus();
@@ -42,38 +41,39 @@ const EditableTextField: React.FC<IEditableInput> = ({
 			(type !== "textarea" && allKeys.indexOf(key) > -1)
 		) {
 			setEditing(false);
+			updateFunction(text);
 		}
 	};
 
 	const onClickHandler = () => {
 		setEditing(false);
-		dispatch(profileGithubInit());
-		if (text) {
-			try {
-				updateGithub(text);
-				dispatch(profileGithubSuccess(text));
-			} catch (error: any) {
-				dispatch(profileGithubFail(error.message));
-			}
-		}
+		updateFunction(text);
 	};
 
+	const componentClass = "wtl-editable-field";
+	const staticContainerClass = `${componentClass}__static-container`;
+	const editableContainerClass = `${componentClass}__editable-container`;
+
 	return (
-		<section {...props}>
+		<section className={componentClass} {...props}>
 			{isEditing ? (
-				<div onKeyDown={(e) => handleKeyDown(e, type)}>
+				<div
+					className={editableContainerClass}
+					onKeyDown={(e) => handleKeyDown(e, type)}
+				>
 					{children}
 					<button
 						onClick={() => {
 							onClickHandler();
 						}}
 					>
-						Save
+						<img src={checkImage} alt="edit-image" />
 					</button>
 				</div>
 			) : (
-				<div onClick={() => setEditing(true)}>
+				<div className={staticContainerClass} onClick={() => setEditing(true)}>
 					<span>{text || placeholder || "Editable content"}</span>
+					<img src={editImage} alt="edit-image" />
 				</div>
 			)}
 		</section>

@@ -1,6 +1,14 @@
 import "./ProfileCard.scss";
 import React, { useEffect, useRef, useState } from "react";
 import EditableTextField from "../../Atoms/EditableTextField/EditableTextField";
+import { calcultateDays } from "../../../Utils/utilFunctions";
+import {
+	profileGithubFail,
+	profileGithubInit,
+	profileGithubSuccess,
+} from "../../../Store/features/profileSlice";
+import { useDispatch } from "react-redux";
+import { updateGithub } from "../../../API/profileAPI";
 
 interface CardInterface {
 	github: string | null;
@@ -20,20 +28,25 @@ const ProfileCard: React.FC<CardInterface> = ({
 }) => {
 	const inputRef =
 		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
-	const [task, setTask] = useState<string>("");
-	const calcultateDays = () => {
-		if (profileDate) {
-			const date = new Date(profileDate);
-			const today = new Date();
-			const diffTIme = today.getTime() - date.getTime();
-			const diffDays = Math.round(diffTIme / (1000 * 3600 * 24));
-			return diffDays;
+	const [githubField, setGithubField] = useState<string>("");
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (github) setGithubField(github);
+	}, [github]);
+
+	const updateGit = (text: string) => {
+		dispatch(profileGithubInit());
+		if (text) {
+			try {
+				updateGithub(text);
+				dispatch(profileGithubSuccess(text));
+			} catch (error: any) {
+				dispatch(profileGithubFail(error.message));
+			}
 		}
 	};
 
-	useEffect(() => {
-		if (github) setTask(github);
-	}, [github]);
 	const componentClass = "wtl-profile-card";
 	const usernameContainerClass = `${componentClass}__username-container`;
 	const cardContainerClass = `${componentClass}__card-container`;
@@ -61,28 +74,25 @@ const ProfileCard: React.FC<CardInterface> = ({
 				<div className={githubContainerClass}>
 					<span>GitHub: </span>
 					<EditableTextField
-						text={task}
+						text={githubField}
 						placeholder="Add github username"
 						type="input"
 						childRef={inputRef}
+						updateFunction={updateGit}
 					>
 						<input
 							ref={inputRef}
 							type="text"
-							name="task"
+							name="githubField"
 							placeholder="Add github username"
-							value={task}
-							onChange={(e) => setTask(e.target.value)}
+							value={githubField}
+							onChange={(e) => setGithubField(e.target.value)}
 						/>
 					</EditableTextField>
-					{/* <p className={`${githubContainerClass}--p`}>GitHub: {github} </p>
-						<button className={`${githubContainerClass}--edit-button`}>
-							Edit GitHub Username
-						</button> */}
 				</div>
 
 				<p className={registeredClass}>
-					Registered: {calcultateDays()} days ago
+					Registered: {calcultateDays(profileDate)} days ago
 				</p>
 			</div>
 		</div>

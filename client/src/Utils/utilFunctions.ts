@@ -23,3 +23,13 @@ export const existToken = () => {
 	if (token) return true;
 	else return false;
 };
+
+export const calcultateDays = (profileDate: Date | null) => {
+	if (profileDate) {
+		const date = new Date(profileDate);
+		const today = new Date();
+		const diffTIme = today.getTime() - date.getTime();
+		const diffDays = Math.round(diffTIme / (1000 * 3600 * 24));
+		return diffDays;
+	}
+};
