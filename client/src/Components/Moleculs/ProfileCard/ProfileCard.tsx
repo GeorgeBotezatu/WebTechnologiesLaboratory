@@ -9,19 +9,15 @@ import {
 } from "../../../Store/features/profileSlice";
 import { useDispatch } from "react-redux";
 import { updateGithub } from "../../../API/profileAPI";
+import { IProfileCard } from "../../../Interfaces";
+import {
+	EMAIL_TXT,
+	GITHUB_PLACEHOLDER,
+	GITHUB_TXT,
+	REGISTERED_TXT,
+} from "../../../Utils/constants";
 
-interface CardInterface {
-	github: string | null;
-	userCard: {
-		_id: string;
-		name: string;
-		email: string;
-		avatar: string;
-	} | null;
-	profileDate: Date | null;
-}
-
-const ProfileCard: React.FC<CardInterface> = ({
+const ProfileCard: React.FC<IProfileCard> = ({
 	github,
 	profileDate,
 	userCard,
@@ -68,14 +64,14 @@ const ProfileCard: React.FC<CardInterface> = ({
 					<img src={userCard?.avatar && userCard.avatar} alt="user-avatar" />
 				</div>
 				<p className={emailClass}>
-					Email: {userCard?.email && userCard.email}{" "}
+					{EMAIL_TXT} {userCard?.email && userCard.email}{" "}
 				</p>
 
 				<div className={githubContainerClass}>
-					<span>GitHub: </span>
+					<span>{GITHUB_TXT}</span>
 					<EditableTextField
 						text={githubField}
-						placeholder="Add github username"
+						placeholder={GITHUB_PLACEHOLDER}
 						type="input"
 						childRef={inputRef}
 						updateFunction={updateGit}
@@ -84,7 +80,7 @@ const ProfileCard: React.FC<CardInterface> = ({
 							ref={inputRef}
 							type="text"
 							name="githubField"
-							placeholder="Add github username"
+							placeholder={GITHUB_PLACEHOLDER}
 							value={githubField}
 							onChange={(e) => setGithubField(e.target.value)}
 						/>
@@ -92,7 +88,7 @@ const ProfileCard: React.FC<CardInterface> = ({
 				</div>
 
 				<p className={registeredClass}>
-					Registered: {calcultateDays(profileDate)} days ago
+					{REGISTERED_TXT} {calcultateDays(profileDate)} days ago
 				</p>
 			</div>
 		</div>

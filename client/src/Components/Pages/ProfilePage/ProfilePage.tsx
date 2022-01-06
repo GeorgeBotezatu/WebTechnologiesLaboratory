@@ -3,6 +3,7 @@ import React from "react";
 import ProfileCard from "../../Moleculs/ProfileCard/ProfileCard";
 import { RootState } from "../../../Store/Store";
 import { useSelector } from "react-redux";
+
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 	const github = userProfile.githubusername;

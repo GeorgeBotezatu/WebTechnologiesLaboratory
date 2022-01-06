@@ -1,11 +1,16 @@
 import axiosInstance from "../Axios/AxiosInstance";
 import { IUserState } from "../Interfaces";
 import { getToken } from "../Utils/utilFunctions";
+import {
+	CREATE_PROFILE_URL,
+	LOAD_PROFILE_URL,
+	UPDATE_GITHUB_URL,
+} from "./apiPaths";
+import { REQUEST_HEADERS_WITH_BEARER } from "./requestHeaders";
 
 export const createProfile = (token: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const createUrl = "/profile/create";
 			const requestHeader = {
 				headers: {
 					authorization: `Bearer ${token}`,
@@ -13,7 +18,11 @@ export const createProfile = (token: string) => {
 				},
 			};
 
-			const res = await axiosInstance.post(createUrl, {}, requestHeader);
+			const res = await axiosInstance.post(
+				CREATE_PROFILE_URL,
+				{},
+				requestHeader
+			);
 			resolve(res.data);
 		} catch (error: any) {
 			console.log(error);
@@ -25,14 +34,13 @@ export const createProfile = (token: string) => {
 export const loadProfile = (token: string) => {
 	return new Promise<IUserState>(async (resolve, reject) => {
 		try {
-			const createUrl = "/profile/me";
 			const requestHeader = {
 				headers: {
 					authorization: `Bearer ${token}`,
 					"Content-type": "application/json",
 				},
 			};
-			const res = await axiosInstance.get(createUrl, requestHeader);
+			const res = await axiosInstance.get(LOAD_PROFILE_URL, requestHeader);
 			const { data }: { data: IUserState } = res;
 			resolve(data);
 		} catch (error: any) {
@@ -45,14 +53,13 @@ export const loadProfile = (token: string) => {
 export const updateGithub = (githubusername: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const githubUrl = "/profile/github";
 			const git = { githubusername };
-			const requestHeader = {
-				headers: {
-					authorization: `Bearer ${getToken()}`,
-				},
-			};
-			const res = await axiosInstance.put(githubUrl, git, requestHeader);
+
+			const res = await axiosInstance.put(
+				UPDATE_GITHUB_URL,
+				git,
+				REQUEST_HEADERS_WITH_BEARER
+			);
 			resolve(res.data);
 		} catch (error: any) {
 			console.log(error);

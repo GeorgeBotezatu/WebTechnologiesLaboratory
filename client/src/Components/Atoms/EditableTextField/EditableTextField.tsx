@@ -2,15 +2,9 @@ import "./EditableTextField.scss";
 import React, { useEffect, useState } from "react";
 import editImage from "../../../Assets/Icons/edit-pencil-icon.svg";
 import checkImage from "../../../Assets/Icons/check-icon.svg";
+import { ENTER_KEY, ESCAPE_KEY, TAB_KEY } from "../../../Utils/constants";
+import { IEditableInput } from "../../../Interfaces";
 
-interface IEditableInput {
-	type: string;
-	text: string;
-	placeholder: string;
-	children: JSX.Element;
-	childRef: React.MutableRefObject<HTMLInputElement>;
-	updateFunction: (text: string) => void;
-}
 const EditableTextField: React.FC<IEditableInput> = ({
 	text,
 	type,
@@ -33,8 +27,8 @@ const EditableTextField: React.FC<IEditableInput> = ({
 		type: any
 	) => {
 		const { key } = event;
-		const keys = ["Escape", "Tab"];
-		const enterKey = "Enter";
+		const keys = [ESCAPE_KEY, TAB_KEY];
+		const enterKey = ENTER_KEY;
 		const allKeys = [...keys, enterKey];
 		if (
 			(type === "textarea" && keys.indexOf(key) > -1) ||
@@ -67,13 +61,13 @@ const EditableTextField: React.FC<IEditableInput> = ({
 							onClickHandler();
 						}}
 					>
-						<img src={checkImage} alt="edit-image" />
+						<img src={checkImage} alt="check-icon" />
 					</button>
 				</div>
 			) : (
 				<div className={staticContainerClass} onClick={() => setEditing(true)}>
-					<span>{text || placeholder || "Editable content"}</span>
-					<img src={editImage} alt="edit-image" />
+					<span>{text || placeholder}</span>
+					<img src={editImage} alt="edit-icon" />
 				</div>
 			)}
 		</section>

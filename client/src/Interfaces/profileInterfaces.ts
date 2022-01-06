@@ -46,3 +46,13 @@ export interface IUserState {
 	githubusername?: string;
 	date: Date | null;
 }
+export interface IProfileCard {
+	github: string | null;
+	userCard: {
+		_id: string;
+		name: string;
+		email: string;
+		avatar: string;
+	} | null;
+	profileDate: Date | null;
+}

@@ -1,3 +1,4 @@
-import { IUserState } from "./profileInterfaces";
+import { IUserState, IProfileCard } from "./profileInterfaces";
+import { IEditableInput } from "./EditableTextInterface";
 
-export type { IUserState };
+export type { IUserState, IEditableInput, IProfileCard };
