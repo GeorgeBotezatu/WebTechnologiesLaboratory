@@ -35,14 +35,19 @@
 			width: 100%;
 			align-items: center;
 			height: 100%;
-
+			&--invalid {
+				font-size: 1.6rem;
+				margin-top: 6rem;
+				color: colors.$red;
+				animation: pulse 1s ease-in-out alternate infinite;
+			}
 			&--submit {
 				border: none;
 				color: colors.$white;
 				background: colors.$darkPink;
 				padding: 0.5rem 0;
 				width: 70%;
-				margin-top: 8rem;
+				margin-top: 6rem;
 				font-size: 1.8rem;
 				font-weight: 700;
 				border-radius: 50px;
@@ -119,7 +124,14 @@
 		}
 	}
 }
-
+@keyframes pulse {
+	from {
+		font-size: 1.6rem;
+	}
+	to {
+		font-size: 1.9rem;
+	}
+}
 @media (max-width: breakPoints.$breakPoint1366) {
 	.wtl-login-form {
 		&__form-side {

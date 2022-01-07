@@ -38,7 +38,9 @@ interface ILoginResponse {
 }
 
 const LoginForm: React.FC = () => {
-	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const { isAuthenticated, error } = useSelector(
+		(state: RootState) => state.auth
+	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const initialValues: FormValues = {
@@ -90,6 +92,7 @@ const LoginForm: React.FC = () => {
 	const redirectMessageClass = `${formClass}__redirect`;
 	const linkRedirectClass = `${redirectMessageClass}--link`;
 	const submitButtonClass = `${formClass}--submit`;
+	const invalidCredentialsClass = `${formClass}--invalid`;
 	const titleRandomClass = `${textSideClass}--random-title`;
 	const rectangleOneClass = `${textSideClass}--rectangle-one`;
 	const rectangleTwoClass = `${textSideClass}--rectangle-two`;
@@ -138,6 +141,9 @@ const LoginForm: React.FC = () => {
 									Click Me!
 								</Link>
 							</p>
+							{error && (
+								<p className={invalidCredentialsClass}>Incorect Credentials!</p>
+							)}
 						</Form>
 					</div>
 					<div className={textSideClass}>
