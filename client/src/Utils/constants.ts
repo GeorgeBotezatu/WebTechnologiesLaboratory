@@ -26,3 +26,4 @@ export const EMAIL_TXT = "Email: ";
 export const GITHUB_TXT = "GitHub: ";
 export const REGISTERED_TXT = "Registered: ";
 export const GITHUB_PLACEHOLDER = "Add your github username";
+export const MODIFY_ABOUT = "Modify About";

@@ -1,6 +1,6 @@
 import axiosInstance from "../Axios/AxiosInstance";
 import { IUserState } from "../Interfaces";
-import { getToken } from "../Utils/utilFunctions";
+
 import {
 	CREATE_PROFILE_URL,
 	LOAD_PROFILE_URL,
