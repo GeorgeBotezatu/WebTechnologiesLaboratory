@@ -1,7 +1,48 @@
 @use "../../../Styles/default";
 @use "../../../Styles/colors";
 @use "../../../Styles/breakPoints";
+.wtl-text-input {
+	position: relative;
+	padding: 1.5rem 0 0;
+	width: 70%;
+	margin-top: 1rem;
+	&--input {
+		width: 100%;
+		border: 0;
+		border-bottom: 3px solid colors.$mainGray;
+		outline: 0;
+		font-size: 1.8rem;
+		color: colors.$black;
+		padding: 0.7rem 0;
+		background: transparent;
+		transition: border-color 0.2s;
+		&::placeholder {
+			color: transparent;
+		}
+		&:focus {
+			padding-bottom: 0.6rem;
+			font-weight: 700;
+			border-width: 4px;
+			border-image: colors.$formInputGradient;
+			border-image-slice: 1;
+		}
+		&:invalid {
+			box-shadow: none;
+		}
+		&:required {
+			box-shadow: none;
+		}
+	}
 
+	&--label {
+		position: absolute;
+		top: 0;
+		display: block;
+		transition: 0.2s;
+		font-size: 1.5rem;
+		color: colors.$mainGray;
+	}
+}
 .errorTextInput {
 	width: 100%;
 	border: 0;
@@ -29,14 +70,71 @@
 		box-shadow: none;
 	}
 }
+
+.form__field:placeholder-shown ~ .form__label {
+	font-size: 2rem;
+	cursor: text;
+	top: 20px;
+}
+
+.form__field:focus ~ .form__label {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1.7rem;
+	color: #11998e;
+	font-weight: 700;
+}
+.form__field-error:focus ~ .form__label-error {
+	position: absolute;
+	top: 0;
+	display: block;
+	transition: 0.2s;
+	font-size: 1.7rem;
+	color: colors.$red;
+	font-weight: 700;
+}
+
 @media (max-width: breakPoints.$breakPoint1080) {
 	.errorTextInput {
 		font-size: 1.3rem;
+	}
+	.wtl-text-input {
+		&--input {
+			font-size: 1.3rem;
+			margin-top: 0.5rem;
+		}
+		&--label {
+			font-size: 1.3rem;
+		}
+	}
+	.form__field:placeholder-shown ~ .form__label {
+		font-size: 1.5rem;
+	}
+
+	.form__field:focus ~ .form__label {
+		font-size: 1.5rem;
+	}
+	.form__field-error:focus ~ .form__label-error {
+		font-size: 1.5rem;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-text-input {
+		width: 90%;
 	}
 }
 
 @media (max-width: breakPoints.$breakPoint600) {
 	.errorTextInput {
 		color: colors.$white;
+	}
+
+	.wtl-text-input {
+		&--input {
+			color: colors.$white;
+		}
 	}
 }

@@ -35,48 +35,7 @@
 			width: 100%;
 			align-items: center;
 			height: 100%;
-			&__input-container {
-				position: relative;
-				padding: 1.5rem 0 0;
-				width: 70%;
-				margin-top: 1rem;
-				&--input {
-					width: 100%;
-					border: 0;
-					border-bottom: 3px solid colors.$mainGray;
-					outline: 0;
-					font-size: 1.8rem;
-					color: colors.$black;
-					padding: 0.7rem 0;
-					background: transparent;
-					transition: border-color 0.2s;
-					&::placeholder {
-						color: transparent;
-					}
-					&:focus {
-						padding-bottom: 0.6rem;
-						font-weight: 700;
-						border-width: 4px;
-						border-image: colors.$formInputGradient;
-						border-image-slice: 1;
-					}
-					&:invalid {
-						box-shadow: none;
-					}
-					&:required {
-						box-shadow: none;
-					}
-				}
 
-				&--label {
-					position: absolute;
-					top: 0;
-					display: block;
-					transition: 0.2s;
-					font-size: 1.5rem;
-					color: colors.$mainGray;
-				}
-			}
 			&--submit {
 				border: none;
 				color: colors.$white;
@@ -165,30 +124,6 @@
 	}
 }
 
-.form__field:placeholder-shown ~ .form__label {
-	font-size: 2rem;
-	cursor: text;
-	top: 20px;
-}
-
-.form__field:focus ~ .form__label {
-	position: absolute;
-	top: 0;
-	display: block;
-	transition: 0.2s;
-	font-size: 1.5rem;
-	color: #11998e;
-	font-weight: 700;
-}
-.form__field-error:focus ~ .form__label-error {
-	position: absolute;
-	top: 0;
-	display: block;
-	transition: 0.2s;
-	font-size: 1.5rem;
-	color: colors.$red;
-	font-weight: 700;
-}
 @media (max-width: breakPoints.$breakPoint1366) {
 	.wtl-register-form {
 		&__form-side {
@@ -224,17 +159,6 @@
 			&--header {
 				font-size: 2.5rem;
 			}
-			&__form {
-				&__input-container {
-					&--input {
-						font-size: 1.3rem;
-						margin-top: 0.5rem;
-					}
-					&--label {
-						font-size: 1.3rem;
-					}
-				}
-			}
 		}
 
 		&__text-side {
@@ -253,17 +177,6 @@
 			}
 		}
 	}
-
-	.form__field:placeholder-shown ~ .form__label {
-		font-size: 1.3rem;
-	}
-
-	.form__field:focus ~ .form__label {
-		font-size: 1.3rem;
-	}
-	.form__field-error:focus ~ .form__label-error {
-		font-size: 1.3rem;
-	}
 }
 @media (max-width: breakPoints.$breakPoint800) {
 	.wtl-register-form {
@@ -273,9 +186,6 @@
 				padding: 4rem 2rem 0 4rem;
 			}
 			&__form {
-				&__input-container {
-					width: 90%;
-				}
 				&--submit {
 					width: 90%;
 				}
@@ -324,12 +234,6 @@
 				margin: 0 auto;
 			}
 			&__form {
-				&__input-container {
-					width: 90%;
-					&--input {
-						color: colors.$white;
-					}
-				}
 				&--submit {
 					width: 90%;
 				}

@@ -71,3 +71,43 @@
 		}
 	}
 }
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-about-section {
+		margin-top: 0rem;
+		&__title-container {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 3rem;
+			height: 15rem;
+		}
+		&__about-container {
+			gap: 1rem;
+			font-size: 1.8rem;
+			box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+			padding: 2rem 2rem;
+
+			&__skills-container {
+				gap: 1rem;
+
+				&__skill-container {
+					&--skill {
+						&--image {
+							height: 2rem;
+							width: 2rem;
+						}
+						&--p {
+							font-size: 1.4rem;
+						}
+					}
+				}
+			}
+			&__bio-container {
+				&--bio {
+					font-size: 1.4rem;
+				}
+			}
+		}
+	}
+}

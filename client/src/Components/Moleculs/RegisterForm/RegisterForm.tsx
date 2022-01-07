@@ -1,8 +1,6 @@
 import "./RegisterForm.scss";
 import React, { useEffect } from "react";
-import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
 	registerFail,
@@ -118,15 +116,11 @@ const RegisterForm: React.FC = () => {
 	const redirectMessageClass = `${formClass}__redirect`;
 	const linkRedirectClass = `${redirectMessageClass}--link`;
 	const submitButtonClass = `${formClass}--submit`;
-	const inputContainerClass = `${formClass}__input-container`;
-	const inputClass = `${inputContainerClass}--input`;
-	const labelClass = `${inputContainerClass}--label`;
 	const titleRandomClass = `${textSideClass}--random-title`;
 	const randomFactClass = `${textSideClass}--random-fact`;
 	const rectangleOneClass = `${textSideClass}--rectangle-one`;
 	const rectangleTwoClass = `${textSideClass}--rectangle-two`;
-	const extraInput = "form__field";
-	const extraLabel = "form__label";
+
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -145,45 +139,33 @@ const RegisterForm: React.FC = () => {
 						</p>
 						<Form className={formClass}>
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="text"
 								id="username"
 								name="username"
 								placeholder="Username"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Username"
 							/>
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="email"
 								id="email"
 								name="email"
 								placeholder="Email"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Email"
 							/>
 
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="password"
 								id="password"
 								name="password"
 								placeholder="Password"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Password"
 							/>
 
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="password"
 								id="rePassword"
 								name="rePassword"
 								placeholder="Re-Passsword"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Re-Password"
 							/>
 

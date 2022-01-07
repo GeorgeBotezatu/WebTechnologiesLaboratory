@@ -178,3 +178,20 @@
 		}
 	}
 }
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-animated-button {
+		&__button-container {
+			//position modifiers
+			&--profile {
+				@include buttonPosition(0, -50%);
+				transform: translateX(50%);
+			}
+		}
+		&__mas-button-container {
+			&--profile {
+				@include buttonPosition(0, -50%);
+				transform: translateX(50%);
+			}
+		}
+	}
+}
