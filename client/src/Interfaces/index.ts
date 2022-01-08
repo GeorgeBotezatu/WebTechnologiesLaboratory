@@ -1,8 +1,4 @@
-//general
-import { AsyncActionCreatorInterface } from "./AsyncActionCreatorInterface";
+import { IUserState, IProfileCard } from "./profileInterfaces";
+import { IEditableInput } from "./EditableTextInterface";
 
-//ALERT INTERFACE
-
-//AUTH
-
-export type { AsyncActionCreatorInterface };
+export type { IUserState, IEditableInput, IProfileCard };

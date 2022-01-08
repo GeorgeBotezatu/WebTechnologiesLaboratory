@@ -67,6 +67,9 @@
 				&--login {
 					transform: translateX(200%);
 				}
+				&--profile {
+					transform: translateX(200%);
+				}
 				&--register {
 					transform: translateX(200%);
 				}
@@ -92,6 +95,11 @@
 		transform: translateX(0);
 		transition: transform 0.3s ease-out 0.6s;
 	}
+	.wtl-side-drawer__links-group--link.wtl-side-drawer__links-group--link--profile.open {
+		transform: translateX(0);
+		transition: transform 0.3s ease-out 0.65s;
+	}
+
 	.wtl-side-drawer__links-group--link.wtl-side-drawer__links-group--link--login.open {
 		transform: translateX(0);
 		transition: transform 0.3s ease-out 0.7s;

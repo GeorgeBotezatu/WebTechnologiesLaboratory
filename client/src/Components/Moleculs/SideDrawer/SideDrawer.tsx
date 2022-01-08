@@ -10,13 +10,19 @@ import {
 	OPEN,
 	TOKEN,
 	LOGOUT,
+	PROFILE,
 } from "../../../Utils/constants";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
-import { LOGIN_PATH, REGISTER_PATH } from "../../../Routes/routesPath";
+import {
+	LOGIN_PATH,
+	PROFILE_PATH,
+	REGISTER_PATH,
+} from "../../../Routes/routesPath";
 import { RootState } from "../../../Store/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../Store/features/registerSlice";
+import { profileClear } from "../../../Store/features/profileSlice";
 
 interface sideDrawerProps {
 	show: boolean;
@@ -35,6 +41,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 	const consoleClass = `${linkClass}--console`;
 	const learningPathClass = `${linkClass}--learning-path`;
 	const loginClass = `${linkClass}--login`;
+	const profileClass = `${linkClass}--profile`;
 	const registerClass = `${linkClass}--register`;
 
 	return (
@@ -84,21 +91,31 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 				)}
 
 				{isAuthenticated ? (
-					<li
-						className={
-							show ? classNames(linkClass, loginClass, OPEN) : loginClass
-						}
-					>
-						<Link
-							onClick={() => {
-								cookies.remove(TOKEN);
-								dispatch(logout());
-							}}
-							to="/"
+					<>
+						<li
+							className={
+								show ? classNames(linkClass, profileClass, OPEN) : profileClass
+							}
 						>
-							{LOGOUT}
-						</Link>
-					</li>
+							<Link to={PROFILE_PATH}>{PROFILE}</Link>
+						</li>
+						<li
+							className={
+								show ? classNames(linkClass, loginClass, OPEN) : loginClass
+							}
+						>
+							<Link
+								onClick={() => {
+									cookies.remove(TOKEN);
+									dispatch(profileClear());
+									dispatch(logout());
+								}}
+								to="/"
+							>
+								{LOGOUT}
+							</Link>
+						</li>
+					</>
 				) : (
 					<>
 						<li

@@ -45,46 +45,6 @@
 				font-size: 2.5rem;
 				padding-left: 10rem;
 			}
-			&__fancy-button {
-				position: relative;
-				&__button-container {
-					position: absolute;
-					transition: 1s;
-					letter-spacing: 1px;
-					width: 100%;
-					font-size: 2.5rem;
-					margin-top: 2rem;
-					text-align: center;
-					border-radius: 50px;
-					padding: 1rem 0;
-					border: 2px solid colors.$mainGreen;
-					@include button(
-						colors.$mainGreen,
-						"../../../Assets/Images/buttonMask.png",
-						3000%,
-						100%,
-						colors.$white
-					);
-					cursor: pointer;
-					animation: ani2 0.7s steps(29) forwards;
-					&:hover {
-						animation: ani 0.7s steps(29) forwards;
-					}
-				}
-				&__mas {
-					position: absolute;
-					transition: 1s;
-					letter-spacing: 1px;
-					width: 100%;
-					font-size: 2.5rem;
-					margin-top: 2rem;
-					text-align: center;
-					padding: 1rem 0;
-					z-index: -1;
-					border: 2px solid colors.$mainGreen;
-					border-radius: 50px;
-				}
-			}
 		}
 	}
 	&__SVG {
@@ -134,14 +94,6 @@
 					font-size: 2rem;
 					padding-left: 8rem;
 				}
-				&__fancy-button {
-					&__button-container {
-						font-size: 2rem;
-					}
-					&__mas {
-						font-size: 2rem;
-					}
-				}
 			}
 		}
 		&__SVG {
@@ -179,14 +131,6 @@
 					font-size: 1.8rem;
 					padding-left: 5rem;
 				}
-				&__fancy-button {
-					&__button-container {
-						font-size: 1.5rem;
-					}
-					&__mas {
-						font-size: 1.5rem;
-					}
-				}
 			}
 		}
 	}
@@ -220,14 +164,6 @@
 				&__steps {
 					font-size: 1.5rem;
 					padding-left: 4rem;
-				}
-				&__fancy-button {
-					&__button-container {
-						font-size: 1.3rem;
-					}
-					&__mas {
-						font-size: 1.3rem;
-					}
 				}
 			}
 		}
@@ -301,26 +237,6 @@
 	to {
 		fill: colors.$particleLaterColor;
 		filter: colors.$particleDropShadow;
-	}
-}
-
-@keyframes ani {
-	from {
-		mask-position: 0 0;
-	}
-
-	to {
-		mask-position: 100% 0;
-	}
-}
-
-@keyframes ani2 {
-	from {
-		mask-position: 100% 0;
-	}
-
-	to {
-		mask-position: 0 0;
 	}
 }
 

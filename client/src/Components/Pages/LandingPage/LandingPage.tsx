@@ -1,12 +1,19 @@
 import "./LandingPage.scss";
-
 import React from "react";
-import { Link } from "react-router-dom";
 import { REGISTER_PATH } from "../../../Routes/routesPath";
 import LandingDesktopSVG from "../../Atoms/LandingDesktopSVG/LandingDesktopSVG";
 import LandingPhoneSVG from "../../Atoms/LandingPhoneSVG/LandingPhoneSVG";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../Store/Store";
+import AnimatedButton from "../../Atoms/AnimatedButton/AnimatedButton";
+import {
+	GREEN,
+	LANDING,
+	LARGE,
+} from "../../Atoms/AnimatedButton/ButtonModifiers";
 
 const LandingPage = () => {
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	const componentClass = "wtl-landing";
 	const textSideClass = `${componentClass}__text-side`;
 	const descriptionClass = `${textSideClass}--description`;
@@ -14,10 +21,6 @@ const LandingPage = () => {
 	const successSectionClass = `${textSideClass}__success-section`;
 	const successTitleClass = `${successSectionClass}--title`;
 	const successStepsClass = `${successSectionClass}__steps`;
-	const fancyButtonContainerClass = `${successSectionClass}__fancy-button`;
-	const joinButtonContainerClass = `${fancyButtonContainerClass}__button-container`;
-	const masButtonContainerClass = `${fancyButtonContainerClass}__mas`;
-	const joinButtonClass = `${joinButtonContainerClass}--join-button`;
 	const svgSideClass = `${componentClass}__SVG`;
 
 	return (
@@ -42,18 +45,15 @@ const LandingPage = () => {
 						<p>3. Be creative</p>
 						<p>4. Repeat 1, 2, 3 on each Learning Path!</p>
 					</div>
-					<div className={fancyButtonContainerClass}>
-						<div className={joinButtonContainerClass}>
-							<Link to={REGISTER_PATH} className={joinButtonClass}>
-								JOIN US TO ACCESS LEARNING PATH
-							</Link>
-						</div>
-						<div className={masButtonContainerClass}>
-							<span className={joinButtonClass}>
-								JOIN US TO ACCESS LEARNING PATH
-							</span>
-						</div>
-					</div>
+					{!isAuthenticated && (
+						<AnimatedButton
+							buttonColor={GREEN}
+							buttonDimension={LARGE}
+							buttonPosition={LANDING}
+							buttonMessage="JOIN US TO ACCESS LEARNING PATH"
+							buttonRoute={REGISTER_PATH}
+						/>
+					)}
 				</div>
 			</div>
 			<div className={svgSideClass}>

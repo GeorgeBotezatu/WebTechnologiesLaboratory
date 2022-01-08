@@ -4,13 +4,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
+	COULD_NOT_LOAD_PROFILE,
 	COULD_NOT_LOGIN,
 	YUP_EMPTY_EMAIL,
 	YUP_EMPTY_PASSWORD,
 	YUP_VALID_EMAIL,
 } from "../../../Utils/constants";
 import LoginBadge from "../../../Assets/Images/LoginBadge.svg";
-import classNames from "classnames";
 import TextInput from "../../Atoms/TextInput/TextInput";
 import { REGISTER_PATH } from "../../../Routes/routesPath";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,14 @@ import {
 } from "../../../Store/features/registerSlice";
 import { userLogin } from "../../../API/loginAuth";
 import { RootState } from "../../../Store/Store";
+import { loadProfile } from "../../../API/profileAPI";
+import { getToken } from "../../../Utils/utilFunctions";
+import { IUserState } from "../../../Interfaces";
+import {
+	profileLoadFail,
+	profileLoadInit,
+	profileLoadSuccess,
+} from "../../../Store/features/profileSlice";
 interface FormValues {
 	email: string;
 	password: string;
@@ -30,7 +38,9 @@ interface ILoginResponse {
 }
 
 const LoginForm: React.FC = () => {
-	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const { isAuthenticated, error } = useSelector(
+		(state: RootState) => state.auth
+	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const initialValues: FormValues = {
@@ -40,7 +50,7 @@ const LoginForm: React.FC = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) navigate("/");
-	}, [isAuthenticated]);
+	}, [isAuthenticated, navigate]);
 
 	const validate = Yup.object({
 		email: Yup.string().email(YUP_VALID_EMAIL).required(YUP_EMPTY_EMAIL),
@@ -49,6 +59,7 @@ const LoginForm: React.FC = () => {
 
 	const submitHandler = async (values: FormValues) => {
 		dispatch(loginInit());
+		dispatch(profileLoadInit());
 		try {
 			const loginValues = {
 				email: values.email,
@@ -58,10 +69,18 @@ const LoginForm: React.FC = () => {
 			if (!loginResponse.token) {
 				dispatch(loginFail(COULD_NOT_LOGIN));
 			}
-			navigate("/");
+
+			const profileLoadResponse = (await loadProfile(getToken())) as IUserState;
+			if (!profileLoadResponse) {
+				dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
+			}
+
 			dispatch(loginSuccess());
+			dispatch(profileLoadSuccess(profileLoadResponse));
+			navigate("/");
 		} catch (error: any) {
 			dispatch(loginFail(error.message));
+			dispatch(profileLoadFail(error.message));
 		}
 	};
 
@@ -73,15 +92,11 @@ const LoginForm: React.FC = () => {
 	const redirectMessageClass = `${formClass}__redirect`;
 	const linkRedirectClass = `${redirectMessageClass}--link`;
 	const submitButtonClass = `${formClass}--submit`;
-	const inputContainerClass = `${formClass}__input-container`;
-	const inputClass = `${inputContainerClass}--input`;
-	const labelClass = `${inputContainerClass}--label`;
+	const invalidCredentialsClass = `${formClass}--invalid`;
 	const titleRandomClass = `${textSideClass}--random-title`;
 	const rectangleOneClass = `${textSideClass}--rectangle-one`;
 	const rectangleTwoClass = `${textSideClass}--rectangle-two`;
 	const badgeClass = `${textSideClass}--badge`;
-	const extraInput = "form__field";
-	const extraLabel = "form__label";
 
 	return (
 		<Formik
@@ -101,24 +116,18 @@ const LoginForm: React.FC = () => {
 						</p>
 						<Form className={formClass}>
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="email"
 								id="email"
 								name="email"
 								placeholder="Email"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Email"
 							/>
 
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="password"
 								id="password"
 								name="password"
 								placeholder="Password"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Password"
 							/>
 
@@ -132,6 +141,9 @@ const LoginForm: React.FC = () => {
 									Click Me!
 								</Link>
 							</p>
+							{error && (
+								<p className={invalidCredentialsClass}>Incorect Credentials!</p>
+							)}
 						</Form>
 					</div>
 					<div className={textSideClass}>

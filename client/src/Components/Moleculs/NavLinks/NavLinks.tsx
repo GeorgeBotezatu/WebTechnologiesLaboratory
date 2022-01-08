@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import {
 	LANDING_PATH,
 	LOGIN_PATH,
+	PROFILE_PATH,
 	REGISTER_PATH,
 } from "../../../Routes/routesPath";
 import {
@@ -13,6 +14,7 @@ import {
 	LOGIN,
 	LOGO,
 	LOGOUT,
+	PROFILE,
 	REGISTER,
 	TOKEN,
 } from "../../../Utils/constants";
@@ -21,6 +23,7 @@ import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Store/Store";
 import { logout } from "../../../Store/features/registerSlice";
+import { profileClear } from "../../../Store/features/profileSlice";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
@@ -63,15 +66,21 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 			</div>
 			<div className={authGroupLinks}>
 				{isAuthenticated ? (
-					<Link
-						onClick={() => {
-							cookies.remove(TOKEN);
-							dispatch(logout());
-						}}
-						to="/"
-					>
-						{LOGOUT}
-					</Link>
+					<>
+						<Link className={`${authGroupLinks}--bar`} to={PROFILE_PATH}>
+							{PROFILE}
+						</Link>
+						<Link
+							onClick={() => {
+								cookies.remove(TOKEN);
+								dispatch(profileClear());
+								dispatch(logout());
+							}}
+							to="/"
+						>
+							{LOGOUT}
+						</Link>
+					</>
 				) : (
 					<>
 						<Link className={`${authGroupLinks}--bar`} to={LOGIN_PATH}>

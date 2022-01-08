@@ -1,35 +1,42 @@
+import "./TextInput.scss";
 import React from "react";
 import { ErrorMessage, useField } from "formik";
-import "./TextInput.scss";
+import classNames from "classnames";
 interface ITextInput {
-	inputContainerClass: string;
-	inputClass: string;
 	type: string;
 	id: string;
 	placeholder: string;
-	labelClass: string;
 	labelText: string;
 	name: string;
 }
 
 const TextInput: React.FC<ITextInput> = ({
-	inputContainerClass,
-	inputClass,
 	placeholder,
-	labelClass,
 	labelText,
 	id,
 	...props
 }) => {
 	const [field, meta] = useField(props);
-
+	const inputContainerClass = "wtl-text-input";
+	const inputClass = `${inputContainerClass}--input`;
+	const labelClass = `${inputContainerClass}--label`;
+	const extraInput = "form__field";
+	const extraLabel = "form__label";
+	const extraInputError = `${extraInput}-error`;
+	const extraLabelError = `${extraLabel}-error`;
+	const errorTextInputClass = "errorTextInput";
 	return (
 		<div className={inputContainerClass}>
 			<input
 				className={
 					!meta.error || !meta.touched
-						? inputClass
-						: `${inputClass}-error errorTextInput`
+						? classNames(inputClass, extraInput)
+						: classNames(
+								inputClass,
+								extraInput,
+								extraInputError,
+								errorTextInputClass
+						  )
 				}
 				type={props.type}
 				id={id}
@@ -39,7 +46,9 @@ const TextInput: React.FC<ITextInput> = ({
 			/>
 			<label
 				className={
-					!meta.error || !meta.touched ? labelClass : `${labelClass}-error`
+					!meta.error || !meta.touched
+						? classNames(labelClass, extraLabel)
+						: classNames(labelClass, extraLabel, extraLabelError)
 				}
 				htmlFor={id}
 			>

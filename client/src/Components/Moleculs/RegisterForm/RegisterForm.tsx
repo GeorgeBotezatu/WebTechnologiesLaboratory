@@ -1,8 +1,6 @@
 import "./RegisterForm.scss";
 import React, { useEffect } from "react";
-import classNames from "classnames";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import {
 	registerFail,
@@ -15,6 +13,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 import {
+	COULD_NOT_LOAD_PROFILE,
 	COULD_NOT_REGISTER,
 	YUP_EMPTY_EMAIL,
 	YUP_EMPTY_PASSWORD,
@@ -28,6 +27,13 @@ import { getRandomNumber } from "../../../Utils/utilFunctions";
 import { randomFactsArr } from "../../../Utils/randomFacts";
 import { LOGIN_PATH } from "../../../Routes/routesPath";
 import { RootState } from "../../../Store/Store";
+import { createProfile, loadProfile } from "../../../API/profileAPI";
+import {
+	profileLoadFail,
+	profileLoadInit,
+	profileLoadSuccess,
+} from "../../../Store/features/profileSlice";
+import { IUserState } from "../../../Interfaces";
 interface IRegisterResponse {
 	token: string;
 }
@@ -52,7 +58,7 @@ const RegisterForm: React.FC = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) navigate("/");
-	}, [isAuthenticated]);
+	}, [isAuthenticated, navigate]);
 
 	const validate = Yup.object({
 		username: Yup.string().required(YUP_EMPTY_USERNAME),
@@ -70,6 +76,7 @@ const RegisterForm: React.FC = () => {
 
 	const submitHandler = async (values: FormValues) => {
 		dispatch(registerInit());
+		dispatch(profileLoadInit());
 		try {
 			const registerValues = {
 				email: values.email,
@@ -82,10 +89,21 @@ const RegisterForm: React.FC = () => {
 			if (!registerResponse.token) {
 				dispatch(registerFail(COULD_NOT_REGISTER));
 			}
-			navigate("/");
+			await createProfile(registerResponse.token);
+
+			const profileLoadResponse = (await loadProfile(
+				registerResponse.token
+			)) as IUserState;
+			if (!profileLoadResponse) {
+				dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
+			}
+
 			dispatch(registerSuccess());
+			dispatch(profileLoadSuccess(profileLoadResponse));
+			navigate("/");
 		} catch (error: any) {
 			dispatch(registerFail(error.message));
+			dispatch(profileLoadFail(error.message));
 		}
 	};
 
@@ -98,15 +116,11 @@ const RegisterForm: React.FC = () => {
 	const redirectMessageClass = `${formClass}__redirect`;
 	const linkRedirectClass = `${redirectMessageClass}--link`;
 	const submitButtonClass = `${formClass}--submit`;
-	const inputContainerClass = `${formClass}__input-container`;
-	const inputClass = `${inputContainerClass}--input`;
-	const labelClass = `${inputContainerClass}--label`;
 	const titleRandomClass = `${textSideClass}--random-title`;
 	const randomFactClass = `${textSideClass}--random-fact`;
 	const rectangleOneClass = `${textSideClass}--rectangle-one`;
 	const rectangleTwoClass = `${textSideClass}--rectangle-two`;
-	const extraInput = "form__field";
-	const extraLabel = "form__label";
+
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -125,45 +139,33 @@ const RegisterForm: React.FC = () => {
 						</p>
 						<Form className={formClass}>
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="text"
 								id="username"
 								name="username"
 								placeholder="Username"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Username"
 							/>
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="email"
 								id="email"
 								name="email"
 								placeholder="Email"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Email"
 							/>
 
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="password"
 								id="password"
 								name="password"
 								placeholder="Password"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Password"
 							/>
 
 							<TextInput
-								inputContainerClass={inputContainerClass}
-								inputClass={classNames(inputClass, extraInput)}
 								type="password"
 								id="rePassword"
 								name="rePassword"
 								placeholder="Re-Passsword"
-								labelClass={classNames(labelClass, extraLabel)}
 								labelText="Re-Password"
 							/>
 

@@ -1,0 +1,113 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-about-section {
+	position: relative;
+	margin-top: 3rem;
+	&__title-container {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		font-size: 4rem;
+		font-family: "Permanent Marker";
+	}
+	&__about-container {
+		position: relative;
+		height: auto;
+		background: colors.$profileCardsGray;
+		border-radius: 10px;
+		border: 2px solid colors.$profileHalfWhiteTransparent;
+		display: flex;
+		flex-direction: column;
+		font-size: 2.1rem;
+		box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+		padding: 2rem 4rem;
+		&--website {
+			font-weight: 200;
+			span {
+				font-weight: 700;
+			}
+		}
+		&--status {
+			font-weight: 200;
+			span {
+				font-weight: 700;
+			}
+		}
+		&__skills-container {
+			display: flex;
+			gap: 2rem;
+			&--p {
+				font-weight: 700;
+			}
+			&__skill-container {
+				display: flex;
+				flex-direction: column;
+				&--skill {
+					display: flex;
+					gap: 0.5rem;
+					align-items: center;
+					&--image {
+						height: 2.5rem;
+						width: 2.5rem;
+						filter: colors.$profileSvgWhite;
+					}
+					&--p {
+						font-weight: 200;
+						font-size: 1.6rem;
+					}
+				}
+			}
+		}
+		&__bio-container {
+			&--title {
+				font-weight: 700;
+			}
+			&--bio {
+				font-weight: 200;
+				font-size: 1.6rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-about-section {
+		margin-top: 0rem;
+		&__title-container {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			font-size: 3rem;
+			height: 15rem;
+		}
+		&__about-container {
+			gap: 1rem;
+			font-size: 1.8rem;
+			box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+			padding: 2rem 2rem;
+
+			&__skills-container {
+				gap: 1rem;
+
+				&__skill-container {
+					&--skill {
+						&--image {
+							height: 2rem;
+							width: 2rem;
+						}
+						&--p {
+							font-size: 1.4rem;
+						}
+					}
+				}
+			}
+			&__bio-container {
+				&--bio {
+					font-size: 1.4rem;
+				}
+			}
+		}
+	}
+}

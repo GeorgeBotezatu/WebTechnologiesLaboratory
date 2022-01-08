@@ -1,0 +1,198 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+@mixin button($url, $x1, $y1) {
+	-webkit-mask: url($url);
+	mask: url($url);
+	-webkit-mask-size: $x1 $y1;
+	mask-size: $x1 $y1;
+}
+
+@mixin masColor($borderColor, $textColor) {
+	border: 2px solid $borderColor;
+	span {
+		color: $textColor;
+	}
+}
+@mixin buttonColor($borderColor, $backgrounColor, $textColor) {
+	border: 2px solid $borderColor;
+	background: $backgrounColor;
+	a {
+		color: $textColor;
+	}
+}
+@mixin buttonDimension($letSpacing, $width, $fontSize) {
+	letter-spacing: $letSpacing;
+	width: $width;
+	font-size: $fontSize;
+}
+@mixin buttonPosition($top, $right) {
+	top: $top;
+	right: $right;
+}
+
+.wtl-animated-button {
+	// height: 15rem;
+	position: relative;
+	&__button-container {
+		position: absolute;
+		transition: 1s;
+		text-align: center;
+		border-radius: 50px;
+		font-family: "Permanent Marker";
+		@include button("../../../Assets/Images/buttonMask.png", 3000%, 100%);
+
+		cursor: pointer;
+		animation: ani2 0.7s steps(29) forwards;
+		&:hover {
+			animation: ani 0.7s steps(29) forwards;
+		}
+
+		//color modifiers
+		&--orange {
+			@include buttonColor(
+				colors.$profileShadowColor,
+				colors.$profileShadowColor,
+				colors.$white
+			);
+		}
+		&--green {
+			@include buttonColor(colors.$mainGreen, colors.$mainGreen, colors.$white);
+		}
+		//dimension modifiers
+		&--standard {
+			@include buttonDimension(1px, 22rem, 2.5rem);
+		}
+		&--large {
+			@include buttonDimension(1px, 100%, 2.5rem);
+		}
+		//position modifiers
+		&--profile {
+			@include buttonPosition(1rem, 0);
+		}
+		&--landing {
+			padding: 1rem 0;
+			margin-top: 2rem;
+		}
+	}
+	&__mas-button-container {
+		font-family: "Permanent Marker";
+		top: 1rem;
+		right: 0rem;
+		position: absolute;
+		transition: 1s;
+		text-align: center;
+		z-index: -1;
+		border-radius: 50px;
+		//color modifiers
+		&--orange {
+			@include masColor(colors.$profileShadowColor, colors.$white);
+		}
+		&--green {
+			@include masColor(colors.$mainGreen, colors.$white);
+		}
+		//position modifiers
+		&--standard {
+			@include buttonDimension(1px, 22rem, 2.5rem);
+		}
+		&--large {
+			@include buttonDimension(1px, 100%, 2.5rem);
+		}
+		//position modifiers
+		&--profile {
+			@include buttonPosition(1rem, 0);
+		}
+		&--landing {
+			padding: 1rem 0;
+			margin-top: 1rem;
+		}
+	}
+}
+@keyframes ani {
+	from {
+		mask-position: 0 0;
+	}
+
+	to {
+		mask-position: 100% 0;
+	}
+}
+
+@keyframes ani2 {
+	from {
+		mask-position: 100% 0;
+	}
+
+	to {
+		mask-position: 0 0;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-animated-button {
+		&__button-container {
+			//dimension modifiers
+			&--large {
+				@include buttonDimension(1px, 100%, 2rem);
+			}
+		}
+		&__mas-button-container {
+			//dimension modifiers
+			&--large {
+				@include buttonDimension(1px, 100%, 2rem);
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-animated-button {
+		&__button-container {
+			//dimension modifiers
+			&--large {
+				@include buttonDimension(1px, 100%, 1.4rem);
+			}
+		}
+		&__mas-button-container {
+			//dimension modifiers
+			&--large {
+				@include buttonDimension(1px, 100%, 1.4rem);
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-animated-button {
+		&__button-container {
+			//dimension modifiers
+			&--large {
+				@include buttonDimension(1px, 100%, 1.3rem);
+			}
+		}
+		&__mas-button-container {
+			//dimension modifiers
+			&--large {
+				@include buttonDimension(1px, 100%, 1.3rem);
+			}
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-animated-button {
+		&__button-container {
+			//position modifiers
+			&--profile {
+				@include buttonPosition(0, -50%);
+				transform: translateX(50%);
+			}
+		}
+		&__mas-button-container {
+			&--profile {
+				@include buttonPosition(0, -50%);
+				transform: translateX(50%);
+			}
+		}
+	}
+}
