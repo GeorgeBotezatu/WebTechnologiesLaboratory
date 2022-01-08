@@ -19,6 +19,7 @@ const ProfilePage = () => {
 				userCard={userCard}
 				profileDate={profileDate}
 			/>
+
 			<ProfileAboutCard about={userProfile?.about} />
 		</div>
 	);

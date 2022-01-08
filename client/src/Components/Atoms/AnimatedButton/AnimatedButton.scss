@@ -40,7 +40,7 @@
 		transition: 1s;
 		text-align: center;
 		border-radius: 50px;
-
+		font-family: "Permanent Marker";
 		@include button("../../../Assets/Images/buttonMask.png", 3000%, 100%);
 
 		cursor: pointer;
@@ -77,6 +77,7 @@
 		}
 	}
 	&__mas-button-container {
+		font-family: "Permanent Marker";
 		top: 1rem;
 		right: 0rem;
 		position: absolute;
