@@ -1,5 +1,6 @@
+import "./NavLinks.scss";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie";
+
 import {
 	LANDING_PATH,
 	LOGIN_PATH,
@@ -16,14 +17,13 @@ import {
 	LOGOUT,
 	PROFILE,
 	REGISTER,
-	TOKEN,
 } from "../../../Utils/constants";
-import "./NavLinks.scss";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../Store/Store";
 import { logout } from "../../../Store/features/registerSlice";
 import { profileClear } from "../../../Store/features/profileSlice";
+import { deleteCookie } from "../../../Utils/utilFunctions";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
@@ -32,7 +32,6 @@ interface navLinksPropsInterface {
 const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
-	const cookies = new Cookies();
 
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
@@ -72,7 +71,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 						</Link>
 						<Link
 							onClick={() => {
-								cookies.remove(TOKEN);
+								deleteCookie();
 								dispatch(profileClear());
 								dispatch(logout());
 							}}

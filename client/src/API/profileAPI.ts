@@ -4,9 +4,17 @@ import { IUserState } from "../Interfaces";
 import {
 	CREATE_PROFILE_URL,
 	LOAD_PROFILE_URL,
+	UPDATE_ABOUT_URL,
 	UPDATE_GITHUB_URL,
 } from "./apiPaths";
 import { REQUEST_HEADERS_WITH_BEARER } from "./requestHeaders";
+
+interface aboutData {
+	bio: string;
+	skills: string;
+	status: string;
+	website: string;
+}
 
 export const createProfile = (token: string) => {
 	return new Promise(async (resolve, reject) => {
@@ -62,6 +70,22 @@ export const updateGithub = (githubusername: string) => {
 			);
 			resolve(res.data);
 		} catch (error: any) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const updateAbout = (aboutData: aboutData) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const res = await axiosInstance.put(
+				UPDATE_ABOUT_URL,
+				aboutData,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
 			console.log(error);
 			reject(error);
 		}

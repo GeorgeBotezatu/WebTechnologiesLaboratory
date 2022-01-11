@@ -15,8 +15,6 @@ import {
 	SERVER_ERROR,
 	SOCIAL_SAVED,
 } from "../utils/textUtils.js";
-import { validationResult } from "express-validator";
-import { matchInputs, verifyInputErrors } from "../utils/utilFunctions.js";
 //|----------------|
 //|---Controllers--|
 //|----------------|

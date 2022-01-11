@@ -1,14 +1,23 @@
 import "./EditAboutForm.scss";
-import React from "react";
+
 import TextInput from "../../Atoms/TextInput/TextInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PROFILE_PATH } from "../../../Routes/routesPath";
 import {
 	YUP_SKILLS_REQUIRED,
 	YUP_STATUS_REQUIRED,
 } from "../../../Utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	profileEditAboutFail,
+	profileEditAboutInit,
+	profileEditAboutSuccess,
+} from "../../../Store/features/profileSlice";
+import { updateAbout } from "../../../API/profileAPI";
+import { RootState } from "../../../Store/Store";
+import TextareaInput from "../../Atoms/TextareaInput/TextareaInput";
 
 interface FormValues {
 	website: string;
@@ -17,16 +26,48 @@ interface FormValues {
 	status: string;
 }
 const EditAboutForm = () => {
+	const { about } = useSelector(
+		(state: RootState) => state.userProfile.userProfile
+	);
+
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const initialValues: FormValues = {
-		website: "",
-		skills: "",
-		bio: "",
-		status: "",
+		website: about?.website ? about.website : "",
+		skills: about?.skills ? about.skills.join() : "",
+		bio: about?.bio ? about.bio : "",
+		status: about?.status ? about.status : "",
 	};
 	const validate = Yup.object({
 		skills: Yup.string().required(YUP_SKILLS_REQUIRED),
 		status: Yup.string().required(YUP_STATUS_REQUIRED),
 	});
+
+	const submitHandler = async (values: FormValues) => {
+		dispatch(profileEditAboutInit());
+		const aboutData = {
+			website: values.website,
+			status: values.status,
+			skills: values.skills,
+			bio: values.bio,
+		};
+		const updateStateData = {
+			website: values.website,
+			status: values.status,
+			skills: values.skills.split(",").map((skill) => skill.trim()),
+			bio: values.bio,
+		};
+
+		updateAbout(aboutData);
+
+		dispatch(profileEditAboutSuccess(updateStateData));
+		navigate("/profile");
+		try {
+		} catch (error: any) {
+			dispatch(profileEditAboutFail(error.message));
+		}
+	};
+
 	const componentClass = "wtl-about-form";
 	const formInfoClass = `${componentClass}--info`;
 	const formComponentClass = `${componentClass}__form`;
@@ -40,7 +81,7 @@ const EditAboutForm = () => {
 			initialValues={initialValues}
 			validationSchema={validate}
 			onSubmit={(values) => {
-				console.log("aici");
+				submitHandler(values);
 			}}
 		>
 			{(formik) => (
@@ -83,11 +124,12 @@ const EditAboutForm = () => {
 							<p>Could be your own or a company website</p>
 						</div>
 						<div className={formTextareaGroupClass}>
-							<textarea
-								className={textareaClass}
+							<TextareaInput
+								textareaClass={textareaClass}
 								placeholder="A short bio of yourself"
 								name="bio"
-							></textarea>
+								id="bio"
+							></TextareaInput>
 							<p>Tell us a little about yourself</p>
 						</div>
 						<p className={formAdditionalInfoClass}>

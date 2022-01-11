@@ -1,5 +1,5 @@
 import "./RegisterForm.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -45,7 +45,15 @@ interface FormValues {
 }
 
 const RegisterForm: React.FC = () => {
-	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const { isAuthenticated, error } = useSelector(
+		(state: RootState) => state.auth
+	);
+	const [emailLabel, setEmailLabel] = useState<string>("Email");
+	useEffect(() => {
+		if (error) {
+			setEmailLabel("Email already used");
+		}
+	}, [error]);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const randomNumber: number = getRandomNumber(0, randomFactsArr.length - 1);
@@ -150,7 +158,7 @@ const RegisterForm: React.FC = () => {
 								id="email"
 								name="email"
 								placeholder="Email"
-								labelText="Email"
+								labelText={emailLabel}
 							/>
 
 							<TextInput
@@ -186,8 +194,8 @@ const RegisterForm: React.FC = () => {
 					</div>
 					<div className={textSideClass}>
 						<p className={titleRandomClass}>
-							Random fact about web{" "}
-							<span className={`${titleRandomClass}--special`}>design :</span>
+							Random fact about{" "}
+							<span className={`${titleRandomClass}--special`}>web :</span>
 						</p>
 
 						<p className={randomFactClass}>{randomFactsArr[randomNumber]}</p>

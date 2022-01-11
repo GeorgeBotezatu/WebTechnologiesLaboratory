@@ -1,5 +1,5 @@
 import "./SideDrawer.scss";
-import Cookies from "universal-cookie";
+
 import {
 	COMMUNITY,
 	LOGIN,
@@ -8,7 +8,6 @@ import {
 	CONSOLE,
 	LEARNING_PATH,
 	OPEN,
-	TOKEN,
 	LOGOUT,
 	PROFILE,
 } from "../../../Utils/constants";
@@ -23,6 +22,7 @@ import { RootState } from "../../../Store/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../Store/features/registerSlice";
 import { profileClear } from "../../../Store/features/profileSlice";
+import { deleteCookie } from "../../../Utils/utilFunctions";
 
 interface sideDrawerProps {
 	show: boolean;
@@ -31,7 +31,7 @@ interface sideDrawerProps {
 const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
-	const cookies = new Cookies();
+
 	const componentClass = "wtl-side-drawer";
 	const linksGroupClass = `${componentClass}__links-group`;
 	const linkClass = `${linksGroupClass}--link`;
@@ -106,7 +106,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 						>
 							<Link
 								onClick={() => {
-									cookies.remove(TOKEN);
+									deleteCookie();
 									dispatch(profileClear());
 									dispatch(logout());
 								}}

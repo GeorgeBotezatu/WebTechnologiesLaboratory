@@ -50,6 +50,22 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		profileEditAboutInit: (state) => {
+			state.loading = true;
+		},
+		profileEditAboutSuccess: (state, action) => {
+			state.loading = false;
+			if (state.userProfile.about) {
+				state.userProfile.about.website = action.payload.website;
+				state.userProfile.about.skills = action.payload.skills;
+				state.userProfile.about.status = action.payload.status;
+				state.userProfile.about.bio = action.payload.bio;
+			}
+		},
+		profileEditAboutFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -61,5 +77,8 @@ export const {
 	profileGithubFail,
 	profileGithubInit,
 	profileGithubSuccess,
+	profileEditAboutInit,
+	profileEditAboutSuccess,
+	profileEditAboutFail,
 } = profileSlice.actions;
 export default profileSlice.reducer;

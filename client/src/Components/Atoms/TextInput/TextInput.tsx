@@ -14,6 +14,7 @@ const TextInput: React.FC<ITextInput> = ({
 	placeholder,
 	labelText,
 	id,
+
 	...props
 }) => {
 	const [field, meta] = useField(props);
