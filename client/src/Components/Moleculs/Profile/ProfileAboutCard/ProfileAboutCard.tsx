@@ -1,14 +1,14 @@
 import "./ProfileAboutCard.scss";
 import React from "react";
-import checkImage from "../../../Assets/Icons/check-icon.svg";
-import AnimatedButton from "../../Atoms/AnimatedButton/AnimatedButton";
+import checkImage from "../../../../Assets/Icons/check-icon.svg";
+import AnimatedButton from "../../../Atoms/AnimatedButton/AnimatedButton";
 import {
 	ORANGE,
 	PROFILE,
 	STANDARD,
-} from "../../Atoms/AnimatedButton/ButtonModifiers";
-import { ADD_ABOUT_SECTION, MODIFY_ABOUT } from "../../../Utils/constants";
-import { MODIFY_ABOUT_PATH } from "../../../Routes/routesPath";
+} from "../../../Atoms/AnimatedButton/ButtonModifiers";
+import { ADD_ABOUT_SECTION, MODIFY_ABOUT } from "../../../../Utils/constants";
+import { MODIFY_ABOUT_PATH } from "../../../../Routes/routesPath";
 interface IProfileAboutCard {
 	about:
 		| {

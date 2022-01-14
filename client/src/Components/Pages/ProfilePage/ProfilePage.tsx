@@ -1,9 +1,9 @@
 import "./ProfilePage.scss";
 import React from "react";
-import ProfileCard from "../../Moleculs/ProfileCard/ProfileCard";
+import ProfileCard from "../../Moleculs/Profile/ProfileCard/ProfileCard";
 import { RootState } from "../../../Store/Store";
 import { useSelector } from "react-redux";
-import ProfileAboutCard from "../../Moleculs/ProfileAboutCard/ProfileAboutCard";
+import ProfileAboutCard from "../../Moleculs/Profile/ProfileAboutCard/ProfileAboutCard";
 
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);

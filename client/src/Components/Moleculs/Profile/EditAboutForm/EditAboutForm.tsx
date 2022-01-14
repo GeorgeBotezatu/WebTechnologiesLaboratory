@@ -1,23 +1,23 @@
 import "./EditAboutForm.scss";
 
-import TextInput from "../../Atoms/TextInput/TextInput";
+import TextInput from "../../../Atoms/TextInput/TextInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { PROFILE_PATH } from "../../../Routes/routesPath";
+import { PROFILE_PATH } from "../../../../Routes/routesPath";
 import {
 	YUP_SKILLS_REQUIRED,
 	YUP_STATUS_REQUIRED,
-} from "../../../Utils/constants";
+} from "../../../../Utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	profileEditAboutFail,
 	profileEditAboutInit,
 	profileEditAboutSuccess,
-} from "../../../Store/features/profileSlice";
-import { updateAbout } from "../../../API/profileAPI";
-import { RootState } from "../../../Store/Store";
-import TextareaInput from "../../Atoms/TextareaInput/TextareaInput";
+} from "../../../../Store/features/profileSlice";
+import { updateAbout } from "../../../../API/profileAPI";
+import { RootState } from "../../../../Store/Store";
+import TextareaInput from "../../../Atoms/TextareaInput/TextareaInput";
 
 interface FormValues {
 	website: string;

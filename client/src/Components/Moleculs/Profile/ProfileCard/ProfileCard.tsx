@@ -1,21 +1,21 @@
 import "./ProfileCard.scss";
 import React, { useEffect, useRef, useState } from "react";
-import EditableTextField from "../../Atoms/EditableTextField/EditableTextField";
-import { calcultateDays } from "../../../Utils/utilFunctions";
+import EditableTextField from "../../../Atoms/EditableTextField/EditableTextField";
+import { calcultateDays } from "../../../../Utils/utilFunctions";
 import {
 	profileGithubFail,
 	profileGithubInit,
 	profileGithubSuccess,
-} from "../../../Store/features/profileSlice";
+} from "../../../../Store/features/profileSlice";
 import { useDispatch } from "react-redux";
-import { updateGithub } from "../../../API/profileAPI";
-import { IProfileCard } from "../../../Interfaces";
+import { updateGithub } from "../../../../API/profileAPI";
+import { IProfileCard } from "../../../../Interfaces";
 import {
 	EMAIL_TXT,
 	GITHUB_PLACEHOLDER,
 	GITHUB_TXT,
 	REGISTERED_TXT,
-} from "../../../Utils/constants";
+} from "../../../../Utils/constants";
 
 const ProfileCard: React.FC<IProfileCard> = ({
 	github,

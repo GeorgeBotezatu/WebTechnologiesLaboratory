@@ -6,7 +6,7 @@ import {
 	LOGIN_PATH,
 	PROFILE_PATH,
 	REGISTER_PATH,
-} from "../../../Routes/routesPath";
+} from "../../../../Routes/routesPath";
 import {
 	ABOUT,
 	COMMUNITY,
@@ -17,13 +17,13 @@ import {
 	LOGOUT,
 	PROFILE,
 	REGISTER,
-} from "../../../Utils/constants";
+} from "../../../../Utils/constants";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../Store/Store";
-import { logout } from "../../../Store/features/registerSlice";
-import { profileClear } from "../../../Store/features/profileSlice";
-import { deleteCookie } from "../../../Utils/utilFunctions";
+import { RootState } from "../../../../Store/Store";
+import { logout } from "../../../../Store/features/registerSlice";
+import { profileClear } from "../../../../Store/features/profileSlice";
+import { deleteCookie } from "../../../../Utils/utilFunctions";
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;

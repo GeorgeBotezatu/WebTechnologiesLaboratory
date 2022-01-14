@@ -10,19 +10,19 @@ import {
 	OPEN,
 	LOGOUT,
 	PROFILE,
-} from "../../../Utils/constants";
+} from "../../../../Utils/constants";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import {
 	LOGIN_PATH,
 	PROFILE_PATH,
 	REGISTER_PATH,
-} from "../../../Routes/routesPath";
-import { RootState } from "../../../Store/Store";
+} from "../../../../Routes/routesPath";
+import { RootState } from "../../../../Store/Store";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../Store/features/registerSlice";
-import { profileClear } from "../../../Store/features/profileSlice";
-import { deleteCookie } from "../../../Utils/utilFunctions";
+import { logout } from "../../../../Store/features/registerSlice";
+import { profileClear } from "../../../../Store/features/profileSlice";
+import { deleteCookie } from "../../../../Utils/utilFunctions";
 
 interface sideDrawerProps {
 	show: boolean;

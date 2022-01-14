@@ -6,9 +6,9 @@ import {
 	registerFail,
 	registerInit,
 	registerSuccess,
-} from "../../../Store/features/registerSlice";
-import { userRegister } from "../../../API/authApi";
-import TextInput from "../../Atoms/TextInput/TextInput";
+} from "../../../../Store/features/registerSlice";
+import { userRegister } from "../../../../API/authApi";
+import TextInput from "../../../Atoms/TextInput/TextInput";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
@@ -22,18 +22,18 @@ import {
 	YUP_MATCH_RE_PASSWORD,
 	YUP_VALID_EMAIL,
 	YUP_VALID_PASSWORD,
-} from "../../../Utils/constants";
-import { getRandomNumber } from "../../../Utils/utilFunctions";
-import { randomFactsArr } from "../../../Utils/randomFacts";
-import { LOGIN_PATH } from "../../../Routes/routesPath";
-import { RootState } from "../../../Store/Store";
-import { createProfile, loadProfile } from "../../../API/profileAPI";
+} from "../../../../Utils/constants";
+import { getRandomNumber } from "../../../../Utils/utilFunctions";
+import { randomFactsArr } from "../../../../Utils/randomFacts";
+import { LOGIN_PATH } from "../../../../Routes/routesPath";
+import { RootState } from "../../../../Store/Store";
+import { createProfile, loadProfile } from "../../../../API/profileAPI";
 import {
 	profileLoadFail,
 	profileLoadInit,
 	profileLoadSuccess,
-} from "../../../Store/features/profileSlice";
-import { IUserState } from "../../../Interfaces";
+} from "../../../../Store/features/profileSlice";
+import { IUserState } from "../../../../Interfaces";
 interface IRegisterResponse {
 	token: string;
 }

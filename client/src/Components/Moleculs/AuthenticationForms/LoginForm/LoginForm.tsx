@@ -9,26 +9,26 @@ import {
 	YUP_EMPTY_EMAIL,
 	YUP_EMPTY_PASSWORD,
 	YUP_VALID_EMAIL,
-} from "../../../Utils/constants";
-import LoginBadge from "../../../Assets/Images/LoginBadge.svg";
-import TextInput from "../../Atoms/TextInput/TextInput";
-import { REGISTER_PATH } from "../../../Routes/routesPath";
+} from "../../../../Utils/constants";
+import LoginBadge from "../../../../Assets/Images/LoginBadge.svg";
+import TextInput from "../../../Atoms/TextInput/TextInput";
+import { REGISTER_PATH } from "../../../../Routes/routesPath";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	loginFail,
 	loginInit,
 	loginSuccess,
-} from "../../../Store/features/registerSlice";
-import { userLogin } from "../../../API/loginAuth";
-import { RootState } from "../../../Store/Store";
-import { loadProfile } from "../../../API/profileAPI";
-import { getToken } from "../../../Utils/utilFunctions";
-import { IUserState } from "../../../Interfaces";
+} from "../../../../Store/features/registerSlice";
+import { userLogin } from "../../../../API/loginAuth";
+import { RootState } from "../../../../Store/Store";
+import { loadProfile } from "../../../../API/profileAPI";
+import { getToken } from "../../../../Utils/utilFunctions";
+import { IUserState } from "../../../../Interfaces";
 import {
 	profileLoadFail,
 	profileLoadInit,
 	profileLoadSuccess,
-} from "../../../Store/features/profileSlice";
+} from "../../../../Store/features/profileSlice";
 interface FormValues {
 	email: string;
 	password: string;

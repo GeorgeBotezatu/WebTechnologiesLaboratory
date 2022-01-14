@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PrivateRoute from "../Components/Atoms/PrivateRoute/PrivateRoute";
-import Navbar from "../Components/Moleculs/Navbar/Navbar";
+import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";

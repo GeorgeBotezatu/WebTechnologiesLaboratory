@@ -1,6 +1,6 @@
 import "./EditAboutPage.scss";
 import React from "react";
-import EditAboutForm from "../../Moleculs/EditAboutForm/EditAboutForm";
+import EditAboutForm from "../../Moleculs/Profile/EditAboutForm/EditAboutForm";
 
 const EditAboutPage = () => {
 	const componentClass = "wtl-edit-about-page";
