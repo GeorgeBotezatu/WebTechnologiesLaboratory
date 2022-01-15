@@ -4,14 +4,15 @@ import ProfileCard from "../../Moleculs/Profile/ProfileCard/ProfileCard";
 import { RootState } from "../../../Store/Store";
 import { useSelector } from "react-redux";
 import ProfileAboutCard from "../../Moleculs/Profile/ProfileAboutCard/ProfileAboutCard";
+import ProfileExperienceCard from "../../Moleculs/Profile/ProfileExperienceCard/ProfileExperienceCard";
 
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 	const github = userProfile.githubusername;
 	const userCard = userProfile.user;
 	const profileDate = userProfile.date;
-	console.log(userProfile.about);
 	const componentClass = "wtl-profile-page";
+
 	return (
 		<div className={componentClass}>
 			<ProfileCard
@@ -21,6 +22,7 @@ const ProfilePage = () => {
 			/>
 
 			<ProfileAboutCard about={userProfile?.about} />
+			<ProfileExperienceCard />
 		</div>
 	);
 };

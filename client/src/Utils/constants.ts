@@ -30,3 +30,4 @@ export const REGISTERED_TXT = "Registered: ";
 export const GITHUB_PLACEHOLDER = "Add your github username";
 export const MODIFY_ABOUT = "Modify About";
 export const ADD_ABOUT_SECTION = "Add About Section";
+export const ADD_EXPERIENCE_MSG = "Add Experience Section";

@@ -1,0 +1,27 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-trash-button {
+	svg {
+		filter: colors.$trashIconSvg;
+		overflow: visible;
+		transition-duration: 500ms;
+		transition-property: transform;
+	}
+
+	svg:hover {
+		#Top {
+			transform: rotateZ(20deg) translateX(2px);
+			transform-origin: top right;
+			transition-duration: 1000ms;
+			transition-property: transform;
+		}
+		#Trash {
+			transform: rotateZ(-10deg);
+			transform-origin: top right;
+			transition-duration: 500ms;
+			transition-property: transform;
+		}
+	}
+}

@@ -1,0 +1,128 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+.wtl-experience-item-container {
+	position: relative;
+	margin-bottom: 3rem;
+	&__title-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 2.2rem;
+		h2 {
+			width: 90%;
+		}
+		&__buttons-container {
+			display: flex;
+			width: 10%;
+			gap: 1rem;
+			&--edit {
+				background: none;
+				border: none;
+			}
+			&--delete {
+				background: none;
+				border: none;
+			}
+		}
+	}
+	&__info-container {
+		font-size: 2rem;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		&--company-city {
+			span {
+				font-weight: 700;
+				letter-spacing: 0.1rem;
+			}
+		}
+		&--date {
+			span {
+				font-weight: 700;
+			}
+		}
+	}
+
+	&__description-container {
+		&--title {
+			font-size: 2rem;
+			font-weight: 700;
+		}
+		&--text {
+			border: 1px solid rgba(128, 128, 128, 0.397);
+			border-radius: 10px;
+			padding: 1rem 2rem;
+			font-size: 1.6rem;
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-experience-item-container {
+		margin-bottom: 1rem;
+		&__title-container {
+			font-size: 1.8rem;
+			h2 {
+				width: 85%;
+			}
+			&__buttons-container {
+				width: 15%;
+			}
+		}
+		&__info-container {
+			font-size: 1.6rem;
+		}
+
+		&__description-container {
+			&--title {
+				font-size: 1.6rem;
+				font-weight: 700;
+			}
+			&--text {
+				font-size: 1.4rem;
+			}
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-experience-item-container {
+		padding-top: 3rem;
+		margin-bottom: 0;
+		padding-bottom: 1rem;
+		&__title-container {
+			font-size: 1.6rem;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			h2 {
+				width: 100%;
+				order: 2;
+			}
+			&__buttons-container {
+				width: 100%;
+				justify-content: center;
+				order: 1;
+			}
+		}
+		&__info-container {
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			margin-bottom: 1rem;
+		}
+		&__description-container {
+			margin-bottom: 2rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-experience-item-container {
+		padding: 2rem 0.5rem;
+		&__title-container {
+			font-size: 1.5rem;
+		}
+	}
+}

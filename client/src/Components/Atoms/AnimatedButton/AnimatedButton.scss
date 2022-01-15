@@ -64,6 +64,9 @@
 		&--standard {
 			@include buttonDimension(1px, 22rem, 2.5rem);
 		}
+		&--standard-with-about {
+			@include buttonDimension(1px, 22rem, 2.5rem);
+		}
 		&--large {
 			@include buttonDimension(1px, 100%, 2.5rem);
 		}
@@ -71,9 +74,16 @@
 		&--profile {
 			@include buttonPosition(1rem, 0);
 		}
+		&--profile-with-about {
+			@include buttonPosition(1rem, 0);
+		}
 		&--landing {
 			padding: 1rem 0;
 			margin-top: 2rem;
+		}
+		&--profile-exp {
+			top: 1rem;
+			left: 0;
 		}
 	}
 	&__mas-button-container {
@@ -96,6 +106,9 @@
 		&--standard {
 			@include buttonDimension(1px, 22rem, 2.5rem);
 		}
+		&--standard-with-about {
+			@include buttonDimension(1px, 22rem, 2.5rem);
+		}
 		&--large {
 			@include buttonDimension(1px, 100%, 2.5rem);
 		}
@@ -103,9 +116,16 @@
 		&--profile {
 			@include buttonPosition(1rem, 0);
 		}
+		&--profile-with-about {
+			@include buttonPosition(1rem, 0);
+		}
 		&--landing {
 			padding: 1rem 0;
 			margin-top: 1rem;
+		}
+		&--profile-exp {
+			top: 1rem;
+			left: 0;
 		}
 	}
 }
@@ -170,11 +190,36 @@
 			&--large {
 				@include buttonDimension(1px, 100%, 1.3rem);
 			}
+			&--profile {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+			&--profile-exp {
+				left: 50%;
+				transform: translateX(-50%);
+				top: 6rem;
+			}
+			&--standard {
+				@include buttonDimension(1px, 80%, 2.5rem);
+			}
 		}
 		&__mas-button-container {
 			//dimension modifiers
 			&--large {
 				@include buttonDimension(1px, 100%, 1.3rem);
+			}
+			&--profile {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			&--profile-exp {
+				left: 50%;
+				transform: translateX(-50%);
+				top: 6rem;
+			}
+			&--standard {
+				@include buttonDimension(1px, 80%, 2.5rem);
 			}
 		}
 	}
@@ -182,16 +227,33 @@
 @media (max-width: breakPoints.$breakPoint400) {
 	.wtl-animated-button {
 		&__button-container {
-			//position modifiers
 			&--profile {
-				@include buttonPosition(0, -50%);
-				transform: translateX(50%);
+				top: 2rem;
+			}
+			&--profile-exp {
+				top: 4rem;
+			}
+			&--standard {
+				@include buttonDimension(1px, 100%, 2.3rem);
+			}
+			&--standard-with-about {
+				left: 50%;
+				transform: translateX(-50%);
 			}
 		}
 		&__mas-button-container {
 			&--profile {
-				@include buttonPosition(0, -50%);
-				transform: translateX(50%);
+				top: 2rem;
+			}
+			&--profile-exp {
+				top: 4rem;
+			}
+			&--standard {
+				@include buttonDimension(1px, 100%, 2.3rem);
+			}
+			&--standard-with-about {
+				left: 50%;
+				transform: translateX(-50%);
 			}
 		}
 	}

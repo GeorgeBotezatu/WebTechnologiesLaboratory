@@ -1,0 +1,47 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-experience-section {
+	position: relative;
+	margin-top: 3rem;
+	&--title {
+		font-size: 4rem;
+		font-family: "Permanent Marker";
+	}
+	&__button-container {
+		margin-top: 15rem;
+		position: relative;
+	}
+	&__container {
+		position: relative;
+		height: auto;
+		background: colors.$profileCardsGray;
+		border-radius: 10px;
+		border: 2px solid colors.$profileHalfWhiteTransparent;
+		display: flex;
+		flex-direction: column;
+		font-size: 2.1rem;
+		box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+		padding: 2rem 4rem;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-experience-section {
+		&__container {
+			padding: 1rem 2rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-experience-section {
+		&--title {
+			font-size: 3rem;
+			font-family: "Permanent Marker";
+			text-align: center;
+			margin-bottom: 1rem;
+		}
+	}
+}

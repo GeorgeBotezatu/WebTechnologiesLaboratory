@@ -87,7 +87,13 @@
 			font-size: 1.8rem;
 			box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
 			padding: 2rem 2rem;
-
+			margin-top: 2rem;
+			&--status {
+				font-size: 1.5rem;
+				span {
+					font-size: 1.8rem;
+				}
+			}
 			&__skills-container {
 				gap: 1rem;
 
