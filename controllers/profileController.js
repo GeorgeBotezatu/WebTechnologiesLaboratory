@@ -133,7 +133,7 @@ const addExperience = async (req, res) => {
 		};
 		profile.experience.unshift(newExperience);
 		await profile.save();
-		res.status(200).json({ msg: EXPERIENCE_SAVED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -159,7 +159,7 @@ const deleteExperience = async (req, res) => {
 		}
 		profile.experience.splice(removeIndex, 1);
 		await profile.save();
-		res.status(200).json({ msg: EXPERIENCE_DELETED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -188,7 +188,7 @@ const addEducation = async (req, res) => {
 		};
 		profile.education.unshift(newEducation);
 		await profile.save();
-		res.status(200).json({ msg: EDUCATION_SAVED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -214,7 +214,7 @@ const deleteEducation = async (req, res) => {
 		}
 		profile.education.splice(removeIndex, 1);
 		await profile.save();
-		res.status(200).json({ msg: EDUCATION_DELETED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });

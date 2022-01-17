@@ -3,10 +3,12 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { ADD_EXPERIENCE } from "../../../../Routes/routesPath";
 import { RootState } from "../../../../Store/Store";
-import { ADD_EXPERIENCE_MSG, PROFILE } from "../../../../Utils/constants";
+import { ADD_EXPERIENCE_MSG } from "../../../../Utils/constants";
 import AnimatedButton from "../../../Atoms/AnimatedButton/AnimatedButton";
 import {
 	ORANGE,
+	PROFILE_ADD_EXP_DIM,
+	PROFILE_ADD_EXP_POS,
 	PROFILE_EXP,
 	STANDARD,
 } from "../../../Atoms/AnimatedButton/ButtonModifiers";
@@ -18,14 +20,24 @@ const ProfileExperienceCard: React.FC = () => {
 	);
 	useEffect(() => {}, [experience]);
 	const classComponent = "wtl-experience-section";
-	const titileClass = `${classComponent}--title`;
+	const titleContainerClass = `${classComponent}__title-container`;
+	const titileClass = `${titleContainerClass}--title`;
 	const expContainerClass = `${classComponent}__container`;
 
 	return (
 		<div className={classComponent}>
 			{experience && experience[0] ? (
 				<>
-					<h2 className={titileClass}>Experience</h2>
+					<div className={titileClass}>
+						<h2 className={titileClass}>Experience</h2>
+						<AnimatedButton
+							buttonColor={ORANGE}
+							buttonDimension={PROFILE_ADD_EXP_DIM}
+							buttonPosition={PROFILE_ADD_EXP_POS}
+							buttonMessage={ADD_EXPERIENCE_MSG}
+							buttonRoute={ADD_EXPERIENCE}
+						/>
+					</div>
 					<div className={expContainerClass}>
 						{experience &&
 							experience.map((item, index) => {
@@ -41,6 +53,7 @@ const ProfileExperienceCard: React.FC = () => {
 										_id={item._id}
 										index={index}
 										numberOfItems={experience.length}
+										key={index}
 									/>
 								);
 							})}

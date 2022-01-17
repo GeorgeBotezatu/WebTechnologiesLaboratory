@@ -1,9 +1,16 @@
 import "./ExperienceItem.scss";
 import React from "react";
-import { spawn } from "child_process";
 import TrashButton from "../../../Atoms/TrashButton/TrashButton";
 import GearButton from "../../../Atoms/GearButton/GearButton";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import {
+	profileDeleteExpFail,
+	profileDeleteExpInit,
+	profileDeleteExpSuccess,
+} from "../../../../Store/features/profileSlice";
+import { deleteExp } from "../../../../API/profileAPI";
+import { EXPERIENCE_DOSENT_EXIST } from "../../../../Utils/constants";
 interface IExperienceCard {
 	company?: string;
 	current?: boolean;
@@ -28,6 +35,25 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 	numberOfItems,
 	_id,
 }) => {
+	const dispatch = useDispatch();
+
+	const deleteHandler = async () => {
+		dispatch(profileDeleteExpInit());
+		try {
+			if (_id) {
+				const res = await deleteExp(_id);
+				if (!res) {
+					dispatch(profileDeleteExpFail(EXPERIENCE_DOSENT_EXIST));
+				}
+				dispatch(profileDeleteExpSuccess(res));
+			} else {
+				dispatch(profileDeleteExpFail(EXPERIENCE_DOSENT_EXIST));
+			}
+		} catch (error) {
+			dispatch(profileDeleteExpFail(error));
+		}
+	};
+
 	const componentClass = "wtl-experience-item-container";
 	const titleRowContainerClass = `${componentClass}__title-container`;
 	const buttonsContainerClass = `${titleRowContainerClass}__buttons-container`;
@@ -48,7 +74,12 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 					<button className={editButtonClass}>
 						<GearButton />
 					</button>
-					<button className={deleteButtonClass}>
+					<button
+						onClick={() => {
+							deleteHandler();
+						}}
+						className={deleteButtonClass}
+					>
 						<TrashButton />
 					</button>
 				</div>

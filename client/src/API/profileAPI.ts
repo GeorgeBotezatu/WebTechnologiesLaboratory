@@ -3,6 +3,7 @@ import { IUserState } from "../Interfaces";
 
 import {
 	CREATE_PROFILE_URL,
+	EXPERIENCE_URLS,
 	LOAD_PROFILE_URL,
 	UPDATE_ABOUT_URL,
 	UPDATE_GITHUB_URL,
@@ -82,6 +83,21 @@ export const updateAbout = (aboutData: aboutData) => {
 			const res = await axiosInstance.put(
 				UPDATE_ABOUT_URL,
 				aboutData,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const deleteExp = (id: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const res = await axiosInstance.delete(
+				EXPERIENCE_URLS + `/${id}`,
 				REQUEST_HEADERS_WITH_BEARER
 			);
 			resolve(res.data);

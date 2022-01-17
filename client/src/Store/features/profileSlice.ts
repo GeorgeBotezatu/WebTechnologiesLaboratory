@@ -66,6 +66,17 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		profileDeleteExpInit: (state) => {
+			state.loading = true;
+		},
+		profileDeleteExpSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileDeleteExpFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -80,5 +91,8 @@ export const {
 	profileEditAboutInit,
 	profileEditAboutSuccess,
 	profileEditAboutFail,
+	profileDeleteExpInit,
+	profileDeleteExpSuccess,
+	profileDeleteExpFail,
 } = profileSlice.actions;
 export default profileSlice.reducer;
