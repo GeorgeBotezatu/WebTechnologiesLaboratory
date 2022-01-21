@@ -2,7 +2,7 @@
 @use "../../../Styles/colors";
 @use "../../../Styles/breakPoints";
 
-.wtl-edit-about-page {
+.wtl-edit-experience-page {
 	min-height: calc(100vh - 20rem);
 	position: relative;
 
@@ -17,24 +17,34 @@
 	}
 	&--image {
 		position: absolute;
-		background: url("../../../Assets//Images/about-form-background.svg");
-		background-position: bottom;
+		background: url("../../../Assets//Images/experience-form-background.svg");
+		background-position: bottom 30% left 10%;
 		background-repeat: no-repeat;
+		overflow: visible;
 		height: 100%;
 		width: 100%;
+		z-index: -1;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-edit-experience-page {
+		&--title {
+			width: 60%;
+		}
 	}
 }
 
 @media (max-width: breakPoints.$breakPoint1366) {
-	.wtl-edit-about-page {
+	.wtl-edit-experience-page {
 		&--title {
-			width: 70%;
+			width: 65%;
 		}
 	}
 }
 
 @media (max-width: breakPoints.$breakPoint1080) {
-	.wtl-edit-about-page {
+	.wtl-edit-experience-page {
 		&--title {
 			width: 80%;
 		}
@@ -42,21 +52,18 @@
 }
 
 @media (max-width: breakPoints.$breakPoint800) {
-	.wtl-edit-about-page {
+	.wtl-edit-experience-page {
 		&--title {
 			width: 90%;
 			p {
 				font-size: 3rem;
 			}
 		}
-		&--image {
-			display: none;
-		}
 	}
 }
 
 @media (max-width: breakPoints.$breakPoint600) {
-	.wtl-edit-about-page {
+	.wtl-edit-experience-page {
 		&--title {
 			width: 100%;
 			p {
@@ -68,7 +75,7 @@
 }
 
 @media (max-width: breakPoints.$breakPoint400) {
-	.wtl-edit-about-page {
+	.wtl-edit-experience-page {
 		&--title {
 			width: 100%;
 			p {

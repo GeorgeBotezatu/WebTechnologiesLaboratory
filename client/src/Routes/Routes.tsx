@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PrivateRoute from "../Components/Atoms/PrivateRoute/PrivateRoute";
 import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
+import EditExperiencePage from "../Components/Pages/EditExperiencePage/EditExperiencePage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";
 import ProfilePage from "../Components/Pages/ProfilePage/ProfilePage";
 import RegisterPage from "../Components/Pages/RegisterPage/RegisterPage";
 
 import {
+	ADD_EXPERIENCE,
+	EDIT_EXPERIENCE,
 	LANDING_PATH,
 	LOGIN_PATH,
 	MODIFY_ABOUT_PATH,
@@ -42,6 +45,22 @@ const PlatformRoutes = () => {
 								element={
 									<PrivateRoute>
 										<EditAboutPage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={EDIT_EXPERIENCE}
+								element={
+									<PrivateRoute>
+										<EditExperiencePage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={ADD_EXPERIENCE}
+								element={
+									<PrivateRoute>
+										<EditExperiencePage />
 									</PrivateRoute>
 								}
 							/>

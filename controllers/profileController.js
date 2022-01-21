@@ -2,12 +2,8 @@ import Profile from "../models/profileSchema.js";
 import CustomStatusCodeError from "../utils/customError.js";
 import {
 	ABOUT_SAVED,
-	EDUCATION_DELETED,
 	EDUCATION_NOT_FOUND,
-	EDUCATION_SAVED,
-	EXPERIENCE_DELETED,
 	EXPERIENCE_NOT_FOUND,
-	EXPERIENCE_SAVED,
 	GITHUBUSERNAME_SAVED,
 	PROFILE_CREATED,
 	PROFILE_EXIST,

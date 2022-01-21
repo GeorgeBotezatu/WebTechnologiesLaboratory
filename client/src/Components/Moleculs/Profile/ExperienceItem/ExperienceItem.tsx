@@ -11,6 +11,8 @@ import {
 } from "../../../../Store/features/profileSlice";
 import { deleteExp } from "../../../../API/profileAPI";
 import { EXPERIENCE_DOSENT_EXIST } from "../../../../Utils/constants";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 interface IExperienceCard {
 	company?: string;
 	current?: boolean;
@@ -71,9 +73,21 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 			<div className={titleRowContainerClass}>
 				<h2>{title}</h2>
 				<div className={buttonsContainerClass}>
-					<button className={editButtonClass}>
+					<Link
+						to={`edit-experience/${_id}`}
+						state={{
+							company: company,
+							title: title,
+							description: description,
+							location: location,
+							from: from,
+							to: to,
+							current: current,
+						}}
+						className={editButtonClass}
+					>
 						<GearButton />
-					</button>
+					</Link>
 					<button
 						onClick={() => {
 							deleteHandler();

@@ -36,33 +36,6 @@
 			}
 		}
 		&__textarea-group {
-			&--textarea {
-				font-size: 1.7rem;
-				width: 100%;
-				height: 6rem;
-				color: colors.$white;
-				background: none;
-				border: none;
-				resize: none;
-				outline: none;
-				-ms-overflow-style: none;
-				scrollbar-width: none;
-				overflow-y: scroll;
-				border-bottom: 3px solid colors.$mainGray;
-				&::placeholder {
-					font-size: 2rem;
-				}
-				&::-webkit-scrollbar {
-					display: none;
-				}
-				&:focus {
-					padding-bottom: 0.6rem;
-					font-weight: 700;
-					border-width: 4px;
-					border-image: colors.$formInputGradient;
-					border-image-slice: 1;
-				}
-			}
 			p {
 				margin-top: 0.5rem;
 				font-size: 1.4rem;
@@ -150,11 +123,6 @@
 				}
 			}
 			&__textarea-group {
-				&--textarea {
-					&::placeholder {
-						font-size: 1.6rem;
-					}
-				}
 				p {
 					font-size: 1.2rem;
 				}
@@ -173,9 +141,7 @@
 			padding: 0 1rem;
 		}
 		&__form {
-			&__buttons-group {
-				justify-content: space-between;
-			}
+			font-size: 2.5rem;
 		}
 	}
 }
@@ -200,18 +166,13 @@
 				}
 			}
 			&__textarea-group {
-				&--textarea {
-					&::placeholder {
-						font-size: 1.6rem;
-					}
-				}
 				p {
 					font-size: 1rem;
 				}
 			}
 			&__buttons-group {
 				font-size: 2.2rem;
-				align-items: center;
+				justify-content: space-between;
 			}
 		}
 	}

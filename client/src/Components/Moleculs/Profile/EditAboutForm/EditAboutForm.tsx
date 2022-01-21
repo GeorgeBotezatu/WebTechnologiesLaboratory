@@ -1,5 +1,4 @@
 import "./EditAboutForm.scss";
-
 import TextInput from "../../../Atoms/TextInput/TextInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -73,7 +72,6 @@ const EditAboutForm = () => {
 	const formComponentClass = `${componentClass}__form`;
 	const formGroupClass = `${formComponentClass}__group`;
 	const formTextareaGroupClass = `${formComponentClass}__textarea-group`;
-	const textareaClass = `${formTextareaGroupClass}--textarea`;
 	const formAdditionalInfoClass = `${formComponentClass}--additional`;
 	const formButtonsGroupClass = `${formComponentClass}__buttons-group`;
 	return (
@@ -125,7 +123,6 @@ const EditAboutForm = () => {
 						</div>
 						<div className={formTextareaGroupClass}>
 							<TextareaInput
-								textareaClass={textareaClass}
 								placeholder="A short bio of yourself"
 								name="bio"
 								id="bio"

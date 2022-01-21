@@ -1,7 +1,7 @@
+import "./App.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadProfile } from "./API/profileAPI";
-import "./App.scss";
 import PlatformRoutes from "./Routes/Routes";
 import {
 	profileLoadFail,

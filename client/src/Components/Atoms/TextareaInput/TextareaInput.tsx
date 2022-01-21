@@ -5,19 +5,15 @@ interface ITextarea {
 	id: string;
 	placeholder: string;
 	name: string;
-	textareaClass: string;
 }
 
-const TextareaInput: React.FC<ITextarea> = ({
-	id,
-	placeholder,
-	textareaClass,
-	...props
-}) => {
+const TextareaInput: React.FC<ITextarea> = ({ id, placeholder, ...props }) => {
+	const componentClass = "wtl-textarea-input";
+	const textareaClass = `${componentClass}--textarea`;
 	/* eslint-disable @typescript-eslint/no-unused-vars */
 	const [field, meta] = useField(props);
 	return (
-		<div>
+		<div className={componentClass}>
 			<textarea
 				className={textareaClass}
 				placeholder={placeholder}

@@ -55,11 +55,13 @@ const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
 					</div>
 					<div className={aboutContainerClass}>
 						<p className={websiteClass}>
-							<span>My website:</span>{" "}
 							{about?.website ? (
-								<a href={about.website}>{about.website}</a>
+								<>
+									<span>My website: </span>
+									<a href={about.website}>{about.website}</a>
+								</>
 							) : (
-								"Not added yet!"
+								""
 							)}
 						</p>
 						<p className={statusClass}>
@@ -85,14 +87,16 @@ const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
 								)}
 							</div>
 						</div>
-						<div className={bioContainerClass}>
-							<p className={`${bioContainerClass}--title`}>
-								<span>Bio: </span>
-							</p>
-							<p className={`${bioContainerClass}--bio`}>
-								{about?.bio ? about.bio : "Not added yet!"}
-							</p>
-						</div>
+						{about?.bio ? (
+							<div className={bioContainerClass}>
+								<p className={`${bioContainerClass}--title`}>
+									<span>Bio: </span>
+								</p>
+								<p className={`${bioContainerClass}--bio`}>{about.bio}</p>
+							</div>
+						) : (
+							""
+						)}
 					</div>
 				</>
 			)}

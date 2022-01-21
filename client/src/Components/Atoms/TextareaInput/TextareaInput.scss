@@ -1,0 +1,50 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+.wtl-textarea-input {
+	&--textarea {
+		font-size: 1.7rem;
+		width: 100%;
+		height: 6rem;
+		color: colors.$white;
+		background: none;
+		border: none;
+		resize: none;
+		outline: none;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+		overflow-y: scroll;
+		border-bottom: 3px solid colors.$mainGray;
+		&::placeholder {
+			font-size: 2rem;
+		}
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		&:focus {
+			padding-bottom: 0.6rem;
+			font-weight: 700;
+			border-width: 4px;
+			border-image: colors.$formInputGradient;
+			border-image-slice: 1;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-textarea-input {
+		&--textarea {
+			font-size: 1.3rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-textarea-input {
+		&--textarea {
+			&::placeholder {
+				font-size: 1.6rem;
+			}
+		}
+	}
+}
