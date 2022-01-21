@@ -139,6 +139,44 @@ const addExperience = async (req, res) => {
 	}
 };
 
+const editExperience = async (req, res) => {
+	try {
+		const userId = req.user.id;
+		const data = req.body;
+		const profile = await Profile.findOne({ user: userId });
+		const { title, company, location, from, to, current, description } = data;
+
+		const newExperience = {
+			title,
+			company,
+			location,
+			from,
+			to,
+			current,
+			description,
+		};
+		const expId = req.params.exp_id;
+		let expIndex = -1;
+		for (let i = 0; i < profile.experience.length; i++) {
+			if (profile.experience[i]._id.toString() === expId) {
+				expIndex = i;
+			}
+		}
+		if (expIndex === -1) {
+			throw new CustomStatusCodeError(EXPERIENCE_NOT_FOUND, 404);
+		}
+		profile.experience[expIndex] = newExperience;
+		await profile.save();
+		res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
 const deleteExperience = async (req, res) => {
 	try {
 		const userId = req.user.id;
@@ -183,6 +221,45 @@ const addEducation = async (req, res) => {
 			description,
 		};
 		profile.education.unshift(newEducation);
+		await profile.save();
+		res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const editEducation = async (req, res) => {
+	try {
+		const userId = req.user.id;
+		const data = req.body;
+		const profile = await Profile.findOne({ user: userId });
+		const { school, degree, fieldofstudy, from, to, current, description } =
+			data;
+
+		const newEducation = {
+			school,
+			degree,
+			fieldofstudy,
+			from,
+			to,
+			current,
+			description,
+		};
+		const eduId = req.params.edu_id;
+		let eduIndex = -1;
+		for (let i = 0; i < profile.education.length; i++) {
+			if (profile.education[i]._id.toString() === eduId) {
+				eduIndex = i;
+			}
+		}
+		if (eduIndex === -1) {
+			throw new CustomStatusCodeError(EDUCATION_NOT_FOUND, 404);
+		}
+		profile.education[eduIndex] = newEducation;
 		await profile.save();
 		res.status(200).json(profile);
 	} catch (error) {
@@ -243,7 +320,9 @@ export {
 	addGithubName,
 	addSocialSection,
 	addExperience,
+	editExperience,
 	deleteExperience,
 	addEducation,
+	editEducation,
 	deleteEducation,
 };

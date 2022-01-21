@@ -22,7 +22,8 @@ const registerUser = async (req, res) => {
 			r: "pg",
 			d: "mm",
 		});
-		const user = new User({ name, email, avatar, password });
+		const newEmail = email.toLowerCase();
+		const user = new User({ name, newEmail, avatar, password });
 
 		user.password = await encryptPassword(password);
 		await user.save();
@@ -39,7 +40,8 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		const user = await User.findOne({ email });
+		const newEmail = email.toLowerCase();
+		const user = await User.findOne({ newEmail });
 		await validatePassword(password, user.password);
 		generateToken(user, res);
 	} catch (error) {

@@ -29,3 +29,6 @@ export const SCHOOL_REQUIRED = "School is required!";
 export const DEGREE_REQUIRED = "Degree is required!";
 export const FIELD_OF_STUDY_REQUIRED = "Field of study is required!";
 export const EDUCATION_NOT_FOUND = "Education not found!";
+export const FROM_DATE_FUTURE = "Can't set the job start date in future!";
+export const END_DATE_IN_PAST =
+	"Can't end a job in the before you can start it!";

@@ -1,6 +1,10 @@
 import Profile from "../models/profileSchema.js";
 import CustomStatusCodeError from "../utils/customError.js";
-import { SERVER_ERROR } from "../utils/textUtils.js";
+import {
+	END_DATE_IN_PAST,
+	FROM_DATE_FUTURE,
+	SERVER_ERROR,
+} from "../utils/textUtils.js";
 import { validationResult } from "express-validator";
 import { matchInputs, verifyInputErrors } from "../utils/utilFunctions.js";
 
@@ -88,6 +92,7 @@ const validateExperience = async (req, res, next) => {
 			description: "",
 		};
 		matchInputs(data, validInputs);
+		verifyDates(data);
 		next();
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
@@ -115,6 +120,7 @@ const validateEducation = async (req, res, next) => {
 			description: "",
 		};
 		matchInputs(data, validInputs);
+		verifyDates(data);
 		next();
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
@@ -133,6 +139,21 @@ async function verifyIfProfileDoesNotExist(userId) {
 		throw new CustomStatusCodeError(PROFILE_NOT_FOUND, 400);
 	}
 }
+
+function verifyDates(data) {
+	const today = new Date();
+	const fromDate = new Date(data.from);
+	if (today.getTime() < fromDate.getTime()) {
+		throw new CustomStatusCodeError(FROM_DATE_FUTURE, 400);
+	}
+	if (data.to) {
+		const toDate = new Date(data.to);
+		if (toDate.getTime() < fromDate.getTime()) {
+			throw new CustomStatusCodeError(END_DATE_IN_PAST, 400);
+		}
+	}
+}
+
 export {
 	validateAddAboutSection,
 	validateAddGithubName,
