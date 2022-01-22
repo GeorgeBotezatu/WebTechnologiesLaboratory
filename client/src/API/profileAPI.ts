@@ -17,6 +17,16 @@ interface aboutData {
 	website: string;
 }
 
+interface experienceData {
+	title?: string;
+	company?: string;
+	location?: string | null;
+	from?: string | Date;
+	to?: string | null | Date;
+	current?: boolean;
+	description?: string | null;
+}
+
 export const createProfile = (token: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
@@ -83,6 +93,38 @@ export const updateAbout = (aboutData: aboutData) => {
 			const res = await axiosInstance.put(
 				UPDATE_ABOUT_URL,
 				aboutData,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const editExperience = (expData: experienceData, id: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const url = EXPERIENCE_URLS + `/${id}`;
+			const res = await axiosInstance.put(
+				url,
+				expData,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+export const createExperience = (expData: experienceData) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const res = await axiosInstance.put(
+				EXPERIENCE_URLS,
+				expData,
 				REQUEST_HEADERS_WITH_BEARER
 			);
 			resolve(res.data);

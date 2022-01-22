@@ -95,7 +95,11 @@ const addSocialSection = async (req, res) => {
 		const userId = req.user.id;
 		const data = req.body;
 
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { youtube, twitter, facebook, linkedin, instagram } = data;
 
 		const socialSection = { youtube, twitter, facebook, linkedin, instagram };
@@ -115,7 +119,11 @@ const addExperience = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		const data = req.body;
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { title, company, location, from, to, current, description } = data;
 
 		const newExperience = {
@@ -143,7 +151,11 @@ const editExperience = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		const data = req.body;
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { title, company, location, from, to, current, description } = data;
 
 		const newExperience = {
@@ -207,7 +219,11 @@ const addEducation = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		const data = req.body;
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { school, degree, fieldofstudy, from, to, current, description } =
 			data;
 
@@ -236,7 +252,11 @@ const editEducation = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		const data = req.body;
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { school, degree, fieldofstudy, from, to, current, description } =
 			data;
 

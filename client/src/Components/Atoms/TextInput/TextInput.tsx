@@ -2,7 +2,7 @@ import "./TextInput.scss";
 import React from "react";
 import { ErrorMessage, useField } from "formik";
 import classNames from "classnames";
-import moment from "moment";
+// import moment from "moment";
 interface ITextInput {
 	type: string;
 	id: string;
@@ -29,7 +29,7 @@ const TextInput: React.FC<ITextInput> = ({
 	const extraInputError = `${extraInput}-error`;
 	const extraLabelError = `${extraLabel}-error`;
 	const errorTextInputClass = "errorTextInput";
-	const date = new Date();
+	// const date = new Date();
 	return (
 		<div className={inputContainerClass}>
 			<input
@@ -44,7 +44,7 @@ const TextInput: React.FC<ITextInput> = ({
 								errorTextInputClass
 						  )
 				}
-				max={props.type === "date" ? moment(date).format("YYYY-MM-DD") : ""}
+				// max={props.type === "date" ? moment(date).format("YYYY-MM-DD") : ""}  <-is left here just in case i want to block some dates
 				type={props.type}
 				id={id}
 				placeholder={placeholder}

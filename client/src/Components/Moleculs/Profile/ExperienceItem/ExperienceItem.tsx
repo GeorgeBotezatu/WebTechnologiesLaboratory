@@ -12,7 +12,7 @@ import {
 import { deleteExp } from "../../../../API/profileAPI";
 import { EXPERIENCE_DOSENT_EXIST } from "../../../../Utils/constants";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
+
 interface IExperienceCard {
 	company?: string;
 	current?: boolean;

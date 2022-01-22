@@ -44,24 +44,24 @@ const EditAboutForm = () => {
 
 	const submitHandler = async (values: FormValues) => {
 		dispatch(profileEditAboutInit());
-		const aboutData = {
-			website: values.website,
-			status: values.status,
-			skills: values.skills,
-			bio: values.bio,
-		};
-		const updateStateData = {
-			website: values.website,
-			status: values.status,
-			skills: values.skills.split(",").map((skill) => skill.trim()),
-			bio: values.bio,
-		};
-
-		updateAbout(aboutData);
-
-		dispatch(profileEditAboutSuccess(updateStateData));
-		navigate("/profile");
 		try {
+			const aboutData = {
+				website: values.website,
+				status: values.status,
+				skills: values.skills,
+				bio: values.bio,
+			};
+			const updateStateData = {
+				website: values.website,
+				status: values.status,
+				skills: values.skills.split(",").map((skill) => skill.trim()),
+				bio: values.bio,
+			};
+
+			await updateAbout(aboutData);
+
+			dispatch(profileEditAboutSuccess(updateStateData));
+			navigate("/profile");
 		} catch (error: any) {
 			dispatch(profileEditAboutFail(error.message));
 		}

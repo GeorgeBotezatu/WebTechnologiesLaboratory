@@ -8,11 +8,22 @@ import { Link } from "react-router-dom";
 import { PROFILE_PATH } from "../../../../Routes/routesPath";
 import {
 	YUP_COMPANY_NAME_REQUIRED,
+	YUP_FROM_DATE,
 	YUP_JOB_TITLE_REQUIRED,
 	YUP_START_DATE_REQUIRED,
+	YUP_TO_DATE,
+	YUP_TO_DATE_REQUIRED,
 } from "../../../../Utils/constants";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import moment from "moment";
+import { useParams } from "react-router";
+import { useDispatch } from "react-redux";
+import {
+	profileUpdateExpFail,
+	profileUpdateExpInit,
+	profileUpdateExpSuccess,
+} from "../../../../Store/features/profileSlice";
+import { createExperience, editExperience } from "../../../../API/profileAPI";
 interface FormValues {
 	title?: string;
 	company?: string;
@@ -25,8 +36,9 @@ interface FormValues {
 
 const ExperienceForm = () => {
 	const { state } = useLocation();
-	console.log(state);
-
+	const { id } = useParams();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [checked, setChecked] = useState<boolean>(
 		state ? state.current : false
 	);
@@ -34,8 +46,66 @@ const ExperienceForm = () => {
 	const validate = Yup.object({
 		title: Yup.string().required(YUP_JOB_TITLE_REQUIRED),
 		company: Yup.string().required(YUP_COMPANY_NAME_REQUIRED),
-		from: Yup.string().required(YUP_START_DATE_REQUIRED),
+		from: Yup.string()
+			.required(YUP_START_DATE_REQUIRED)
+			.test("invalid-date", YUP_FROM_DATE, function (value: any): boolean {
+				const fromDate = new Date(value);
+				const today = new Date();
+				if (today.getTime() < fromDate.getTime()) {
+					return false;
+				}
+				return true;
+			}),
+		to: Yup.string()
+			.test("invalid-to", YUP_TO_DATE, function (value: any): boolean {
+				const toDate = new Date(value);
+				const fromDate = new Date(this.parent.from);
+
+				if (toDate.getTime() < fromDate.getTime()) {
+					return false;
+				}
+				return true;
+			})
+			.test(
+				"to-required",
+				YUP_TO_DATE_REQUIRED,
+				function (value: any): boolean {
+					if (!checked && !value) {
+						return false;
+					}
+					return true;
+				}
+			),
 	});
+
+	const submitHandler = async (values: FormValues) => {
+		dispatch(profileUpdateExpInit());
+		try {
+			const expData = {
+				title: values.title,
+				company: values.company,
+				location: values.location,
+				from: values.from,
+				to: checked ? "" : values.to,
+				current: checked,
+				description: values.description,
+			};
+
+			let res;
+			if (id) {
+				res = await editExperience(expData, id);
+			} else {
+				res = await createExperience(expData);
+			}
+			if (!res) {
+				dispatch(profileUpdateExpFail("Can't update this section!"));
+			}
+			dispatch(profileUpdateExpSuccess(res));
+			navigate("/profile");
+		} catch (error: any) {
+			dispatch(profileUpdateExpFail(error.message));
+		}
+	};
 
 	const initialValues: FormValues = {
 		title: state && state.title ? state.title : "",
@@ -46,7 +116,6 @@ const ExperienceForm = () => {
 		description: state && state.description ? state.description : "",
 	};
 
-	console.log(initialValues);
 	const componentClass = "wtl-experience-form-container";
 	const formDescriptionClass = `${componentClass}--form-description`;
 	const formContainerClass = `${componentClass}__form-container`;
@@ -64,7 +133,7 @@ const ExperienceForm = () => {
 			initialValues={initialValues}
 			validationSchema={validate}
 			onSubmit={(values) => {
-				console.log("nmk");
+				submitHandler(values);
 			}}
 		>
 			{(formik) => (

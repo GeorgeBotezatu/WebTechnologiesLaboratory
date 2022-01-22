@@ -77,6 +77,17 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		profileUpdateExpInit: (state) => {
+			state.loading = true;
+		},
+		profileUpdateExpSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileUpdateExpFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -91,6 +102,9 @@ export const {
 	profileEditAboutInit,
 	profileEditAboutSuccess,
 	profileEditAboutFail,
+	profileUpdateExpInit,
+	profileUpdateExpSuccess,
+	profileUpdateExpFail,
 	profileDeleteExpInit,
 	profileDeleteExpSuccess,
 	profileDeleteExpFail,

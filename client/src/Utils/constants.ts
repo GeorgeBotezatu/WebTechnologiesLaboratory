@@ -21,6 +21,10 @@ export const YUP_STATUS_REQUIRED = "Your career status is required!";
 export const YUP_JOB_TITLE_REQUIRED = "The job title is required!";
 export const YUP_COMPANY_NAME_REQUIRED = "The company name is required!";
 export const YUP_START_DATE_REQUIRED = "The start date is required!";
+export const YUP_FROM_DATE = "This date can't be set in the future!";
+export const YUP_TO_DATE = "To can't be set before FROM date";
+export const YUP_TO_DATE_REQUIRED =
+	"If is not current job, this field is required!";
 export const COULD_NOT_REGISTER = "Could not register!";
 export const COULD_NOT_LOGIN = "Could not Login!";
 export const COULD_NOT_LOAD_PROFILE = "Could not load your profile!";
