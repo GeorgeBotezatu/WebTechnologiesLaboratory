@@ -32,7 +32,7 @@ const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
 	const skillClass = `${skillContainerClass}--skill`;
 	const bioContainerClass = `${aboutContainerClass}__bio-container`;
 	return (
-		<div className={componentClass}>
+		<div id="about" className={componentClass}>
 			{!about?.website && !about?.status && !about?.bio ? (
 				<AnimatedButton
 					buttonColor={ORANGE}

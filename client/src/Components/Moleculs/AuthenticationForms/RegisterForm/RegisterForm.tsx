@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
+	clearAuthenticationError,
 	registerFail,
 	registerInit,
 	registerSuccess,
@@ -52,6 +53,7 @@ const RegisterForm: React.FC = () => {
 	useEffect(() => {
 		if (error) {
 			setEmailLabel("Email already used");
+			dispatch(clearAuthenticationError());
 		}
 	}, [error]);
 	const dispatch = useDispatch();

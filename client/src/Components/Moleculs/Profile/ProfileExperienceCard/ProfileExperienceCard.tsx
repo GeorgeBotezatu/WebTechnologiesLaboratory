@@ -25,7 +25,7 @@ const ProfileExperienceCard: React.FC = () => {
 	const expContainerClass = `${classComponent}__container`;
 
 	return (
-		<div className={classComponent}>
+		<div id="experience" className={classComponent}>
 			{experience && experience[0] ? (
 				<>
 					<div className={titileClass}>

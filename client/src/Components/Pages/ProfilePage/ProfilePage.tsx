@@ -5,24 +5,49 @@ import { RootState } from "../../../Store/Store";
 import { useSelector } from "react-redux";
 import ProfileAboutCard from "../../Moleculs/Profile/ProfileAboutCard/ProfileAboutCard";
 import ProfileExperienceCard from "../../Moleculs/Profile/ProfileExperienceCard/ProfileExperienceCard";
+import ProfileSideMenu from "../../Moleculs/Profile/ProfileSideMenu/ProfileSideMenu";
 
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 	const github = userProfile.githubusername;
 	const userCard = userProfile.user;
 	const profileDate = userProfile.date;
-	const componentClass = "wtl-profile-page";
 
+	const componentClass = "wtl-profile-page";
+	const contentClass = `${componentClass}--content`;
+	const sideMenuClass = `${componentClass}--side-menu`;
 	return (
 		<div className={componentClass}>
-			<ProfileCard
-				github={github ? github : null}
-				userCard={userCard}
-				profileDate={profileDate}
-			/>
+			<div className={sideMenuClass}>
+				<ProfileSideMenu
+					about={userProfile.about?.status ? true : false}
+					experience={
+						userProfile?.experience && userProfile.experience[0] ? true : false
+					}
+					education={
+						userProfile?.education && userProfile.education[0] ? true : false
+					}
+					social={
+						userProfile.social?.facebook ||
+						userProfile.social?.instagram ||
+						userProfile.social?.linkedin ||
+						userProfile.social?.twitter ||
+						userProfile.social?.youtube
+							? true
+							: false
+					}
+				/>
+			</div>
+			<div className={contentClass}>
+				<ProfileCard
+					github={github ? github : null}
+					userCard={userCard}
+					profileDate={profileDate}
+				/>
 
-			<ProfileAboutCard about={userProfile?.about} />
-			<ProfileExperienceCard />
+				<ProfileAboutCard about={userProfile?.about} />
+				<ProfileExperienceCard />
+			</div>
 		</div>
 	);
 };

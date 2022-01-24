@@ -52,7 +52,7 @@ const ProfileCard: React.FC<IProfileCard> = ({
 	const githubContainerClass = `${cardContainerClass}__github-container`;
 
 	return (
-		<div className={componentClass}>
+		<div id="top" className={componentClass}>
 			<div className={usernameContainerClass}>
 				<p className={`${usernameContainerClass}--p`}>
 					{userCard?.name && userCard.name}

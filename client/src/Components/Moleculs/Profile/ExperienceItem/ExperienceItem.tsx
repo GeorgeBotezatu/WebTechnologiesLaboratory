@@ -85,6 +85,7 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 							current: current,
 						}}
 						className={editButtonClass}
+						aria-label="edit-button"
 					>
 						<GearButton />
 					</Link>
@@ -93,6 +94,7 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 							deleteHandler();
 						}}
 						className={deleteButtonClass}
+						aria-label="delete-button"
 					>
 						<TrashButton />
 					</button>
@@ -100,7 +102,14 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 			</div>
 			<div className={infoContainerClass}>
 				<p className={companyCityClass}>
-					At <span>{company}</span> in <span>{location}</span>
+					At <span>{company}</span>{" "}
+					{location ? (
+						<>
+							in <span>{location}</span>
+						</>
+					) : (
+						""
+					)}
 				</p>
 				<p className={dateClass}>
 					<span>Between: {moment(from).format("DD.MM.YYYY")}</span> -
@@ -112,8 +121,14 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 				</p>
 			</div>
 			<div className={descriptionContainerClass}>
-				<p className={descriptionTitleClass}>Desciption:</p>
-				<p className={descriptionTextClass}>{description}</p>
+				{description ? (
+					<>
+						<p className={descriptionTitleClass}>Desciption:</p>
+						<p className={descriptionTextClass}>{description}</p>
+					</>
+				) : (
+					""
+				)}
 			</div>
 			{numberOfItems !== index + 1 ? <hr /> : null}
 		</div>

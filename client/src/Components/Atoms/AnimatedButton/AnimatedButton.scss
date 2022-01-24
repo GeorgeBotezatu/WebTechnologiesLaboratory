@@ -88,7 +88,7 @@
 			margin-top: 2rem;
 		}
 		&--profile-exp {
-			top: 1rem;
+			top: -1rem;
 			left: 0;
 		}
 	}
@@ -136,7 +136,7 @@
 			margin-top: 1rem;
 		}
 		&--profile-exp {
-			top: 1rem;
+			top: -1rem;
 			left: 0;
 		}
 	}
@@ -219,6 +219,10 @@
 			&--standard {
 				@include buttonDimension(1px, 80%, 2.5rem);
 			}
+			&--standard-with-about {
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 		&__mas-button-container {
 			//dimension modifiers
@@ -242,6 +246,10 @@
 			&--standard {
 				@include buttonDimension(1px, 80%, 2.5rem);
 			}
+			&--standard-with-about {
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 	}
 }
@@ -257,10 +265,6 @@
 			&--standard {
 				@include buttonDimension(1px, 100%, 2.3rem);
 			}
-			&--standard-with-about {
-				left: 50%;
-				transform: translateX(-50%);
-			}
 		}
 		&__mas-button-container {
 			&--profile {
@@ -272,10 +276,6 @@
 
 			&--standard {
 				@include buttonDimension(1px, 100%, 2.3rem);
-			}
-			&--standard-with-about {
-				left: 50%;
-				transform: translateX(-50%);
 			}
 		}
 	}

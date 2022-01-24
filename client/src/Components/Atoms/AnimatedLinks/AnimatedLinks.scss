@@ -1,0 +1,57 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+.wtl-animated-links-component {
+	text-decoration: none;
+	color: colors.$white;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	span {
+		background-image: colors.$sideMenuGradient;
+		background-position: 100% 70%;
+		background-repeat: no-repeat;
+		background-size: var(--background-size, 100%) 3px;
+		transition: background-size 0.2s linear var(--background-delay, 0.15s);
+		font-size: 1.8rem;
+		line-height: 2rem;
+		transform: translateZ(0);
+	}
+	svg {
+		width: 2.4rem;
+		height: 3rem;
+		position: relative;
+		left: -2px;
+		top: -5px;
+		fill: none;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 3px;
+		stroke: #11998e;
+		stroke-dasharray: 7.95 30;
+		stroke-dashoffset: var(--stroke-dashoffset, 46);
+		transition: stroke-dashoffset var(--stroke-duration, 0.15s)
+			var(--stroke-easing, linear) var(--stroke-delay, 0s);
+	}
+	&:hover {
+		--background-size: 0%;
+		--background-delay: 0s;
+		--stroke-dashoffset: 26;
+		--stroke-duration: 0.3s;
+		--stroke-easing: cubic-bezier(0.3, 1.5, 0.5, 1);
+		--stroke-delay: 0.195s;
+	}
+}
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-animated-links-component {
+		margin-bottom: 1.5rem;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-animated-links-component {
+		span {
+			font-size: 1.5rem;
+		}
+	}
+}

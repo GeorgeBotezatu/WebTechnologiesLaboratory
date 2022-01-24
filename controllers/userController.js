@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
 			d: "mm",
 		});
 		const newEmail = email.toLowerCase();
-		const user = new User({ name, newEmail, avatar, password });
+		const user = new User({ name, email: newEmail, avatar, password });
 
 		user.password = await encryptPassword(password);
 		await user.save();
@@ -32,7 +32,7 @@ const registerUser = async (req, res) => {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
 		}
-		console.log(error);
+		console.log(error.message);
 		return res.status(500).json({ msg: SERVER_ERROR });
 	}
 };

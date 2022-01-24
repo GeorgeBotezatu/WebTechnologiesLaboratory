@@ -34,6 +34,11 @@
 
 @media (max-width: breakPoints.$breakPoint800) {
 	.wtl-experience-section {
+		&__title-container {
+			&--title {
+				font-size: 3rem;
+			}
+		}
 		&__container {
 			padding: 1rem 2rem;
 		}
@@ -44,8 +49,6 @@
 	.wtl-experience-section {
 		&__title-container {
 			&--title {
-				font-size: 3rem;
-				font-family: "Permanent Marker";
 				text-align: center;
 				margin-bottom: 6rem;
 			}
