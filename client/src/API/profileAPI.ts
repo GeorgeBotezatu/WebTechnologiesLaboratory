@@ -3,6 +3,7 @@ import { IUserState } from "../Interfaces";
 
 import {
 	CREATE_PROFILE_URL,
+	EDUCATION_URLS,
 	EXPERIENCE_URLS,
 	LOAD_PROFILE_URL,
 	UPDATE_ABOUT_URL,
@@ -25,6 +26,16 @@ interface experienceData {
 	to?: string | null | Date;
 	current?: boolean;
 	description?: string | null;
+}
+
+interface educationData {
+	school?: string;
+	current?: boolean;
+	description?: string;
+	from?: Date | string;
+	degree?: string;
+	fieldofstudy?: string;
+	to?: string | Date;
 }
 
 export const createProfile = (token: string) => {
@@ -112,6 +123,7 @@ export const editExperience = (expData: experienceData, id: string) => {
 				expData,
 				REQUEST_HEADERS_WITH_BEARER
 			);
+
 			resolve(res.data);
 		} catch (error) {
 			console.log(error);
@@ -140,6 +152,53 @@ export const deleteExp = (id: string) => {
 		try {
 			const res = await axiosInstance.delete(
 				EXPERIENCE_URLS + `/${id}`,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const editEducation = (eduData: educationData, id: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const url = EDUCATION_URLS + `/${id}`;
+			const res = await axiosInstance.put(
+				url,
+				eduData,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+export const createEducation = (eduData: educationData) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const res = await axiosInstance.put(
+				EDUCATION_URLS,
+				eduData,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const deleteEdu = (id: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const res = await axiosInstance.delete(
+				EDUCATION_URLS + `/${id}`,
 				REQUEST_HEADERS_WITH_BEARER
 			);
 			resolve(res.data);

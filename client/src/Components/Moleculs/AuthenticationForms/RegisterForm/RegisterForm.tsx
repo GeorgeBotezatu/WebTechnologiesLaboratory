@@ -49,15 +49,16 @@ const RegisterForm: React.FC = () => {
 	const { isAuthenticated, error } = useSelector(
 		(state: RootState) => state.auth
 	);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [emailLabel, setEmailLabel] = useState<string>("Email");
 	useEffect(() => {
 		if (error) {
 			setEmailLabel("Email already used");
 			dispatch(clearAuthenticationError());
 		}
-	}, [error]);
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	}, [error, dispatch]);
+
 	const randomNumber: number = getRandomNumber(0, randomFactsArr.length - 1);
 	const initialValues: FormValues = {
 		username: "",

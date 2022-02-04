@@ -193,7 +193,11 @@ const deleteExperience = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		await verifyIfProfileDoesNotExist(userId);
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 
 		//get index of the experience
 		const removeIndex = profile.experience
@@ -295,7 +299,11 @@ const deleteEducation = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		await verifyIfProfileDoesNotExist(userId);
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 
 		//get index of the experience
 		const removeIndex = profile.education

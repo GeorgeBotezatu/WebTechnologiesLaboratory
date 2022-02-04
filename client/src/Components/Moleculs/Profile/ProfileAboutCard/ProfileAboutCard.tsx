@@ -34,13 +34,7 @@ const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
 	return (
 		<div id="about" className={componentClass}>
 			{!about?.website && !about?.status && !about?.bio ? (
-				<AnimatedButton
-					buttonColor={ORANGE}
-					buttonDimension={STANDARD}
-					buttonPosition={PROFILE}
-					buttonMessage={ADD_ABOUT_SECTION}
-					buttonRoute={MODIFY_ABOUT_PATH}
-				/>
+				<></>
 			) : (
 				<>
 					<div className={titleContainerClass}>

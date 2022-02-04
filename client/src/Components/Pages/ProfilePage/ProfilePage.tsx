@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import ProfileAboutCard from "../../Moleculs/Profile/ProfileAboutCard/ProfileAboutCard";
 import ProfileExperienceCard from "../../Moleculs/Profile/ProfileExperienceCard/ProfileExperienceCard";
 import ProfileSideMenu from "../../Moleculs/Profile/ProfileSideMenu/ProfileSideMenu";
+import ProfileEducationCard from "../../Moleculs/Profile/ProfileEducationCard/ProfileEducationCard";
 
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
@@ -47,6 +48,7 @@ const ProfilePage = () => {
 
 				<ProfileAboutCard about={userProfile?.about} />
 				<ProfileExperienceCard />
+				<ProfileEducationCard />
 			</div>
 		</div>
 	);

@@ -10,7 +10,7 @@
 	margin: 0 20rem 0 5rem;
 	margin-top: 8rem;
 	flex-direction: row;
-	gap: 5rem;
+	gap: 3rem;
 	&--content {
 		position: relative;
 		flex: 5;
@@ -43,6 +43,7 @@
 
 @media (max-width: breakPoints.$breakPoint600) {
 	.wtl-profile-page {
-		margin: 0 2rem;
+		width: 90%;
+		margin: 0 auto;
 	}
 }

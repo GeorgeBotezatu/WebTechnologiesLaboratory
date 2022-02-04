@@ -24,7 +24,7 @@ const ProfileSideMenu: React.FC<ISideMenu> = ({
 	const componentClass = "wtl-side-menu-container";
 	const titleClass = `${componentClass}--title`;
 	const linksContainerClass = `${componentClass}__links-container`;
-	console.log(about, experience, education, social);
+
 	return (
 		<div className={componentClass}>
 			<h1 className={titleClass}>Sections :</h1>

@@ -140,7 +140,7 @@ router.put(
 //@desc Edit education section
 //@access private
 router.put(
-	"/education",
+	"/education/:edu_id",
 	auth,
 	[
 		check(SCHOOL, SCHOOL_REQUIRED).not().isEmpty(),
