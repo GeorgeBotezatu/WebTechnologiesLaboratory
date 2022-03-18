@@ -4,12 +4,10 @@ import checkImage from "../../../../Assets/Icons/check-icon.svg";
 import AnimatedButton from "../../../Atoms/AnimatedButton/AnimatedButton";
 import {
 	ORANGE,
-	PROFILE,
 	PROFILE_WITH_ABOUT,
-	STANDARD,
 	STANDARD_WITH_ABOUT,
 } from "../../../Atoms/AnimatedButton/ButtonModifiers";
-import { ADD_ABOUT_SECTION, MODIFY_ABOUT } from "../../../../Utils/constants";
+import { MODIFY_ABOUT } from "../../../../Utils/constants";
 import { MODIFY_ABOUT_PATH } from "../../../../Routes/routesPath";
 interface IProfileAboutCard {
 	about:

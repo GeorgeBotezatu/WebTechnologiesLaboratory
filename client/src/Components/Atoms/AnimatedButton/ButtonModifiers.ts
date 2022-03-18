@@ -20,3 +20,4 @@ export const PROFILE_WITH_ABOUT = "profile-with-about";
 export const LANDING = "landing";
 export const PROFILE_EXP = "profile-exp";
 export const PROFILE_ADD_EXP_POS = "profile-add-exp-pos";
+export const PROFILE_SOCIAL_LINKS = "profile-edit-social-pos";

@@ -7,6 +7,7 @@ import ProfileAboutCard from "../../Moleculs/Profile/ProfileAboutCard/ProfileAbo
 import ProfileExperienceCard from "../../Moleculs/Profile/ProfileExperienceCard/ProfileExperienceCard";
 import ProfileSideMenu from "../../Moleculs/Profile/ProfileSideMenu/ProfileSideMenu";
 import ProfileEducationCard from "../../Moleculs/Profile/ProfileEducationCard/ProfileEducationCard";
+import SocialCard from "../../Moleculs/Profile/SocialCard/SocialCard";
 
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
@@ -49,6 +50,7 @@ const ProfilePage = () => {
 				<ProfileAboutCard about={userProfile?.about} />
 				<ProfileExperienceCard />
 				<ProfileEducationCard />
+				<SocialCard socialLinks={userProfile?.social} />
 			</div>
 		</div>
 	);

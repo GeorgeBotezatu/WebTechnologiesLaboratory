@@ -91,6 +91,10 @@
 			top: -1rem;
 			left: 0;
 		}
+		&--profile-edit-social-pos {
+			top: -5rem;
+			right: 0;
+		}
 	}
 	&__mas-button-container {
 		font-family: "Permanent Marker";
@@ -138,6 +142,10 @@
 		&--profile-exp {
 			top: -1rem;
 			left: 0;
+		}
+		&--profile-edit-social-pos {
+			top: -5rem;
+			right: 0;
 		}
 	}
 }
@@ -223,6 +231,10 @@
 				left: 50%;
 				transform: translateX(-50%);
 			}
+			&--profile-edit-social-pos {
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 		&__mas-button-container {
 			//dimension modifiers
@@ -247,6 +259,10 @@
 				@include buttonDimension(1px, 80%, 2.5rem);
 			}
 			&--standard-with-about {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			&--profile-edit-social-pos {
 				left: 50%;
 				transform: translateX(-50%);
 			}
