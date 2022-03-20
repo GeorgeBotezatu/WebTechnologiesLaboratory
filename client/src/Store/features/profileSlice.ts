@@ -110,6 +110,17 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		profileSocialInit: (state) => {
+			state.loading = true;
+		},
+		profileSocialSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileSocialFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -136,5 +147,8 @@ export const {
 	profileDeleteEduInit,
 	profileDeleteEduSuccess,
 	profileDeleteEduFail,
+	profileSocialInit,
+	profileSocialSuccess,
+	profileSocialFail,
 } = profileSlice.actions;
 export default profileSlice.reducer;

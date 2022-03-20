@@ -27,6 +27,7 @@ export const YUP_FIELDOFSTUDY_REQUIRED = "The field of study is required!";
 export const YUP_FROM_DATE = "This date can't be set in the future!";
 export const YUP_TO_DATE = "To can't be set before FROM date";
 export const YUP_TO_DATE_REQUIRED = "If is not current is required!";
+export const YUP_URL_HTTP = "URL need to containt http(s)://";
 export const COULD_NOT_REGISTER = "Could not register!";
 export const COULD_NOT_LOGIN = "Could not Login!";
 export const COULD_NOT_LOAD_PROFILE = "Could not load your profile!";

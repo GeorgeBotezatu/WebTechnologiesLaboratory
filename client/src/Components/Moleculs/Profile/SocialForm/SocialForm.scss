@@ -1,0 +1,170 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-social-form-container {
+	position: relative;
+	margin: 0;
+	margin-top: 8rem;
+	margin-left: 55%;
+	width: 30%;
+	backdrop-filter: blur(15px);
+	border-radius: 10px;
+	background: colors.$formsBackgroudGreenTint;
+	box-shadow: colors.$formsBoxShadow;
+	min-height: 60vh;
+	padding: 3rem 4rem;
+
+	&__form-container {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		padding: 0 1rem;
+		&__input-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: flex-end;
+			gap: 2rem;
+			i {
+				font-size: 4rem;
+			}
+			div {
+				width: 100%;
+				input {
+					color: colors.$white;
+				}
+			}
+		}
+
+		&__buttons-group {
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			font-size: 3rem;
+			button,
+			a {
+				background: none;
+				border: none;
+				color: colors.$white;
+				font-family: "Permanent Marker";
+				transition: all 1s ease;
+				&:hover {
+					transform: translateX(1rem);
+					text-shadow: 7px 9px 3px #ffffff;
+				}
+			}
+			a {
+				&::after {
+					content: "»";
+					opacity: 0;
+					transition: all 0.3s ease;
+					margin-left: 2rem;
+					font-size: 3rem;
+				}
+				&:hover::after {
+					opacity: 1;
+					right: 8%;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-social-form-container {
+		width: 35%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-social-form-container {
+		width: 40%;
+
+		&__form-container {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			padding: 0 1rem;
+
+			&__buttons-group {
+				margin-top: 3rem;
+				font-size: 2.5rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-social-form-container {
+		margin-left: 45%;
+		width: 50%;
+
+		&__form-container {
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+
+			&__input-container {
+				i {
+					font-size: 3rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-social-form-container {
+		margin: 0 auto;
+		margin-top: 6rem;
+		width: 60%;
+		padding: 1rem 2rem;
+
+		&__form-container {
+			&__input-container {
+				i {
+					font-size: 3rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-social-form-container {
+		margin: 0 auto;
+		margin-top: 6rem;
+		width: 80%;
+		padding: 1rem 2rem;
+
+		&__form-container {
+			&__input-container {
+				i {
+					font-size: 3rem;
+				}
+			}
+			&__buttons-group {
+				flex-wrap: wrap;
+				font-size: 2.2rem;
+				justify-content: space-between;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-social-form-container {
+		width: 90%;
+		padding: 1rem 2rem;
+
+		&__form-container {
+			&__input-container {
+				i {
+					font-size: 2.5rem;
+				}
+			}
+		}
+	}
+}

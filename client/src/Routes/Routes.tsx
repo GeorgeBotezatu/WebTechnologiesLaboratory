@@ -5,6 +5,7 @@ import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
 import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducationPage";
 import EditExperiencePage from "../Components/Pages/EditExperiencePage/EditExperiencePage";
+import EditSocialPage from "../Components/Pages/EditSocialPage/EditSocialPage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";
 import ProfilePage from "../Components/Pages/ProfilePage/ProfilePage";
@@ -15,6 +16,7 @@ import {
 	ADD_EXPERIENCE,
 	EDIT_EDUCATION,
 	EDIT_EXPERIENCE,
+	EDIT_SOCIAL,
 	LANDING_PATH,
 	LOGIN_PATH,
 	MODIFY_ABOUT_PATH,
@@ -80,6 +82,14 @@ const PlatformRoutes = () => {
 								element={
 									<PrivateRoute>
 										<EditEducationPage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={EDIT_SOCIAL}
+								element={
+									<PrivateRoute>
+										<EditSocialPage />
 									</PrivateRoute>
 								}
 							/>

@@ -30,39 +30,49 @@ interface ISocialCard {
 }
 
 const SocialCard: React.FC<ISocialCard> = ({ socialLinks }) => {
+	const buttonState = {
+		socialLinks,
+		buttonPressed: true,
+	};
+
 	const classComponent = "wtl-social-section";
 	const titleContainerClass = `${classComponent}__title-container`;
 	const titleClass = `${titleContainerClass}--title`;
 	const socialContainerClass = `${classComponent}__social-container`;
 	return (
 		<div id="social" className={classComponent}>
-			<div className={titleClass}>
-				<h2 className={titleClass}>Social</h2>
-				<AnimatedButton
-					buttonColor={ORANGE}
-					buttonDimension={PROFILE_ADD_EXP_DIM}
-					buttonPosition={PROFILE_SOCIAL_LINKS}
-					buttonMessage={EDIT_SOCIAL_LINKS}
-					buttonRoute={EDIT_SOCIAL}
-				/>
-			</div>
-			<div className={socialContainerClass}>
-				{socialLinks?.youtube && (
-					<SocialItem link={socialLinks.youtube} iconType={YOUTUBE} />
-				)}
-				{socialLinks?.twitter && (
-					<SocialItem link={socialLinks.twitter} iconType={TWITTER} />
-				)}
-				{socialLinks?.facebook && (
-					<SocialItem link={socialLinks.facebook} iconType={FACEBOOK} />
-				)}
-				{socialLinks?.linkedin && (
-					<SocialItem link={socialLinks.linkedin} iconType={LINKEDIN} />
-				)}
-				{socialLinks?.instagram && (
-					<SocialItem link={socialLinks.instagram} iconType={INSTAGRAM} />
-				)}
-			</div>
+			{socialLinks && (
+				<>
+					<div className={titleClass}>
+						<h2 className={titleClass}>Social</h2>
+						<AnimatedButton
+							buttonColor={ORANGE}
+							buttonDimension={PROFILE_ADD_EXP_DIM}
+							buttonPosition={PROFILE_SOCIAL_LINKS}
+							buttonMessage={EDIT_SOCIAL_LINKS}
+							buttonRoute={EDIT_SOCIAL}
+							routeState={buttonState}
+						/>
+					</div>
+					<div className={socialContainerClass}>
+						{socialLinks?.youtube && (
+							<SocialItem link={socialLinks.youtube} iconType={YOUTUBE} />
+						)}
+						{socialLinks?.twitter && (
+							<SocialItem link={socialLinks.twitter} iconType={TWITTER} />
+						)}
+						{socialLinks?.facebook && (
+							<SocialItem link={socialLinks.facebook} iconType={FACEBOOK} />
+						)}
+						{socialLinks?.linkedin && (
+							<SocialItem link={socialLinks.linkedin} iconType={LINKEDIN} />
+						)}
+						{socialLinks?.instagram && (
+							<SocialItem link={socialLinks.instagram} iconType={INSTAGRAM} />
+						)}
+					</div>
+				</>
+			)}
 		</div>
 	);
 };

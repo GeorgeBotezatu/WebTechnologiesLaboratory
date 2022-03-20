@@ -6,6 +6,7 @@ import {
 	EDUCATION_URLS,
 	EXPERIENCE_URLS,
 	LOAD_PROFILE_URL,
+	SOCIAL_URLS,
 	UPDATE_ABOUT_URL,
 	UPDATE_GITHUB_URL,
 } from "./apiPaths";
@@ -36,6 +37,13 @@ interface educationData {
 	degree?: string;
 	fieldofstudy?: string;
 	to?: string | Date;
+}
+interface socialData {
+	facebook?: string;
+	youtube?: string;
+	twitter?: string;
+	linkedin?: string;
+	instagram?: string;
 }
 
 export const createProfile = (token: string) => {
@@ -199,6 +207,23 @@ export const deleteEdu = (id: string) => {
 		try {
 			const res = await axiosInstance.delete(
 				EDUCATION_URLS + `/${id}`,
+				REQUEST_HEADERS_WITH_BEARER
+			);
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const editSocial = (socialData: socialData) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const url = SOCIAL_URLS;
+			const res = await axiosInstance.put(
+				url,
+				socialData,
 				REQUEST_HEADERS_WITH_BEARER
 			);
 			resolve(res.data);
