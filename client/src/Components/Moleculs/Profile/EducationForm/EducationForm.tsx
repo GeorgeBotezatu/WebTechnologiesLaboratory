@@ -1,5 +1,5 @@
 import "./EducationForm.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
@@ -42,6 +42,12 @@ const EducationForm = () => {
 	const [checked, setChecked] = useState<boolean>(
 		state ? state.current : false
 	);
+
+	useEffect(() => {
+		if ((!state?.buttonPressed || !state) && id) {
+			navigate("/profile");
+		}
+	}, [state, navigate]);
 
 	const validate = Yup.object({
 		school: Yup.string().required(YUP_SCHOOL_REQUIRED),

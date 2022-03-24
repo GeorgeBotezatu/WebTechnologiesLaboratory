@@ -29,6 +29,7 @@ const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
 	const skillContainerClass = `${skillsContainerClass}__skill-container`;
 	const skillClass = `${skillContainerClass}--skill`;
 	const bioContainerClass = `${aboutContainerClass}__bio-container`;
+	const routeState = { about: about, buttonPressed: true };
 	return (
 		<div id="about" className={componentClass}>
 			{!about?.website && !about?.status && !about?.bio ? (
@@ -43,6 +44,7 @@ const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
 							buttonPosition={PROFILE_WITH_ABOUT}
 							buttonMessage={MODIFY_ABOUT}
 							buttonRoute={MODIFY_ABOUT_PATH}
+							routeState={routeState}
 						/>
 					</div>
 					<div className={aboutContainerClass}>

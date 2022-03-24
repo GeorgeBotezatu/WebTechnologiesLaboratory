@@ -105,7 +105,7 @@ const addSocialSection = async (req, res) => {
 		const socialSection = { youtube, twitter, facebook, linkedin, instagram };
 		profile.social = socialSection;
 		await profile.save();
-		res.status(200).json({ msg: SOCIAL_SAVED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });

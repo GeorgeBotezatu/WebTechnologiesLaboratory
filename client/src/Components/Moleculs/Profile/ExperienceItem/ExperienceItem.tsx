@@ -83,6 +83,7 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 							from: from,
 							to: to,
 							current: current,
+							buttonPressed: true,
 						}}
 						className={editButtonClass}
 						aria-label="edit-button"

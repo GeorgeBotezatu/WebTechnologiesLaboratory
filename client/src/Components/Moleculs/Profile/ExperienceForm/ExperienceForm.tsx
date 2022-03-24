@@ -1,5 +1,5 @@
 import "./ExperienceForm.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextInput from "../../../Atoms/TextInput/TextInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -42,6 +42,12 @@ const ExperienceForm = () => {
 	const [checked, setChecked] = useState<boolean>(
 		state ? state.current : false
 	);
+
+	useEffect(() => {
+		if ((!state?.buttonPressed || !state) && id) {
+			navigate("/profile");
+		}
+	}, [state, navigate]);
 
 	const validate = Yup.object({
 		title: Yup.string().required(YUP_JOB_TITLE_REQUIRED),
@@ -99,9 +105,10 @@ const ExperienceForm = () => {
 			}
 			if (!res) {
 				dispatch(profileUpdateExpFail("Can't update this section!"));
+			} else {
+				dispatch(profileUpdateExpSuccess(res));
+				navigate("/profile");
 			}
-			dispatch(profileUpdateExpSuccess(res));
-			navigate("/profile");
 		} catch (error: any) {
 			dispatch(profileUpdateExpFail(error.message));
 		}

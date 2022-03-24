@@ -8,15 +8,17 @@ import {
 	YUP_SKILLS_REQUIRED,
 	YUP_STATUS_REQUIRED,
 } from "../../../../Utils/constants";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
 	profileEditAboutFail,
 	profileEditAboutInit,
 	profileEditAboutSuccess,
 } from "../../../../Store/features/profileSlice";
 import { updateAbout } from "../../../../API/profileAPI";
-import { RootState } from "../../../../Store/Store";
+
 import TextareaInput from "../../../Atoms/TextareaInput/TextareaInput";
+import { useLocation } from "react-router";
+import { useEffect } from "react";
 
 interface FormValues {
 	website: string;
@@ -25,17 +27,21 @@ interface FormValues {
 	status: string;
 }
 const EditAboutForm = () => {
-	const { about } = useSelector(
-		(state: RootState) => state.userProfile.userProfile
-	);
+	const { state } = useLocation();
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!state?.buttonPressed || !state?.about || !state) {
+			navigate("/profile");
+		}
+	}, [state, navigate]);
 	const initialValues: FormValues = {
-		website: about?.website ? about.website : "",
-		skills: about?.skills ? about.skills.join() : "",
-		bio: about?.bio ? about.bio : "",
-		status: about?.status ? about.status : "",
+		website: state?.about?.website ? state?.about.website : "",
+		skills: state?.about?.skills ? state?.about.skills.join() : "",
+		bio: state?.about?.bio ? state?.about.bio : "",
+		status: state?.about?.status ? state?.about.status : "",
 	};
 	const validate = Yup.object({
 		skills: Yup.string().required(YUP_SKILLS_REQUIRED),
