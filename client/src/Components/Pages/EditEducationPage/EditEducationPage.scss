@@ -1,0 +1,85 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+.wtl-edit-education-page {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+
+	&--title {
+		width: 55%;
+		margin: 0 auto;
+		margin-bottom: 1rem;
+		p {
+			font-size: 3.5rem;
+			font-family: "Permanent Marker";
+		}
+	}
+	&--image {
+		position: absolute;
+		background: url("../../../Assets//Images/education-form-background.svg");
+		background-position: center;
+		background-repeat: no-repeat;
+		overflow: visible;
+		height: 100%;
+		width: 100%;
+		z-index: -1;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-edit-education-page {
+		&--title {
+			width: 60%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-edit-education-page {
+		&--title {
+			width: 65%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-edit-education-page {
+		&--title {
+			width: 80%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-edit-education-page {
+		&--title {
+			width: 90%;
+			p {
+				font-size: 3rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-edit-education-page {
+		&--title {
+			width: 100%;
+			p {
+				text-align: center;
+				font-size: 2.5rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-edit-education-page {
+		&--title {
+			width: 100%;
+			p {
+				font-size: 2rem;
+			}
+		}
+	}
+}

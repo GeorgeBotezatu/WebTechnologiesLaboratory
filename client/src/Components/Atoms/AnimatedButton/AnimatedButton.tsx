@@ -9,6 +9,7 @@ interface IAnimateButton {
 	buttonPosition: string;
 	buttonMessage: string;
 	buttonRoute: string;
+	routeState?: any;
 }
 
 const AnimatedButton: React.FC<IAnimateButton> = ({
@@ -17,6 +18,7 @@ const AnimatedButton: React.FC<IAnimateButton> = ({
 	buttonPosition,
 	buttonMessage,
 	buttonRoute,
+	routeState,
 }) => {
 	const componentClass = "wtl-animated-button";
 	const buttonContainerClass = `${componentClass}__button-container`;
@@ -43,7 +45,9 @@ const AnimatedButton: React.FC<IAnimateButton> = ({
 					buttonPositionClass
 				)}
 			>
-				<Link to={buttonRoute}>{buttonMessage}</Link>
+				<Link to={buttonRoute} state={routeState}>
+					{buttonMessage}
+				</Link>
 			</div>
 			<div
 				className={classNames(

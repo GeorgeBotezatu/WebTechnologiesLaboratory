@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../../Moleculs/LoginForm/LoginForm";
+import LoginForm from "../../Moleculs/AuthenticationForms/LoginForm/LoginForm";
 import "./LoginPage.scss";
 const LoginPage = () => {
 	const componentClass = "wtl-login-page";

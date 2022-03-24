@@ -10,6 +10,8 @@ import {
 	createProfile,
 	deleteEducation,
 	deleteExperience,
+	editEducation,
+	editExperience,
 	getMyProfile,
 } from "../controllers/profileController.js";
 import { auth } from "../middleware/auth.js";
@@ -98,6 +100,21 @@ router.put(
 	addExperience
 );
 
+//@roaute POST api/profile/experience/:exp_id
+//@desc   editexperience section
+//@access private
+router.put(
+	"/experience/:exp_id",
+	auth,
+	[
+		check(TITLE, TITLE_REQUIRED).not().isEmpty(),
+		check(COMPANY, COMPANY_REQUIRED).not().isEmpty(),
+		check(FROM, FROM_REQUIRED).not().isEmpty(),
+	],
+	validateExperience,
+	editExperience
+);
+
 //@roaute DELETE api/profile/experience/:exp_id
 //@desc   Delete education
 //@access private
@@ -117,6 +134,22 @@ router.put(
 	],
 	validateEducation,
 	addEducation
+);
+
+//@roaute POST api/profile/education:edu_id
+//@desc Edit education section
+//@access private
+router.put(
+	"/education/:edu_id",
+	auth,
+	[
+		check(SCHOOL, SCHOOL_REQUIRED).not().isEmpty(),
+		check(DEGREE, DEGREE_REQUIRED).not().isEmpty(),
+		check(FIELD_OF_STUDY, FIELD_OF_STUDY_REQUIRED).not().isEmpty(),
+		check(FROM, FROM_REQUIRED).not().isEmpty(),
+	],
+	validateEducation,
+	editEducation
 );
 
 //@roaute DELETE api/profile/education/:edu_id

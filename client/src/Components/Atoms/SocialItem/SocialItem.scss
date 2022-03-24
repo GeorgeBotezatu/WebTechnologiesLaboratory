@@ -1,0 +1,30 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-social-item__icon {
+	padding: 1rem;
+	color: colors.$white;
+	&:hover {
+		animation: icon3d 200ms infinite;
+	}
+}
+
+@keyframes icon3d {
+	0% {
+		text-shadow: 5px 4px colors.$mainGreen, -5px -6px colors.$profileShadowColor;
+	}
+	25% {
+		text-shadow: -5px -6px colors.$mainGreen, 5px 4px colors.$profileShadowColor;
+	}
+	50% {
+		text-shadow: 5px -4px colors.$mainGreen, -8px 4px colors.$profileShadowColor;
+	}
+	75% {
+		text-shadow: -8px -4px colors.$mainGreen,
+			-5px -4px colors.$profileShadowColor;
+	}
+	100% {
+		text-shadow: -5px 0 colors.$mainGreen, 5px -4px colors.$profileShadowColor;
+	}
+}

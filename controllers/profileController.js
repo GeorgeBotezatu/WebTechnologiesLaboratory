@@ -2,12 +2,8 @@ import Profile from "../models/profileSchema.js";
 import CustomStatusCodeError from "../utils/customError.js";
 import {
 	ABOUT_SAVED,
-	EDUCATION_DELETED,
 	EDUCATION_NOT_FOUND,
-	EDUCATION_SAVED,
-	EXPERIENCE_DELETED,
 	EXPERIENCE_NOT_FOUND,
-	EXPERIENCE_SAVED,
 	GITHUBUSERNAME_SAVED,
 	PROFILE_CREATED,
 	PROFILE_EXIST,
@@ -15,8 +11,6 @@ import {
 	SERVER_ERROR,
 	SOCIAL_SAVED,
 } from "../utils/textUtils.js";
-import { validationResult } from "express-validator";
-import { matchInputs, verifyInputErrors } from "../utils/utilFunctions.js";
 //|----------------|
 //|---Controllers--|
 //|----------------|
@@ -101,13 +95,17 @@ const addSocialSection = async (req, res) => {
 		const userId = req.user.id;
 		const data = req.body;
 
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { youtube, twitter, facebook, linkedin, instagram } = data;
 
 		const socialSection = { youtube, twitter, facebook, linkedin, instagram };
 		profile.social = socialSection;
 		await profile.save();
-		res.status(200).json({ msg: SOCIAL_SAVED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -121,7 +119,11 @@ const addExperience = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		const data = req.body;
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { title, company, location, from, to, current, description } = data;
 
 		const newExperience = {
@@ -135,7 +137,49 @@ const addExperience = async (req, res) => {
 		};
 		profile.experience.unshift(newExperience);
 		await profile.save();
-		res.status(200).json({ msg: EXPERIENCE_SAVED });
+		res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const editExperience = async (req, res) => {
+	try {
+		const userId = req.user.id;
+		const data = req.body;
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
+		const { title, company, location, from, to, current, description } = data;
+
+		const newExperience = {
+			title,
+			company,
+			location,
+			from,
+			to,
+			current,
+			description,
+		};
+		const expId = req.params.exp_id;
+		let expIndex = -1;
+		for (let i = 0; i < profile.experience.length; i++) {
+			if (profile.experience[i]._id.toString() === expId) {
+				expIndex = i;
+			}
+		}
+		if (expIndex === -1) {
+			throw new CustomStatusCodeError(EXPERIENCE_NOT_FOUND, 404);
+		}
+		profile.experience[expIndex] = newExperience;
+		await profile.save();
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -149,7 +193,11 @@ const deleteExperience = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		await verifyIfProfileDoesNotExist(userId);
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 
 		//get index of the experience
 		const removeIndex = profile.experience
@@ -161,7 +209,7 @@ const deleteExperience = async (req, res) => {
 		}
 		profile.experience.splice(removeIndex, 1);
 		await profile.save();
-		res.status(200).json({ msg: EXPERIENCE_DELETED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -175,7 +223,11 @@ const addEducation = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		const data = req.body;
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 		const { school, degree, fieldofstudy, from, to, current, description } =
 			data;
 
@@ -190,7 +242,50 @@ const addEducation = async (req, res) => {
 		};
 		profile.education.unshift(newEducation);
 		await profile.save();
-		res.status(200).json({ msg: EDUCATION_SAVED });
+		res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const editEducation = async (req, res) => {
+	try {
+		const userId = req.user.id;
+		const data = req.body;
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
+		const { school, degree, fieldofstudy, from, to, current, description } =
+			data;
+
+		const newEducation = {
+			school,
+			degree,
+			fieldofstudy,
+			from,
+			to,
+			current,
+			description,
+		};
+		const eduId = req.params.edu_id;
+		let eduIndex = -1;
+		for (let i = 0; i < profile.education.length; i++) {
+			if (profile.education[i]._id.toString() === eduId) {
+				eduIndex = i;
+			}
+		}
+		if (eduIndex === -1) {
+			throw new CustomStatusCodeError(EDUCATION_NOT_FOUND, 404);
+		}
+		profile.education[eduIndex] = newEducation;
+		await profile.save();
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -204,7 +299,11 @@ const deleteEducation = async (req, res) => {
 	try {
 		const userId = req.user.id;
 		await verifyIfProfileDoesNotExist(userId);
-		const profile = await Profile.findOne({ user: userId });
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+		]);
 
 		//get index of the experience
 		const removeIndex = profile.education
@@ -216,7 +315,7 @@ const deleteEducation = async (req, res) => {
 		}
 		profile.education.splice(removeIndex, 1);
 		await profile.save();
-		res.status(200).json({ msg: EDUCATION_DELETED });
+		res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -249,7 +348,9 @@ export {
 	addGithubName,
 	addSocialSection,
 	addExperience,
+	editExperience,
 	deleteExperience,
 	addEducation,
+	editEducation,
 	deleteEducation,
 };

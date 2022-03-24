@@ -1,0 +1,16 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-gear-button {
+	svg {
+		filter: invert(90%) sepia(35%) saturate(3295%) hue-rotate(351deg)
+			brightness(96%) contrast(103%);
+	}
+	svg:hover {
+		transform: rotateZ(360deg);
+		transform-origin: center center;
+		transition-duration: 6s;
+		transition-property: transform;
+	}
+}

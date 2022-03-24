@@ -1,6 +1,6 @@
 $mainGreen: #084711;
 $lighterGreen: #12d61b;
-$darkPink: #b43748;
+$darkPink: #11998e; //#136e5f
 $backgroud: #0d1117;
 $black: #000;
 $white: #fff;
@@ -20,6 +20,7 @@ $particleColor: rgb(25, 144, 199);
 $particleLaterColor: rgba(12, 32, 148, 0.979);
 $particleDropShadow: drop-shadow(0px 0px 15px rgb(11, 156, 67));
 $formInputGradient: linear-gradient(to right, #11998e, #38ef7d);
+$sideMenuGradient: linear-gradient(to left, #11998e, #38ef7d);
 $formInputGradientError: linear-gradient(to right, #11998e, red);
 $red: red;
 
@@ -29,3 +30,7 @@ $profileShadowColor: rgb(241, 111, 5);
 $profileSvgWhite: invert(100%) sepia(64%) saturate(0%) hue-rotate(7deg)
 	brightness(118%) contrast(101%);
 $profileHalfWhiteTransparent: rgba(255, 255, 255, 0.6);
+
+//icons
+$trashIconSvg: invert(20%) sepia(96%) saturate(4752%) hue-rotate(346deg)
+	brightness(92%) contrast(106%);

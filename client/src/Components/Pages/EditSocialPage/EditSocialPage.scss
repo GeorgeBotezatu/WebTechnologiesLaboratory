@@ -1,0 +1,99 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-edit-social-page {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+
+	&--title {
+		width: 50%;
+		margin: 0 auto;
+		margin-bottom: 1rem;
+		p {
+			font-size: 3.5rem;
+			font-family: "Permanent Marker";
+		}
+	}
+	&--image {
+		position: absolute;
+		background: url("../../../Assets//Images/social-form-background.svg");
+		background-position: bottom 10% left 20%;
+		background-repeat: no-repeat;
+		overflow: visible;
+		height: 75%;
+		width: 100%;
+		z-index: -1;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-edit-social-page {
+		&--title {
+			width: 60%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-edit-social-page {
+		&--title {
+			width: 65%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-edit-social-page {
+		&--title {
+			width: 80%;
+			p {
+				font-size: 3.2rem;
+			}
+		}
+		&--image {
+			background-position: bottom 10% left 5%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-edit-social-page {
+		&--title {
+			width: 90%;
+
+			p {
+				font-size: 3rem;
+			}
+		}
+		&--image {
+			background-position: bottom 10% left 20%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-edit-social-page {
+		&--title {
+			width: 100%;
+			p {
+				text-align: center;
+				font-size: 2.5rem;
+			}
+		}
+		&--image {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-edit-social-page {
+		&--title {
+			width: 100%;
+			p {
+				font-size: 2rem;
+			}
+		}
+	}
+}

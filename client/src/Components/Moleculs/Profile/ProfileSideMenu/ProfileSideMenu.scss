@@ -1,0 +1,82 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-side-menu-container {
+	position: sticky;
+	top: 5rem;
+	background: colors.$profileCardsGray;
+	border-radius: 10px;
+	width: 100%;
+	min-height: 40vh;
+	margin-top: 6rem;
+	padding: 3rem 0rem 3rem 2rem;
+	border: 2px solid colors.$profileHalfWhiteTransparent;
+	box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+	&--title {
+		font-size: 3rem;
+		font-family: "Permanent Marker";
+	}
+	&__links-container {
+		margin: 2rem 0;
+		padding-left: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+}
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-side-menu-container {
+		min-width: 18rem;
+		padding: 3rem 0rem 3rem 1rem;
+		&--title {
+			font-size: 2.5rem;
+		}
+		&__links-container {
+			width: 100%;
+			margin: 2rem auto;
+			justify-content: space-between;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 0rem;
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-side-menu-container {
+		min-height: auto;
+		padding: 2rem 4rem;
+		margin-bottom: 4rem;
+		&--title {
+			font-size: 4rem;
+			font-family: "Permanent Marker";
+		}
+		&__links-container {
+			width: 100%;
+			margin: 2rem auto;
+			justify-content: space-between;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 0rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-side-menu-container {
+		margin-bottom: 8rem;
+		&--title {
+			text-align: center;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-side-menu-container {
+		&--title {
+			font-size: 3rem;
+		}
+	}
+}

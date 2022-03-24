@@ -8,7 +8,7 @@ export const getRandomNumber = (min: number, max: number) => {
 export const addTokenToCookie = (token: string) => {
 	const date = new Date();
 	date.setTime(date.getTime() + 36000000);
-	console.log(date);
+
 	cookies.set(TOKEN, token, {
 		path: "/",
 		expires: date,
@@ -22,6 +22,9 @@ export const existToken = () => {
 	const token: string = getToken();
 	if (token) return true;
 	else return false;
+};
+export const deleteCookie = () => {
+	cookies.remove(TOKEN);
 };
 
 export const calcultateDays = (profileDate: Date | null) => {

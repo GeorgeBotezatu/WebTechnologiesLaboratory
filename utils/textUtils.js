@@ -24,12 +24,11 @@ export const SOCIAL_SAVED = "Social section saved successfully!";
 export const TITLE_REQUIRED = "Title is required!";
 export const COMPANY_REQUIRED = "Company is required!";
 export const FROM_REQUIRED = "From date is required!";
-export const EXPERIENCE_SAVED = "Experience saved successfully!";
-export const EXPERIENCE_DELETED = "Experience deleted successfully!";
 export const EXPERIENCE_NOT_FOUND = "Experience not found!";
 export const SCHOOL_REQUIRED = "School is required!";
 export const DEGREE_REQUIRED = "Degree is required!";
 export const FIELD_OF_STUDY_REQUIRED = "Field of study is required!";
-export const EDUCATION_SAVED = "Education saved successfully!";
-export const EDUCATION_DELETED = "Education deleted successfully!";
 export const EDUCATION_NOT_FOUND = "Education not found!";
+export const FROM_DATE_FUTURE = "Can't set the job start date in future!";
+export const END_DATE_IN_PAST =
+	"Can't end a job in the before you can start it!";
