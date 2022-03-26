@@ -50,3 +50,6 @@ export const YOUTUBE = "youtube";
 export const TWITTER = "twitter";
 export const LINKEDIN = "linkedin";
 export const INSTAGRAM = "instagram";
+export const HTML = "html";
+export const JAVASCRIPT = "javascript";
+export const CSS = "css";

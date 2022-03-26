@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import PrivateRoute from "../Components/Atoms/PrivateRoute/PrivateRoute";
 import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
+import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
 import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducationPage";
 import EditExperiencePage from "../Components/Pages/EditExperiencePage/EditExperiencePage";
@@ -14,6 +15,7 @@ import RegisterPage from "../Components/Pages/RegisterPage/RegisterPage";
 import {
 	ADD_EDUCATION,
 	ADD_EXPERIENCE,
+	CONSOLE_PATH,
 	EDIT_EDUCATION,
 	EDIT_EXPERIENCE,
 	EDIT_SOCIAL,
@@ -93,6 +95,7 @@ const PlatformRoutes = () => {
 									</PrivateRoute>
 								}
 							/>
+							<Route path={CONSOLE_PATH} element={<ConsolePage />} />
 						</Routes>
 					</>
 				</>

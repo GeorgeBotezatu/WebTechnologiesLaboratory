@@ -1,0 +1,52 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-console-page__container {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	width: 95%;
+	margin: 0 auto;
+	gap: 2rem;
+	&__preview-container {
+		display: flex;
+		position: relative;
+		width: 50%;
+		flex-direction: column;
+		&--preview {
+			width: 100%;
+			height: 70vh;
+		}
+	}
+
+	&__code-editors-container {
+		width: 50%;
+
+		&__editors {
+			display: flex;
+			flex-direction: column;
+
+			&--editor {
+				opacity: 0;
+				width: 50%;
+				position: absolute;
+				pointer-events: none;
+			}
+			&--editor.active {
+				opacity: 1;
+				width: 100%;
+				pointer-events: all;
+			}
+		}
+	}
+}
+.CodeMirror {
+	height: 70vh !important;
+	width: 50% !important;
+}
+.CodeMirror-scroll {
+	position: absolute;
+	overflow: hidden !important;
+}
