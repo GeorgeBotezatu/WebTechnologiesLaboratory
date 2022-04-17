@@ -82,6 +82,23 @@ const profileSchema = new mongoose.Schema({
 			},
 		},
 	],
+	codeSaves: [
+		{
+			name: {
+				type: String,
+				required: true,
+			},
+			js: {
+				type: String,
+			},
+			css: {
+				type: String,
+			},
+			html: {
+				type: String,
+			},
+		},
+	],
 	social: {
 		youtube: { type: String },
 		twitter: { type: String },

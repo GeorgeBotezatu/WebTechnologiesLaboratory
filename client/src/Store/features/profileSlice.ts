@@ -11,7 +11,7 @@ const initialState: initialStateInterface = {
 	loading: false,
 	error: null,
 	userProfile: {
-		user: { _id: "", name: "", email: "", avatar: "" },
+		user: { _id: "", name: "", email: "", avatar: "", isAdmin: false },
 		date: null,
 	},
 };
@@ -35,7 +35,7 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = null;
 			state.userProfile = {
-				user: { _id: "", name: "", email: "", avatar: "" },
+				user: { _id: "", name: "", email: "", avatar: "", isAdmin: false },
 				date: null,
 			};
 		},
@@ -121,6 +121,28 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		profileDeleteCodeSavesInit: (state) => {
+			state.loading = true;
+		},
+		profileDeleteCodeSavesSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileDeleteCodeSavesFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
+		profileUpdateCodeSavesInit: (state) => {
+			state.loading = true;
+		},
+		profileUpdateCodeSavesSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileUpdateCodeSavesFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -150,5 +172,11 @@ export const {
 	profileSocialInit,
 	profileSocialSuccess,
 	profileSocialFail,
+	profileDeleteCodeSavesFail,
+	profileDeleteCodeSavesInit,
+	profileDeleteCodeSavesSuccess,
+	profileUpdateCodeSavesInit,
+	profileUpdateCodeSavesSuccess,
+	profileUpdateCodeSavesFail,
 } = profileSlice.actions;
 export default profileSlice.reducer;

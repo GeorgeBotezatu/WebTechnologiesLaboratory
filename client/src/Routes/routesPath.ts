@@ -14,3 +14,4 @@ export const EDIT_SOCIAL = "/profile/edit-social";
 //Console Routes
 
 export const CONSOLE_PATH = "/console";
+export const EDIT_CONSOLE_PATH = "/console/:id";

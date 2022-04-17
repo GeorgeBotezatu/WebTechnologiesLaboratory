@@ -6,6 +6,7 @@ import cors from "cors";
 //routes
 import userRoutes from "./routes/userRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
+import consoleRoutes from "./routes/consoleRoutes.js";
 
 //app setUp
 dotenv.config();
@@ -26,6 +27,7 @@ connectDB();
 //bind routes
 app.use("/api/user", userRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/console", consoleRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}...`.yellow.bold));

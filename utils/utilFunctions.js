@@ -1,5 +1,6 @@
+import Profile from "../models/profileSchema.js";
 import CustomStatusCodeError from "./customError.js";
-import { INPUTS_DOES_NOT_MATCH } from "./textUtils.js";
+import { INPUTS_DOES_NOT_MATCH, PROFILE_NOT_FOUND } from "./textUtils.js";
 
 function matchInputs(arrived, valid) {
 	let counter = 0;
@@ -21,4 +22,10 @@ function verifyInputErrors(errors) {
 	}
 }
 
-export { matchInputs, verifyInputErrors };
+async function verifyIfProfileDoesNotExist(userId) {
+	const profileExist = await Profile.findOne({ user: userId });
+	if (!profileExist) {
+		throw new CustomStatusCodeError(PROFILE_NOT_FOUND, 400);
+	}
+}
+export { matchInputs, verifyInputErrors, verifyIfProfileDoesNotExist };

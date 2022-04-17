@@ -16,6 +16,7 @@ import {
 	ADD_EDUCATION,
 	ADD_EXPERIENCE,
 	CONSOLE_PATH,
+	EDIT_CONSOLE_PATH,
 	EDIT_EDUCATION,
 	EDIT_EXPERIENCE,
 	EDIT_SOCIAL,
@@ -96,6 +97,14 @@ const PlatformRoutes = () => {
 								}
 							/>
 							<Route path={CONSOLE_PATH} element={<ConsolePage />} />
+							<Route
+								path={EDIT_CONSOLE_PATH}
+								element={
+									<PrivateRoute>
+										<ConsolePage />
+									</PrivateRoute>
+								}
+							/>
 						</Routes>
 					</>
 				</>

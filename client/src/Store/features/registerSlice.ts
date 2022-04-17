@@ -6,11 +6,13 @@ interface IAuthState {
 	isAuthenticated: boolean;
 	loading: boolean;
 	error: string | null;
+	isAdmin: boolean;
 }
 const initialState: IAuthState = {
 	isAuthenticated: isAuthenticated,
 	loading: false,
 	error: null,
+	isAdmin: false,
 };
 export const registerSlice = createSlice({
 	name: "register",
@@ -31,9 +33,10 @@ export const registerSlice = createSlice({
 		loginInit: (state) => {
 			state.loading = true;
 		},
-		loginSuccess: (state) => {
+		loginSuccess: (state, action) => {
 			state.loading = false;
 			state.isAuthenticated = true;
+			state.isAdmin = action.payload;
 		},
 		loginFail: (state, action) => {
 			state.loading = false;
@@ -42,6 +45,7 @@ export const registerSlice = createSlice({
 		},
 		logout: (state) => {
 			state.isAuthenticated = false;
+			state.isAdmin = false;
 		},
 		clearAuthenticationError: (state) => {
 			state.loading = false;

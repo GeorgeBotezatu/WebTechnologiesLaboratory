@@ -21,13 +21,24 @@ export interface IEducation {
 	_id?: string;
 }
 export interface IEducationArr extends Array<IEducation> {}
+
+export interface ICodeSaves {
+	name?: string;
+	js?: string;
+	css?: string;
+	html?: string;
+	_id?: string;
+}
+export interface ICodeSavesArr extends Array<ICodeSaves> {}
 export interface IUserState {
 	user: {
 		_id: string;
 		name: string;
 		email: string;
 		avatar: string;
+		isAdmin: boolean;
 	};
+	codeSaves?: ICodeSavesArr;
 	about?: {
 		website?: string;
 		status?: string;

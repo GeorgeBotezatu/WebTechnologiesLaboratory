@@ -4,6 +4,7 @@ import AnimatedLinks from "../../../Atoms/AnimatedLinks/AnimatedLinks";
 import {
 	ADD_EDUCATION,
 	ADD_EXPERIENCE,
+	CONSOLE_PATH,
 	EDIT_SOCIAL,
 	MODIFY_ABOUT_PATH,
 } from "../../../../Routes/routesPath";
@@ -13,6 +14,7 @@ interface ISideMenu {
 	experience: boolean;
 	education: boolean;
 	social: boolean;
+	codeSaves: boolean;
 }
 
 const ProfileSideMenu: React.FC<ISideMenu> = ({
@@ -20,6 +22,7 @@ const ProfileSideMenu: React.FC<ISideMenu> = ({
 	experience,
 	education,
 	social,
+	codeSaves,
 }) => {
 	const componentClass = "wtl-side-menu-container";
 	const titleClass = `${componentClass}--title`;
@@ -45,11 +48,17 @@ const ProfileSideMenu: React.FC<ISideMenu> = ({
 				) : (
 					<AnimatedLinks link={ADD_EDUCATION} text="Add Education" />
 				)}
+				{codeSaves ? (
+					<AnimatedLinks link="#code-card" text="Code Saves" />
+				) : (
+					<AnimatedLinks link={CONSOLE_PATH} text="Add Code Saves" />
+				)}
 				{social ? (
 					<AnimatedLinks link="#social" text="Social" />
 				) : (
 					<AnimatedLinks link={EDIT_SOCIAL} text="Add Social" />
 				)}
+
 				<AnimatedLinks link="#top" text="Go on top" />
 			</div>
 		</div>

@@ -6,7 +6,8 @@ $black: #000;
 $white: #fff;
 $mainGray: #9b9b9b;
 $blackHalfTransparent: rgba(0, 0, 0, 0.5);
-
+$borderColor: #f9bd07;
+$lighterGray: rgb(48, 48, 48);
 //forms
 $formsBoxShadow: rgb(0, 0, 0) 0px 15px 30px 5px;
 $formsBackgroudGreenTint: rgba(8, 71, 17, 0.05);
@@ -34,3 +35,5 @@ $profileHalfWhiteTransparent: rgba(255, 255, 255, 0.6);
 //icons
 $trashIconSvg: invert(20%) sepia(96%) saturate(4752%) hue-rotate(346deg)
 	brightness(92%) contrast(106%);
+$goToButton: invert(79%) sepia(83%) saturate(4756%) hue-rotate(359deg)
+	brightness(102%) contrast(95%);

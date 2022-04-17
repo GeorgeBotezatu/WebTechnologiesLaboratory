@@ -7,3 +7,4 @@ export const UPDATE_ABOUT_URL = "/profile/about";
 export const EXPERIENCE_URLS = "/profile/experience";
 export const EDUCATION_URLS = "/profile/education";
 export const SOCIAL_URLS = "/profile/social";
+export const CONSOLE_URLS = "/console/save-on-profile";

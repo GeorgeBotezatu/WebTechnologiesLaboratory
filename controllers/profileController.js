@@ -18,7 +18,7 @@ const getMyProfile = async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate(
 			"user",
-			["name", "avatar", "email"]
+			["name", "avatar", "email", "isAdmin"]
 		);
 		if (!profile) {
 			throw new CustomStatusCodeError(PROFILE_NOT_FOUND, 400);
@@ -99,6 +99,7 @@ const addSocialSection = async (req, res) => {
 			"name",
 			"avatar",
 			"email",
+			"isAdmin",
 		]);
 		const { youtube, twitter, facebook, linkedin, instagram } = data;
 
@@ -123,6 +124,7 @@ const addExperience = async (req, res) => {
 			"name",
 			"avatar",
 			"email",
+			"isAdmin",
 		]);
 		const { title, company, location, from, to, current, description } = data;
 
@@ -155,6 +157,7 @@ const editExperience = async (req, res) => {
 			"name",
 			"avatar",
 			"email",
+			"isAdmin",
 		]);
 		const { title, company, location, from, to, current, description } = data;
 
@@ -197,6 +200,7 @@ const deleteExperience = async (req, res) => {
 			"name",
 			"avatar",
 			"email",
+			"isAdmin",
 		]);
 
 		//get index of the experience
@@ -227,6 +231,7 @@ const addEducation = async (req, res) => {
 			"name",
 			"avatar",
 			"email",
+			"isAdmin",
 		]);
 		const { school, degree, fieldofstudy, from, to, current, description } =
 			data;
@@ -260,6 +265,7 @@ const editEducation = async (req, res) => {
 			"name",
 			"avatar",
 			"email",
+			"isAdmin",
 		]);
 		const { school, degree, fieldofstudy, from, to, current, description } =
 			data;
@@ -303,6 +309,7 @@ const deleteEducation = async (req, res) => {
 			"name",
 			"avatar",
 			"email",
+			"isAdmin",
 		]);
 
 		//get index of the experience

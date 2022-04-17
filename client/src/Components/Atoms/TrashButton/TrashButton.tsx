@@ -1,7 +1,7 @@
 import "./TrashButton.scss";
 import React from "react";
 
-const TrashButton = () => {
+const TrashButton: React.FC = () => {
 	const componentClass = "wtl-trash-button";
 	return (
 		<div className={componentClass}>

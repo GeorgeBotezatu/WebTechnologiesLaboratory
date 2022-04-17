@@ -1,0 +1,16 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-go-to-button {
+	svg {
+		filter: colors.$goToButton;
+		overflow: visible;
+		transition-duration: 500ms;
+		transition-property: transform;
+	}
+
+	svg:hover {
+		transform: scale(1.5);
+	}
+}
