@@ -8,6 +8,7 @@ import ProfileExperienceCard from "../../Moleculs/Profile/ProfileExperienceCard/
 import ProfileSideMenu from "../../Moleculs/Profile/ProfileSideMenu/ProfileSideMenu";
 import ProfileEducationCard from "../../Moleculs/Profile/ProfileEducationCard/ProfileEducationCard";
 import SocialCard from "../../Moleculs/Profile/SocialCard/SocialCard";
+import CodeCard from "../../Moleculs/Profile/CodeCard/CodeCard";
 
 const ProfilePage = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
@@ -38,6 +39,9 @@ const ProfilePage = () => {
 							? true
 							: false
 					}
+					codeSaves={
+						userProfile.codeSaves && userProfile.codeSaves[0] ? true : false
+					}
 				/>
 			</div>
 			<div className={contentClass}>
@@ -50,6 +54,7 @@ const ProfilePage = () => {
 				<ProfileAboutCard about={userProfile?.about} />
 				<ProfileExperienceCard />
 				<ProfileEducationCard />
+				<CodeCard />
 				<SocialCard socialLinks={userProfile?.social} />
 			</div>
 		</div>

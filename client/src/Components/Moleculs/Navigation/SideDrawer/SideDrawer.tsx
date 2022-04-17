@@ -14,6 +14,7 @@ import {
 import classNames from "classnames";
 import { Link } from "react-router-dom";
 import {
+	CONSOLE_PATH,
 	LOGIN_PATH,
 	PROFILE_PATH,
 	REGISTER_PATH,
@@ -66,7 +67,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 						show ? classNames(linkClass, consoleClass, OPEN) : consoleClass
 					}
 				>
-					<a href="/">{CONSOLE}</a>
+					<a href={CONSOLE_PATH}>{CONSOLE}</a>
 				</li>
 				{isAuthenticated ? (
 					<li

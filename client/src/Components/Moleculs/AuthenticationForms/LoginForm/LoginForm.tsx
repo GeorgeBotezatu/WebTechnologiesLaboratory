@@ -75,7 +75,8 @@ const LoginForm: React.FC = () => {
 				dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
 			}
 
-			dispatch(loginSuccess());
+			console.log(profileLoadResponse.user.isAdmin);
+			dispatch(loginSuccess(profileLoadResponse.user.isAdmin));
 			dispatch(profileLoadSuccess(profileLoadResponse));
 			navigate("/");
 		} catch (error: any) {

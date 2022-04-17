@@ -2,6 +2,7 @@ import "./NavLinks.scss";
 import { Link } from "react-router-dom";
 
 import {
+	CONSOLE_PATH,
 	LANDING_PATH,
 	LOGIN_PATH,
 	PROFILE_PATH,
@@ -56,7 +57,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 						<a href="/">{ABOUT}</a>
 					</li>
 					<li className={linkClass}>
-						<a href="/">{CONSOLE}</a>
+						<a href={CONSOLE_PATH}>{CONSOLE}</a>
 					</li>
 					<li className={isAuthenticated ? linkClass : linkDisabledClass}>
 						<a href="/">{LEARNING_PATH}</a>

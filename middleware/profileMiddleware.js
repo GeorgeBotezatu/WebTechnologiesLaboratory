@@ -6,10 +6,14 @@ import {
 	SERVER_ERROR,
 } from "../utils/textUtils.js";
 import { validationResult } from "express-validator";
-import { matchInputs, verifyInputErrors } from "../utils/utilFunctions.js";
+import {
+	matchInputs,
+	verifyIfProfileDoesNotExist,
+	verifyInputErrors,
+} from "../utils/utilFunctions.js";
 
 //|----------------|
-//|---Controllers--|
+//|---Middleware---|
 //|----------------|
 const validateAddAboutSection = async (req, res, next) => {
 	try {
@@ -133,12 +137,6 @@ const validateEducation = async (req, res, next) => {
 //|----------------|
 //|---Functions----|
 //|----------------|
-async function verifyIfProfileDoesNotExist(userId) {
-	const profileExist = await Profile.findOne({ user: userId });
-	if (!profileExist) {
-		throw new CustomStatusCodeError(PROFILE_NOT_FOUND, 400);
-	}
-}
 
 function verifyDates(data) {
 	const today = new Date();

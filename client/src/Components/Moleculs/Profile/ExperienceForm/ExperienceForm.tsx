@@ -7,6 +7,7 @@ import TextareaInput from "../../../Atoms/TextareaInput/TextareaInput";
 import { Link } from "react-router-dom";
 import { PROFILE_PATH } from "../../../../Routes/routesPath";
 import {
+	CAN_NOT_UPDATE_SECTION,
 	YUP_COMPANY_NAME_REQUIRED,
 	YUP_FROM_DATE,
 	YUP_JOB_TITLE_REQUIRED,
@@ -47,7 +48,7 @@ const ExperienceForm = () => {
 		if ((!state?.buttonPressed || !state) && id) {
 			navigate("/profile");
 		}
-	}, [state, navigate]);
+	}, [state, navigate, id]);
 
 	const validate = Yup.object({
 		title: Yup.string().required(YUP_JOB_TITLE_REQUIRED),
@@ -104,7 +105,7 @@ const ExperienceForm = () => {
 				res = await createExperience(expData);
 			}
 			if (!res) {
-				dispatch(profileUpdateExpFail("Can't update this section!"));
+				dispatch(profileUpdateExpFail(CAN_NOT_UPDATE_SECTION));
 			} else {
 				dispatch(profileUpdateExpSuccess(res));
 				navigate("/profile");

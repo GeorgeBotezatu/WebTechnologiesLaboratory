@@ -1,0 +1,55 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-drop-down {
+	position: relative;
+
+	&--button {
+		padding: 0.4rem 0.6rem;
+		font-size: 2.5rem;
+		cursor: pointer;
+		transition: 0.3s ease;
+		z-index: 900;
+		border: none;
+	}
+	&__content-container {
+		position: absolute;
+		right: 0;
+		display: none;
+		flex-direction: column;
+		text-align: right;
+		transition: all 0.3s ease;
+
+		&--item {
+			font-size: 1.5rem;
+			padding: 0.4rem 0.6rem;
+			background-color: colors.$mainGreen;
+			border: none;
+			color: white;
+			text-align: right;
+			&:hover {
+				box-shadow: inset 0px 0px 20px 10px rgba(0, 0, 0, 0.6);
+			}
+		}
+		&--disabled {
+			text-decoration: line-through;
+			opacity: 0.5;
+			cursor: not-allowed;
+			font-size: 1.5rem;
+			padding: 0.4rem 0.6rem;
+			background-color: colors.$mainGreen;
+			border: none;
+			color: white;
+		}
+
+		a:nth-child(2) {
+			border-top: 1px solid colors.$borderColor;
+			border-bottom: 1px solid colors.$borderColor;
+		}
+
+		&.active {
+			display: flex;
+		}
+	}
+}
