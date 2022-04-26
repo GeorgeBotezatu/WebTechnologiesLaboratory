@@ -57,7 +57,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 						<a href="/">{ABOUT}</a>
 					</li>
 					<li className={linkClass}>
-						<a href={CONSOLE_PATH}>{CONSOLE}</a>
+						<Link to={CONSOLE_PATH}>{CONSOLE}</Link>
 					</li>
 					<li className={isAuthenticated ? linkClass : linkDisabledClass}>
 						<a href="/">{LEARNING_PATH}</a>

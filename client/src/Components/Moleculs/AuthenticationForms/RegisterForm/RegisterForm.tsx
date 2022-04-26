@@ -94,6 +94,7 @@ const RegisterForm: React.FC = () => {
 				name: values.username,
 				password: values.password,
 			};
+
 			const registerResponse = (await userRegister(
 				registerValues
 			)) as IRegisterResponse;

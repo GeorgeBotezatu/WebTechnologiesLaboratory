@@ -1,5 +1,5 @@
 import Cookies from "universal-cookie";
-import { TOKEN } from "../Utils/constants";
+import { IS_ADMIN, TOKEN } from "../Utils/constants";
 const cookies = new Cookies();
 export const getRandomNumber = (min: number, max: number) => {
 	return Math.floor(Math.random() * (max - min + 1) + min);
@@ -14,9 +14,20 @@ export const addTokenToCookie = (token: string) => {
 		expires: date,
 	});
 };
+export const createAdminCookie = (isAdmin: boolean) => {
+	const date = new Date();
+	date.setTime(date.getTime() + 36000000);
+	cookies.set(IS_ADMIN, isAdmin, {
+		path: "/",
+		expires: date,
+	});
+};
 
 export const getToken = () => {
 	return cookies.get(TOKEN);
+};
+export const getAdminCookie = () => {
+	return cookies.get(IS_ADMIN);
 };
 export const existToken = () => {
 	const token: string = getToken();
@@ -25,6 +36,7 @@ export const existToken = () => {
 };
 export const deleteCookie = () => {
 	cookies.remove(TOKEN);
+	cookies.remove(IS_ADMIN);
 };
 
 export const calcultateDays = (profileDate: Date | null) => {

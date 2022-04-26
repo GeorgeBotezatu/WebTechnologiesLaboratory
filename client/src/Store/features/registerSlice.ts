@@ -37,6 +37,7 @@ export const registerSlice = createSlice({
 			state.loading = false;
 			state.isAuthenticated = true;
 			state.isAdmin = action.payload;
+			state.error = "";
 		},
 		loginFail: (state, action) => {
 			state.loading = false;

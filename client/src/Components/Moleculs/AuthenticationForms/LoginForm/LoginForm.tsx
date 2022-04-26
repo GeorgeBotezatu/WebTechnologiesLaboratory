@@ -22,7 +22,7 @@ import {
 import { userLogin } from "../../../../API/loginAuth";
 import { RootState } from "../../../../Store/Store";
 import { loadProfile } from "../../../../API/profileAPI";
-import { getToken } from "../../../../Utils/utilFunctions";
+import { createAdminCookie, getToken } from "../../../../Utils/utilFunctions";
 import { IUserState } from "../../../../Interfaces";
 import {
 	profileLoadFail,
@@ -65,6 +65,7 @@ const LoginForm: React.FC = () => {
 				email: values.email,
 				password: values.password,
 			};
+
 			const loginResponse = (await userLogin(loginValues)) as ILoginResponse;
 			if (!loginResponse.token) {
 				dispatch(loginFail(COULD_NOT_LOGIN));
@@ -75,7 +76,7 @@ const LoginForm: React.FC = () => {
 				dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
 			}
 
-			console.log(profileLoadResponse.user.isAdmin);
+			createAdminCookie(profileLoadResponse.user.isAdmin);
 			dispatch(loginSuccess(profileLoadResponse.user.isAdmin));
 			dispatch(profileLoadSuccess(profileLoadResponse));
 			navigate("/");
