@@ -25,6 +25,7 @@ import { RootState } from "../../../../Store/Store";
 import { logout } from "../../../../Store/features/registerSlice";
 import { profileClear } from "../../../../Store/features/profileSlice";
 import { deleteCookie } from "../../../../Utils/utilFunctions";
+
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;

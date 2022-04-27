@@ -19,3 +19,6 @@ export const EDIT_CONSOLE_PATH = "/console/:id";
 //Dashboard Routes
 
 export const DASHBOARD_PATH = "/dashboard";
+export const DASHBOARD_LEARNING_PATH = "/dashboard/learning";
+export const DASHBOARD_STATS_PATH = "/dashboard/stats";
+export const DASHBOARD_REPORTS_PATH = "/dashboard/reports";

@@ -1,0 +1,77 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+.wtl-dashboard-nav {
+	position: fixed;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 25vh;
+	height: 100vh;
+	background: colors.$secondaryDashboardGreen;
+	box-shadow: 0 3px 8px -2px colors.$black;
+	&__upper-part {
+		&--logo {
+			font-size: 3.5rem;
+			padding: 2rem 0;
+			text-align: center;
+			font-family: "Permanent Marker";
+		}
+		&__nav-links {
+			display: flex;
+			font-size: 1.6rem;
+			flex-direction: column;
+			padding: 0;
+
+			&--link {
+				display: flex;
+				gap: 1rem;
+				padding: 3rem 0;
+				padding-left: 3rem;
+				align-items: center;
+				transition: color 0.3s ease;
+				i {
+					font-size: 2rem;
+				}
+				&:hover:nth-of-type(1) {
+					color: yellow;
+					transition: color 0.3s ease;
+				}
+				&:hover:nth-of-type(2) {
+					color: lightskyblue;
+					transition: color 0.3s ease;
+				}
+				&:hover:nth-of-type(3) {
+					color: yellowgreen;
+					transition: color 0.3s ease;
+				}
+				&:hover:nth-of-type(4) {
+					color: #f51818;
+					transition: color 0.3s ease;
+				}
+			}
+			&--link.active {
+				background: colors.$mainDashboardGreen;
+				width: 103%;
+			}
+		}
+	}
+	&__lower-part {
+		font-size: 1.6rem;
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		padding: 2rem 0;
+		width: 103%;
+		padding-left: 5rem;
+		background: colors.$mainDashboardGreen;
+		transition: color 0.3s ease;
+		i {
+			font-size: 2rem;
+		}
+		&:hover {
+			color: colors.$profileShadowColor;
+		}
+	}
+}

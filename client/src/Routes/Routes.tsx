@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AdminRoute from "../Components/Atoms/AdminRoute/AdminRoute";
 import PrivateRoute from "../Components/Atoms/PrivateRoute/PrivateRoute";
 import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
+import DashboardLanding from "../Components/Pages/DashboardPages/DashboardLanding/DashboardLanding";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
 import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducationPage";
 import EditExperiencePage from "../Components/Pages/EditExperiencePage/EditExperiencePage";
@@ -16,6 +18,10 @@ import {
 	ADD_EDUCATION,
 	ADD_EXPERIENCE,
 	CONSOLE_PATH,
+	DASHBOARD_LEARNING_PATH,
+	DASHBOARD_PATH,
+	DASHBOARD_REPORTS_PATH,
+	DASHBOARD_STATS_PATH,
 	EDIT_CONSOLE_PATH,
 	EDIT_EDUCATION,
 	EDIT_EXPERIENCE,
@@ -103,6 +109,38 @@ const PlatformRoutes = () => {
 									<PrivateRoute>
 										<ConsolePage />
 									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={DASHBOARD_PATH}
+								element={
+									<AdminRoute>
+										<DashboardLanding />
+									</AdminRoute>
+								}
+							/>
+							<Route
+								path={DASHBOARD_LEARNING_PATH}
+								element={
+									<AdminRoute>
+										<DashboardLanding />
+									</AdminRoute>
+								}
+							/>
+							<Route
+								path={DASHBOARD_STATS_PATH}
+								element={
+									<AdminRoute>
+										<DashboardLanding />
+									</AdminRoute>
+								}
+							/>
+							<Route
+								path={DASHBOARD_REPORTS_PATH}
+								element={
+									<AdminRoute>
+										<DashboardLanding />
+									</AdminRoute>
 								}
 							/>
 						</Routes>

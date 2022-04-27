@@ -12,6 +12,7 @@ import {
 	LARGE,
 } from "../../Atoms/AnimatedButton/ButtonModifiers";
 import { getAdminCookie } from "../../../Utils/utilFunctions";
+import { TRUE } from "../../../Utils/constants";
 
 const LandingPage = () => {
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
@@ -56,7 +57,7 @@ const LandingPage = () => {
 							buttonRoute={REGISTER_PATH}
 						/>
 					)}
-					{isAuthenticated && isAdmin ? (
+					{isAuthenticated && isAdmin === TRUE ? (
 						<AnimatedButton
 							buttonColor={GREEN}
 							buttonDimension={LARGE}
