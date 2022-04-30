@@ -1,5 +1,10 @@
 import jwt from "jsonwebtoken";
-import { TOKEN_INVALID, TOKEN_REQUIRED } from "../utils/textUtils.js";
+import {
+	NOT_ADMIN,
+	TOKEN_INVALID,
+	TOKEN_REQUIRED,
+} from "../utils/textUtils.js";
+import User from "../models/userScehma.js";
 
 const auth = (req, res, next) => {
 	let token;
@@ -23,5 +28,16 @@ const auth = (req, res, next) => {
 		return res.status(403).json({ errors: [{ msg: TOKEN_REQUIRED }] });
 	}
 };
+const admin = async (req, res, next) => {
+	try {
+		const loggedUser = await User.findById(res.locals.user.id);
 
-export { auth };
+		if (loggedUser.isAdmin === true) {
+			next();
+		} else {
+			return res.status(401).json({ errors: [{ msg: NOT_ADMIN }] });
+		}
+	} catch (error) {}
+};
+
+export { auth, admin };

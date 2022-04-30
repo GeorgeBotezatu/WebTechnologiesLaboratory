@@ -1,4 +1,3 @@
-import Profile from "../models/profileSchema.js";
 import CustomStatusCodeError from "../utils/customError.js";
 import {
 	END_DATE_IN_PAST,

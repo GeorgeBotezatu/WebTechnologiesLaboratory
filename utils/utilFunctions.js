@@ -5,13 +5,14 @@ import { INPUTS_DOES_NOT_MATCH, PROFILE_NOT_FOUND } from "./textUtils.js";
 function matchInputs(arrived, valid) {
 	let counter = 0;
 	for (let attr in valid) {
-		for (let at in arrived)
+		for (let at in arrived) {
 			if (attr === at) {
 				counter++;
 			}
+		}
 	}
 
-	if (counter != Object.keys(valid).length) {
+	if (counter != Object.keys(arrived).length) {
 		throw new CustomStatusCodeError(INPUTS_DOES_NOT_MATCH, 400);
 	}
 }
