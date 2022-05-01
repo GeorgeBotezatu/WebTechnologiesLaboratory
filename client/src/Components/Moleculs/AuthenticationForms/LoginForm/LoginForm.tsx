@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
+	CAN_NOT_LOAD_COURSES_LIST,
 	COULD_NOT_LOAD_PROFILE,
 	COULD_NOT_LOGIN,
 	YUP_EMPTY_EMAIL,
@@ -23,12 +24,18 @@ import { userLogin } from "../../../../API/loginAuth";
 import { RootState } from "../../../../Store/Store";
 import { loadProfile } from "../../../../API/profileAPI";
 import { createAdminCookie, getToken } from "../../../../Utils/utilFunctions";
-import { IUserState } from "../../../../Interfaces";
+import { ICoursesList, IUserState } from "../../../../Interfaces";
 import {
 	profileLoadFail,
 	profileLoadInit,
 	profileLoadSuccess,
 } from "../../../../Store/features/profileSlice";
+import { getCoursesList } from "../../../../API/coursesAPI";
+import {
+	coursesListLoadFail,
+	coursesListLoadInit,
+	coursesListLoadSuccess,
+} from "../../../../Store/features/coursesSlice";
 interface FormValues {
 	email: string;
 	password: string;
@@ -60,6 +67,7 @@ const LoginForm: React.FC = () => {
 	const submitHandler = async (values: FormValues) => {
 		dispatch(loginInit());
 		dispatch(profileLoadInit());
+		dispatch(coursesListLoadInit());
 		try {
 			const loginValues = {
 				email: values.email,
@@ -79,6 +87,13 @@ const LoginForm: React.FC = () => {
 			createAdminCookie(profileLoadResponse.user.isAdmin);
 			dispatch(loginSuccess(profileLoadResponse.user.isAdmin));
 			dispatch(profileLoadSuccess(profileLoadResponse));
+
+			const coursesList = (await getCoursesList()) as ICoursesList;
+			if (!coursesList) {
+				dispatch(coursesListLoadFail(CAN_NOT_LOAD_COURSES_LIST));
+			}
+			dispatch(coursesListLoadSuccess(coursesList));
+
 			navigate("/");
 		} catch (error: any) {
 			dispatch(loginFail(error.message));

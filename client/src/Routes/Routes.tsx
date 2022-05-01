@@ -10,6 +10,7 @@ import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducati
 import EditExperiencePage from "../Components/Pages/EditExperiencePage/EditExperiencePage";
 import EditSocialPage from "../Components/Pages/EditSocialPage/EditSocialPage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
+import LearningPathPage from "../Components/Pages/LearningPathPage/LearningPathPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";
 import ProfilePage from "../Components/Pages/ProfilePage/ProfilePage";
 import RegisterPage from "../Components/Pages/RegisterPage/RegisterPage";
@@ -27,6 +28,7 @@ import {
 	EDIT_EXPERIENCE,
 	EDIT_SOCIAL,
 	LANDING_PATH,
+	LEARNING_PATH,
 	LOGIN_PATH,
 	MODIFY_ABOUT_PATH,
 	PROFILE_PATH,
@@ -108,6 +110,14 @@ const PlatformRoutes = () => {
 								element={
 									<PrivateRoute>
 										<ConsolePage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={LEARNING_PATH}
+								element={
+									<PrivateRoute>
+										<LearningPathPage />
 									</PrivateRoute>
 								}
 							/>

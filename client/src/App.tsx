@@ -9,28 +9,47 @@ import {
 	profileLoadSuccess,
 } from "./Store/features/profileSlice";
 import { RootState } from "./Store/Store";
-import { COULD_NOT_LOAD_PROFILE } from "./Utils/constants";
+import {
+	CAN_NOT_LOAD_COURSES_LIST,
+	COULD_NOT_LOAD_PROFILE,
+} from "./Utils/constants";
 import { getToken } from "./Utils/utilFunctions";
+import {
+	coursesListLoadFail,
+	coursesListLoadInit,
+	coursesListLoadSuccess,
+} from "./Store/features/coursesSlice";
+import { getCoursesList } from "./API/coursesAPI";
+import { loginSuccess } from "./Store/features/registerSlice";
 
 function App() {
 	const dispatch = useDispatch();
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	useEffect(() => {
-		const loadUserProfile = async () => {
+		const loadPlatformData = async () => {
 			try {
 				if (isAuthenticated) {
 					dispatch(profileLoadInit());
+					dispatch(coursesListLoadInit());
 					const user = await loadProfile(getToken());
 					if (!user) {
 						dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
 					}
 					dispatch(profileLoadSuccess(user));
+					dispatch(loginSuccess(user.user.isAdmin));
+
+					const coursesList = await getCoursesList();
+					if (!coursesList) {
+						dispatch(coursesListLoadFail(CAN_NOT_LOAD_COURSES_LIST));
+					}
+					dispatch(coursesListLoadSuccess(coursesList));
 				}
 			} catch (error: any) {
 				dispatch(profileLoadFail(error.message));
+				dispatch(coursesListLoadFail(error.message));
 			}
 		};
-		loadUserProfile();
+		loadPlatformData();
 	}, [isAuthenticated, dispatch]);
 	return <PlatformRoutes />;
 }

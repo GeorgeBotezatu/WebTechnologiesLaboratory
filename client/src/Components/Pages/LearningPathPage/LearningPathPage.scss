@@ -1,0 +1,17 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-learning-path-page {
+	min-height: calc(100vh - 40rem);
+	position: relative;
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 20rem;
+	&__container {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 4rem;
+	}
+}
