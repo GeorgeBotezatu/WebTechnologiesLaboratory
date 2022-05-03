@@ -2,7 +2,7 @@
 @use "../../../../Styles/colors";
 @use "../../../../Styles/breakPoints";
 
-.wtl-social-form-container {
+.wtl-edit-course-form {
 	position: relative;
 	margin: 0;
 	margin-top: 8rem;
@@ -14,12 +14,20 @@
 	box-shadow: colors.$formsBoxShadow;
 	min-height: 60vh;
 	padding: 3rem 4rem;
+	&--title {
+		width: 100%;
+		text-align: center;
+		font-size: 2.5rem;
+		padding: 2rem 0;
+		font-family: "Permanent Marker";
+	}
 
 	&__form-container {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 6rem;
 		padding: 0 1rem;
+
 		&__input-container {
 			display: flex;
 			flex-direction: row;
@@ -34,6 +42,22 @@
 				input {
 					color: colors.$white;
 				}
+			}
+		}
+
+		&__textarea-container {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			div {
+				textarea {
+					height: 15rem;
+				}
+			}
+			label {
+				display: block;
+				font-size: 1.5rem;
+				color: colors.$mainGray;
 			}
 		}
 
@@ -70,16 +94,28 @@
 			}
 		}
 	}
+	&--info {
+		width: 100%;
+		text-align: center;
+		font-size: 1.8rem;
+		padding: 2rem 0;
+		font-style: italic;
+		span {
+			font-size: 2rem;
+			font-family: "Permanent Marker";
+			color: colors.$red;
+		}
+	}
 }
 
 @media (max-width: breakPoints.$breakPoint1600) {
-	.wtl-social-form-container {
+	.wtl-edit-course-form {
 		width: 35%;
 	}
 }
 
 @media (max-width: breakPoints.$breakPoint1366) {
-	.wtl-social-form-container {
+	.wtl-edit-course-form {
 		width: 40%;
 
 		&__form-container {
@@ -92,12 +128,12 @@
 }
 
 @media (max-width: breakPoints.$breakPoint1080) {
-	.wtl-social-form-container {
+	.wtl-edit-course-form {
 		margin-left: 45%;
 		width: 50%;
 
 		&__form-container {
-			gap: 1.5rem;
+			gap: 4rem;
 
 			&__input-container {
 				i {
@@ -109,7 +145,7 @@
 }
 
 @media (max-width: breakPoints.$breakPoint800) {
-	.wtl-social-form-container {
+	.wtl-edit-course-form {
 		margin: 0 auto;
 		margin-top: 6rem;
 		width: 60%;
@@ -121,26 +157,38 @@
 					font-size: 3rem;
 				}
 			}
+			&__textarea-container {
+				gap: 1.5rem;
+				label {
+					font-size: 1.3rem;
+				}
+			}
 		}
 	}
 }
 
 @media (max-width: breakPoints.$breakPoint600) {
-	.wtl-social-form-container {
+	.wtl-edit-course-form {
 		width: 80%;
 
 		&__form-container {
+			&__input-container {
+				i {
+					font-size: 3rem;
+				}
+			}
 			&__buttons-group {
 				flex-wrap: wrap;
 				font-size: 2.2rem;
 				justify-content: space-between;
+				margin: 0 auto;
 			}
 		}
 	}
 }
 
 @media (max-width: breakPoints.$breakPoint400) {
-	.wtl-social-form-container {
+	.wtl-edit-course-form {
 		width: 90%;
 		padding: 1rem 2rem;
 
@@ -150,6 +198,18 @@
 					font-size: 2.5rem;
 				}
 			}
+			&__buttons-group {
+				justify-content: center;
+				gap: 2rem;
+				a {
+					&::after {
+						margin-left: 0rem;
+					}
+				}
+			}
+		}
+		&--info {
+			font-size: 1.5rem;
 		}
 	}
 }

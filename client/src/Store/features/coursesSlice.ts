@@ -33,6 +33,31 @@ export const coursesSlice = createSlice({
 			state.error = null;
 			state.coursesList = [];
 		},
+		editCourseItemInit: (state) => {
+			state.loading = true;
+		},
+		editCourseItemSuccess: (state, action) => {
+			state.loading = false;
+			let newList;
+
+			newList = state.coursesList?.map((course) => {
+				if (course._id === action.payload._id)
+					return {
+						...course,
+						courseDescription: action.payload.courseDescription,
+						courseTitle: action.payload.courseTitle,
+					};
+				else {
+					return course;
+				}
+			}) as ICoursesList;
+
+			state.coursesList = newList;
+		},
+		editCourseItemFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -41,6 +66,9 @@ export const {
 	coursesListLoadSuccess,
 	coursesListLoadFail,
 	coursesListClear,
+	editCourseItemInit,
+	editCourseItemSuccess,
+	editCourseItemFail,
 } = coursesSlice.actions;
 
 export default coursesSlice.reducer;

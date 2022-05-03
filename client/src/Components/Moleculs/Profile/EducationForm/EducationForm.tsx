@@ -232,6 +232,7 @@ const EducationForm = () => {
 								placeholder="A short description of this education"
 								name="description"
 								id="description"
+								withVerification={false}
 							></TextareaInput>
 							<p>Do a short description for us</p>
 						</div>

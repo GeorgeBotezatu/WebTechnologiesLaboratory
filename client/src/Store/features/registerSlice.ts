@@ -29,6 +29,7 @@ export const registerSlice = createSlice({
 			state.loading = false;
 			state.isAuthenticated = false;
 			state.error = action.payload;
+			state.error = "";
 		},
 		loginInit: (state) => {
 			state.loading = true;
@@ -47,6 +48,7 @@ export const registerSlice = createSlice({
 		logout: (state) => {
 			state.isAuthenticated = false;
 			state.isAdmin = false;
+			state.error = null;
 		},
 		clearAuthenticationError: (state) => {
 			state.loading = false;

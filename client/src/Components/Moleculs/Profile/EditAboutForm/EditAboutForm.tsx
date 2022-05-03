@@ -132,6 +132,7 @@ const EditAboutForm = () => {
 								placeholder="A short bio of yourself"
 								name="bio"
 								id="bio"
+								withVerification={false}
 							></TextareaInput>
 							<p>Tell us a little about yourself</p>
 						</div>

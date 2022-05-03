@@ -1,17 +1,46 @@
 import axiosInstance from "../Axios/AxiosInstance";
-import { ICoursesList } from "../Interfaces";
-import { GET_COURSES_LIST } from "./apiPaths";
-import { REQUEST_HEADERS_WITH_BEARER } from "./requestHeaders";
+import { ICoursesList, ICoursesListItem } from "../Interfaces";
+import { getToken } from "../Utils/utilFunctions";
+import { COURSES_URL, GET_COURSES_LIST } from "./apiPaths";
 
-export const getCoursesList = () => {
+export const getCoursesList = (token: string) => {
 	return new Promise(async (resolve, reject) => {
-		const res = await axiosInstance.get(
-			GET_COURSES_LIST,
-			REQUEST_HEADERS_WITH_BEARER
-		);
-		const { data }: { data: ICoursesList } = res;
-		resolve(data);
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${token}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.get(GET_COURSES_LIST, requestHeader);
+			const { data }: { data: ICoursesList } = res;
+			resolve(data);
+		} catch (error: any) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const updateCourse = (formData: ICoursesListItem) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.put(
+				COURSES_URL + `/${formData._id}`,
+				{
+					courseTitle: formData.courseTitle,
+					courseDescription: formData.courseDescription,
+				},
+				requestHeader
+			);
+			const { data }: { data: ICoursesList } = res;
+			resolve(data);
 		} catch (error: any) {
 			console.log(error);
 			reject(error);

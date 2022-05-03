@@ -88,7 +88,7 @@ const LoginForm: React.FC = () => {
 			dispatch(loginSuccess(profileLoadResponse.user.isAdmin));
 			dispatch(profileLoadSuccess(profileLoadResponse));
 
-			const coursesList = (await getCoursesList()) as ICoursesList;
+			const coursesList = (await getCoursesList(getToken())) as ICoursesList;
 			if (!coursesList) {
 				dispatch(coursesListLoadFail(CAN_NOT_LOAD_COURSES_LIST));
 			}

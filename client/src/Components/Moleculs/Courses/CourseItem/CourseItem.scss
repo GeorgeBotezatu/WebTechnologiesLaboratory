@@ -4,12 +4,12 @@
 
 .wtl-course-item {
 	position: relative;
-	max-width: 30%;
+	width: 30%;
 	display: flex;
 	flex-direction: column;
-
 	border-radius: 10px;
 	background: linear-gradient(0deg, colors.$profileCardsGray, #272727);
+	padding-bottom: 1rem;
 	&::after,
 	&::before {
 		content: "";
@@ -87,7 +87,8 @@
 		transition: all 1s ease;
 		width: 80%;
 		margin: 0 auto;
-		padding-right: 4rem;
+		text-align: center;
+		padding-right: 3rem;
 		&:hover {
 			transform: translateX(-1rem);
 			text-shadow: -7px 9px 3px #ffffff;
@@ -115,5 +116,59 @@
 	}
 	100% {
 		background-position: 0 0;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-course-item {
+		width: 35%;
+	}
+}
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-course-item {
+		width: 40%;
+
+		&--title {
+			font-size: 2.5rem;
+		}
+		&--description {
+			font-size: 1.5rem;
+		}
+		&--user-button {
+			font-size: 2.2rem;
+		}
+		&--admin-button {
+			font-size: 2.1rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-course-item {
+		width: 45%;
+
+		&--title {
+			font-size: 2.5rem;
+		}
+		&--description {
+			font-size: 1.5rem;
+		}
+		&--user-button {
+			font-size: 2rem;
+		}
+		&--admin-button {
+			font-size: 2rem;
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-course-item {
+		width: 70%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-course-item {
+		width: 90%;
 	}
 }

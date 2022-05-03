@@ -38,7 +38,7 @@ function App() {
 					dispatch(profileLoadSuccess(user));
 					dispatch(loginSuccess(user.user.isAdmin));
 
-					const coursesList = await getCoursesList();
+					const coursesList = await getCoursesList(getToken());
 					if (!coursesList) {
 						dispatch(coursesListLoadFail(CAN_NOT_LOAD_COURSES_LIST));
 					}

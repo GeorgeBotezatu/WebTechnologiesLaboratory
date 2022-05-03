@@ -32,6 +32,9 @@ export const YUP_FROM_DATE = "This date can't be set in the future!";
 export const YUP_TO_DATE = "To can't be set before FROM date";
 export const YUP_TO_DATE_REQUIRED = "If is not current is required!";
 export const YUP_URL_HTTP = "URL need to containt http(s)://";
+export const YUP_COURSE_TITLE_REQUIRED = "Course title is required!";
+export const YUP_COURSE_DESCRIPTION_REQUIRED =
+	"Course description is required!";
 export const COULD_NOT_REGISTER = "Could not register!";
 export const COULD_NOT_LOGIN = "Could not Login!";
 export const COULD_NOT_LOAD_PROFILE = "Could not load your profile!";
@@ -61,3 +64,4 @@ export const CONSOLE_DOSENT_EXIST = "Console does not exists!";
 export const CAN_NOT_UPDATE_CREATE_CONSOLE = "Can't update/create console!";
 export const CAN_NOT_UPDATE_SECTION = "Can't update this section!";
 export const CAN_NOT_LOAD_COURSES_LIST = "Can not load courses list!";
+export const CAN_NOT_UPDATE_COURSE = "Can't update course!";

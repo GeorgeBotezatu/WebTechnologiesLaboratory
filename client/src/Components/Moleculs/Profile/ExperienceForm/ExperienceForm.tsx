@@ -227,6 +227,7 @@ const ExperienceForm = () => {
 								placeholder="A short description of this job"
 								name="description"
 								id="description"
+								withVerification={false}
 							></TextareaInput>
 							<p>Do a short job description for us</p>
 						</div>

@@ -6,6 +6,7 @@ import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
 import DashboardLanding from "../Components/Pages/DashboardPages/DashboardLanding/DashboardLanding";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
+import EditCoursePage from "../Components/Pages/EditCoursePage/EditCoursePage";
 import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducationPage";
 import EditExperiencePage from "../Components/Pages/EditExperiencePage/EditExperiencePage";
 import EditSocialPage from "../Components/Pages/EditSocialPage/EditSocialPage";
@@ -24,6 +25,7 @@ import {
 	DASHBOARD_REPORTS_PATH,
 	DASHBOARD_STATS_PATH,
 	EDIT_CONSOLE_PATH,
+	EDIT_COURSE_PATH,
 	EDIT_EDUCATION,
 	EDIT_EXPERIENCE,
 	EDIT_SOCIAL,
@@ -119,6 +121,14 @@ const PlatformRoutes = () => {
 									<PrivateRoute>
 										<LearningPathPage />
 									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={EDIT_COURSE_PATH}
+								element={
+									<AdminRoute>
+										<EditCoursePage />
+									</AdminRoute>
 								}
 							/>
 							<Route

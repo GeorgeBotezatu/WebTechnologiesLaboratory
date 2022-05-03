@@ -26,3 +26,4 @@ export const DASHBOARD_REPORTS_PATH = "/dashboard/reports";
 //Learning Path
 
 export const LEARNING_PATH = "/learning";
+export const EDIT_COURSE_PATH = "/learning/course/edit/:id";
