@@ -1,0 +1,18 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-course-page {
+	min-height: calc(90vh - 10.5rem);
+	display: flex;
+	position: relative;
+	border-top: 3px solid colors.$profileShadowColor;
+	&__sidenav-container {
+		position: relative;
+		width: 15%;
+	}
+	&__course-container {
+		position: relative;
+		width: 85%;
+	}
+}

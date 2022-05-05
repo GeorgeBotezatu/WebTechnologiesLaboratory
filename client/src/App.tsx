@@ -24,6 +24,7 @@ import { loginSuccess } from "./Store/features/registerSlice";
 
 function App() {
 	const dispatch = useDispatch();
+
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	useEffect(() => {
 		const loadPlatformData = async () => {

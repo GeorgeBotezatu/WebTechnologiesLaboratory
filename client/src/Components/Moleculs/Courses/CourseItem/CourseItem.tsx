@@ -24,9 +24,9 @@ const CourseItem: React.FC<ICoursesListItem> = ({
 				{courseDescription}This is an introductive course about HTML here you
 				will find all basic stuff needed to start your journeyThis is an i
 			</p>
-			<button type="button" className={courseUserButtonClass}>
+			<Link to={`course/${_id}`} className={courseUserButtonClass}>
 				Enroll
-			</button>
+			</Link>
 			{isAdmin && (
 				<Link to={`course/edit/${_id}`} className={courseAdminButtonClass}>
 					Edit Course

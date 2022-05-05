@@ -1,0 +1,48 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-course-side-bar {
+	width: 15%;
+	height: 100%;
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.6rem;
+	padding-top: 2rem;
+	border-right: 3px solid colors.$profileShadowColor;
+	background: colors.$darkPink;
+	// -ms-overflow-style: none; /* for Internet Explorer, Edge */
+	// scrollbar-width: none; /* for Firefox */
+	// overflow-y: scroll;
+	// &::-webkit-scrollbar {
+	// 	display: none; /* Safari and Chrome */
+	// }
+	h2 {
+		font-size: 1.5rem;
+		font-family: "Permanent Marker";
+		text-align: center;
+		padding-bottom: 1rem;
+	}
+	&__link-container {
+		position: relative;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		p {
+			padding: 1rem 1.5rem;
+			padding-left: 5rem;
+		}
+	}
+	&__link-container a {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		padding: 1rem 1.5rem;
+	}
+	&__link-container a.active {
+		position: relative;
+		width: 100%;
+		background: colors.$profileShadowColor;
+	}
+}

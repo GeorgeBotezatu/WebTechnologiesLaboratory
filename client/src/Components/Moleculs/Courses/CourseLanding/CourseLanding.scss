@@ -1,0 +1,39 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+.wtl-course-landing {
+	position: fixed;
+	width: 85%;
+	height: 100%;
+	padding: 2rem;
+	-ms-overflow-style: none; /* for Internet Explorer, Edge */
+	scrollbar-width: none; /* for Firefox */
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+
+	&--title {
+		text-align: center;
+		font-size: 4.5rem;
+		font-family: "Permanent Marker";
+	}
+	&--description {
+		padding: 4rem;
+		text-align: center;
+		font-size: 2.4rem;
+	}
+	&__advice {
+		padding: 4rem;
+		font-size: 1.8rem;
+		p span {
+			font-size: 2.5rem;
+			font-family: "Permanent Marker";
+			color: colors.$red;
+		}
+		p a {
+			font-family: "Permanent Marker";
+			color: colors.$red;
+		}
+	}
+}
