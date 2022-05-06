@@ -15,7 +15,7 @@ import CourseLanding from "../../Moleculs/Courses/CourseLanding/CourseLanding";
 import { ICourse } from "../../../Interfaces";
 import { RootState } from "../../../Store/Store";
 
-const CoursePage = () => {
+const CoursePage: React.FC = () => {
 	const { courseId, chapterId } = useParams();
 
 	const dispatch = useDispatch();

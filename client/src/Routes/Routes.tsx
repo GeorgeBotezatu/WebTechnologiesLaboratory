@@ -6,6 +6,7 @@ import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
 import CoursePage from "../Components/Pages/CoursePage/CoursePage";
 import DashboardLanding from "../Components/Pages/DashboardPages/DashboardLanding/DashboardLanding";
+import DashboardLearningPath from "../Components/Pages/DashboardPages/DashboardLearningPath/DashboardLearningPath";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
 import EditCoursePage from "../Components/Pages/EditCoursePage/EditCoursePage";
 import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducationPage";
@@ -24,6 +25,7 @@ import {
 	COURSE_PAGE,
 	COURSE_PAGE_CHAPTER,
 	DASHBOARD_LEARNING_PATH,
+	DASHBOARD_LEARNING_PATH_EDIT_COURSE,
 	DASHBOARD_PATH,
 	DASHBOARD_REPORTS_PATH,
 	DASHBOARD_STATS_PATH,
@@ -162,7 +164,15 @@ const PlatformRoutes = () => {
 								path={DASHBOARD_LEARNING_PATH}
 								element={
 									<AdminRoute>
-										<DashboardLanding />
+										<DashboardLearningPath />
+									</AdminRoute>
+								}
+							/>
+							<Route
+								path={DASHBOARD_LEARNING_PATH_EDIT_COURSE}
+								element={
+									<AdminRoute>
+										<DashboardLearningPath />
 									</AdminRoute>
 								}
 							/>

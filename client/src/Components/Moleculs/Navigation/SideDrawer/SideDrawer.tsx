@@ -113,6 +113,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 									dispatch(profileClear());
 									dispatch(coursesListClear());
 									dispatch(logout());
+									window.location.reload();
 								}}
 								to="/"
 							>

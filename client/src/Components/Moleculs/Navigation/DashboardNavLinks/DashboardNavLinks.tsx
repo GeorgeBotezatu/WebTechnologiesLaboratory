@@ -42,7 +42,6 @@ const DashboardNavLinks: React.FC = () => {
 						Dashboard
 					</NavLink>
 					<NavLink
-						end
 						to={DASHBOARD_LEARNING_PATH}
 						style={({ isActive }) =>
 							isActive

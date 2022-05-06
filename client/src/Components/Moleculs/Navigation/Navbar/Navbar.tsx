@@ -24,10 +24,7 @@ const Navbar: React.FC = () => {
 
 	return (
 		<>
-			{pathname !== DASHBOARD_PATH &&
-			pathname !== DASHBOARD_REPORTS_PATH &&
-			pathname !== DASHBOARD_LEARNING_PATH &&
-			pathname !== DASHBOARD_STATS_PATH ? (
+			{!pathname.includes("/dashboard") ? (
 				<div className="wtl-main-navbar" id="top">
 					<SideDrawer show={drawerState} />
 					{drawerState ? <Backdrop close={backdropClickHandler} /> : <></>}

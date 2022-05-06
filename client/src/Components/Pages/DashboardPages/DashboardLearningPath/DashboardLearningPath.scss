@@ -1,0 +1,37 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-dashboard-learning-path {
+	margin-left: 25vh;
+	min-height: 100vh;
+	background: colors.$mainDashboardGreen;
+	padding-top: 10rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5rem;
+	&--list-title {
+		text-align: center;
+		font-size: 3.4rem;
+		font-family: "Permanent Marker";
+	}
+}
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-dashboard-learning-path {
+		gap: 8rem;
+		padding-top: 8rem;
+		&--list-title {
+			padding: 2rem;
+			font-size: 3rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-dashboard-learning-path {
+		&--list-title {
+			font-size: 2.5rem;
+		}
+	}
+}

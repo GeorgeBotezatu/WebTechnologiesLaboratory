@@ -79,6 +79,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 								dispatch(profileClear());
 								dispatch(coursesListClear());
 								dispatch(logout());
+								window.location.reload();
 							}}
 							to="/"
 						>

@@ -1,0 +1,162 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-dashboard-course-edit {
+	position: relative;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	&--title {
+		font-size: 3rem;
+		font-family: "Permanent MArker";
+	}
+
+	&__course-buttons {
+		position: relative;
+		display: flex;
+		font-size: 2rem;
+		gap: 4rem;
+		justify-content: flex-end;
+		width: 100%;
+	}
+	a {
+		border-radius: 50px;
+		padding: 0rem 1rem;
+		background: linear-gradient(
+			to bottom,
+			colors.$profileShadowColor 0%,
+			colors.$profileShadowColor 100%
+		);
+		background-position: 0 100%;
+		background-repeat: repeat-x;
+		background-size: 4px 6px;
+		color: colors.$white;
+		transition: background-size 0.4s;
+	}
+
+	a:hover {
+		background-size: 4px 55px;
+	}
+
+	&__chapters-container {
+		width: 100%;
+		margin-top: 6rem;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		h1 {
+			font-size: 2.5rem;
+			font-family: "Permanent MArker";
+		}
+		&__chapter {
+			display: flex;
+			flex-direction: column;
+			&--chapter-info {
+				font-size: 2rem;
+				color: colors.$mainGray;
+				span {
+					font-weight: 900;
+					color: colors.$white;
+				}
+			}
+			&__chapter-buttons {
+				width: 100%;
+				display: flex;
+				gap: 2rem;
+
+				&--delete {
+					border-radius: 50px;
+					font-size: 1.8rem;
+					border: none;
+					background: linear-gradient(
+						to bottom,
+						colors.$red 0%,
+						colors.$profileShadowColor 100%
+					);
+					background-position: 0 100%;
+					background-repeat: repeat-x;
+					background-size: 4px 4px;
+					color: colors.$white;
+					transition: background-size 0.4s;
+					cursor: pointer;
+					&:hover {
+						background-size: 4px 50px;
+					}
+				}
+				&--edit {
+					border-radius: 50px;
+					font-size: 1.8rem;
+					border: none;
+					background: linear-gradient(
+						to bottom,
+						colors.$starMainYellow 0%,
+						colors.$darkPinkTint 100%
+					);
+					background-position: 0 100%;
+					background-repeat: repeat-x;
+					background-size: 4px 4px;
+					color: colors.$white;
+					transition: background-size 0.4s;
+					cursor: pointer;
+					&:hover {
+						background-size: 4px 50px;
+					}
+				}
+				&--create {
+					border-radius: 50px;
+					font-size: 1.8rem;
+					border: none;
+					background: linear-gradient(
+						to bottom,
+						colors.$darkPink 0%,
+						colors.$secondaryDashboardGreen 100%
+					);
+					background-position: 0 100%;
+					background-repeat: repeat-x;
+					background-size: 4px 4px;
+					color: colors.$white;
+					transition: background-size 0.4s;
+					cursor: pointer;
+					&:hover {
+						background-size: 4px 50px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-dashboard-course-edit {
+		&--title {
+			font-size: 2.8rem;
+		}
+
+		&__course-buttons {
+			font-size: 1.8rem;
+			gap: 2rem;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+		}
+
+		&__chapters-container {
+			h1 {
+				font-size: 2.3rem;
+			}
+			&__chapter {
+				&--chapter-info {
+					font-size: 1.8rem;
+				}
+				&__chapter-buttons {
+					flex-wrap: wrap;
+					a,
+					button {
+						font-size: 1.5rem;
+					}
+				}
+			}
+		}
+	}
+}
