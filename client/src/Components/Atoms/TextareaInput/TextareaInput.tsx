@@ -1,7 +1,7 @@
 import "./TextareaInput.scss";
 import React from "react";
 import { useField } from "formik";
-import { YUP_COURSE_DESCRIPTION_REQUIRED } from "../../../Utils/constants";
+
 interface ITextarea {
 	id: string;
 	placeholder: string;

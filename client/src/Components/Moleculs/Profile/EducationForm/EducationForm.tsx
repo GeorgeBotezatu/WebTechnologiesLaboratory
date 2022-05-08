@@ -47,7 +47,7 @@ const EducationForm = () => {
 		if ((!state?.buttonPressed || !state) && id) {
 			navigate("/profile");
 		}
-	}, [state, navigate]);
+	}, [state, navigate]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const validate = Yup.object({
 		school: Yup.string().required(YUP_SCHOOL_REQUIRED),

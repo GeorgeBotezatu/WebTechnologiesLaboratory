@@ -2,7 +2,7 @@ import "./CourseSideBar.scss";
 import React from "react";
 import { RootState } from "../../../../Store/Store";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
 import { NavLink } from "react-router-dom";
 
 const CourseSideBar: React.FC = () => {
@@ -38,6 +38,8 @@ const CourseSideBar: React.FC = () => {
 							</div>
 						);
 					}
+				} else {
+					return "";
 				}
 			})}
 		</div>

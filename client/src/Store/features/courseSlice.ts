@@ -32,6 +32,17 @@ export const courseSlice = createSlice({
 			state.error = "";
 			state.course = {};
 		},
+		chapterCreateInit: (state) => {
+			state.loading = true;
+		},
+		chapterCreateSuccess: (state, action) => {
+			state.loading = false;
+			state.course = action.payload;
+		},
+		chapterCreateFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -40,5 +51,8 @@ export const {
 	courseLoadFail,
 	courseLoadSuccess,
 	clearCourse,
+	chapterCreateInit,
+	chapterCreateSuccess,
+	chapterCreateFail,
 } = courseSlice.actions;
 export default courseSlice.reducer;

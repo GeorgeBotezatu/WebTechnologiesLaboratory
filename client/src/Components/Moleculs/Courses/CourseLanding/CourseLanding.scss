@@ -1,11 +1,26 @@
 @use "../../../../Styles/default";
 @use "../../../../Styles/colors";
 @use "../../../../Styles/breakPoints";
+@mixin border-gradient($from, $to, $weight: 0) {
+	$mix-main: mix($from, $to);
+	$mix-sub-from: mix($mix-main, $from);
+	$mix-sub-to: mix($mix-main, $to);
+
+	box-shadow: 0 1px 0 $weight rgba($mix-sub-to, 0.25),
+		0 -1px 0 $weight rgba($mix-sub-from, 0.25),
+		1px 0 0 $weight rgba($mix-sub-to, 0.25),
+		-1px 0 0 $weight rgba($mix-sub-from, 0.25),
+		1px -1px 0 $weight rgba($mix-main, 0.5),
+		-1px 1px 0 $weight rgba($mix-main, 0.5), 1px 1px 0 $weight rgba($to, 0.75),
+		-1px -1px 0 $weight rgba($from, 0.75);
+}
 .wtl-course-landing {
 	position: fixed;
 	width: 85%;
 	height: 100%;
 	padding: 2rem;
+	display: flex;
+	flex-direction: column;
 	-ms-overflow-style: none; /* for Internet Explorer, Edge */
 	scrollbar-width: none; /* for Firefox */
 	overflow-y: scroll;
@@ -34,6 +49,82 @@
 		p a {
 			font-family: "Permanent Marker";
 			color: colors.$red;
+		}
+	}
+	&--begin {
+		align-self: center;
+		margin: 2rem;
+		font-size: 2rem;
+		text-align: center;
+		background: transparent;
+		color: rgba(colors.$white, 0.7);
+		background: rgba(colors.$white, 0.05);
+		text-decoration: none;
+		padding: 1.5rem 1.8rem;
+		border-radius: 10px;
+		transition: all 0.2s;
+
+		@include border-gradient(colors.$mainGreen, colors.$profileShadowColor);
+
+		&:hover {
+			@include border-gradient(colors.$profileShadowColor, colors.$darkPink);
+			color: white;
+			background: rgba(colors.$darkPink, 0.05);
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-course-landing {
+		width: 80%;
+		&--title {
+			font-size: 4rem;
+		}
+		&--description {
+			padding: 3rem;
+			text-align: center;
+			font-size: 2rem;
+		}
+		&__advice {
+			padding: 3rem;
+			font-size: 1.6rem;
+			p span {
+				font-size: 2.2rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-course-landing {
+		width: 75%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-course-landing {
+		width: 100%;
+		position: relative;
+		padding: 1rem 0.5rem;
+		&--title {
+			font-size: 2.5rem;
+		}
+		&--description {
+			padding: 2rem 1rem;
+			text-align: center;
+			font-size: 1.6rem;
+		}
+		&__advice {
+			padding: 2rem 1rem;
+			font-size: 1.3rem;
+			p span {
+				font-size: 1.7rem;
+			}
+		}
+		&--begin {
+			margin: 1.5rem;
+			font-size: 1.5rem;
+			padding: 1.2rem 1.5rem;
 		}
 	}
 }

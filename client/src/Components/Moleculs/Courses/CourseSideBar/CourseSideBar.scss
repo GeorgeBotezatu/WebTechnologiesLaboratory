@@ -12,12 +12,12 @@
 	padding-top: 2rem;
 	border-right: 3px solid colors.$profileShadowColor;
 	background: colors.$darkPink;
-	// -ms-overflow-style: none; /* for Internet Explorer, Edge */
-	// scrollbar-width: none; /* for Firefox */
-	// overflow-y: scroll;
-	// &::-webkit-scrollbar {
-	// 	display: none; /* Safari and Chrome */
-	// }
+	-ms-overflow-style: none; /* for Internet Explorer, Edge */
+	scrollbar-width: none; /* for Firefox */
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
 	h2 {
 		font-size: 1.5rem;
 		font-family: "Permanent Marker";
@@ -44,5 +44,65 @@
 		position: relative;
 		width: 100%;
 		background: colors.$profileShadowColor;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-course-side-bar {
+		width: 20%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-course-side-bar {
+		font-size: 1.2rem;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-course-side-bar {
+		width: 25%;
+		h2 {
+			font-size: 1.4rem;
+		}
+		&__link-container {
+			p {
+				padding: 0.2rem 0.5rem;
+				padding-left: 2rem;
+			}
+		}
+		&__link-container a {
+			padding: 1rem 0.5rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-course-side-bar {
+		width: 100%;
+		position: relative;
+		flex-direction: row;
+		flex-wrap: wrap;
+		border-right: none;
+		border-bottom: 3px solid colors.$profileShadowColor;
+		padding-top: 0;
+
+		h2 {
+			display: none;
+		}
+		&__link-container {
+			position: relative;
+			width: 50%;
+			display: flex;
+			flex-direction: row;
+			a {
+				width: 75%;
+			}
+			p {
+				width: 25%;
+				padding: 1rem 1.5rem;
+				padding-left: 0.5rem;
+			}
+		}
 	}
 }

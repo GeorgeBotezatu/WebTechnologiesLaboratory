@@ -54,6 +54,7 @@ const CoursePage: React.FC = () => {
 					<CourseLanding
 						courseTitle={course?.courseTitle}
 						courseDescription={course?.courseDescription}
+						firstChapterId={course?.chapters && course.chapters[0]._id}
 					/>
 				)}
 			</div>

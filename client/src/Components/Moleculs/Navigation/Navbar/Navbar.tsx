@@ -3,12 +3,7 @@ import { useState } from "react";
 import NavLinks from "../NavLinks/NavLinks";
 import SideDrawer from "../SideDrawer/SideDrawer";
 import Backdrop from "../BackDrop/Backdrop";
-import {
-	DASHBOARD_LEARNING_PATH,
-	DASHBOARD_PATH,
-	DASHBOARD_REPORTS_PATH,
-	DASHBOARD_STATS_PATH,
-} from "../../../../Routes/routesPath";
+
 import { useLocation } from "react-router";
 import DashboardNavLinks from "../DashboardNavLinks/DashboardNavLinks";
 const Navbar: React.FC = () => {

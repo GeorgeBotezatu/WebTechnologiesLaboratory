@@ -50,9 +50,12 @@ const DashboardCourseEdit: React.FC = () => {
 		<div className={componentClass}>
 			<h1 className={courseTitleClass}> {course?.courseTitle}</h1>
 			<div className={courseActionButtonsClass}>
-				<Link to="/">Add a new chapter</Link>
+				<Link to="chapter">Add a new chapter</Link>
 
-				<Link to={`/learning/course/edit/${course?._id}`}>
+				<Link
+					to={`/learning/course/edit/${course?._id}`}
+					state={{ courseTitle: course?.courseTitle }}
+				>
 					Edit cours Title & Description
 				</Link>
 			</div>
@@ -68,7 +71,9 @@ const DashboardCourseEdit: React.FC = () => {
 										Title: <span>{chapter.chapterTitle}</span>
 									</p>
 									<div className={chapterActionButtonsClass}>
-										<button className={editClass}>Edit Chapter</button>
+										<Link to={`chapter/${chapter._id}`} className={editClass}>
+											Edit Chapter
+										</Link>
 										<button className={editClass}>Edit Quiz</button>
 										<button className={editClass}>Change chapter order</button>
 										<button className={deleteClass}>Delete</button>
@@ -83,7 +88,9 @@ const DashboardCourseEdit: React.FC = () => {
 										Title: <span>{chapter.chapterTitle}</span>
 									</p>
 									<div className={chapterActionButtonsClass}>
-										<button className={editClass}>Edit Chapter</button>
+										<Link to={`chapter/${chapter._id}`} className={editClass}>
+											Edit Chapter
+										</Link>
 										<button className={createClass}>Create Quiz</button>
 										<button className={editClass}>Change chapter order</button>
 										<button className={deleteClass}>Delete</button>
@@ -91,6 +98,8 @@ const DashboardCourseEdit: React.FC = () => {
 								</div>
 							);
 						}
+					} else {
+						return "";
 					}
 				})}
 			</div>

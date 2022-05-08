@@ -26,6 +26,8 @@ const EditCoursePage: React.FC = () => {
 							_id={course._id}
 						/>
 					);
+				} else {
+					return "";
 				}
 			})}
 		</div>

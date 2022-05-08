@@ -5,16 +5,19 @@ import { Link } from "react-router-dom";
 interface ICourseLanding {
 	courseTitle?: string;
 	courseDescription?: string;
+	firstChapterId?: string;
 }
 
 const CourseLanding: React.FC<ICourseLanding> = ({
 	courseTitle,
 	courseDescription,
+	firstChapterId,
 }) => {
 	const componentClass = "wtl-course-landing";
 	const titleClass = `${componentClass}--title`;
 	const descriptionClass = `${componentClass}--description`;
 	const adviceClass = `${componentClass}__advice`;
+	const beginCourseClass = `${componentClass}--begin`;
 	return (
 		<div className={componentClass}>
 			<h1 className={titleClass}>{courseTitle}</h1>
@@ -36,6 +39,9 @@ const CourseLanding: React.FC<ICourseLanding> = ({
 					section "Here".
 				</p>
 			</div>
+			<Link className={beginCourseClass} to={`chapter/${firstChapterId}`}>
+				Begin Course
+			</Link>
 		</div>
 	);
 };

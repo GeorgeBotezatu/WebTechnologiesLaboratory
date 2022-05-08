@@ -142,7 +142,7 @@ router.put(
 //@desc   edit a chapter title and content
 //@access admin only
 router.put(
-	"/:courseId/chapter/:chapterId",
+	"/create/:courseId/chapter/:chapterId",
 	auth,
 	admin,
 	[

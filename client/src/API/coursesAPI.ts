@@ -70,3 +70,66 @@ export const loadCourse = (courseId: string) => {
 		}
 	});
 };
+
+export const createChapter = (
+	chapterTitle: string,
+	content: string,
+	courseId: string
+) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const reqData = {
+				chapterTitle: chapterTitle,
+				content: content,
+			};
+			const res = await axiosInstance.put(
+				COURSES_URL + `/create/${courseId}/chapter`,
+				reqData,
+				requestHeader
+			);
+			const { data }: { data: ICourse } = res;
+			resolve(data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const updateChapter = (
+	chapterTitle: string,
+	content: string,
+	courseId: string,
+	chapterId: string
+) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const reqData = {
+				chapterTitle: chapterTitle,
+				content: content,
+			};
+			const res = await axiosInstance.put(
+				COURSES_URL + `/create/${courseId}/chapter/${chapterId}`,
+				reqData,
+				requestHeader
+			);
+			const { data }: { data: ICourse } = res;
+			resolve(data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};

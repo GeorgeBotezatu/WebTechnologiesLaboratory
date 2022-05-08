@@ -22,7 +22,10 @@ export const DASHBOARD_PATH = "/dashboard";
 export const DASHBOARD_LEARNING_PATH = "/dashboard/learning";
 export const DASHBOARD_LEARNING_PATH_EDIT_COURSE =
 	"/dashboard/learning/course/:courseId";
-
+export const DASHBOARD_LEARNING_PATH_CREATE_CHAPTER =
+	"/dashboard/learning/course/:courseId/chapter";
+export const DASHBOARD_LEARNING_PATH_EDIT_CHAPTER =
+	"/dashboard/learning/course/:courseId/chapter/:chapterId";
 export const DASHBOARD_STATS_PATH = "/dashboard/stats";
 export const DASHBOARD_REPORTS_PATH = "/dashboard/reports";
 

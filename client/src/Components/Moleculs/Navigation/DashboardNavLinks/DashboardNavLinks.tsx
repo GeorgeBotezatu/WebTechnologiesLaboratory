@@ -8,7 +8,7 @@ import {
 	DASHBOARD_STATS_PATH,
 	LANDING_PATH,
 } from "../../../../Routes/routesPath";
-import classNames from "classnames";
+
 import { NavLink } from "react-router-dom";
 
 const DashboardNavLinks: React.FC = () => {

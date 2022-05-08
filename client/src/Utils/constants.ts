@@ -66,3 +66,4 @@ export const CAN_NOT_UPDATE_SECTION = "Can't update this section!";
 export const CAN_NOT_LOAD_COURSES_LIST = "Can not load courses list!";
 export const CAN_NOT_UPDATE_COURSE = "Can't update course!";
 export const CAN_NOT_LOAD_COURSE = "Could not load specified course!";
+export const CAN_NOT_CREATE_CHAPTER = "Could not create chapter!";
