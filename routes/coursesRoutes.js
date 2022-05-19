@@ -3,7 +3,7 @@ const router = express.Router();
 import { check } from "express-validator";
 import {
 	addChapter,
-	addQuizQuestion,
+	addQuiz,
 	changeChapterOrder,
 	createCourse,
 	deleteChapter,
@@ -22,26 +22,18 @@ import {
 	validateCreateCourse,
 } from "../middleware/coursesMiddleware.js";
 import {
-	ANSWER1,
-	ANSWER2,
-	ANSWER3,
-	ANSWER4,
 	CHAPTER_TITLE,
 	CONTENT,
 	COURSE_DESCRIPTION,
 	COURSE_TITLE,
 	NEW_ORDER,
-	QUESTION,
+	QUIZ,
 } from "../utils/constants.js";
 import {
-	ANSWER_1_REQUIRED,
-	ANSWER_2_REQUIRED,
-	ANSWER_3_REQUIRED,
-	ANSWER_4_REQUIRED,
 	CONTENT_REQUIRED,
 	DESCRIPTION_REQUIRED,
 	NEW_ORDER_REQUIRED,
-	QUESTION_REQUIRED,
+	QUIZ_REQUIRED,
 	TITLE_REQUIRED,
 } from "../utils/textUtils.js";
 
@@ -92,15 +84,9 @@ router.put(
 	"/create/:courseId/chapter/:chapterId/quiz",
 	auth,
 	admin,
-	[
-		check(QUESTION, QUESTION_REQUIRED).not().isEmpty(),
-		check(ANSWER1, ANSWER_1_REQUIRED).not().isEmpty(),
-		check(ANSWER2, ANSWER_2_REQUIRED).not().isEmpty(),
-		check(ANSWER3, ANSWER_3_REQUIRED).not().isEmpty(),
-		check(ANSWER4, ANSWER_4_REQUIRED).not().isEmpty(),
-	],
+	[check(QUIZ, QUIZ_REQUIRED).not().isEmpty()],
 	validateAddQuizQuestion,
-	addQuizQuestion
+	addQuiz
 );
 
 //@roaute DELETE api/courses/:courseId

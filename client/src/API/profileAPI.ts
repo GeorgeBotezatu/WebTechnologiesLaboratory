@@ -1,5 +1,6 @@
 import axiosInstance from "../Axios/AxiosInstance";
 import { IUserState } from "../Interfaces";
+import { getToken } from "../Utils/utilFunctions";
 
 import {
 	CREATE_PROFILE_URL,
@@ -10,7 +11,6 @@ import {
 	UPDATE_ABOUT_URL,
 	UPDATE_GITHUB_URL,
 } from "./apiPaths";
-import { REQUEST_HEADERS_WITH_BEARER } from "./requestHeaders";
 
 interface aboutData {
 	bio: string;
@@ -92,11 +92,16 @@ export const updateGithub = (githubusername: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const git = { githubusername };
-
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.put(
 				UPDATE_GITHUB_URL,
 				git,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error: any) {
@@ -109,10 +114,16 @@ export const updateGithub = (githubusername: string) => {
 export const updateAbout = (aboutData: aboutData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.put(
 				UPDATE_ABOUT_URL,
 				aboutData,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error) {
@@ -125,12 +136,14 @@ export const updateAbout = (aboutData: aboutData) => {
 export const editExperience = (expData: experienceData, id: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const url = EXPERIENCE_URLS + `/${id}`;
-			const res = await axiosInstance.put(
-				url,
-				expData,
-				REQUEST_HEADERS_WITH_BEARER
-			);
+			const res = await axiosInstance.put(url, expData, requestHeader);
 
 			resolve(res.data);
 		} catch (error) {
@@ -142,10 +155,16 @@ export const editExperience = (expData: experienceData, id: string) => {
 export const createExperience = (expData: experienceData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.put(
 				EXPERIENCE_URLS,
 				expData,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error) {
@@ -158,9 +177,15 @@ export const createExperience = (expData: experienceData) => {
 export const deleteExp = (id: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.delete(
 				EXPERIENCE_URLS + `/${id}`,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error) {
@@ -173,12 +198,14 @@ export const deleteExp = (id: string) => {
 export const editEducation = (eduData: educationData, id: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const url = EDUCATION_URLS + `/${id}`;
-			const res = await axiosInstance.put(
-				url,
-				eduData,
-				REQUEST_HEADERS_WITH_BEARER
-			);
+			const res = await axiosInstance.put(url, eduData, requestHeader);
 			resolve(res.data);
 		} catch (error) {
 			console.log(error);
@@ -189,10 +216,16 @@ export const editEducation = (eduData: educationData, id: string) => {
 export const createEducation = (eduData: educationData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.put(
 				EDUCATION_URLS,
 				eduData,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error) {
@@ -205,9 +238,15 @@ export const createEducation = (eduData: educationData) => {
 export const deleteEdu = (id: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.delete(
 				EDUCATION_URLS + `/${id}`,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error) {
@@ -220,12 +259,14 @@ export const deleteEdu = (id: string) => {
 export const editSocial = (socialData: socialData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const url = SOCIAL_URLS;
-			const res = await axiosInstance.put(
-				url,
-				socialData,
-				REQUEST_HEADERS_WITH_BEARER
-			);
+			const res = await axiosInstance.put(url, socialData, requestHeader);
 			resolve(res.data);
 		} catch (error) {
 			console.log(error);

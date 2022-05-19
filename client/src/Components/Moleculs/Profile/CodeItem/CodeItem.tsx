@@ -29,8 +29,9 @@ const CodeItem: React.FC<ICodeSave> = ({ name, id, html, css, js }) => {
 				const res = await deleteCodeSaves(id);
 				if (!res) {
 					dispatch(profileDeleteCodeSavesFail(CONSOLE_DOSENT_EXIST));
+				} else {
+					dispatch(profileDeleteCodeSavesSuccess(res));
 				}
-				dispatch(profileDeleteCodeSavesSuccess(res));
 			} else {
 				dispatch(profileDeleteCodeSavesFail(CONSOLE_DOSENT_EXIST));
 			}

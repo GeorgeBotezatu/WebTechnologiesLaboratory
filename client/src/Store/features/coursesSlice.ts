@@ -58,6 +58,17 @@ export const coursesSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		coursesListDeleteInit: (state) => {
+			state.loading = true;
+		},
+		coursesListDeleteSuccess: (state, action) => {
+			state.loading = false;
+			state.coursesList = action.payload;
+		},
+		coursesListDeleteFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -69,6 +80,9 @@ export const {
 	editCourseItemInit,
 	editCourseItemSuccess,
 	editCourseItemFail,
+	coursesListDeleteInit,
+	coursesListDeleteSuccess,
+	coursesListDeleteFail,
 } = coursesSlice.actions;
 
 export default coursesSlice.reducer;

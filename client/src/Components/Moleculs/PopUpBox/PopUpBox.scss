@@ -1,0 +1,59 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-popup-box {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(colors.$black, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.wtl-inner-popup {
+	position: fixed;
+	padding: 2rem;
+	width: 100%;
+	max-width: 50vw;
+	right: 25%;
+	background: colors.$white;
+	color: colors.$black;
+	top: -400px;
+	animation: drop 0.5s ease forwards;
+	border-radius: 5px;
+	box-shadow: colors.$formsBoxShadow;
+	backdrop-filter: blur(15px);
+
+	&--close-btn {
+		position: absolute;
+		text-align: center;
+		top: 1.6rem;
+		right: 1.6rem;
+		background: colors.$mainGray;
+		color: colors.$white;
+		border: none;
+		border-radius: 50%;
+		padding: 0.5rem 1rem;
+		transition: all 0.5s ease;
+		&:hover {
+			background: colors.$profileCardsGray;
+			font-weight: 900;
+		}
+	}
+}
+@keyframes drop {
+	0% {
+		opacity: 0;
+	}
+	70% {
+		transform: translateY(700px);
+	}
+	100% {
+		transform: translateY(650px);
+		opacity: 1;
+	}
+}

@@ -33,6 +33,9 @@ export const YUP_TO_DATE = "To can't be set before FROM date";
 export const YUP_TO_DATE_REQUIRED = "If is not current is required!";
 export const YUP_URL_HTTP = "URL need to containt http(s)://";
 export const YUP_COURSE_TITLE_REQUIRED = "Course title is required!";
+export const YUP_CHAPTER_ORDER_REQUIRED = "Chapter order is required!";
+export const YUP_INVALID_CHAPTER = "Chapter order need to be between 1 and ";
+export const YUP_SAME_CHAPTER_POSITION = "Can't modify same position";
 export const YUP_COURSE_DESCRIPTION_REQUIRED =
 	"Course description is required!";
 export const COULD_NOT_REGISTER = "Could not register!";
@@ -67,3 +70,7 @@ export const CAN_NOT_LOAD_COURSES_LIST = "Can not load courses list!";
 export const CAN_NOT_UPDATE_COURSE = "Can't update course!";
 export const CAN_NOT_LOAD_COURSE = "Could not load specified course!";
 export const CAN_NOT_CREATE_CHAPTER = "Could not create chapter!";
+export const CAN_NOT_DELETE_CHAPTER = "Can't delete this chapter!";
+export const CAN_NOT_DELETE_COURSE = "Can't delete this course!";
+export const CAN_NOT_CHANGE_ORDER = "Can't change order!";
+export const CAN_NOT_CREATE_QUIZ = "Can't create quiz!";

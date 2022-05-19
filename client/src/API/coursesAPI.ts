@@ -1,5 +1,10 @@
 import axiosInstance from "../Axios/AxiosInstance";
-import { ICourse, ICoursesList, ICoursesListItem } from "../Interfaces";
+import {
+	ICourse,
+	ICourseChapterQuizArr,
+	ICoursesList,
+	ICoursesListItem,
+} from "../Interfaces";
 import { getToken } from "../Utils/utilFunctions";
 import { COURSES_URL, GET_COURSES_LIST } from "./apiPaths";
 
@@ -129,6 +134,104 @@ export const updateChapter = (
 			resolve(data);
 		} catch (error) {
 			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const deleteCourse = (courseId: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.delete(
+				COURSES_URL + `/${courseId}`,
+				requestHeader
+			);
+			const { data }: { data: ICourse } = res;
+			resolve(data);
+		} catch (error) {
+			reject(error);
+			console.log(error);
+		}
+	});
+};
+
+export const createQuiz = (
+	courseId: string,
+	chapterId: string,
+	quiz: ICourseChapterQuizArr
+) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.put(
+				COURSES_URL + `/create/${courseId}/chapter/${chapterId}/quiz`,
+				{ quiz: quiz },
+				requestHeader
+			);
+			const { data }: { data: ICourse } = res;
+			resolve(data);
+		} catch (error) {
+			reject(error);
+			console.log(error);
+		}
+	});
+};
+
+export const deleteChpater = (courseId: string, chapterId: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.delete(
+				COURSES_URL + `/${courseId}/chapter/${chapterId}`,
+				requestHeader
+			);
+			const { data }: { data: ICourse } = res;
+			resolve(data);
+		} catch (error) {
+			reject(error);
+			console.log(error);
+		}
+	});
+};
+
+export const changeChapterOrder = (
+	courseId: string,
+	chapterId: string,
+	order: number
+) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.put(
+				COURSES_URL + `/${courseId}/chapter/${chapterId}/order`,
+				{ newOrder: order },
+				requestHeader
+			);
+
+			const { data }: { data: ICourse } = res;
+			resolve(data);
+		} catch (error) {
 			reject(error);
 		}
 	});

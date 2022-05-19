@@ -1,11 +1,10 @@
 import Course from "../models/coursesSchema.js";
 import CustomStatusCodeError from "../utils/customError.js";
-import mongoose from "mongoose";
+
 import {
 	CHAPTER_NOT_FOUND,
 	COURSE_CREATED,
 	COURSE_NOT_FOUND,
-	INVALID_ID,
 	QUESTION_NOT_FOUND,
 	SAME_ORDER,
 	SERVER_ERROR,
@@ -85,17 +84,16 @@ const addChapter = async (req, res) => {
 		res.status(500).send({ msg: SERVER_ERROR });
 	}
 };
-const addQuizQuestion = async (req, res) => {
+const addQuiz = async (req, res) => {
 	try {
 		const data = req.body;
 		const courseId = req.params.courseId;
 		const chapterId = req.params.chapterId;
-		const { question, answer1, answer2, answer3, answer4 } = data;
+		const { quiz } = data;
 		const course = await Course.findById(courseId);
-		const newQuizQuestion = { question, answer1, answer2, answer3, answer4 };
 
 		if (!course.chapters) {
-			throw new CustomStatusCodeError("Nu sunt capitole", 404);
+			throw new CustomStatusCodeError(CHAPTER_NOT_FOUND, 404);
 		}
 		let chapterIndex = -1;
 		for (let i = 0; i < course.chapters.length; i++) {
@@ -106,7 +104,7 @@ const addQuizQuestion = async (req, res) => {
 		if (chapterId === -1) {
 			throw new CustomStatusCodeError(CHAPTER_NOT_FOUND, 404);
 		}
-		course.chapters[chapterIndex].quiz.push(newQuizQuestion);
+		course.chapters[chapterIndex].quiz = quiz;
 		await course.save();
 		res.status(200).json(course);
 	} catch (error) {
@@ -304,7 +302,7 @@ export {
 	getCourseById,
 	createCourse,
 	addChapter,
-	addQuizQuestion,
+	addQuiz,
 	deleteCourse,
 	deleteChapter,
 	deleteQuizQuestion,

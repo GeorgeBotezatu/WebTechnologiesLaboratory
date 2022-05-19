@@ -105,9 +105,10 @@ const EducationForm = () => {
 			}
 			if (!res) {
 				dispatch(profileUpdateEduFail("Can't update this section!"));
+			} else {
+				dispatch(profileUpdateEduSuccess(res));
+				navigate("/profile");
 			}
-			dispatch(profileUpdateEduSuccess(res));
-			navigate("/profile");
 		} catch (error: any) {
 			dispatch(profileUpdateEduFail(error.message));
 		}

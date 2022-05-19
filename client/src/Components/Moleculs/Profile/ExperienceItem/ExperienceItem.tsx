@@ -46,8 +46,9 @@ const ExperienceItem: React.FC<IExperienceCard> = ({
 				const res = await deleteExp(_id);
 				if (!res) {
 					dispatch(profileDeleteExpFail(EXPERIENCE_DOSENT_EXIST));
+				} else {
+					dispatch(profileDeleteExpSuccess(res));
 				}
-				dispatch(profileDeleteExpSuccess(res));
 			} else {
 				dispatch(profileDeleteExpFail(EXPERIENCE_DOSENT_EXIST));
 			}

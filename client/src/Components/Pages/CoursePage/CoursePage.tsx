@@ -27,14 +27,15 @@ const CoursePage: React.FC = () => {
 				if (courseId) res = (await loadCourse(courseId)) as ICourse;
 				if (!res) {
 					dispatch(courseLoadFail(CAN_NOT_LOAD_COURSE));
+				} else {
+					dispatch(courseLoadSuccess(res));
 				}
-				dispatch(courseLoadSuccess(res));
 			} catch (error: any) {
 				console.log(error);
 				dispatch(courseLoadFail(error.message));
 			}
 		};
-		loadCourseHandler();
+		if (courseId) loadCourseHandler();
 	}, [courseId, dispatch]);
 
 	const { course } = useSelector((state: RootState) => state.course);
@@ -54,7 +55,11 @@ const CoursePage: React.FC = () => {
 					<CourseLanding
 						courseTitle={course?.courseTitle}
 						courseDescription={course?.courseDescription}
-						firstChapterId={course?.chapters && course.chapters[0]._id}
+						firstChapterId={
+							course?.chapters && course.chapters.length > 0
+								? course.chapters[0]._id
+								: false
+						}
 					/>
 				)}
 			</div>

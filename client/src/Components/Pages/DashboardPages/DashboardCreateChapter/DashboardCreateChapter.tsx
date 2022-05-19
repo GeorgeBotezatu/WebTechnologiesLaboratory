@@ -53,8 +53,9 @@ const DashboardCreateChapter: React.FC = () => {
 				if (courseId) res = (await loadCourse(courseId)) as ICourse;
 				if (!res) {
 					dispatch(courseLoadFail(CAN_NOT_LOAD_COURSE));
+				} else {
+					dispatch(courseLoadSuccess(res));
 				}
-				dispatch(courseLoadSuccess(res));
 			} catch (error: any) {
 				console.log(error);
 				dispatch(courseLoadFail(error.message));
@@ -81,15 +82,16 @@ const DashboardCreateChapter: React.FC = () => {
 				res = (await createChapter(chapterName, value, courseId)) as ICourse;
 			if (!res) {
 				dispatch(chapterCreateFail(CAN_NOT_CREATE_CHAPTER));
+			} else {
+				dispatch(chapterCreateSuccess(res));
+				navigate(-1);
 			}
-			dispatch(chapterCreateSuccess(res));
-			navigate(-1);
 		} catch (error: any) {
 			dispatch(chapterCreateFail(error.message));
 			console.log(error);
 		}
 	};
-	const componentClass = "wtl-dashboard-crate-chapter";
+	const componentClass = "wtl-dashboard-create-chapter";
 	const headContainerClass = `${componentClass}__head`;
 	const saveButtonClass = `${headContainerClass}--save-button`;
 	const textEditorClass = `${componentClass}--editor`;

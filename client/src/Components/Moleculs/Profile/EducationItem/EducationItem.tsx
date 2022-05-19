@@ -47,8 +47,9 @@ const EducationItem: React.FC<IEducationCard> = ({
 				const res = await deleteEdu(_id);
 				if (!res) {
 					dispatch(profileDeleteEduFail(EDUCATION_DOSENT_EXIST));
+				} else {
+					dispatch(profileDeleteEduSuccess(res));
 				}
-				dispatch(profileDeleteEduSuccess(res));
 			} else {
 				dispatch(profileDeleteEduFail(EDUCATION_DOSENT_EXIST));
 			}

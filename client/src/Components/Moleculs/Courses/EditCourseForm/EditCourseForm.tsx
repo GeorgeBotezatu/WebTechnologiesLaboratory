@@ -55,10 +55,10 @@ const EditCourseForm: React.FC<ICoursesListItem> = ({
 			const res = await updateCourse(data);
 			if (!res) {
 				dispatch(editCourseItemFail(CAN_NOT_UPDATE_COURSE));
+			} else {
+				dispatch(editCourseItemSuccess(res));
+				navigate("/learning");
 			}
-			console.log(res);
-			dispatch(editCourseItemSuccess(res));
-			navigate("/learning");
 		} catch (error: any) {
 			console.log(error);
 			dispatch(editCourseItemFail(error.message));

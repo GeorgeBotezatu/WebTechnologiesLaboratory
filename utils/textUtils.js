@@ -41,6 +41,7 @@ export const COURSE_NOT_FOUND = "Course not found!";
 export const INVALID_ID = "Invalid id!";
 export const CHAPTER_NOT_FOUND = "Chapter not found!";
 export const QUESTION_REQUIRED = "Question is required!";
+export const QUIZ_REQUIRED = "Quiz is required!";
 export const ANSWER_1_REQUIRED = "Answer 1 required";
 export const ANSWER_2_REQUIRED = "Answer 2 required";
 export const ANSWER_3_REQUIRED = "Answer 3 required";

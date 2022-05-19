@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 interface ICourseLanding {
 	courseTitle?: string;
 	courseDescription?: string;
-	firstChapterId?: string;
+	firstChapterId?: string | boolean;
 }
 
 const CourseLanding: React.FC<ICourseLanding> = ({
@@ -39,7 +39,10 @@ const CourseLanding: React.FC<ICourseLanding> = ({
 					section "Here".
 				</p>
 			</div>
-			<Link className={beginCourseClass} to={`chapter/${firstChapterId}`}>
+			<Link
+				className={beginCourseClass}
+				to={!firstChapterId ? "" : `chapter/${firstChapterId}`}
+			>
 				Begin Course
 			</Link>
 		</div>

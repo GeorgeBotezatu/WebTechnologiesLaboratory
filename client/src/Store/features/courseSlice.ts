@@ -43,6 +43,39 @@ export const courseSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		chapterDeleteInit: (state) => {
+			state.loading = true;
+		},
+		chapterDeleteSuccess: (state, action) => {
+			state.loading = false;
+			state.course = action.payload;
+		},
+		chapterDeleteFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
+		changeChapterOrderInit: (state) => {
+			state.loading = true;
+		},
+		changeChapterOrderSuccess: (state, action) => {
+			state.loading = false;
+			state.course = action.payload;
+		},
+		changeChapterOrderFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
+		addQuizInit: (state) => {
+			state.loading = true;
+		},
+		addQuizSuccess: (state, action) => {
+			state.loading = false;
+			state.course = action.payload;
+		},
+		addQuizFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -54,5 +87,14 @@ export const {
 	chapterCreateInit,
 	chapterCreateSuccess,
 	chapterCreateFail,
+	chapterDeleteInit,
+	chapterDeleteSuccess,
+	chapterDeleteFail,
+	changeChapterOrderInit,
+	changeChapterOrderSuccess,
+	changeChapterOrderFail,
+	addQuizInit,
+	addQuizSuccess,
+	addQuizFail,
 } = courseSlice.actions;
 export default courseSlice.reducer;

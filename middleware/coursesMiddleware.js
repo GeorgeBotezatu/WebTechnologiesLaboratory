@@ -63,11 +63,7 @@ const validateAddQuizQuestion = async (req, res, next) => {
 		}
 		const data = req.body;
 		const validInputs = {
-			question: "",
-			answer1: "",
-			answer2: "",
-			answer3: "",
-			answer4: "",
+			quiz: "",
 		};
 
 		matchInputs(data, validInputs);
