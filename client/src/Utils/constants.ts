@@ -63,6 +63,7 @@ export const INSTAGRAM = "instagram";
 export const HTML = "html";
 export const JAVASCRIPT = "javascript";
 export const CSS = "css";
+export const QUIZ = "quiz";
 export const CONSOLE_DOSENT_EXIST = "Console does not exists!";
 export const CAN_NOT_UPDATE_CREATE_CONSOLE = "Can't update/create console!";
 export const CAN_NOT_UPDATE_SECTION = "Can't update this section!";

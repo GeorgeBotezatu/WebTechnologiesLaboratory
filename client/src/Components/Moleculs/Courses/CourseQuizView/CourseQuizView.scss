@@ -1,0 +1,110 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+@mixin border-gradient($from, $to, $weight: 0) {
+	$mix-main: mix($from, $to);
+	$mix-sub-from: mix($mix-main, $from);
+	$mix-sub-to: mix($mix-main, $to);
+
+	box-shadow: 0 1px 0 $weight rgba($mix-sub-to, 0.25),
+		0 -1px 0 $weight rgba($mix-sub-from, 0.25),
+		1px 0 0 $weight rgba($mix-sub-to, 0.25),
+		-1px 0 0 $weight rgba($mix-sub-from, 0.25),
+		1px -1px 0 $weight rgba($mix-main, 0.5),
+		-1px 1px 0 $weight rgba($mix-main, 0.5), 1px 1px 0 $weight rgba($to, 0.75),
+		-1px -1px 0 $weight rgba($from, 0.75);
+}
+.wtl-course-quiz-view {
+	position: fixed;
+	width: 85%;
+	height: calc(90vh - 10.5rem);
+
+	-ms-overflow-style: none; /* for Internet Explorer, Edge */
+	scrollbar-width: none; /* for Firefox */
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	padding: 3rem;
+
+	&__question-container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		h2 {
+			font-size: 2.5rem;
+		}
+		&__answers-container {
+			position: relative;
+			display: flex;
+			gap: 2rem;
+			&__answer {
+				padding: 6px;
+				border-radius: 50px;
+				display: inline-flex;
+				cursor: pointer;
+				transition: background 0.2s ease;
+				margin: 8px 0;
+
+				&:hover,
+				&:focus-within {
+					background: rgba(#9f9f9f, 0.1);
+				}
+				input {
+					vertical-align: middle;
+					width: 20px;
+					height: 20px;
+					border-radius: 10px;
+					background: none;
+					border: 0;
+					box-shadow: inset 0 0 0 1px #9f9f9f;
+					box-shadow: inset 0 0 0 1.5px #9f9f9f;
+					appearance: none;
+					padding: 0;
+					margin: 0;
+					transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
+
+					&:focus {
+						outline: none;
+					}
+
+					&:checked {
+						box-shadow: inset 0 0 0 6px colors.$profileShadowColor;
+					}
+				}
+				p {
+					vertical-align: middle;
+					display: inline-block;
+					line-height: 20px;
+					padding: 0 8px;
+				}
+			}
+		}
+	}
+	&--submit {
+		align-self: flex-end;
+
+		margin: 2rem;
+		width: 20rem;
+		font-size: 2rem;
+		text-align: center;
+		background: transparent;
+		color: rgba(colors.$white, 0.7);
+		background: rgba(colors.$white, 0.05);
+		text-decoration: none;
+		padding: 1.5rem 1.8rem;
+		border-radius: 10px;
+		transition: all 0.2s;
+
+		@include border-gradient(colors.$mainGreen, colors.$profileShadowColor);
+
+		&:hover {
+			@include border-gradient(colors.$profileShadowColor, colors.$darkPink);
+			color: white;
+			background: rgba(colors.$darkPink, 0.05);
+		}
+	}
+}

@@ -7,16 +7,17 @@ import {
 	courseLoadSuccess,
 } from "../../../Store/features/courseSlice";
 import { loadCourse } from "../../../API/coursesAPI";
-import { CAN_NOT_LOAD_COURSE } from "../../../Utils/constants";
+import { CAN_NOT_LOAD_COURSE, QUIZ } from "../../../Utils/constants";
 import { useParams } from "react-router";
 import CourseSideBar from "../../Moleculs/Courses/CourseSideBar/CourseSideBar";
 import CourseChapterView from "../../Moleculs/Courses/CourseChapterView/CourseChapterView";
 import CourseLanding from "../../Moleculs/Courses/CourseLanding/CourseLanding";
 import { ICourse } from "../../../Interfaces";
 import { RootState } from "../../../Store/Store";
+import CourseQuizView from "../../Moleculs/Courses/CourseQuizView/CourseQuizView";
 
 const CoursePage: React.FC = () => {
-	const { courseId, chapterId } = useParams();
+	const { courseId, chapterId, quiz } = useParams();
 
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -49,8 +50,12 @@ const CoursePage: React.FC = () => {
 				<CourseSideBar />
 			</div>
 			<div className={courseContainerClass}>
-				{chapterId ? (
+				{chapterId && !quiz ? (
 					<CourseChapterView />
+				) : chapterId && quiz === QUIZ ? (
+					<CourseQuizView
+						chapter={course?.chapters?.filter((item) => item._id === chapterId)}
+					/>
 				) : (
 					<CourseLanding
 						courseTitle={course?.courseTitle}

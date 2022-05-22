@@ -4,6 +4,7 @@ import { RootState } from "../../../../Store/Store";
 import { useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom";
+import { QUIZ } from "../../../../Utils/constants";
 
 const CourseSideBar: React.FC = () => {
 	const { course } = useSelector((state: RootState) => state.course);
@@ -24,7 +25,11 @@ const CourseSideBar: React.FC = () => {
 								>
 									{chapter.order}. {chapter.chapterTitle}
 								</NavLink>
-								<p>Quiz</p>
+								<NavLink
+									to={`/learning/course/${course._id}/chapter/${chapter._id}/${QUIZ}`}
+								>
+									Quiz
+								</NavLink>
 							</div>
 						);
 					else {

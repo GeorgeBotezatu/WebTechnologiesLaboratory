@@ -46,6 +46,7 @@ import {
 	PROFILE_PATH,
 	REGISTER_PATH,
 	DASHBOARD_LEARNING_PATH_CREATE_QUIZ,
+	COURSE_PAGE_CHAPTER_QUIZ,
 } from "./routesPath";
 
 const PlatformRoutes = () => {
@@ -144,6 +145,14 @@ const PlatformRoutes = () => {
 							/>
 							<Route
 								path={COURSE_PAGE_CHAPTER}
+								element={
+									<PrivateRoute>
+										<CoursePage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={COURSE_PAGE_CHAPTER_QUIZ}
 								element={
 									<PrivateRoute>
 										<CoursePage />

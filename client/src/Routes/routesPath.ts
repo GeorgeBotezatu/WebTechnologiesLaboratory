@@ -40,3 +40,5 @@ export const EDIT_COURSE_PATH = "/learning/course/edit/:id";
 export const COURSE_PAGE = "learning/course/:courseId";
 export const COURSE_PAGE_CHAPTER =
 	"learning/course/:courseId/chapter/:chapterId";
+export const COURSE_PAGE_CHAPTER_QUIZ =
+	"learning/course/:courseId/chapter/:chapterId/:quiz";
