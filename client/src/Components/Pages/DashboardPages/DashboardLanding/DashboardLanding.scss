@@ -1,0 +1,9 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-dashboard-landing {
+	margin-left: 25vh;
+	min-height: 100vh;
+	background: colors.$mainDashboardGreen;
+}

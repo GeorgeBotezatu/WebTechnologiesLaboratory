@@ -47,7 +47,7 @@ const EducationForm = () => {
 		if ((!state?.buttonPressed || !state) && id) {
 			navigate("/profile");
 		}
-	}, [state, navigate]);
+	}, [state, navigate]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const validate = Yup.object({
 		school: Yup.string().required(YUP_SCHOOL_REQUIRED),
@@ -105,9 +105,10 @@ const EducationForm = () => {
 			}
 			if (!res) {
 				dispatch(profileUpdateEduFail("Can't update this section!"));
+			} else {
+				dispatch(profileUpdateEduSuccess(res));
+				navigate("/profile");
 			}
-			dispatch(profileUpdateEduSuccess(res));
-			navigate("/profile");
 		} catch (error: any) {
 			dispatch(profileUpdateEduFail(error.message));
 		}
@@ -232,6 +233,7 @@ const EducationForm = () => {
 								placeholder="A short description of this education"
 								name="description"
 								id="description"
+								withVerification={false}
 							></TextareaInput>
 							<p>Do a short description for us</p>
 						</div>

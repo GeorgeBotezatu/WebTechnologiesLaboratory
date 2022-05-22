@@ -1,6 +1,7 @@
 $mainGreen: #084711;
 $lighterGreen: #12d61b;
 $darkPink: #11998e; //#136e5f
+$darkPinkTint: #11998e8e; //#136e5f
 $backgroud: #0d1117;
 $black: #000;
 $white: #fff;
@@ -31,6 +32,11 @@ $profileShadowColor: rgb(241, 111, 5);
 $profileSvgWhite: invert(100%) sepia(64%) saturate(0%) hue-rotate(7deg)
 	brightness(118%) contrast(101%);
 $profileHalfWhiteTransparent: rgba(255, 255, 255, 0.6);
+
+//dahboard colors
+$mainDashboardGreen: #062f02;
+$secondaryDashboardGreen: #095700;
+$secondaryDashboardGreenTint: #095700a8;
 
 //icons
 $trashIconSvg: invert(20%) sepia(96%) saturate(4752%) hue-rotate(346deg)

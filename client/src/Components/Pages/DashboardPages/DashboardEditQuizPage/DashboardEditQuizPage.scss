@@ -1,0 +1,11 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-dashboard-edit-quiz {
+	position: relative;
+	margin-left: 25vh;
+	min-height: 100vh;
+	background: colors.$mainDashboardGreen;
+	padding-top: 10rem;
+}

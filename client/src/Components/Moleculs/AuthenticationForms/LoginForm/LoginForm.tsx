@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
+	CAN_NOT_LOAD_COURSES_LIST,
 	COULD_NOT_LOAD_PROFILE,
 	COULD_NOT_LOGIN,
 	YUP_EMPTY_EMAIL,
@@ -22,13 +23,19 @@ import {
 import { userLogin } from "../../../../API/loginAuth";
 import { RootState } from "../../../../Store/Store";
 import { loadProfile } from "../../../../API/profileAPI";
-import { getToken } from "../../../../Utils/utilFunctions";
-import { IUserState } from "../../../../Interfaces";
+import { createAdminCookie, getToken } from "../../../../Utils/utilFunctions";
+import { ICoursesList, IUserState } from "../../../../Interfaces";
 import {
 	profileLoadFail,
 	profileLoadInit,
 	profileLoadSuccess,
 } from "../../../../Store/features/profileSlice";
+import { getCoursesList } from "../../../../API/coursesAPI";
+import {
+	coursesListLoadFail,
+	coursesListLoadInit,
+	coursesListLoadSuccess,
+} from "../../../../Store/features/coursesSlice";
 interface FormValues {
 	email: string;
 	password: string;
@@ -60,11 +67,13 @@ const LoginForm: React.FC = () => {
 	const submitHandler = async (values: FormValues) => {
 		dispatch(loginInit());
 		dispatch(profileLoadInit());
+		dispatch(coursesListLoadInit());
 		try {
 			const loginValues = {
 				email: values.email,
 				password: values.password,
 			};
+
 			const loginResponse = (await userLogin(loginValues)) as ILoginResponse;
 			if (!loginResponse.token) {
 				dispatch(loginFail(COULD_NOT_LOGIN));
@@ -75,9 +84,16 @@ const LoginForm: React.FC = () => {
 				dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
 			}
 
-			console.log(profileLoadResponse.user.isAdmin);
+			createAdminCookie(profileLoadResponse.user.isAdmin);
 			dispatch(loginSuccess(profileLoadResponse.user.isAdmin));
 			dispatch(profileLoadSuccess(profileLoadResponse));
+
+			const coursesList = (await getCoursesList(getToken())) as ICoursesList;
+			if (!coursesList) {
+				dispatch(coursesListLoadFail(CAN_NOT_LOAD_COURSES_LIST));
+			}
+			dispatch(coursesListLoadSuccess(coursesList));
+
 			navigate("/");
 		} catch (error: any) {
 			dispatch(loginFail(error.message));

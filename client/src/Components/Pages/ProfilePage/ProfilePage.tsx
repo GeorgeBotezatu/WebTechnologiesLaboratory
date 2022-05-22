@@ -10,7 +10,7 @@ import ProfileEducationCard from "../../Moleculs/Profile/ProfileEducationCard/Pr
 import SocialCard from "../../Moleculs/Profile/SocialCard/SocialCard";
 import CodeCard from "../../Moleculs/Profile/CodeCard/CodeCard";
 
-const ProfilePage = () => {
+const ProfilePage: React.FC = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 	const github = userProfile.githubusername;
 	const userCard = userProfile.user;

@@ -1,0 +1,116 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-dashboard-courses-list {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: colors.$darkPinkTint;
+	box-shadow: colors.$formsBoxShadow;
+	&__course-item {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		font-size: 1.5rem;
+		padding: 1rem 1rem;
+		border: 1px solid colors.$darkPink;
+		align-items: center;
+
+		p {
+			width: 50%;
+			font-weight: 900;
+		}
+		&__action-buttons {
+			border-left: 1px solid colors.$darkPink;
+			width: 50%;
+			display: flex;
+			gap: 2rem;
+			justify-content: flex-end;
+			padding-left: 2rem;
+			button {
+				border: none;
+				background: none;
+				color: colors.$white;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				&:hover {
+					color: colors.$red;
+					font-weight: 700;
+					text-shadow: 6px 4px 6px rgba(0, 0, 0, 0.75);
+				}
+			}
+			a {
+				transition: all 0.3s ease;
+				&:hover {
+					color: colors.$starMainYellow;
+					font-weight: 700;
+					text-shadow: 6px 4px 6px rgba(0, 0, 0, 0.75);
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-dashboard-courses-list {
+		width: 95%;
+
+		&__course-item {
+			p {
+				width: 40%;
+			}
+			&__action-buttons {
+				width: 60%;
+				gap: 1rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-dashboard-courses-list {
+		&__course-item {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			font-size: 1.5rem;
+			padding: 1rem 1rem;
+			border: 1px solid colors.$darkPink;
+			gap: 2rem;
+			p {
+				width: 100%;
+				text-align: center;
+			}
+			&__action-buttons {
+				border-left: none;
+				width: 100%;
+				display: flex;
+				gap: 2rem;
+				justify-content: flex-start;
+				padding-left: 2rem;
+				button {
+					border: none;
+					background: none;
+					color: colors.$white;
+					cursor: pointer;
+					transition: all 0.3s ease;
+					&:hover {
+						color: colors.$red;
+						font-weight: 700;
+						text-shadow: 6px 4px 6px rgba(0, 0, 0, 0.75);
+					}
+				}
+				a {
+					transition: all 0.3s ease;
+					&:hover {
+						color: colors.$starMainYellow;
+						font-weight: 700;
+						text-shadow: 6px 4px 6px rgba(0, 0, 0, 0.75);
+					}
+				}
+			}
+		}
+	}
+}

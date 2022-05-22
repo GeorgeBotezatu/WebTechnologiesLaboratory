@@ -7,12 +7,13 @@ import {
 	LOGIN_PATH,
 	PROFILE_PATH,
 	REGISTER_PATH,
+	LEARNING_PATH,
 } from "../../../../Routes/routesPath";
 import {
 	ABOUT,
 	COMMUNITY,
 	CONSOLE,
-	LEARNING_PATH,
+	LEARNINGPATH,
 	LOGIN,
 	LOGO,
 	LOGOUT,
@@ -25,6 +26,8 @@ import { RootState } from "../../../../Store/Store";
 import { logout } from "../../../../Store/features/registerSlice";
 import { profileClear } from "../../../../Store/features/profileSlice";
 import { deleteCookie } from "../../../../Utils/utilFunctions";
+import { coursesListClear } from "../../../../Store/features/coursesSlice";
+
 interface navLinksPropsInterface {
 	toggle(): void;
 	show: boolean;
@@ -57,10 +60,10 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 						<a href="/">{ABOUT}</a>
 					</li>
 					<li className={linkClass}>
-						<a href={CONSOLE_PATH}>{CONSOLE}</a>
+						<Link to={CONSOLE_PATH}>{CONSOLE}</Link>
 					</li>
 					<li className={isAuthenticated ? linkClass : linkDisabledClass}>
-						<a href="/">{LEARNING_PATH}</a>
+						<Link to={LEARNING_PATH}>{LEARNINGPATH}</Link>
 					</li>
 				</ul>
 			</div>
@@ -74,7 +77,9 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 							onClick={() => {
 								deleteCookie();
 								dispatch(profileClear());
+								dispatch(coursesListClear());
 								dispatch(logout());
+								window.location.reload();
 							}}
 							to="/"
 						>

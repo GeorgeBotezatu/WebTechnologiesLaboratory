@@ -1,0 +1,215 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-edit-course-form {
+	position: relative;
+	margin: 0;
+	margin-top: 8rem;
+	margin-left: 55%;
+	width: 30%;
+	backdrop-filter: blur(15px);
+	border-radius: 10px;
+	background: colors.$formsBackgroudGreenTint;
+	box-shadow: colors.$formsBoxShadow;
+	min-height: 60vh;
+	padding: 3rem 4rem;
+	&--title {
+		width: 100%;
+		text-align: center;
+		font-size: 2.5rem;
+		padding: 2rem 0;
+		font-family: "Permanent Marker";
+	}
+
+	&__form-container {
+		display: flex;
+		flex-direction: column;
+		gap: 6rem;
+		padding: 0 1rem;
+
+		&__input-container {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: flex-end;
+			gap: 2rem;
+			i {
+				font-size: 4rem;
+			}
+			div {
+				width: 100%;
+				input {
+					color: colors.$white;
+				}
+			}
+		}
+
+		&__textarea-container {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			div {
+				textarea {
+					height: 15rem;
+				}
+			}
+			label {
+				display: block;
+				font-size: 1.5rem;
+				color: colors.$mainGray;
+			}
+		}
+
+		&__buttons-group {
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			font-size: 3rem;
+			button,
+			a {
+				background: none;
+				border: none;
+				color: colors.$white;
+				font-family: "Permanent Marker";
+				transition: all 1s ease;
+				&:hover {
+					transform: translateX(1rem);
+					text-shadow: 7px 9px 3px #ffffff;
+				}
+			}
+			a {
+				&::after {
+					content: "»";
+					opacity: 0;
+					transition: all 0.3s ease;
+					margin-left: 2rem;
+					font-size: 3rem;
+				}
+				&:hover::after {
+					opacity: 1;
+					right: 8%;
+				}
+			}
+		}
+	}
+	&--info {
+		width: 100%;
+		text-align: center;
+		font-size: 1.8rem;
+		padding: 2rem 0;
+		font-style: italic;
+		span {
+			font-size: 2rem;
+			font-family: "Permanent Marker";
+			color: colors.$red;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1600) {
+	.wtl-edit-course-form {
+		width: 35%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-edit-course-form {
+		width: 40%;
+
+		&__form-container {
+			&__buttons-group {
+				margin-top: 3rem;
+				font-size: 2.5rem;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-edit-course-form {
+		margin-left: 45%;
+		width: 50%;
+
+		&__form-container {
+			gap: 4rem;
+
+			&__input-container {
+				i {
+					font-size: 3rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-edit-course-form {
+		margin: 0 auto;
+		margin-top: 6rem;
+		width: 60%;
+		padding: 1rem 2rem;
+
+		&__form-container {
+			&__input-container {
+				i {
+					font-size: 3rem;
+				}
+			}
+			&__textarea-container {
+				gap: 1.5rem;
+				label {
+					font-size: 1.3rem;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-edit-course-form {
+		width: 80%;
+
+		&__form-container {
+			&__input-container {
+				i {
+					font-size: 3rem;
+				}
+			}
+			&__buttons-group {
+				flex-wrap: wrap;
+				font-size: 2.2rem;
+				justify-content: space-between;
+				margin: 0 auto;
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-edit-course-form {
+		width: 90%;
+		padding: 1rem 2rem;
+
+		&__form-container {
+			&__input-container {
+				i {
+					font-size: 2.5rem;
+				}
+			}
+			&__buttons-group {
+				justify-content: center;
+				gap: 2rem;
+				a {
+					&::after {
+						margin-left: 0rem;
+					}
+				}
+			}
+		}
+		&--info {
+			font-size: 1.5rem;
+		}
+	}
+}

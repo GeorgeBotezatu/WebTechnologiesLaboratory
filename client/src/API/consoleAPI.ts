@@ -1,6 +1,6 @@
 import axiosInstance from "../Axios/AxiosInstance";
+import { getToken } from "../Utils/utilFunctions";
 import { CONSOLE_URLS } from "./apiPaths";
-import { REQUEST_HEADERS_WITH_BEARER } from "./requestHeaders";
 
 export interface IConsoleData {
 	name: string;
@@ -12,9 +12,15 @@ export interface IConsoleData {
 export const deleteCodeSaves = (id: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.delete(
 				CONSOLE_URLS + `/${id}`,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error) {
@@ -26,10 +32,16 @@ export const deleteCodeSaves = (id: string) => {
 export const createConsole = (consoleData: IConsoleData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const res = await axiosInstance.put(
 				CONSOLE_URLS,
 				consoleData,
-				REQUEST_HEADERS_WITH_BEARER
+				requestHeader
 			);
 			resolve(res.data);
 		} catch (error) {
@@ -41,12 +53,14 @@ export const createConsole = (consoleData: IConsoleData) => {
 export const updateConsole = (consoleData: IConsoleData, id: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
 			const url = CONSOLE_URLS + `/${id}`;
-			const res = await axiosInstance.put(
-				url,
-				consoleData,
-				REQUEST_HEADERS_WITH_BEARER
-			);
+			const res = await axiosInstance.put(url, consoleData, requestHeader);
 
 			resolve(res.data);
 		} catch (error) {

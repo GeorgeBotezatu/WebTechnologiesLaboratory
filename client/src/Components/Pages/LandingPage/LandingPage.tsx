@@ -1,6 +1,6 @@
 import "./LandingPage.scss";
 import React from "react";
-import { REGISTER_PATH } from "../../../Routes/routesPath";
+import { DASHBOARD_PATH, REGISTER_PATH } from "../../../Routes/routesPath";
 import LandingDesktopSVG from "../../Atoms/LandingDesktopSVG/LandingDesktopSVG";
 import LandingPhoneSVG from "../../Atoms/LandingPhoneSVG/LandingPhoneSVG";
 import { useSelector } from "react-redux";
@@ -11,9 +11,12 @@ import {
 	LANDING,
 	LARGE,
 } from "../../Atoms/AnimatedButton/ButtonModifiers";
+import { getAdminCookie } from "../../../Utils/utilFunctions";
+import { TRUE } from "../../../Utils/constants";
 
 const LandingPage = () => {
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const isAdmin = getAdminCookie();
 	const componentClass = "wtl-landing";
 	const textSideClass = `${componentClass}__text-side`;
 	const descriptionClass = `${textSideClass}--description`;
@@ -53,6 +56,17 @@ const LandingPage = () => {
 							buttonMessage="JOIN US TO ACCESS LEARNING PATH"
 							buttonRoute={REGISTER_PATH}
 						/>
+					)}
+					{isAuthenticated && isAdmin === TRUE ? (
+						<AnimatedButton
+							buttonColor={GREEN}
+							buttonDimension={LARGE}
+							buttonPosition={LANDING}
+							buttonMessage="Go to Dashboard"
+							buttonRoute={DASHBOARD_PATH}
+						/>
+					) : (
+						<></>
 					)}
 				</div>
 			</div>

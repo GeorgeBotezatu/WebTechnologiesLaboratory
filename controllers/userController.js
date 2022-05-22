@@ -24,7 +24,6 @@ const registerUser = async (req, res) => {
 		});
 		const newEmail = email.toLowerCase();
 		const user = new User({ name, email: newEmail, avatar, password });
-
 		user.password = await encryptPassword(password);
 		await user.save();
 		generateToken(user, res);
@@ -41,9 +40,9 @@ const loginUser = async (req, res) => {
 	try {
 		const { email, password } = req.body;
 		const newEmail = email.toLowerCase();
-		const user = await User.findOne({ newEmail });
-		await validatePassword(password, user.password);
-		generateToken(user, res);
+		const userFound = await User.findOne({ email: newEmail });
+		await validatePassword(password, userFound.password);
+		generateToken(userFound, res);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -74,6 +73,7 @@ function generateToken(user, res) {
 			id: user.id,
 		},
 	};
+
 	jwt.sign(
 		payload,
 		process.env.JWT_SECRET,

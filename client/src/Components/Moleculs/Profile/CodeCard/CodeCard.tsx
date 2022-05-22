@@ -15,22 +15,26 @@ const CodeCard: React.FC = () => {
 	const codeContainerClass = `${classComponent}__code-container`;
 	return (
 		<div id="code-card" className={classComponent}>
-			<h2 className={titleClass}>Code Saves</h2>
-			<div className={codeContainerClass}>
-				{codeSaves &&
-					codeSaves.map((item, index) => {
-						return (
-							<CodeItem
-								key={index}
-								name={item.name}
-								js={item.js}
-								css={item.css}
-								html={item.html}
-								id={item._id}
-							/>
-						);
-					})}
-			</div>
+			{codeSaves && codeSaves[0] && (
+				<>
+					<h2 className={titleClass}>Code Saves</h2>
+					<div className={codeContainerClass}>
+						{codeSaves &&
+							codeSaves.map((item, index) => {
+								return (
+									<CodeItem
+										key={index}
+										name={item.name}
+										js={item.js}
+										css={item.css}
+										html={item.html}
+										id={item._id}
+									/>
+								);
+							})}
+					</div>
+				</>
+			)}
 		</div>
 	);
 };

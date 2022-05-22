@@ -1,0 +1,130 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+@mixin border-gradient($from, $to, $weight: 0) {
+	$mix-main: mix($from, $to);
+	$mix-sub-from: mix($mix-main, $from);
+	$mix-sub-to: mix($mix-main, $to);
+
+	box-shadow: 0 1px 0 $weight rgba($mix-sub-to, 0.25),
+		0 -1px 0 $weight rgba($mix-sub-from, 0.25),
+		1px 0 0 $weight rgba($mix-sub-to, 0.25),
+		-1px 0 0 $weight rgba($mix-sub-from, 0.25),
+		1px -1px 0 $weight rgba($mix-main, 0.5),
+		-1px 1px 0 $weight rgba($mix-main, 0.5), 1px 1px 0 $weight rgba($to, 0.75),
+		-1px -1px 0 $weight rgba($from, 0.75);
+}
+
+.wtl-course-chapter-view {
+	position: fixed;
+	width: 85%;
+	height: calc(90vh - 10.5rem);
+
+	-ms-overflow-style: none; /* for Internet Explorer, Edge */
+	scrollbar-width: none; /* for Firefox */
+	overflow-y: scroll;
+	&::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+	&__course-content {
+		display: flex;
+		flex-direction: column;
+		&--title {
+			font-size: 3.5rem;
+			font-family: "Permanent Marker";
+			text-align: center;
+			padding: 1.5rem;
+		}
+		&--go-to {
+			align-self: flex-end;
+			margin: 2rem;
+			width: 20rem;
+			font-size: 2rem;
+			text-align: center;
+			background: transparent;
+			color: rgba(colors.$white, 0.7);
+			background: rgba(colors.$white, 0.05);
+			text-decoration: none;
+			padding: 1.5rem 1.8rem;
+			border-radius: 10px;
+			transition: all 0.2s;
+
+			@include border-gradient(colors.$mainGreen, colors.$profileShadowColor);
+
+			&:hover {
+				@include border-gradient(colors.$profileShadowColor, colors.$darkPink);
+				color: white;
+				background: rgba(colors.$darkPink, 0.05);
+			}
+		}
+		&__direction-buttons {
+			padding: 2rem 0rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			font-size: 1.8rem;
+			a {
+				background: transparent;
+				color: rgba(colors.$white, 0.7);
+				background: rgba(colors.$white, 0.05);
+				text-decoration: none;
+				padding: 1.5rem 1.8rem;
+				border-radius: 10px;
+				transition: all 0.2s;
+
+				@include border-gradient(colors.$mainGreen, colors.$profileShadowColor);
+
+				&:hover {
+					@include border-gradient(
+						colors.$profileShadowColor,
+						colors.$darkPink
+					);
+					color: white;
+					background: rgba(colors.$darkPink, 0.05);
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-course-chapter-view {
+		width: 80%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-course-chapter-view {
+		width: 75%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-course-chapter-view {
+		width: 100%;
+		position: relative;
+		&__course-content {
+			display: flex;
+			flex-direction: column;
+			&--title {
+				font-size: 3.5rem;
+				font-family: "Permanent Marker";
+				text-align: center;
+				padding: 1.5rem;
+			}
+			&--go-to {
+				align-self: center;
+				width: 15rem;
+				font-size: 1.5rem;
+				padding: 1.2rem 1.5rem;
+			}
+			&__direction-buttons {
+				font-size: 1.3rem;
+				a {
+					padding: 1rem 1.3rem;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,53 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-change-chapter-order {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-right: 2rem;
+
+	h2 {
+		font-size: 3rem;
+		font-family: "Permanent Marker";
+	}
+	&--input {
+		div {
+			width: 100%;
+			input {
+				color: colors.$black;
+			}
+		}
+		p {
+			margin-top: 0.5rem;
+			font-size: 1.4rem;
+			font-weight: 200;
+			color: colors.$profileCardsGray;
+		}
+	}
+	&--button {
+		align-self: flex-end;
+		background: none;
+		border: none;
+		color: colors.$black;
+		font-size: 3rem;
+		font-family: "Permanent Marker";
+		transition: all 0.5s ease;
+		&:hover {
+			transform: translateX(1rem);
+			text-shadow: 7px 9px 3px rgba(colors.$black, 0.5);
+		}
+		&::after {
+			content: "»";
+			opacity: 0;
+			transition: all 0.01s ease;
+			margin-left: 2rem;
+			font-size: 3rem;
+		}
+		&:hover::after {
+			opacity: 1;
+			right: 8%;
+		}
+	}
+}

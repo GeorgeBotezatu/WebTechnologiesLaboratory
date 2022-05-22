@@ -6,10 +6,10 @@ import {
 	REGISTER,
 	ABOUT,
 	CONSOLE,
-	LEARNING_PATH,
 	OPEN,
 	LOGOUT,
 	PROFILE,
+	LEARNINGPATH,
 } from "../../../../Utils/constants";
 import classNames from "classnames";
 import { Link } from "react-router-dom";
@@ -18,12 +18,14 @@ import {
 	LOGIN_PATH,
 	PROFILE_PATH,
 	REGISTER_PATH,
+	LEARNING_PATH,
 } from "../../../../Routes/routesPath";
 import { RootState } from "../../../../Store/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../Store/features/registerSlice";
 import { profileClear } from "../../../../Store/features/profileSlice";
 import { deleteCookie } from "../../../../Utils/utilFunctions";
+import { coursesListClear } from "../../../../Store/features/coursesSlice";
 
 interface sideDrawerProps {
 	show: boolean;
@@ -77,7 +79,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 								: learningPathClass
 						}
 					>
-						<a href="/">{LEARNING_PATH}</a>
+						<Link to={LEARNING_PATH}>{LEARNINGPATH}</Link>
 					</li>
 				) : (
 					<li
@@ -109,7 +111,9 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 								onClick={() => {
 									deleteCookie();
 									dispatch(profileClear());
+									dispatch(coursesListClear());
 									dispatch(logout());
+									window.location.reload();
 								}}
 								to="/"
 							>

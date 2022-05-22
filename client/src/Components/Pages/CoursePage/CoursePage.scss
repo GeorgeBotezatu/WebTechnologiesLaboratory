@@ -1,0 +1,58 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-course-page {
+	min-height: calc(90vh - 10.5rem);
+	display: flex;
+	position: relative;
+	border-top: 3px solid colors.$profileShadowColor;
+	&__sidenav-container {
+		position: relative;
+		width: 15%;
+	}
+	&__course-container {
+		position: relative;
+		width: 85%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-course-page {
+		&__sidenav-container {
+			width: 20%;
+		}
+		&__course-container {
+			width: 80%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-course-page {
+		&__sidenav-container {
+			position: relative;
+			width: 25%;
+		}
+		&__course-container {
+			position: relative;
+			width: 75%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-course-page {
+		flex-direction: column;
+
+		border-top: 3px solid colors.$profileShadowColor;
+		&__sidenav-container {
+			position: relative;
+			width: 100%;
+		}
+		&__course-container {
+			position: relative;
+			width: 100%;
+		}
+	}
+}

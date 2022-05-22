@@ -1,0 +1,93 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-dashboard-create-chapter {
+	position: relative;
+	margin-left: 25vh;
+	min-height: 100vh;
+	background: colors.$mainDashboardGreen;
+	padding-top: 10rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5rem;
+	h1 {
+		font-size: 2.5rem;
+	}
+	&__head {
+		display: flex;
+		width: 100%;
+		padding: 0 5rem;
+		justify-content: space-around;
+		align-items: center;
+		section {
+			font-size: 2rem;
+		}
+		&--save-button {
+			background: none;
+			border: none;
+			color: colors.$white;
+			font-family: "Permanent Marker";
+			font-size: 3rem;
+			transition: all 1s ease;
+			margin: 0 auto;
+			text-align: center;
+			padding-left: 4rem;
+			&:hover {
+				transform: translateX(1rem);
+				text-shadow: 7px 9px 3px #ffffff;
+			}
+			&::after {
+				content: "»";
+				opacity: 0;
+				transition: all 0.3s ease;
+				margin-left: 2rem;
+				font-size: 3.5rem;
+			}
+			&:hover::after {
+				opacity: 1;
+				right: 8%;
+			}
+		}
+	}
+	&--editor {
+		width: 95%;
+		margin: 0 auto;
+		.w-md-editor-bar svg {
+			display: none;
+		}
+		.w-md-editor-bar {
+			background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+			height: 11px;
+			cursor: row-resize;
+			background-color: #37414b;
+			background-repeat: no-repeat;
+			background-position: 50%;
+			width: 100%;
+			position: relative;
+		}
+		.wmde-markdown hr {
+			border-top: 1px solid #dee5ed;
+		}
+		.wmde-markdown ol {
+			list-style: decimal;
+		}
+		.w-md-editor-show-live {
+			/* Hide menu bar buttons to prevent accidental delete */
+			z-index: 20;
+		}
+		.w-md-editor-toolbar {
+			background-color: colors.$darkPinkTint;
+			border-bottom: 1px solid colors.$profileShadowColor;
+		}
+		// set background color
+		// .w-md-editor-content {
+		// 	background-color: colors.$backgroud;
+		// }
+	}
+}
+
+.w-md-editor ul {
+	line-height: 1;
+}
