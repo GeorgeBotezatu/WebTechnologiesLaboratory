@@ -36,7 +36,13 @@ interface navLinksPropsInterface {
 const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 	const dispatch = useDispatch();
-
+	const logouHandler = async () => {
+		dispatch(profileClear());
+		dispatch(coursesListClear());
+		dispatch(logout());
+		deleteCookie();
+		window.location.reload();
+	};
 	const componentClass = "wtl-navbar";
 	const burgerClass = `${componentClass}__burger`;
 	const burgerLinesClass = `${burgerClass}--line`;
@@ -75,11 +81,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 						</Link>
 						<Link
 							onClick={() => {
-								deleteCookie();
-								dispatch(profileClear());
-								dispatch(coursesListClear());
-								dispatch(logout());
-								window.location.reload();
+								logouHandler();
 							}}
 							to="/"
 						>
