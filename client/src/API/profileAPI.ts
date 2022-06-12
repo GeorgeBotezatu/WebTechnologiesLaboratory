@@ -174,6 +174,82 @@ export const createExperience = (expData: experienceData) => {
 	});
 };
 
+export const enrolCourse = (courseId: String) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+
+			const res = await axiosInstance.put(
+				`profile/enroll/${courseId}`,
+				{},
+				requestHeader
+			);
+
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const completeCourseChapter = (courseId: String, chapterId: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+
+			const res = await axiosInstance.put(
+				`profile/enroll/${courseId}/chapter/${chapterId}`,
+				{},
+				requestHeader
+			);
+
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const completeCourseChapterQuiz = (
+	courseId: string,
+	chapterId: string,
+	quizScore: number
+) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+
+			const res = await axiosInstance.put(
+				`profile/enroll/${courseId}/chapter/${chapterId}/complete-quiz`,
+				{ quizScore: quizScore.toString() },
+				requestHeader
+			);
+
+			resolve(res.data);
+		} catch (error) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
 export const deleteExp = (id: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {

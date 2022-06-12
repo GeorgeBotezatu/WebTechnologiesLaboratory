@@ -7,19 +7,25 @@ import {
 	addExperience,
 	addGithubName,
 	addSocialSection,
+	completeChapter,
+	completeQuiz,
 	createProfile,
 	deleteEducation,
 	deleteExperience,
 	editEducation,
 	editExperience,
+	enroleToCourse,
 	getMyProfile,
 } from "../controllers/profileController.js";
 import { auth } from "../middleware/auth.js";
 import {
 	validateAddAboutSection,
 	validateAddGithubName,
+	validateChapterComplete,
 	validateEducation,
+	validateEnrollment,
 	validateExperience,
+	validateQuziScore,
 	validateSocialSection,
 } from "../middleware/profileMiddleware.js";
 import {
@@ -28,6 +34,7 @@ import {
 	FIELD_OF_STUDY,
 	FROM,
 	GITHUB,
+	QUIZ_SCORE,
 	SCHOOL,
 	SKILLS,
 	STATUS,
@@ -39,6 +46,7 @@ import {
 	FIELD_OF_STUDY_REQUIRED,
 	FROM_REQUIRED,
 	GITHUB_REQUIRED,
+	QUIZ_SCORE_REQUIRED,
 	SCHOOL_REQUIRED,
 	SKILLS_REQUIRED,
 	STATUS_REQUIRED,
@@ -156,4 +164,29 @@ router.put(
 //@desc   DELETE education
 //@access private
 router.delete("/education/:edu_id", auth, deleteEducation);
+
+//@roaute PUT api/profile/enroll/courseId
+//@desc   Enrole to a course
+//@access private
+router.put("/enroll/:courseId", auth, validateEnrollment, enroleToCourse);
+
+//@roaute PUT api/profile/enroll/:courseId/chapter/:chapterId
+//@desc   complete a chapter
+router.put(
+	"/enroll/:courseId/chapter/:chapterId",
+	auth,
+	validateChapterComplete,
+	completeChapter
+);
+
+//@roaute PUT api/profile/enroll/:courseId/chapter/:chapterId
+//@desc  Save quiz Scores
+//@access privat
+router.put(
+	"/enroll/:courseId/chapter/:chapterId/complete-quiz",
+	auth,
+	[check(QUIZ_SCORE, QUIZ_SCORE_REQUIRED).not().isEmpty()],
+	validateQuziScore,
+	completeQuiz
+);
 export default router;

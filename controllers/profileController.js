@@ -1,7 +1,10 @@
 import Profile from "../models/profileSchema.js";
+import Course from "../models/coursesSchema.js";
 import CustomStatusCodeError from "../utils/customError.js";
 import {
 	ABOUT_SAVED,
+	CHAPTER_COMPLETED,
+	COURSE_NOT_FOUND,
 	EDUCATION_NOT_FOUND,
 	EXPERIENCE_NOT_FOUND,
 	GITHUBUSERNAME_SAVED,
@@ -43,6 +46,147 @@ const createProfile = async (req, res) => {
 		const profile = new Profile(profileFields);
 		await profile.save();
 		return res.status(200).json({ msg: PROFILE_CREATED });
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const enroleToCourse = async (req, res) => {
+	try {
+		const courseId = req.params.courseId;
+		const userId = req.user.id;
+		const course = await Course.findById(courseId);
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+			"isAdmin",
+		]);
+		const enrollFields = {
+			courseId: course._id,
+			quizScores: [],
+			numOfChapters: course.chapters.length,
+			completedChapters: [],
+		};
+
+		profile.enroledCourses.push(enrollFields);
+		profile.save();
+		return res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const completeChapter = async (req, res) => {
+	try {
+		const courseId = req.params.courseId;
+		const userId = req.user.id;
+		const chapterId = req.params.chapterId;
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+			"isAdmin",
+		]);
+		let searchedCourseIndex = -1;
+		for (let i = 0; i < profile.enroledCourses.length; i++) {
+			if (profile.enroledCourses[i].courseId.toString() === courseId) {
+				searchedCourseIndex = i;
+			}
+		}
+		if (searchedCourseIndex === -1) {
+			throw new CustomStatusCodeError(COURSE_NOT_FOUND, 404);
+		}
+		let foundChapter = false;
+		for (
+			let i = 0;
+			i < profile.enroledCourses[searchedCourseIndex].completedChapters.length;
+			i++
+		) {
+			if (
+				profile.enroledCourses[searchedCourseIndex].completedChapters[
+					i
+				]._id.toString() === chapterId
+			) {
+				foundChapter = true;
+				break;
+			}
+		}
+
+		if (foundChapter) {
+			throw new CustomStatusCodeError(CHAPTER_COMPLETED, 404);
+		}
+		profile.enroledCourses[searchedCourseIndex].completedChapters.push(
+			chapterId
+		);
+		profile.save();
+		return res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+const completeQuiz = async (req, res) => {
+	try {
+		const courseId = req.params.courseId;
+		const userId = req.user.id;
+		const chapterId = req.params.chapterId;
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+			"isAdmin",
+		]);
+		let searchedCourseIndex = -1;
+		for (let i = 0; i < profile.enroledCourses.length; i++) {
+			if (profile.enroledCourses[i].courseId.toString() === courseId) {
+				searchedCourseIndex = i;
+			}
+		}
+		if (searchedCourseIndex === -1) {
+			throw new CustomStatusCodeError(COURSE_NOT_FOUND, 404);
+		}
+
+		let quizScoreFound = -1;
+		for (
+			let i = 0;
+			i < profile.enroledCourses[searchedCourseIndex].quizScores.length;
+			i++
+		) {
+			if (
+				profile.enroledCourses[searchedCourseIndex].quizScores[
+					i
+				].chapterId.toString() === chapterId
+			) {
+				quizScoreFound = i;
+				break;
+			}
+		}
+		const newScore = {
+			chapterId: chapterId,
+			quizScore: req.body.quizScore,
+		};
+
+		if (quizScoreFound === -1) {
+			profile.enroledCourses[searchedCourseIndex].quizScores.unshift(newScore);
+		} else {
+			profile.enroledCourses[searchedCourseIndex].quizScores[quizScoreFound] =
+				newScore;
+		}
+
+		await profile.save();
+		return res.status(200).json(profile);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });
@@ -360,4 +504,7 @@ export {
 	addEducation,
 	editEducation,
 	deleteEducation,
+	enroleToCourse,
+	completeChapter,
+	completeQuiz,
 };

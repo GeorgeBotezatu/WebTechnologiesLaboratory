@@ -1,4 +1,19 @@
-import { IUserState, IProfileCard } from "./profileInterfaces";
+import {
+	IUserState,
+	IProfileCard,
+	ICodeSaves,
+	ICodeSavesArr,
+	IEducation,
+	IEducationArr,
+	IExperience,
+	IExperienceArr,
+	ICompletedChapter,
+	ICompletedChapterArr,
+	IEnrolledCourses,
+	IEnrolledCoursesArr,
+	IQuizScore,
+	IQuizScoreArr,
+} from "./profileInterfaces";
 import { IEditableInput } from "./EditableTextInterface";
 import {
 	ICoursesListItem,
@@ -23,4 +38,16 @@ export type {
 	ICourseChapterQuiz,
 	ICourseChapterQuizArr,
 	IQuizAnswer,
+	ICodeSaves,
+	ICodeSavesArr,
+	ICompletedChapter,
+	ICompletedChapterArr,
+	IEducation,
+	IEducationArr,
+	IEnrolledCourses,
+	IEnrolledCoursesArr,
+	IExperience,
+	IExperienceArr,
+	IQuizScore,
+	IQuizScoreArr,
 };

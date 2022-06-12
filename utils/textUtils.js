@@ -52,3 +52,6 @@ export const NEW_ORDER_INTEGER = "New order need to be a number!";
 export const CHAPTER_EXCEDEED =
 	"New order number is to grater then chapters number!";
 export const SAME_ORDER = "Old order can`t be the same as new order";
+export const ALREADY_ENROLED = "You are already enrolled";
+export const CHAPTER_COMPLETED = "Chapter already completed!";
+export const QUIZ_SCORE_REQUIRED = "Quiz score is required!";

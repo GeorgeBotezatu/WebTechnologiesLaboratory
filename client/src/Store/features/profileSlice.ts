@@ -143,6 +143,39 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		profileCourseEnroleInit: (state) => {
+			state.loading = true;
+		},
+		profileCourseEnroleSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileCourseEnroleFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
+		profileChapterCompletionInit: (state) => {
+			state.loading = true;
+		},
+		profileChapterCompletionSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileChapterCompletionFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
+		profileSaveQuizScoreInit: (state) => {
+			state.loading = true;
+		},
+		profileSaveQuizScoreSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		profileSaveQuizScoreFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -178,5 +211,14 @@ export const {
 	profileUpdateCodeSavesInit,
 	profileUpdateCodeSavesSuccess,
 	profileUpdateCodeSavesFail,
+	profileCourseEnroleFail,
+	profileCourseEnroleInit,
+	profileCourseEnroleSuccess,
+	profileChapterCompletionInit,
+	profileChapterCompletionSuccess,
+	profileChapterCompletionFail,
+	profileSaveQuizScoreInit,
+	profileSaveQuizScoreSuccess,
+	profileSaveQuizScoreFail,
 } = profileSlice.actions;
 export default profileSlice.reducer;
