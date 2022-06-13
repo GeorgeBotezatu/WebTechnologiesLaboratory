@@ -21,3 +21,4 @@ export const ANSWER3 = "answer3";
 export const ANSWER4 = "answer4";
 export const NEW_ORDER = "newOrder";
 export const QUIZ = "quiz";
+export const QUIZ_SCORE = "quizScore";

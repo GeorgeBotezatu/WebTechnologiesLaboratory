@@ -33,7 +33,7 @@ const EditAboutForm = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!state?.buttonPressed || !state?.about || !state) {
+		if (!state?.buttonPressed || !state) {
 			navigate("/profile");
 		}
 	}, [state, navigate]);

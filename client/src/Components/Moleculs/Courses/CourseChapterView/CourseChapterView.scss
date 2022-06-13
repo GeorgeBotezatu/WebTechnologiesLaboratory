@@ -36,26 +36,32 @@
 			text-align: center;
 			padding: 1.5rem;
 		}
-		&--go-to {
-			align-self: flex-end;
-			margin: 2rem;
-			width: 20rem;
-			font-size: 2rem;
-			text-align: center;
-			background: transparent;
-			color: rgba(colors.$white, 0.7);
-			background: rgba(colors.$white, 0.05);
-			text-decoration: none;
-			padding: 1.5rem 1.8rem;
-			border-radius: 10px;
-			transition: all 0.2s;
+		&__quiz-console {
+			display: flex;
+			justify-content: flex-end;
+			&--go-to {
+				margin: 2rem;
+				width: 17rem;
+				font-size: 1.6rem;
+				text-align: center;
+				background: transparent;
+				color: rgba(colors.$white, 0.7);
+				background: rgba(colors.$white, 0.05);
+				text-decoration: none;
+				padding: 1.5rem 1.8rem;
+				border-radius: 10px;
+				transition: all 0.2s;
 
-			@include border-gradient(colors.$mainGreen, colors.$profileShadowColor);
+				@include border-gradient(colors.$mainGreen, colors.$profileShadowColor);
 
-			&:hover {
-				@include border-gradient(colors.$profileShadowColor, colors.$darkPink);
-				color: white;
-				background: rgba(colors.$darkPink, 0.05);
+				&:hover {
+					@include border-gradient(
+						colors.$profileShadowColor,
+						colors.$darkPink
+					);
+					color: white;
+					background: rgba(colors.$darkPink, 0.05);
+				}
 			}
 		}
 		&__direction-buttons {

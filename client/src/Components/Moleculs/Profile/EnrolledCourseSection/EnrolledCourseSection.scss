@@ -1,0 +1,52 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-enrolled-courses-section {
+	position: relative;
+	margin-top: 5rem;
+
+	&__title-container {
+		&--title {
+			font-size: 4rem;
+			font-family: "Permanent Marker";
+		}
+	}
+	&__container {
+		position: relative;
+		height: auto;
+		background: colors.$profileCardsGray;
+		border-radius: 10px;
+		border: 2px solid colors.$profileHalfWhiteTransparent;
+		display: flex;
+		flex-direction: column;
+		font-size: 2.1rem;
+		box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+		padding: 2rem 4rem;
+		gap: 1rem;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-enrolled-courses-section {
+		&__title-container {
+			&--title {
+				font-size: 3rem;
+			}
+		}
+		&__container {
+			padding: 1rem 2rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-enrolled-courses-section {
+		&__title-container {
+			&--title {
+				text-align: center;
+				margin-bottom: 6rem;
+			}
+		}
+	}
+}

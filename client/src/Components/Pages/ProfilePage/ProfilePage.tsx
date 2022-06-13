@@ -9,6 +9,8 @@ import ProfileSideMenu from "../../Moleculs/Profile/ProfileSideMenu/ProfileSideM
 import ProfileEducationCard from "../../Moleculs/Profile/ProfileEducationCard/ProfileEducationCard";
 import SocialCard from "../../Moleculs/Profile/SocialCard/SocialCard";
 import CodeCard from "../../Moleculs/Profile/CodeCard/CodeCard";
+import EnrolledCourseSection from "../../Moleculs/Profile/EnrolledCourseSection/EnrolledCourseSection";
+import BadgesSection from "../../Moleculs/Profile/BadgesSection/BadgesSection";
 
 const ProfilePage: React.FC = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
@@ -42,6 +44,11 @@ const ProfilePage: React.FC = () => {
 					codeSaves={
 						userProfile.codeSaves && userProfile.codeSaves[0] ? true : false
 					}
+					courses={
+						userProfile?.enroledCourses && userProfile.enroledCourses[0]
+							? true
+							: false
+					}
 				/>
 			</div>
 			<div className={contentClass}>
@@ -50,10 +57,11 @@ const ProfilePage: React.FC = () => {
 					userCard={userCard}
 					profileDate={profileDate}
 				/>
-
+				<BadgesSection />
 				<ProfileAboutCard about={userProfile?.about} />
 				<ProfileExperienceCard />
 				<ProfileEducationCard />
+				<EnrolledCourseSection />
 				<CodeCard />
 				<SocialCard socialLinks={userProfile?.social} />
 			</div>

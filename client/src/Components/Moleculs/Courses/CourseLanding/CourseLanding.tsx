@@ -29,6 +29,12 @@ const CourseLanding: React.FC<ICourseLanding> = ({
 					just cheat yourself.
 				</p>
 				<p>
+					<span>*</span> A chapter to be marked as completed you must need go
+					through the lesson and press "Next Chapter" button, any other method
+					to go to the next chapter will not complete the chapter and after you
+					finish the course you will not be able to get your badge.
+				</p>
+				<p>
 					<span>*</span> Do not hesitatein at any moment to go and test your
 					accumulated knoledge to the console <Link to="/console">HERE </Link>(
 					is not needed to save this link, it will be available on each chpater

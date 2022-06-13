@@ -1,0 +1,40 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-badges-section {
+	margin-top: 5rem;
+	position: relative;
+	&__title-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		&--title {
+			font-size: 4rem;
+			font-family: "Permanent Marker";
+		}
+		&--progress {
+			font-size: 2rem;
+			// font-family: "Permanent Marker";
+		}
+	}
+
+	&__badge-container {
+		position: relative;
+		height: auto;
+		background: colors.$borderColor;
+		border-radius: 10px;
+		border: 2px solid colors.$profileHalfWhiteTransparent;
+		display: flex;
+		font-size: 2.1rem;
+		box-shadow: 0 3px 8px -2px colors.$profileShadowColor;
+		padding: 2rem 4rem;
+		align-items: center;
+		justify-content: center;
+		gap: 5rem;
+		flex-wrap: wrap;
+		div {
+			width: 12rem;
+		}
+	}
+}

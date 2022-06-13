@@ -1,5 +1,6 @@
 import CustomStatusCodeError from "../utils/customError.js";
 import {
+	ALREADY_ENROLED,
 	END_DATE_IN_PAST,
 	FROM_DATE_FUTURE,
 	SERVER_ERROR,
@@ -10,6 +11,8 @@ import {
 	verifyIfProfileDoesNotExist,
 	verifyInputErrors,
 } from "../utils/utilFunctions.js";
+import Course from "../models/coursesSchema.js";
+import Profile from "../models/profileSchema.js";
 
 //|----------------|
 //|---Middleware---|
@@ -68,6 +71,75 @@ const validateSocialSection = async (req, res, next) => {
 			instagram: "",
 		};
 		matchInputs(data, validInputs);
+		next();
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+const validateEnrollment = async (req, res, next) => {
+	try {
+		const id = req.user.id;
+
+		await verifyIfProfileDoesNotExist(id);
+		const courseId = req.params.courseId;
+		const course = await Course.findById(courseId);
+
+		if (!course) {
+			throw new CustomStatusCodeError(COURSE_NOT_FOUND, 404);
+		}
+		const profile = await Profile.findOne({ user: id });
+
+		if (
+			profile.enroledCourses &&
+			profile.enroledCourses.length > 0 &&
+			profile.enroledCourses.courseId === course._id
+		) {
+			throw new CustomStatusCodeError(ALREADY_ENROLED, 404);
+		}
+
+		next();
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const validateChapterComplete = async (req, res, next) => {
+	try {
+		const id = req.user.id;
+
+		await verifyIfProfileDoesNotExist(id);
+
+		next();
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const validateQuziScore = async (req, res, next) => {
+	try {
+		const errors = validationResult(req);
+		verifyInputErrors(errors);
+		const data = req.body;
+		const validInputs = {
+			quizScore: "",
+		};
+		matchInputs(data, validInputs);
+		const id = req.user.id;
+
+		await verifyIfProfileDoesNotExist(id);
+
 		next();
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
@@ -157,4 +229,7 @@ export {
 	validateSocialSection,
 	validateExperience,
 	validateEducation,
+	validateEnrollment,
+	validateChapterComplete,
+	validateQuziScore,
 };

@@ -99,6 +99,40 @@ const profileSchema = new mongoose.Schema({
 			},
 		},
 	],
+	enroledCourses: [
+		{
+			courseId: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "course",
+			},
+			quizScores: [
+				{
+					chapterId: {
+						type: mongoose.Schema.Types.ObjectId,
+						ref: "course",
+					},
+					quizScore: String,
+				},
+			],
+			numOfChapters: Number,
+			completedChapters: [
+				{
+					chapterId: {
+						type: mongoose.Schema.Types.ObjectId,
+						ref: "course",
+					},
+				},
+			],
+			finished: {
+				type: Boolean,
+				default: false,
+			},
+			enroledDate: {
+				type: Date,
+				default: Date.now,
+			},
+		},
+	],
 	social: {
 		youtube: { type: String },
 		twitter: { type: String },

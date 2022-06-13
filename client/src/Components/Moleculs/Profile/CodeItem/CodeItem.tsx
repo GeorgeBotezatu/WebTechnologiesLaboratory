@@ -70,6 +70,8 @@ const CodeItem: React.FC<ICodeSave> = ({ name, id, html, css, js }) => {
 			</div>
 		</div>
 	);
+
+	//reuest admin pentru redare quiz
 };
 
 export default CodeItem;

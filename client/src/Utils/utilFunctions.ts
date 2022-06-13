@@ -35,8 +35,8 @@ export const existToken = () => {
 	else return false;
 };
 export const deleteCookie = () => {
-	cookies.remove(TOKEN);
-	cookies.remove(IS_ADMIN);
+	cookies.remove(TOKEN, { path: "/" });
+	cookies.remove(IS_ADMIN, { path: "/" });
 };
 
 export const calcultateDays = (profileDate: Date | null) => {

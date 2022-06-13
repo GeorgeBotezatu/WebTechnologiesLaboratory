@@ -6,6 +6,7 @@ import {
 	ADD_EXPERIENCE,
 	CONSOLE_PATH,
 	EDIT_SOCIAL,
+	LEARNING_PATH,
 	MODIFY_ABOUT_PATH,
 } from "../../../../Routes/routesPath";
 
@@ -15,6 +16,7 @@ interface ISideMenu {
 	education: boolean;
 	social: boolean;
 	codeSaves: boolean;
+	courses: boolean;
 }
 
 const ProfileSideMenu: React.FC<ISideMenu> = ({
@@ -23,6 +25,7 @@ const ProfileSideMenu: React.FC<ISideMenu> = ({
 	education,
 	social,
 	codeSaves,
+	courses,
 }) => {
 	const componentClass = "wtl-side-menu-container";
 	const titleClass = `${componentClass}--title`;
@@ -57,6 +60,11 @@ const ProfileSideMenu: React.FC<ISideMenu> = ({
 					<AnimatedLinks link="#social" text="Social" />
 				) : (
 					<AnimatedLinks link={EDIT_SOCIAL} text="Add Social" />
+				)}
+				{courses ? (
+					<AnimatedLinks link="#courses" text="My Courses" />
+				) : (
+					<AnimatedLinks link={LEARNING_PATH} text="Enroll Course" />
 				)}
 
 				<AnimatedLinks link="#top" text="Go on top" />

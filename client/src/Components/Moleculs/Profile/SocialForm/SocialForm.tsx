@@ -29,9 +29,9 @@ const SocialForm: React.FC = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	useEffect(() => {
-		if (!state?.buttonPressed || !state?.socialLinks || !state) {
-			navigate("/profile");
-		}
+		// if (!state?.buttonPressed || !state?.socialLinks || !state) {
+		// 	navigate("/profile");
+		// }
 	}, [state, navigate]);
 	const initialValues: FormValues = {
 		youtube: state?.socialLinks?.youtube ? state?.socialLinks?.youtube : "",

@@ -4,6 +4,7 @@ import {
 	ICourseChapterQuizArr,
 	ICoursesList,
 	ICoursesListItem,
+	IUserState,
 } from "../Interfaces";
 import { getToken } from "../Utils/utilFunctions";
 import { COURSES_URL, GET_COURSES_LIST } from "./apiPaths";
@@ -18,6 +19,32 @@ export const getCoursesList = (token: string) => {
 				},
 			};
 			const res = await axiosInstance.get(GET_COURSES_LIST, requestHeader);
+			const { data }: { data: ICoursesList } = res;
+			resolve(data);
+		} catch (error: any) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const createCourse = (formData: ICoursesListItem) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.post(
+				COURSES_URL + "/create",
+				{
+					courseTitle: formData.courseTitle,
+					courseDescription: formData.courseDescription,
+				},
+				requestHeader
+			);
 			const { data }: { data: ICoursesList } = res;
 			resolve(data);
 		} catch (error: any) {
@@ -232,6 +259,29 @@ export const changeChapterOrder = (
 			const { data }: { data: ICourse } = res;
 			resolve(data);
 		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+export const finishCourse = (_id: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.put(
+				`/profile/enroll/${_id}/finish`,
+				{},
+				requestHeader
+			);
+			const { data }: { data: IUserState } = res;
+			resolve(data);
+		} catch (error: any) {
+			console.log(error);
 			reject(error);
 		}
 	});

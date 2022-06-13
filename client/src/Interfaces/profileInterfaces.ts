@@ -52,11 +52,32 @@ export interface IUserState {
 		linkedin?: string;
 		instagram?: string;
 	};
+	enroledCourses?: IEnrolledCoursesArr;
 	experience?: IExperienceArr;
 	education?: IEducationArr;
 	githubusername?: string;
 	date: Date | null;
 }
+
+export interface IEnrolledCourses {
+	courseId?: string;
+	quizScores?: IQuizScoreArr;
+	numOfChapters?: number;
+	completedChapters?: ICompletedChapterArr;
+	finished?: boolean;
+	enroledDate?: Date;
+}
+
+export interface IEnrolledCoursesArr extends Array<IEnrolledCourses> {}
+export interface IQuizScore {
+	chapterId?: string;
+	quizScore?: string;
+}
+export interface IQuizScoreArr extends Array<IQuizScore> {}
+export interface ICompletedChapter {
+	_id?: string;
+}
+export interface ICompletedChapterArr extends Array<ICompletedChapter> {}
 export interface IProfileCard {
 	github: string | null;
 	userCard: {
