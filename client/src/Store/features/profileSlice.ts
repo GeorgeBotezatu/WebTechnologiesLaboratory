@@ -13,6 +13,7 @@ const initialState: initialStateInterface = {
 	userProfile: {
 		user: { _id: "", name: "", email: "", avatar: "", isAdmin: false },
 		date: null,
+		enroledCourses: [],
 	},
 };
 

@@ -1,0 +1,25 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-course-item-container {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid colors.$profileCardsGray;
+	margin: 0;
+	padding: 0.2rem 2rem;
+	transition: all 0.5s ease;
+	flex-wrap: wrap;
+
+	h2 {
+		font-size: 2.5rem;
+	}
+	p {
+		font-size: 1.8rem;
+	}
+	&:hover {
+		border: 1px solid colors.$white;
+	}
+}

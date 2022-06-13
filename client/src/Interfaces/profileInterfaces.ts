@@ -62,7 +62,7 @@ export interface IUserState {
 export interface IEnrolledCourses {
 	courseId?: string;
 	quizScores?: IQuizScoreArr;
-	numberOfChapters?: number;
+	numOfChapters?: number;
 	completedChapters?: ICompletedChapterArr;
 	finished?: boolean;
 	enroledDate?: Date;
