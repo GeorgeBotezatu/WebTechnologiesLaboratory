@@ -55,3 +55,5 @@ export const SAME_ORDER = "Old order can`t be the same as new order";
 export const ALREADY_ENROLED = "You are already enrolled";
 export const CHAPTER_COMPLETED = "Chapter already completed!";
 export const QUIZ_SCORE_REQUIRED = "Quiz score is required!";
+export const NOT_ENROLLED = "You are not enrolled!";
+export const NEED_TO_COMPLETE_CHAPTERS = "All chapters need to be completed!";

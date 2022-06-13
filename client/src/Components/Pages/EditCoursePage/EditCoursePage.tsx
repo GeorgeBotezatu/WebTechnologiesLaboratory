@@ -4,11 +4,12 @@ import EditCourseForm from "../../Moleculs/Courses/EditCourseForm/EditCourseForm
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Store/Store";
+import { useLocation } from "react-router";
 
 const EditCoursePage: React.FC = () => {
 	const { id } = useParams();
 	const { coursesList } = useSelector((state: RootState) => state.coursesList);
-
+	const { state } = useLocation();
 	const componentClass = "wtl-edit-course-page";
 	const imageClass = `${componentClass}--image`;
 	const titleClass = `${componentClass}--title`;
@@ -30,6 +31,10 @@ const EditCoursePage: React.FC = () => {
 					return "";
 				}
 			})}
+
+			{state && state.newCourse && (
+				<EditCourseForm courseTitle="" courseDescription="" _id="" />
+			)}
 		</div>
 	);
 };

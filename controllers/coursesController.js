@@ -54,7 +54,7 @@ const createCourse = async (req, res) => {
 		};
 		const course = new Course(courseFields);
 		await course.save();
-		return res.status(200).json({ msg: COURSE_CREATED });
+		return res.status(200).json(course);
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
 			return res.status(error.statusCode).json({ msg: error.message });

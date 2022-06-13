@@ -6,6 +6,9 @@ import MDEditor from "@uiw/react-md-editor";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import {
+	finishCourseFail,
+	finishCourseInit,
+	finishCourseSuccess,
 	profileChapterCompletionFail,
 	profileChapterCompletionInit,
 	profileChapterCompletionSuccess,
@@ -13,9 +16,11 @@ import {
 import {
 	ALREADY_COMPLETED,
 	CAN_NOT_COMPLETE_CHAPTER,
+	CAN_NOT_FINISH_COURSE,
 	YOU_ARE_NOT_ENROLED,
 } from "../../../../Utils/constants";
 import { completeCourseChapter } from "../../../../API/profileAPI";
+import { finishCourse } from "../../../../API/coursesAPI";
 
 const CourseChapterView: React.FC = () => {
 	const { course } = useSelector((state: RootState) => state.course);
@@ -84,6 +89,24 @@ const CourseChapterView: React.FC = () => {
 		}
 	};
 
+	const finishCoursehandler = async () => {
+		try {
+			dispatch(finishCourseInit());
+
+			let res;
+			if (courseId) {
+				res = await finishCourse(courseId);
+			}
+			if (!res) {
+				dispatch(finishCourseFail(CAN_NOT_FINISH_COURSE));
+			}
+			dispatch(finishCourseSuccess(res));
+		} catch (error: any) {
+			dispatch(finishCourseFail(error.message));
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className={componentClass}>
 			{course &&
@@ -148,6 +171,17 @@ const CourseChapterView: React.FC = () => {
 										</>
 									) : (
 										<></>
+									)}
+									{course.chapters && index === course.chapters?.length - 1 && (
+										<Link
+											to={"/profile"}
+											onClick={() => {
+												completeChapterHandler();
+												finishCoursehandler();
+											}}
+										>
+											Finish Course
+										</Link>
 									)}
 								</div>
 							</div>

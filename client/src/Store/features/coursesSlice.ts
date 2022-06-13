@@ -58,6 +58,19 @@ export const coursesSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		addNewCourseInit: (state) => {
+			state.loading = true;
+		},
+		addNewCourseSuccess: (state, action) => {
+			state.loading = false;
+			let newList = state.coursesList;
+			newList?.push(action.payload);
+			state.coursesList = newList;
+		},
+		addNewCourseFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 		coursesListDeleteInit: (state) => {
 			state.loading = true;
 		},
@@ -83,6 +96,9 @@ export const {
 	coursesListDeleteInit,
 	coursesListDeleteSuccess,
 	coursesListDeleteFail,
+	addNewCourseFail,
+	addNewCourseInit,
+	addNewCourseSuccess,
 } = coursesSlice.actions;
 
 export default coursesSlice.reducer;

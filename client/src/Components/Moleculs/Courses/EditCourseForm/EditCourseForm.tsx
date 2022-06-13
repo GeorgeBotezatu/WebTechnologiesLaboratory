@@ -14,8 +14,11 @@ import TextInput from "../../../Atoms/TextInput/TextInput";
 import TextareaInput from "../../../Atoms/TextareaInput/TextareaInput";
 import { LANDING_PATH } from "../../../../Routes/routesPath";
 import { Link } from "react-router-dom";
-import { updateCourse } from "../../../../API/coursesAPI";
+import { createCourse, updateCourse } from "../../../../API/coursesAPI";
 import {
+	addNewCourseFail,
+	addNewCourseInit,
+	addNewCourseSuccess,
 	editCourseItemFail,
 	editCourseItemInit,
 	editCourseItemSuccess,
@@ -35,8 +38,8 @@ const EditCourseForm: React.FC<ICoursesListItem> = ({
 	const dispatch = useDispatch();
 
 	const initialValues: FormValues = {
-		courseTitle: courseTitle,
-		courseDescription: courseDescription,
+		courseTitle: courseTitle ? courseTitle : "",
+		courseDescription: courseDescription ? courseDescription : "",
 	};
 
 	const validate = Yup.object({
@@ -44,7 +47,7 @@ const EditCourseForm: React.FC<ICoursesListItem> = ({
 		courseDescription: Yup.string().required(YUP_COURSE_DESCRIPTION_REQUIRED),
 	});
 
-	const submitHandler = async (values: FormValues) => {
+	const editSubmitHandler = async (values: FormValues) => {
 		dispatch(editCourseItemInit());
 		try {
 			const data = {
@@ -65,6 +68,26 @@ const EditCourseForm: React.FC<ICoursesListItem> = ({
 		}
 	};
 
+	const createSubmitHandler = async (values: FormValues) => {
+		dispatch(addNewCourseInit());
+		try {
+			const data = {
+				courseTitle: values.courseTitle,
+				courseDescription: values.courseDescription,
+			};
+			const res = await createCourse(data);
+			if (!res) {
+				dispatch(addNewCourseFail(CAN_NOT_UPDATE_COURSE));
+			} else {
+				dispatch(addNewCourseSuccess(res));
+				navigate("/learning");
+			}
+		} catch (error: any) {
+			console.log(error);
+			dispatch(addNewCourseFail(error.message));
+		}
+	};
+
 	const componentClass = "wtl-edit-course-form";
 	const formContainerClass = `${componentClass}__form-container`;
 	const inputContainerClass = `${formContainerClass}__input-container`;
@@ -77,7 +100,11 @@ const EditCourseForm: React.FC<ICoursesListItem> = ({
 			initialValues={initialValues}
 			validationSchema={validate}
 			onSubmit={(values) => {
-				submitHandler(values);
+				if (_id) {
+					editSubmitHandler(values);
+				} else {
+					createSubmitHandler(values);
+				}
 			}}
 		>
 			{(formik) => (

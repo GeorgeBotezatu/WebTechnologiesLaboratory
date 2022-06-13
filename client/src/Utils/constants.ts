@@ -80,3 +80,4 @@ export const YOU_ARE_NOT_ENROLED = "You are not enrolled to this course!";
 export const ALREADY_COMPLETED = "Chapter already completed!";
 export const CAN_NOT_COMPLETE_CHAPTER = "Chapter can not be completed!";
 export const CAN_NOT_SAVE_QUIZ = "Quiz score can not be saved!";
+export const CAN_NOT_FINISH_COURSE = "Can't finish course!";

@@ -54,10 +54,7 @@ const CourseItem: React.FC<ICoursesListItem> = ({
 	return (
 		<div className={componentClass}>
 			<h2 className={courseTitleClass}>{courseTitle}</h2>
-			<p className={courseDescriptionClass}>
-				{courseDescription}This is an introductive course about HTML here you
-				will find all basic stuff needed to start your journeyThis is an i
-			</p>
+			<p className={courseDescriptionClass}>{courseDescription}</p>
 			{enrolled ? (
 				<Link to={`course/${_id}`} className={courseUserButtonClass}>
 					Go to Course

@@ -8,6 +8,7 @@ import {
 	addGithubName,
 	addSocialSection,
 	completeChapter,
+	completeCourse,
 	completeQuiz,
 	createProfile,
 	deleteEducation,
@@ -189,4 +190,9 @@ router.put(
 	validateQuziScore,
 	completeQuiz
 );
+
+//@roaute PUT api/profile/enroll/:courseId/finish
+//@desc  Finish quiz
+//@access privat
+router.put("/enroll/:courseId/finish", auth, completeCourse);
 export default router;

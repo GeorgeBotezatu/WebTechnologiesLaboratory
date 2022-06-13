@@ -8,6 +8,8 @@ import {
 	EDUCATION_NOT_FOUND,
 	EXPERIENCE_NOT_FOUND,
 	GITHUBUSERNAME_SAVED,
+	NEED_TO_COMPLETE_CHAPTERS,
+	NOT_ENROLLED,
 	PROFILE_CREATED,
 	PROFILE_EXIST,
 	PROFILE_NOT_FOUND,
@@ -476,6 +478,46 @@ const deleteEducation = async (req, res) => {
 	}
 };
 
+const completeCourse = async (req, res) => {
+	try {
+		const userId = req.user.id;
+		const courseId = req.params.courseId;
+		const profile = await Profile.findOne({ user: userId }).populate("user", [
+			"name",
+			"avatar",
+			"email",
+			"isAdmin",
+		]);
+
+		const searchedCourse = profile.enroledCourses.filter(
+			(item) => item.courseId.toString() === courseId
+		);
+		if (!searchedCourse[0]) {
+			throw new CustomStatusCodeError(NOT_ENROLLED, 404);
+		}
+
+		if (
+			searchedCourse[0].numOfChapters !==
+			searchedCourse[0].completedChapters.length
+		) {
+			throw new CustomStatusCodeError(NEED_TO_COMPLETE_CHAPTERS, 404);
+		}
+		profile.enroledCourses.map((item) => {
+			if (item.courseId.toString() === courseId) {
+				item.finished = true;
+			}
+		});
+		profile.save();
+		res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
 //|----------------|
 //|---Functions----|
 //|----------------|
@@ -507,4 +549,5 @@ export {
 	enroleToCourse,
 	completeChapter,
 	completeQuiz,
+	completeCourse,
 };

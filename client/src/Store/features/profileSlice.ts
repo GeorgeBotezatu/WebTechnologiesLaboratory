@@ -176,6 +176,17 @@ export const profileSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		finishCourseInit: (state) => {
+			state.loading = true;
+		},
+		finishCourseSuccess: (state, action) => {
+			state.loading = false;
+			state.userProfile = action.payload;
+		},
+		finishCourseFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -220,5 +231,8 @@ export const {
 	profileSaveQuizScoreInit,
 	profileSaveQuizScoreSuccess,
 	profileSaveQuizScoreFail,
+	finishCourseFail,
+	finishCourseInit,
+	finishCourseSuccess,
 } = profileSlice.actions;
 export default profileSlice.reducer;

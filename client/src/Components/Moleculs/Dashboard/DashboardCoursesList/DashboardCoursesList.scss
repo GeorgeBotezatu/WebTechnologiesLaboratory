@@ -9,6 +9,27 @@
 	align-items: center;
 	background: colors.$darkPinkTint;
 	box-shadow: colors.$formsBoxShadow;
+
+	&--link {
+		font-size: 2rem;
+		border-radius: 50px;
+		padding: 0rem 1rem;
+		background: linear-gradient(
+			to bottom,
+			colors.$profileShadowColor 0%,
+			colors.$profileShadowColor 100%
+		);
+		background-position: 0 100%;
+		background-repeat: repeat-x;
+		background-size: 4px 6px;
+		color: colors.$white;
+		transition: background-size 0.4s;
+	}
+
+	&--link:hover {
+		background-size: 4px 55px;
+	}
+
 	&__course-item {
 		width: 100%;
 		display: flex;
