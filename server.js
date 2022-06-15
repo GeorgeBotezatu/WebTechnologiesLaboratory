@@ -8,6 +8,7 @@ import userRoutes from "./routes/userRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 import consoleRoutes from "./routes/consoleRoutes.js";
 import coursesRoutes from "./routes/coursesRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 
 //app setUp
 dotenv.config();
@@ -30,6 +31,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/console", consoleRoutes);
 app.use("/api/courses", coursesRoutes);
+app.use("/api/posts", postRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server started on port ${PORT}...`.yellow.bold));

@@ -31,7 +31,6 @@ const auth = (req, res, next) => {
 const admin = async (req, res, next) => {
 	try {
 		const loggedUser = await User.findById(res.locals.user.id);
-
 		if (loggedUser.isAdmin === true) {
 			next();
 		} else {
