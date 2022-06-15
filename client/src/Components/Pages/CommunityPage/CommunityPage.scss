@@ -1,0 +1,28 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-community-page {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+	display: flex;
+	width: 65%;
+	margin: 0 auto;
+	gap: 2rem;
+	margin-bottom: 5rem;
+	&__posts-container {
+		width: 75%;
+		display: flex;
+		flex-direction: column;
+		gap: 5rem;
+		div {
+			hr {
+				width: 100%;
+				margin: 2rem 0;
+			}
+		}
+	}
+	&--menu-container {
+		width: 25%;
+	}
+}

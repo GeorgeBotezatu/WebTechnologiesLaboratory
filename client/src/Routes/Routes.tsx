@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminRoute from "../Components/Atoms/AdminRoute/AdminRoute";
 import PrivateRoute from "../Components/Atoms/PrivateRoute/PrivateRoute";
 import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
+import CommunityPage from "../Components/Pages/CommunityPage/CommunityPage";
 import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
 import CoursePage from "../Components/Pages/CoursePage/CoursePage";
 import DashboardCreateChapter from "../Components/Pages/DashboardPages/DashboardCreateChapter/DashboardCreateChapter";
@@ -17,6 +18,7 @@ import EditSocialPage from "../Components/Pages/EditSocialPage/EditSocialPage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
 import LearningPathPage from "../Components/Pages/LearningPathPage/LearningPathPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";
+import PostPage from "../Components/Pages/PostPage/PostPage";
 import ProfilePage from "../Components/Pages/ProfilePage/ProfilePage";
 import RegisterPage from "../Components/Pages/RegisterPage/RegisterPage";
 
@@ -48,6 +50,8 @@ import {
 	DASHBOARD_LEARNING_PATH_CREATE_QUIZ,
 	COURSE_PAGE_CHAPTER_QUIZ,
 	NEW_COURSE_PATH,
+	COMMUNITY_PATH,
+	POST_PATH,
 } from "./routesPath";
 
 const PlatformRoutes = () => {
@@ -246,6 +250,22 @@ const PlatformRoutes = () => {
 									<AdminRoute>
 										<DashboardLanding />
 									</AdminRoute>
+								}
+							/>
+							<Route
+								path={COMMUNITY_PATH}
+								element={
+									<PrivateRoute>
+										<CommunityPage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={POST_PATH}
+								element={
+									<PrivateRoute>
+										<PostPage />
+									</PrivateRoute>
 								}
 							/>
 						</Routes>

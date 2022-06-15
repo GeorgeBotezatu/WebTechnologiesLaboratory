@@ -53,7 +53,6 @@ const getAllPosts = async (req, res) => {
 
 const getPostById = async (req, res) => {
 	try {
-		console.log(req.params.postId);
 		const post = await Post.findById(req.params.postId);
 		if (!post) {
 			throw new CustomStatusCodeError(POST_NOT_FOUND, 404);
@@ -109,13 +108,13 @@ const likePost = async (req, res) => {
 				.indexOf(req.user.id);
 			post.likes.splice(removeIndex, 1);
 			await post.save();
-			const posts = await Post.find();
-			res.status(200).json(posts);
+
+			res.status(200).json(post);
 		} else {
 			post.likes.unshift({ user: req.user.id });
 			await post.save();
-			const posts = await Post.find();
-			res.status(200).json(posts);
+
+			res.status(200).json(post);
 		}
 	} catch (error) {
 		if (error instanceof CustomStatusCodeError) {
@@ -167,8 +166,8 @@ const deleteComment = async (req, res) => {
 
 		if (comment.user.toString() === req.user.id || user.isAdmin === true) {
 			const removeIndex = post.comments
-				.map((comment) => comment.user.toString())
-				.indexOf(req.user.id);
+				.map((comment) => comment._id.toString())
+				.indexOf(req.params.commentId);
 			post.comments.splice(removeIndex, 1);
 
 			await post.save();

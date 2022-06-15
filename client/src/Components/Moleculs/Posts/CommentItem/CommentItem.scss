@@ -1,0 +1,53 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+.wtl-comment-item-container {
+	display: flex;
+	position: relative;
+	padding: 3rem 3rem 0 3rem;
+	justify-content: center;
+	min-height: 5rem;
+	gap: 1rem;
+	&--logo {
+		width: 10rem;
+		img {
+			border: 5px solid colors.$mainDashboardGreen;
+			border-radius: 50rem;
+			box-shadow: 1px 1px 10px 1px rgba(colors.$darkPink, 0.8),
+				1px 1px 10px 1px rgba(colors.$black, 0.8);
+		}
+		margin-bottom: 1rem;
+	}
+	&__content-container {
+		width: 80%;
+		display: flex;
+		flex-direction: column;
+		margin-top: 1rem;
+		&__name-and-date {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			&--name {
+				font-size: 1.6rem;
+				font-weight: 500;
+			}
+			&--date {
+				font-size: 1.2rem;
+			}
+		}
+		&--text {
+			font-size: 1.3rem;
+		}
+		&--delete-button {
+			align-self: flex-end;
+			font-size: 1.4rem;
+			border: none;
+			padding: 0.5rem 1rem;
+			border-radius: 5px;
+			cursor: pointer;
+			box-shadow: 1px 3px 8px 1px rgba(0, 0, 0, 0.75);
+			background: colors.$red;
+			color: colors.$white;
+		}
+	}
+}

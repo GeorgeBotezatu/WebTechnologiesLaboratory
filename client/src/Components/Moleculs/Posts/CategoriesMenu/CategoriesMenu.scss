@@ -1,0 +1,33 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-categories-menu-container {
+	display: flex;
+	flex-direction: column;
+	gap: 2.5rem;
+	position: fixed;
+	&--add {
+		border: none;
+		background: none;
+		padding: 0.5rem 2rem;
+		font-size: 1.8rem;
+		cursor: pointer;
+		background: colors.$mainDashboardGreen;
+		border-radius: 10px;
+		color: colors.$white;
+	}
+	&--title {
+		font-size: 3.5rem;
+		font-family: "Permanent Marker";
+	}
+	&--options {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-size: 1.8rem;
+	}
+	&--my-posts {
+		font-weight: bold;
+	}
+}
