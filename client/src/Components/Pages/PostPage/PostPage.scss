@@ -1,0 +1,47 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-post-page {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 5rem;
+	hr {
+		margin: 2rem 0;
+	}
+	&__comment-section {
+		margin: 1rem;
+
+		padding-left: 2rem;
+		padding-right: 2rem;
+		padding-top: 2rem;
+		width: 100%;
+		h1 {
+			font-size: 2.5rem;
+		}
+		&__form {
+			padding: 1rem 0;
+			display: flex;
+			gap: 1rem;
+			width: 100%;
+			font-size: 1.6rem;
+			input {
+				width: 80%;
+				border: 1px solid colors.$mainDashboardGreen;
+				padding: 1rem 1.5rem;
+				border-radius: 5px;
+			}
+			button {
+				background: colors.$mainGreen;
+				border: none;
+				border-radius: 5px;
+				padding: 0.5rem 1rem;
+				box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.75);
+				color: colors.$white;
+				cursor: pointer;
+			}
+		}
+	}
+}

@@ -1,0 +1,86 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+.wtl-add-post-container {
+	position: relative;
+	padding: 2rem;
+	&--form-description {
+		text-align: center;
+		width: 100%;
+		font-size: 3rem;
+		font-weight: 700;
+	}
+	&__form-container {
+		display: flex;
+		flex-direction: column;
+
+		width: 100%;
+		gap: 2rem;
+		padding: 0 1rem;
+		&--title-container {
+			div {
+				width: 100%;
+				input {
+					color: colors.$black;
+				}
+			}
+			p {
+				margin-top: 0.5rem;
+				font-size: 1.4rem;
+				font-weight: 200;
+				color: colors.$black;
+			}
+		}
+
+		&--description {
+			div {
+				width: 100%;
+				textarea {
+					color: colors.$black;
+				}
+			}
+			p {
+				margin-top: 0.5rem;
+				font-size: 1.4rem;
+				font-weight: 200;
+				color: colors.$black;
+			}
+		}
+
+		&--info {
+			// align-self: center;
+			font-size: 1.4rem;
+			span {
+				color: colors.$red;
+				font-size: 2rem;
+			}
+		}
+
+		&--submit {
+			align-self: center;
+			font-size: 3rem;
+			background: none;
+			border: none;
+			color: colors.$black;
+			font-family: "Permanent Marker";
+			transition: all 1s ease;
+			&:hover {
+				transform: translateX(1rem);
+				text-shadow: 7px 9px 3px #313131;
+			}
+		}
+		&--submit {
+			&::after {
+				content: "»";
+				opacity: 0;
+				transition: all 0.3s ease;
+				margin-left: 1rem;
+				font-size: 3rem;
+			}
+			&:hover::after {
+				opacity: 1;
+				right: 8%;
+			}
+		}
+	}
+}

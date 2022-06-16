@@ -8,6 +8,7 @@ import {
 	PROFILE_PATH,
 	REGISTER_PATH,
 	LEARNING_PATH,
+	COMMUNITY_PATH,
 } from "../../../../Routes/routesPath";
 import {
 	ABOUT,
@@ -60,7 +61,7 @@ const NavLinks: React.FC<navLinksPropsInterface> = ({ toggle, show }) => {
 				</Link>
 				<ul className={linksGroupClass}>
 					<li className={linkClass}>
-						<a href="/">{COMMUNITY}</a>
+						<Link to={COMMUNITY_PATH}>{COMMUNITY}</Link>
 					</li>
 					<li className={linkClass}>
 						<a href="/">{ABOUT}</a>

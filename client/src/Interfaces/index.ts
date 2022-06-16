@@ -26,6 +26,8 @@ import {
 	IQuizAnswer,
 } from "./coursesInterfaces";
 
+import { IPostsArr, IComment, ICommentsArr, IPost } from "./postsInterfaces";
+
 export type {
 	IUserState,
 	IEditableInput,
@@ -50,4 +52,8 @@ export type {
 	IExperienceArr,
 	IQuizScore,
 	IQuizScoreArr,
+	IComment,
+	ICommentsArr,
+	IPost,
+	IPostsArr,
 };

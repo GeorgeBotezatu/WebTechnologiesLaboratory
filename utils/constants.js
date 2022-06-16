@@ -22,3 +22,5 @@ export const ANSWER4 = "answer4";
 export const NEW_ORDER = "newOrder";
 export const QUIZ = "quiz";
 export const QUIZ_SCORE = "quizScore";
+export const TEXT = "text";
+export const CATEGORY = "category";

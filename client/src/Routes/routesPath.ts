@@ -43,3 +43,7 @@ export const COURSE_PAGE_CHAPTER =
 	"learning/course/:courseId/chapter/:chapterId";
 export const COURSE_PAGE_CHAPTER_QUIZ =
 	"learning/course/:courseId/chapter/:chapterId/:quiz";
+
+//Community path
+export const COMMUNITY_PATH = "/community";
+export const POST_PATH = "/community/post/:postId";

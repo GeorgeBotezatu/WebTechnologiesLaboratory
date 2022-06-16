@@ -3,12 +3,16 @@ import registerReducer from "./features/registerSlice";
 import profileReducer from "./features/profileSlice";
 import coursesReducer from "./features/coursesSlice";
 import courseReducer from "./features/courseSlice";
+import postsReducer from "./features/postsSlice";
+import postReducer from "./features/postSlice";
 export const store = configureStore({
 	reducer: {
 		auth: registerReducer,
 		userProfile: profileReducer,
 		coursesList: coursesReducer,
 		course: courseReducer,
+		postsSlice: postsReducer,
+		post: postReducer,
 	},
 });
 

@@ -11,6 +11,7 @@ import {
 import { RootState } from "./Store/Store";
 import {
 	CAN_NOT_LOAD_COURSES_LIST,
+	CAN_NOT_LOAD_POSTS_LIST,
 	COULD_NOT_LOAD_PROFILE,
 } from "./Utils/constants";
 import { getToken } from "./Utils/utilFunctions";
@@ -21,6 +22,12 @@ import {
 } from "./Store/features/coursesSlice";
 import { getCoursesList } from "./API/coursesAPI";
 import { loginSuccess } from "./Store/features/registerSlice";
+import {
+	postsLoadFail,
+	postsLoadInit,
+	postsLoadSuccess,
+} from "./Store/features/postsSlice";
+import { getPostsList } from "./API/postApi";
 
 function App() {
 	const dispatch = useDispatch();
@@ -32,6 +39,7 @@ function App() {
 				if (isAuthenticated) {
 					dispatch(profileLoadInit());
 					dispatch(coursesListLoadInit());
+					dispatch(postsLoadInit());
 					const user = await loadProfile(getToken());
 					if (!user) {
 						dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
@@ -44,10 +52,16 @@ function App() {
 						dispatch(coursesListLoadFail(CAN_NOT_LOAD_COURSES_LIST));
 					}
 					dispatch(coursesListLoadSuccess(coursesList));
+					const postsList = await getPostsList();
+					if (!postsList) {
+						dispatch(postsLoadFail(CAN_NOT_LOAD_POSTS_LIST));
+					}
+					dispatch(postsLoadSuccess(postsList));
 				}
 			} catch (error: any) {
 				dispatch(profileLoadFail(error.message));
 				dispatch(coursesListLoadFail(error.message));
+				dispatch(postsLoadFail(error.message));
 			}
 		};
 		loadPlatformData();

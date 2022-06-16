@@ -39,7 +39,9 @@ export const deleteCookie = () => {
 	cookies.remove(IS_ADMIN, { path: "/" });
 };
 
-export const calcultateDays = (profileDate: Date | null) => {
+export const calcultateDays = (
+	profileDate: Date | null | undefined | string
+) => {
 	if (profileDate) {
 		const date = new Date(profileDate);
 		const today = new Date();

@@ -21,11 +21,15 @@ const BadgesSection: React.FC = () => {
 		if (
 			userProfile &&
 			userProfile.enroledCourses &&
-			userProfile.enroledCourses.length > 1
+			userProfile.enroledCourses.length > 0
 		) {
 			setBadges(badges + 1);
 		}
-	}, [userProfile]);
+
+		if (userProfile && userProfile.social) {
+			setBadges(badges + 1);
+		}
+	}, [userProfile, badges]);
 
 	const componentClass = "wtl-badges-section";
 	const titleContainerClass = `${componentClass}__title-container`;
@@ -53,7 +57,7 @@ const BadgesSection: React.FC = () => {
 				)}
 				{userProfile &&
 					userProfile.enroledCourses &&
-					userProfile.enroledCourses.length > 1 && (
+					userProfile.enroledCourses.length > 0 && (
 						<div>
 							<img src={firstEnrollement} alt="first-enrollment" />
 						</div>

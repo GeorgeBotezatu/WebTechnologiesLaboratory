@@ -19,6 +19,7 @@ import {
 	PROFILE_PATH,
 	REGISTER_PATH,
 	LEARNING_PATH,
+	COMMUNITY_PATH,
 } from "../../../../Routes/routesPath";
 import { RootState } from "../../../../Store/Store";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,7 +56,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 						show ? classNames(linkClass, communityClass, OPEN) : communityClass
 					}
 				>
-					<a href="/">{COMMUNITY}</a>
+					<Link to={COMMUNITY_PATH}>{COMMUNITY}</Link>
 				</li>
 				<li
 					className={
@@ -89,7 +90,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 								: learningPathClass
 						}
 					>
-						<a href="/">{LEARNING_PATH}</a>
+						<a href="/">{LEARNINGPATH}</a>
 					</li>
 				)}
 

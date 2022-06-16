@@ -54,18 +54,14 @@ const CourseQuizView: React.FC<IQuizView> = ({ chapter }) => {
 					} else if (formData[i].questionAnswer === "2") {
 						if (quiz[i].answer2.correct === true) {
 							counter++;
-
-							console.log(formData[i].questionAnswer === "2", 2);
 						}
 					} else if (formData[i].questionAnswer === "3") {
 						if (quiz[i].answer3.correct === true) {
 							counter++;
-							console.log(formData[i].questionAnswer === "3", 3);
 						}
 					} else if (formData[i].questionAnswer === "4") {
 						if (quiz[i].answer4.correct === true) {
 							counter++;
-							console.log(formData[i].questionAnswer === "4", 4);
 						}
 					}
 				}
