@@ -3,284 +3,83 @@
 @use "../../../../Styles/breakPoints";
 .wtl-add-post-container {
 	position: relative;
-
+	padding: 2rem;
+	&--form-description {
+		text-align: center;
+		width: 100%;
+		font-size: 3rem;
+		font-weight: 700;
+	}
 	&__form-container {
 		display: flex;
 		flex-direction: column;
+
+		width: 100%;
 		gap: 2rem;
 		padding: 0 1rem;
 		&--title-container {
 			div {
 				width: 100%;
 				input {
-					color: colors.$white;
+					color: colors.$black;
 				}
 			}
 			p {
 				margin-top: 0.5rem;
 				font-size: 1.4rem;
 				font-weight: 200;
-				color: colors.$formsAditionalInfoColor;
+				color: colors.$black;
 			}
 		}
-		&--company-location {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-			gap: 10rem;
-			div {
-				flex: 1;
-				input {
-					color: colors.$white;
-				}
-			}
-		}
-		&--from {
+
+		&--description {
 			div {
 				width: 100%;
-				input {
-					color: colors.$white;
-				}
-				::-webkit-calendar-picker-indicator {
-					filter: invert(1);
+				textarea {
+					color: colors.$black;
 				}
 			}
 			p {
 				margin-top: 0.5rem;
 				font-size: 1.4rem;
 				font-weight: 200;
-				color: colors.$formsAditionalInfoColor;
-			}
-		}
-		&__current-job {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			flex-wrap: wrap;
-
-			&--checkbox {
-				flex: 1;
-				display: flex;
-
-				align-items: center;
-				gap: 3rem;
-				label {
-					font-size: 2rem;
-				}
-				input {
-					appearance: none;
-					backdrop-filter: blur(20px);
-					background: colors.$formsBackgroudGreenTint;
-					margin: 0;
-					width: 3.5rem;
-					height: 3.5rem;
-					border: 3px solid colors.$white;
-					border-radius: 5px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					overflow: hidden;
-
-					&::before {
-						content: "";
-						width: 2rem;
-						height: 2rem;
-						transform: scale(0);
-						transition: 120ms transform ease-in-out;
-						box-shadow: inset 2rem 2rem colors.$profileShadowColor;
-						transform-origin: bottom left;
-						clip-path: polygon(
-							14% 44%,
-							0 65%,
-							50% 100%,
-							100% 16%,
-							80% 0%,
-							43% 62%
-						);
-					}
-					&:checked::before {
-						transform: scale(1);
-					}
-				}
-			}
-			&--to {
-				flex: 1;
-
-				div {
-					width: 100%;
-					input {
-						color: colors.$white;
-					}
-					::-webkit-calendar-picker-indicator {
-						filter: invert(1);
-					}
-				}
-				p {
-					margin-top: 0.5rem;
-					font-size: 1.4rem;
-					font-weight: 200;
-					color: colors.$formsAditionalInfoColor;
-				}
-			}
-		}
-		&--description {
-			p {
-				margin-top: 0.5rem;
-				font-size: 1.4rem;
-				font-weight: 200;
-				color: colors.$formsAditionalInfoColor;
+				color: colors.$black;
 			}
 		}
 
 		&--info {
-			font-size: 1.5rem;
+			// align-self: center;
+			font-size: 1.4rem;
 			span {
 				color: colors.$red;
 				font-size: 2rem;
 			}
 		}
 
-		&__buttons-group {
-			width: 100%;
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
+		&--submit {
+			align-self: center;
 			font-size: 3rem;
-			button,
-			a {
-				background: none;
-				border: none;
-				color: colors.$white;
-				font-family: "Permanent Marker";
-				transition: all 1s ease;
-				&:hover {
-					transform: translateX(1rem);
-					text-shadow: 7px 9px 3px #ffffff;
-				}
-			}
-			a {
-				&::after {
-					content: "»";
-					opacity: 0;
-					transition: all 0.3s ease;
-					margin-left: 2rem;
-					font-size: 3rem;
-				}
-				&:hover::after {
-					opacity: 1;
-					right: 8%;
-				}
+			background: none;
+			border: none;
+			color: colors.$black;
+			font-family: "Permanent Marker";
+			transition: all 1s ease;
+			&:hover {
+				transform: translateX(1rem);
+				text-shadow: 7px 9px 3px #313131;
 			}
 		}
-	}
-}
-
-@media (max-width: breakPoints.$breakPoint1600) {
-	.wtl-experience-form-container {
-		width: 60%;
-	}
-}
-
-@media (max-width: breakPoints.$breakPoint1366) {
-	.wtl-experience-form-container {
-		width: 65%;
-		&--form-description {
-			font-size: 2.2rem;
-		}
-		&__form-container {
-			&__current-job {
-				gap: 2rem;
-				display: flex;
-				flex-direction: row;
-				// justify-content: space-between;
-
-				&--checkbox {
-					gap: 0.5rem;
-
-					label {
-						font-size: 1.5rem;
-					}
-				}
-				&--to {
-					flex: 2;
-				}
+		&--submit {
+			&::after {
+				content: "»";
+				opacity: 0;
+				transition: all 0.3s ease;
+				margin-left: 1rem;
+				font-size: 3rem;
 			}
-		}
-	}
-}
-
-@media (max-width: breakPoints.$breakPoint1080) {
-	.wtl-experience-form-container {
-		width: 80%;
-	}
-}
-
-@media (max-width: breakPoints.$breakPoint800) {
-	.wtl-experience-form-container {
-		width: 90%;
-
-		&--form-description {
-			font-size: 2rem;
-		}
-		&__form-container {
-			gap: 2rem;
-			padding: 0 2rem;
-			&--title-container {
-				p {
-					font-size: 1.2rem;
-				}
-			}
-			&--company-location {
-				gap: 3rem;
-			}
-			&--from {
-				p {
-					font-size: 1.2rem;
-				}
-			}
-			&__current-job {
-				flex-direction: column;
-				gap: 0.5rem;
-				&--checkbox {
-					display: flex;
-					justify-content: flex-start;
-
-					gap: 1.5rem;
-					label {
-						font-size: 1.6rem;
-					}
-					input {
-						width: 2.5rem;
-						height: 2.5rem;
-						border: 2px solid colors.$white;
-
-						&::before {
-							width: 1.5rem;
-							height: 1.5rem;
-						}
-					}
-				}
-				&--to {
-					p {
-						font-size: 1.2rem;
-					}
-				}
-			}
-			&--description {
-				p {
-					font-size: 1.2rem;
-				}
-			}
-
-			&--info {
-				font-size: 1.3rem;
-				span {
-					font-size: 1.8rem;
-				}
-			}
-
-			&__buttons-group {
-				font-size: 2.5rem;
+			&:hover::after {
+				opacity: 1;
+				right: 8%;
 			}
 		}
 	}

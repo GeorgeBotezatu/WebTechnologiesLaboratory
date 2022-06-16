@@ -39,6 +39,19 @@ export const postsSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		postAddInit: (state) => {
+			state.loading = true;
+		},
+		postAddSuccess: (state, action) => {
+			state.loading = false;
+			let newList = state.postsList;
+			newList?.push(action.payload);
+			state.postsList = newList;
+		},
+		postAddFail: (state, action) => {
+			state.loading = false;
+			state.error = action.payload;
+		},
 	},
 });
 
@@ -49,6 +62,9 @@ export const {
 	postDeleteFail,
 	postDeleteInit,
 	postDeleteSuccess,
+	postAddFail,
+	postAddInit,
+	postAddSuccess,
 } = postsSlice.actions;
 
 export default postsSlice.reducer;

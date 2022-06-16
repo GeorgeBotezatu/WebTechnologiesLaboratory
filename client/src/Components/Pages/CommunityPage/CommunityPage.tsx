@@ -9,8 +9,26 @@ import AddPostForm from "../../Moleculs/Posts/AddPostForm/AddPostForm";
 
 const CommunityPage: React.FC = () => {
 	const { postsList } = useSelector((state: RootState) => state.postsSlice);
+	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 	const [buttonPopup, setButtonPopup] = useState<boolean>(false);
-	useEffect(() => {}, [postsList]);
+	const [items, setItems] = useState(postsList);
+	useEffect(() => {
+		setItems(postsList);
+	}, [postsList]);
+
+	const filterItem = (curcat: string) => {
+		const newItem = postsList?.filter((newVal) => {
+			return newVal.category === curcat;
+		});
+		setItems(newItem);
+	};
+
+	const myPosts = () => {
+		const newItem = postsList?.filter((newVal) => {
+			return newVal.user === userProfile.user._id;
+		});
+		setItems(newItem);
+	};
 
 	const componentClass = "wtl-community-page";
 	const postContainer = `${componentClass}__posts-container`;
@@ -18,11 +36,17 @@ const CommunityPage: React.FC = () => {
 	return (
 		<div className={componentClass}>
 			<div className={menuContainer}>
-				<CategoriesMenu setTrigger={setButtonPopup} />
+				<CategoriesMenu
+					setTrigger={setButtonPopup}
+					setItems={setItems}
+					postsList={postsList}
+					filterItem={filterItem}
+					myPosts={myPosts}
+				/>
 			</div>
 			<div className={postContainer}>
-				{postsList &&
-					postsList.map((item, index) => {
+				{items &&
+					items.map((item, index) => {
 						if (item) {
 							return (
 								<div key={item._id}>
@@ -36,7 +60,7 @@ const CommunityPage: React.FC = () => {
 										avatar={item?.avatar}
 										numberOfComments={item?.comments?.length}
 									/>
-									{postsList.length - 1 > index && <hr />}
+									{items.length - 1 > index && <hr />}
 								</div>
 							);
 						}
@@ -44,7 +68,7 @@ const CommunityPage: React.FC = () => {
 					})}
 			</div>
 			<PopUpBox trigger={buttonPopup} setTrigger={setButtonPopup}>
-				<AddPostForm />
+				<AddPostForm setTrigger={setButtonPopup} />
 			</PopUpBox>
 		</div>
 	);

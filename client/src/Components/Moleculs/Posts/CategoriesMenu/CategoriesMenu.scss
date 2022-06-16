@@ -26,8 +26,10 @@
 		flex-direction: column;
 		gap: 0.5rem;
 		font-size: 1.8rem;
+		cursor: pointer;
 	}
 	&--my-posts {
+		cursor: pointer;
 		font-weight: bold;
 	}
 }

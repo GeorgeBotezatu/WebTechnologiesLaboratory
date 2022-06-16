@@ -1,16 +1,29 @@
 import "./CategoriesMenu.scss";
 import React from "react";
+import { IPostsArr } from "../../../../Interfaces";
 
 interface ICategoriesMenu {
 	setTrigger: any;
+	postsList?: IPostsArr;
+	setItems?: any;
+	filterItem?: any;
+	myPosts?: any;
 }
 
-const CategoriesMenu: React.FC<ICategoriesMenu> = ({ setTrigger }) => {
+const CategoriesMenu: React.FC<ICategoriesMenu> = ({
+	setTrigger,
+	postsList,
+	setItems,
+	filterItem,
+	myPosts,
+}) => {
+	const menuItems = [...new Set(postsList?.map((Val) => Val.category))];
+
 	const componentClass = "wtl-categories-menu-container";
 	const titleClass = `${componentClass}--title`;
 	const addBtnClass = `${componentClass}--add`;
 	const optionsClass = `${componentClass}--options`;
-	const myPosts = `${componentClass}--my-posts`;
+	const myPostsClass = `${componentClass}--my-posts`;
 	return (
 		<div className={componentClass}>
 			<h1 className={titleClass}>Categories</h1>
@@ -18,13 +31,25 @@ const CategoriesMenu: React.FC<ICategoriesMenu> = ({ setTrigger }) => {
 				Add new post
 			</button>
 			<div className={optionsClass}>
-				<p>HTML</p>
-				<p>CSS</p>
-				<p>JS</p>
-				<p>CONSOLE</p>
-				<p>React</p>
+				{menuItems.map((val, id) => {
+					return (
+						<p key={id} onClick={() => filterItem(val)}>
+							{val?.toUpperCase()}
+						</p>
+					);
+				})}
 			</div>
-			<h1 className={myPosts}>My Questions</h1>
+			<h1
+				className={myPostsClass}
+				onClick={() => {
+					setItems(postsList);
+				}}
+			>
+				All Questions
+			</h1>
+			<h1 onClick={myPosts} className={myPostsClass}>
+				My Questions
+			</h1>
 		</div>
 	);
 };

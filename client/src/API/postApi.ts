@@ -41,6 +41,32 @@ export const getPost = (_id: string) => {
 	});
 };
 
+export const addPost = (text?: string, category?: string) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.post(
+				POSTS_URL,
+				{
+					text,
+					category,
+				},
+				requestHeader
+			);
+			const { data }: { data: IPost } = res;
+			resolve(data);
+		} catch (error: any) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
 export const addComment = (_id: string, text: string) => {
 	return new Promise(async (resolve, reject) => {
 		try {
