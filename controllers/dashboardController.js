@@ -1,0 +1,70 @@
+import CustomStatusCodeError from "../utils/customError.js";
+import { PROBLEM_NOT_FOUND, SERVER_ERROR } from "../utils/textUtils.js";
+import Problem from "../models/reportSchema.js";
+import User from "../models/userScehma.js";
+import { validationResult } from "express-validator";
+import { verifyInputErrors } from "../utils/utilFunctions.js";
+
+//|----------------|
+//|---Controllers--|
+//|----------------|
+
+const addNewProblem = async (req, res) => {
+	try {
+		const errors = validationResult(req);
+		verifyInputErrors(errors);
+		const user = await User.findById(req.user.id).select("-password");
+		const newProblem = new Problem({
+			description: req.body.description,
+			problemLink: req.body.problemLink,
+			user: req.user.id,
+			name: user.name,
+			email: user.email,
+		});
+
+		const problem = await newProblem.save();
+		res.status(200).json(problem);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const getAllProblems = async (req, res) => {
+	try {
+		const problems = await Problem.find();
+		if (!problems) {
+			throw new CustomStatusCodeError(PROBLEM_NOT_FOUND, 404);
+		}
+		res.status(200).json(problems);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+const deleteProblem = async (req, res) => {
+	try {
+		const problem = await Problem.findById(req.params.problemId);
+		if (!problem) {
+			throw new CustomStatusCodeError(POST_NOT_FOUND, 404);
+		}
+		await problem.remove();
+		const problems = await Problem.find();
+		res.status(200).json(problems);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
+export { addNewProblem, getAllProblems, deleteProblem };

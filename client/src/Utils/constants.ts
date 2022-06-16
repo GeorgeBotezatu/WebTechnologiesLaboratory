@@ -90,3 +90,6 @@ export const CAN_NOT_ADD_POST = "Can't add post!";
 export const CAN_NOT_LIKE_POST = "Can't like post!";
 export const CAN_NOT_ADD_COMMENT = "Can't add comment!";
 export const CAN_NOT_DELETE_COMMENT = "Can't delete comment!";
+export const CAN_NOT_GET_PROBLEMS = "Can't get problems!";
+export const CAN_NOT_DELETE_PROBLEM = "Can't delete problem!";
+export const CAN_NOT_CREATE_PROBLEM = "Can't create problem!";

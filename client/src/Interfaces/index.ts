@@ -27,7 +27,7 @@ import {
 } from "./coursesInterfaces";
 
 import { IPostsArr, IComment, ICommentsArr, IPost } from "./postsInterfaces";
-
+import { IProblem, IProblemArr } from "./dashboardInterfaces";
 export type {
 	IUserState,
 	IEditableInput,
@@ -56,4 +56,6 @@ export type {
 	ICommentsArr,
 	IPost,
 	IPostsArr,
+	IProblem,
+	IProblemArr,
 };

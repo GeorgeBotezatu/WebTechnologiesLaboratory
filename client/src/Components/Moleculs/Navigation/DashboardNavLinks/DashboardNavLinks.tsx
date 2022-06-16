@@ -10,8 +10,11 @@ import {
 } from "../../../../Routes/routesPath";
 
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { problemClear } from "../../../../Store/features/problemSlice";
 
 const DashboardNavLinks: React.FC = () => {
+	const dispatch = useDispatch();
 	const componentClass = "wtl-dashboard-nav";
 	const upperPartClass = `${componentClass}__upper-part`;
 	const logoClass = `${upperPartClass}--logo`;
@@ -87,7 +90,13 @@ const DashboardNavLinks: React.FC = () => {
 					</NavLink>
 				</ul>
 			</div>
-			<Link to={LANDING_PATH} className={lowerPartClass}>
+			<Link
+				to={LANDING_PATH}
+				className={lowerPartClass}
+				onClick={() => {
+					dispatch(problemClear());
+				}}
+			>
 				<i className="fa-solid fa-person-running"></i>
 				Bye Admin!
 			</Link>
