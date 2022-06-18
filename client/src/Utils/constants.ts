@@ -38,6 +38,8 @@ export const YUP_INVALID_CHAPTER = "Chapter order need to be between 1 and ";
 export const YUP_SAME_CHAPTER_POSITION = "Can't modify same position";
 export const YUP_COURSE_DESCRIPTION_REQUIRED =
 	"Course description is required!";
+export const YUP_PROBLEM_DESCRIPTION_REQUIRED =
+	"Problem description is required!";
 export const YUP_POST_CATEGORY_REQUIRED = "Post category is required!";
 export const YUP_POST_BODY_REQUIRED = "Post body is required!";
 export const COULD_NOT_REGISTER = "Could not register!";

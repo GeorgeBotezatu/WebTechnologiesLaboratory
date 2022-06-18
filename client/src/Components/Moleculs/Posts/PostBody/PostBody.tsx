@@ -97,7 +97,7 @@ const PostBody: React.FC<IPostBody> = ({
 	const likeClass = `${bottomPostClass}--like`;
 	const likePostClass = `${bottomPostClass}--like-post`;
 	const buttonGroupClass = `${bottomPostClass}__btn-group`;
-	const reportButtonClass = `${buttonGroupClass}--report`;
+
 	const commentsButtonClass = `${buttonGroupClass}--comments`;
 	return (
 		<div className={componentClass}>
@@ -141,7 +141,6 @@ const PostBody: React.FC<IPostBody> = ({
 					<Link to={`/community/post/${_id}`} className={commentsButtonClass}>
 						{numberOfComments} Answers
 					</Link>
-					<button className={reportButtonClass}>Report</button>
 				</div>
 			</div>
 		</div>

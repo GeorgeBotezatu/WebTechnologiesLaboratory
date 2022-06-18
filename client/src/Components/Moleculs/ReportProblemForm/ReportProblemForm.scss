@@ -1,7 +1,8 @@
-@use "../../../../Styles/default";
-@use "../../../../Styles/colors";
-@use "../../../../Styles/breakPoints";
-.wtl-add-post-container {
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-report-problem-container {
 	position: relative;
 	margin: 2rem;
 	&--form-description {
@@ -23,12 +24,6 @@
 				input {
 					color: colors.$black;
 				}
-			}
-			p {
-				margin-top: 0.5rem;
-				font-size: 1.4rem;
-				font-weight: 200;
-				color: colors.$black;
 			}
 		}
 
