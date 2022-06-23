@@ -6,6 +6,7 @@ import {
 	addNewProblem,
 	deleteProblem,
 	getAllProblems,
+	getLatestData,
 } from "../controllers/dashboardController.js";
 import { admin, auth } from "../middleware/auth.js";
 
@@ -22,6 +23,11 @@ router.post(
 	[check(DESCRIPTION, DESCRIPTION_REQUIRED)],
 	addNewProblem
 );
+
+//@roaute POST api/dashboard/latest
+//@desc  get dashboard latest info
+//@access private/ADMIN
+router.get("/latest", auth, admin, getLatestData);
 
 //@roaute GET api/dashboard/problem
 //@desc   get all problems

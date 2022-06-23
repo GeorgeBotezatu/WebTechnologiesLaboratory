@@ -7,6 +7,7 @@ import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import CommunityPage from "../Components/Pages/CommunityPage/CommunityPage";
 import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
 import CoursePage from "../Components/Pages/CoursePage/CoursePage";
+import CvModelOne from "../Components/Pages/CvModelOne/CvModelOne";
 import DashboardCreateChapter from "../Components/Pages/DashboardPages/DashboardCreateChapter/DashboardCreateChapter";
 import DashboardEditQuizPage from "../Components/Pages/DashboardPages/DashboardEditQuizPage/DashboardEditQuizPage";
 import DashboardLanding from "../Components/Pages/DashboardPages/DashboardLanding/DashboardLanding";
@@ -20,6 +21,7 @@ import EditSocialPage from "../Components/Pages/EditSocialPage/EditSocialPage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
 import LearningPathPage from "../Components/Pages/LearningPathPage/LearningPathPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";
+import NotFoundPage from "../Components/Pages/NotFoundPage/NotFoundPage";
 import PostPage from "../Components/Pages/PostPage/PostPage";
 import ProfilePage from "../Components/Pages/ProfilePage/ProfilePage";
 import RegisterPage from "../Components/Pages/RegisterPage/RegisterPage";
@@ -54,6 +56,7 @@ import {
 	NEW_COURSE_PATH,
 	COMMUNITY_PATH,
 	POST_PATH,
+	CV_MODEL_ONE,
 } from "./routesPath";
 
 const PlatformRoutes = () => {
@@ -122,6 +125,14 @@ const PlatformRoutes = () => {
 								element={
 									<PrivateRoute>
 										<EditSocialPage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={CV_MODEL_ONE}
+								element={
+									<PrivateRoute>
+										<CvModelOne />
 									</PrivateRoute>
 								}
 							/>
@@ -254,14 +265,7 @@ const PlatformRoutes = () => {
 									</AdminRoute>
 								}
 							/>
-							<Route
-								path={COMMUNITY_PATH}
-								element={
-									<PrivateRoute>
-										<CommunityPage />
-									</PrivateRoute>
-								}
-							/>
+							<Route path={COMMUNITY_PATH} element={<CommunityPage />} />
 							<Route
 								path={POST_PATH}
 								element={
@@ -270,6 +274,7 @@ const PlatformRoutes = () => {
 									</PrivateRoute>
 								}
 							/>
+							<Route path="*" element={<NotFoundPage />} />
 						</Routes>
 					</>
 					<Footer />

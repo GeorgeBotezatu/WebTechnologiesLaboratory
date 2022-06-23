@@ -1,6 +1,9 @@
 import "./CategoriesMenu.scss";
 import React from "react";
 import { IPostsArr } from "../../../../Interfaces";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../Store/Store";
+import { Navigate, useNavigate } from "react-router";
 
 interface ICategoriesMenu {
 	setTrigger: any;
@@ -18,7 +21,8 @@ const CategoriesMenu: React.FC<ICategoriesMenu> = ({
 	myPosts,
 }) => {
 	const menuItems = [...new Set(postsList?.map((Val) => Val.category))];
-
+	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const navigate = useNavigate();
 	const componentClass = "wtl-categories-menu-container";
 	const titleClass = `${componentClass}--title`;
 	const addBtnClass = `${componentClass}--add`;
@@ -27,7 +31,16 @@ const CategoriesMenu: React.FC<ICategoriesMenu> = ({
 	return (
 		<div className={componentClass}>
 			<h1 className={titleClass}>Categories</h1>
-			<button onClick={setTrigger} className={addBtnClass}>
+			<button
+				onClick={() => {
+					if (!isAuthenticated) {
+						navigate("/login");
+					} else {
+						setTrigger(true);
+					}
+				}}
+				className={addBtnClass}
+			>
 				Add new post
 			</button>
 			<div className={optionsClass}>

@@ -17,7 +17,8 @@ const Footer: React.FC = () => {
 	const rightsClass = `${componentClass}--rights`;
 	return (
 		<>
-			{!pathname.includes("/dashboard") ? (
+			{!pathname.includes("/dashboard") &&
+			!pathname.includes("/learning/course") ? (
 				<div className={componentClass}>
 					<div className={upperSectionClass}>
 						<div className={contactContainerClass}>

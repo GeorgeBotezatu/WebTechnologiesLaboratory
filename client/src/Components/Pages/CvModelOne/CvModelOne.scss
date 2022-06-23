@@ -1,0 +1,80 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-cv-one {
+	background: lightblue;
+	color: colors.$black;
+	display: flex;
+
+	gap: 3rem;
+
+	&__left-side {
+		width: 30%;
+		padding: 3rem 8rem;
+		background-color: greenyellow;
+		&--name {
+			font-size: 3rem;
+			font-family: "Permanent Marker";
+		}
+		&--email {
+			font-size: 1.4rem;
+			display: flex;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+			span {
+				font-weight: 900;
+			}
+		}
+		&--website {
+			font-size: 1.5rem;
+			display: flex;
+			flex-wrap: wrap;
+			span {
+				font-size: 1.4rem;
+				font-weight: 900;
+			}
+		}
+
+		&--status {
+			font-size: 1.4rem;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.3rem;
+			span {
+				font-size: 1.4rem;
+				font-weight: 900;
+			}
+		}
+		&--skills {
+			margin-top: 1rem;
+			font-size: 1rem;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 2rem;
+			h1 {
+				font-size: 2rem;
+				font-weight: 900;
+			}
+			div {
+				display: flex;
+				flex-direction: column;
+				p {
+					font-size: 1.5rem;
+				}
+			}
+		}
+	}
+	&__right-side {
+		padding: 3rem 2rem;
+		width: 70%;
+		&--description {
+			font-size: 2.5rem;
+			span {
+				display: block;
+				font-weight: 900;
+			}
+		}
+	}
+}

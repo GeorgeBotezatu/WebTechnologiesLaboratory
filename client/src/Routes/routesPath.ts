@@ -10,6 +10,8 @@ export const EDIT_EXPERIENCE = "/profile/edit-experience/:id";
 export const ADD_EDUCATION = "/profile/add-education";
 export const EDIT_EDUCATION = "/profile/edit-education/:id";
 export const EDIT_SOCIAL = "/profile/edit-social";
+export const CV_EXPORT = "/profile/export";
+export const CV_MODEL_ONE = "/profile/export/cv-1";
 
 //Console Routes
 

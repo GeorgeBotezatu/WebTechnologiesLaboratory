@@ -9,6 +9,7 @@ import {
 } from "../../../Atoms/AnimatedButton/ButtonModifiers";
 import { MODIFY_ABOUT } from "../../../../Utils/constants";
 import { MODIFY_ABOUT_PATH } from "../../../../Routes/routesPath";
+
 interface IProfileAboutCard {
 	about:
 		| {

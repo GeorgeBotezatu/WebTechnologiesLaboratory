@@ -12,6 +12,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { problemClear } from "../../../../Store/features/problemSlice";
+import { clearDashboard } from "../../../../Store/features/dashboardStatsSlice";
 
 const DashboardNavLinks: React.FC = () => {
 	const dispatch = useDispatch();
@@ -95,6 +96,7 @@ const DashboardNavLinks: React.FC = () => {
 				className={lowerPartClass}
 				onClick={() => {
 					dispatch(problemClear());
+					dispatch(clearDashboard());
 				}}
 			>
 				<i className="fa-solid fa-person-running"></i>

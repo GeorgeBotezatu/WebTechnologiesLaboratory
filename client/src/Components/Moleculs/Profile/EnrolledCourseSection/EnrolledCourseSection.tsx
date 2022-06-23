@@ -8,7 +8,7 @@ const EnrolledCourseSection: React.FC = () => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 
 	useEffect(() => {}, [userProfile]);
-	console.log(userProfile.enroledCourses);
+
 	const componentClass = "wtl-enrolled-courses-section";
 	const titleContainerClass = `${componentClass}__title-container`;
 	const titileClass = `${titleContainerClass}--title`;
