@@ -6,13 +6,12 @@
 	background: lightblue;
 	color: colors.$black;
 	display: flex;
-
-	gap: 3rem;
+	width: 210mm;
 
 	&__left-side {
-		width: 30%;
-		padding: 3rem 8rem;
+		padding: 1rem 2rem;
 		background-color: greenyellow;
+		word-break: break-word;
 		&--name {
 			font-size: 3rem;
 			font-family: "Permanent Marker";
@@ -67,8 +66,8 @@
 		}
 	}
 	&__right-side {
-		padding: 3rem 2rem;
-		width: 70%;
+		padding: 1rem 2rem;
+
 		&--description {
 			font-size: 2.5rem;
 			span {

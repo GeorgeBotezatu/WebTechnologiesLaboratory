@@ -18,6 +18,7 @@ import {
 } from "../../../../Utils/constants";
 import { Link } from "react-router-dom";
 import { CV_MODEL_ONE } from "../../../../Routes/routesPath";
+import Example from "../../../Pages/CvModelOne/Pdf";
 
 const ProfileCard: React.FC<IProfileCard> = ({
 	github,
@@ -92,9 +93,10 @@ const ProfileCard: React.FC<IProfileCard> = ({
 				<p className={registeredClass}>
 					{REGISTERED_TXT} {calcultateDays(profileDate)} days ago
 				</p>
-				<Link className={registeredClass} to={CV_MODEL_ONE}>
+				{/* <Link className={registeredClass} to={CV_MODEL_ONE}>
 					Export profile as PDF
 				</Link>
+				<Example /> */}
 			</div>
 		</div>
 	);

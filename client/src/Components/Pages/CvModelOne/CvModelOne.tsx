@@ -1,28 +1,18 @@
 import "./CvModelOne.scss";
 import React from "react";
 import JsPDF from "jspdf";
-import html2canvas from "html2canvas";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Store/Store";
-const CvModelOne: React.FC = () => {
+
+const CvModelOne: React.FC<any> = React.forwardRef((props, ref) => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 
-	const generatePDF = () => {
+	const generatePDF = async () => {
 		const input = document.getElementById("cv") as HTMLElement;
-		html2canvas(input).then((canvas) => {
-			try {
-				const imgData = canvas.toDataURL("image/png");
-				const pdf = new JsPDF({
-					orientation: "p",
-					unit: "px",
-					format: [3508, 1080],
-				});
-				pdf.addImage(imgData, "png", 10, 10, 0, 0);
-				// pdf.output("dataurlnewwindow");
-				pdf.save("download.pdf");
-			} catch (error) {
-				console.log(error);
-			}
+		const report = new JsPDF("portrait", "px");
+		await report.html(document.querySelector("#cv") as HTMLElement).then(() => {
+			report.save("report.pdf");
 		});
 	};
 
@@ -38,7 +28,7 @@ const CvModelOne: React.FC = () => {
 
 	return (
 		<>
-			<div id="cv" className={componentClass}>
+			<div ref={ref as any} id="cv" className={componentClass}>
 				<div className={leftSideClass}>
 					<h1 className={nameClass}>{userProfile?.user?.name}</h1>
 					<p className={emailClass}>
@@ -71,6 +61,6 @@ const CvModelOne: React.FC = () => {
 			<button onClick={generatePDF}>Export CV</button>
 		</>
 	);
-};
+});
 
 export default CvModelOne;
