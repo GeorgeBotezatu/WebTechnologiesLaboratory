@@ -13,6 +13,8 @@ import {
 	IEnrolledCoursesArr,
 	IQuizScore,
 	IQuizScoreArr,
+	IUser,
+	IUserArr,
 } from "./profileInterfaces";
 import { IEditableInput } from "./EditableTextInterface";
 import {
@@ -27,7 +29,7 @@ import {
 } from "./coursesInterfaces";
 
 import { IPostsArr, IComment, ICommentsArr, IPost } from "./postsInterfaces";
-
+import { IProblem, IProblemArr, IDashboardStats } from "./dashboardInterfaces";
 export type {
 	IUserState,
 	IEditableInput,
@@ -56,4 +58,9 @@ export type {
 	ICommentsArr,
 	IPost,
 	IPostsArr,
+	IProblem,
+	IProblemArr,
+	IUser,
+	IUserArr,
+	IDashboardStats,
 };

@@ -39,7 +39,7 @@ router.post(
 //@roaute GET api/posts
 //@desc   Get all posts
 //@access Public
-router.get("/", auth, getAllPosts);
+router.get("/", getAllPosts);
 
 //@roaute GET api/posts/:postId
 //@desc   Get post by id

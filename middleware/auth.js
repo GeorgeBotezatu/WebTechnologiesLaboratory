@@ -36,7 +36,9 @@ const admin = async (req, res, next) => {
 		} else {
 			return res.status(401).json({ errors: [{ msg: NOT_ADMIN }] });
 		}
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export { auth, admin };

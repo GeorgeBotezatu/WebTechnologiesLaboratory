@@ -36,27 +36,31 @@ function App() {
 	useEffect(() => {
 		const loadPlatformData = async () => {
 			try {
+				dispatch(postsLoadInit());
+				const postsList = await getPostsList();
+				if (!postsList) {
+					dispatch(postsLoadFail(CAN_NOT_LOAD_POSTS_LIST));
+				} else {
+					dispatch(postsLoadSuccess(postsList));
+				}
+
 				if (isAuthenticated) {
 					dispatch(profileLoadInit());
 					dispatch(coursesListLoadInit());
-					dispatch(postsLoadInit());
 					const user = await loadProfile(getToken());
 					if (!user) {
 						dispatch(profileLoadFail(COULD_NOT_LOAD_PROFILE));
+					} else {
+						dispatch(profileLoadSuccess(user));
+						dispatch(loginSuccess(user.user.isAdmin));
 					}
-					dispatch(profileLoadSuccess(user));
-					dispatch(loginSuccess(user.user.isAdmin));
 
 					const coursesList = await getCoursesList(getToken());
 					if (!coursesList) {
 						dispatch(coursesListLoadFail(CAN_NOT_LOAD_COURSES_LIST));
+					} else {
+						dispatch(coursesListLoadSuccess(coursesList));
 					}
-					dispatch(coursesListLoadSuccess(coursesList));
-					const postsList = await getPostsList();
-					if (!postsList) {
-						dispatch(postsLoadFail(CAN_NOT_LOAD_POSTS_LIST));
-					}
-					dispatch(postsLoadSuccess(postsList));
 				}
 			} catch (error: any) {
 				dispatch(profileLoadFail(error.message));

@@ -2,6 +2,11 @@
 @use "../../../Styles/colors";
 @use "../../../Styles/breakPoints";
 
+.test {
+	color: black;
+	display: none;
+}
+
 .wtl-profile-page {
 	min-height: calc(100vh - 20rem);
 	position: relative;

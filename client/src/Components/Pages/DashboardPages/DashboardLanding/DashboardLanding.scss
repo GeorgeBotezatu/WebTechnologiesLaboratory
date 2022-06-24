@@ -6,4 +6,135 @@
 	margin-left: 25vh;
 	min-height: 100vh;
 	background: colors.$mainDashboardGreen;
+	padding: 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&--title {
+		text-align: center;
+		font-size: 4rem;
+		font-family: "Permanent Marker";
+	}
+	&--description {
+		margin: 2rem 0;
+		font-size: 2.5rem;
+		font-family: "Permanent Marker";
+	}
+	&__stats {
+		display: flex;
+		gap: 5rem;
+		justify-content: center;
+		&__users-container {
+			background: colors.$secondaryDashboardGreen;
+			flex: 1;
+			padding-top: 2rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 2rem;
+			&__user {
+				width: 100%;
+				display: flex;
+				background: colors.$dashboadHighlight;
+				box-shadow: 0 6px 12px 0px colors.$black;
+				padding: 2rem;
+				gap: 3rem;
+				align-items: center;
+				&--img {
+					position: relative;
+					width: 10rem;
+					img {
+						border: 5px solid colors.$mainDashboardGreen;
+						border-radius: 50rem;
+						box-shadow: 1px 1px 10px 1px rgba(colors.$darkPink, 0.8),
+							1px 1px 10px 1px rgba(colors.$black, 0.8);
+					}
+				}
+				&--info {
+					h2 {
+						font-size: 2.5rem;
+					}
+					p {
+						font-size: 1.8rem;
+					}
+				}
+			}
+		}
+		&__posts-container {
+			background: colors.$secondaryDashboardGreen;
+			flex: 1;
+			padding-top: 2rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 2rem;
+			&__post {
+				width: 100%;
+				display: flex;
+				background: colors.$dashboadHighlight;
+				box-shadow: 0 6px 12px 0px colors.$black;
+				padding: 1rem;
+				gap: 3rem;
+				align-items: center;
+				cursor: pointer;
+				&--img {
+					position: relative;
+					width: 7rem;
+					img {
+						width: 100%;
+						border: 5px solid colors.$mainDashboardGreen;
+						border-radius: 50rem;
+						box-shadow: 1px 1px 10px 1px rgba(colors.$darkPink, 0.8),
+							1px 1px 10px 1px rgba(colors.$black, 0.8);
+					}
+				}
+				&--info {
+					width: 90%;
+					h2 {
+						font-size: 2rem;
+					}
+					p {
+						font-size: 1.2rem;
+					}
+				}
+			}
+		}
+	}
+	&--stats-title {
+		text-align: center;
+		font-size: 4.5rem;
+		font-family: "Permanent Marker";
+	}
+	&__chart-container {
+		width: 80rem;
+		height: 80rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		h1 {
+			margin-top: -5rem;
+		}
+	}
+
+	&__targets-container {
+		margin-top: 5rem;
+		display: flex;
+		width: 65rem;
+		gap: 10rem;
+		div {
+			width: 50%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+
+			h1 {
+				margin-top: 1rem;
+				font-size: 1.8rem;
+			}
+		}
+	}
 }

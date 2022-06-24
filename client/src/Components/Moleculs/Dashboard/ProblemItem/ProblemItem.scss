@@ -1,0 +1,61 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-problem-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	&__first {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		h1 {
+			font-size: 2.2rem;
+		}
+		button {
+			padding: 0rem 1rem;
+			border-radius: 50px;
+			font-size: 1.8rem;
+			border: none;
+			background: linear-gradient(
+				to bottom,
+				colors.$starMainYellow 0%,
+				colors.$darkPinkTint 100%
+			);
+			background-position: 0 100%;
+			background-repeat: repeat-x;
+			background-size: 4px 4px;
+			color: colors.$white;
+			transition: background-size 0.4s;
+			cursor: pointer;
+			&:hover {
+				background-size: 4px 50px;
+			}
+		}
+	}
+	&__second {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		h2 {
+			margin-left: 2rem;
+		}
+		p {
+			font-size: 1.5rem;
+			opacity: 0.8;
+		}
+	}
+	&__third {
+		display: flex;
+		flex-direction: column;
+		p {
+			font-size: 1.8rem;
+			margin-left: 2rem;
+			span {
+				font-weight: 900;
+				color: colors.$profileShadowColor;
+			}
+		}
+	}
+}

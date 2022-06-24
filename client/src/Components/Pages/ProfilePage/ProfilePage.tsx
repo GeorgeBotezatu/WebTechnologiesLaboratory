@@ -21,6 +21,7 @@ const ProfilePage: React.FC = () => {
 	const componentClass = "wtl-profile-page";
 	const contentClass = `${componentClass}--content`;
 	const sideMenuClass = `${componentClass}--side-menu`;
+
 	return (
 		<div className={componentClass}>
 			<div className={sideMenuClass}>

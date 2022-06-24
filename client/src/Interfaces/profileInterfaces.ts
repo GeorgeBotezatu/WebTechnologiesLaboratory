@@ -68,6 +68,16 @@ export interface IEnrolledCourses {
 	enroledDate?: Date;
 }
 
+export interface IUser {
+	_id?: string;
+	name?: string;
+	email?: string;
+	avatar?: string;
+	isAdmin?: boolean;
+	data?: string;
+}
+export interface IUserArr extends Array<IUser> {}
+
 export interface IEnrolledCoursesArr extends Array<IEnrolledCourses> {}
 export interface IQuizScore {
 	chapterId?: string;

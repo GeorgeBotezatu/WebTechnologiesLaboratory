@@ -5,6 +5,8 @@ import coursesReducer from "./features/coursesSlice";
 import courseReducer from "./features/courseSlice";
 import postsReducer from "./features/postsSlice";
 import postReducer from "./features/postSlice";
+import problemReducer from "./features/problemSlice";
+import dashboardReducer from "./features/dashboardStatsSlice";
 export const store = configureStore({
 	reducer: {
 		auth: registerReducer,
@@ -13,6 +15,8 @@ export const store = configureStore({
 		course: courseReducer,
 		postsSlice: postsReducer,
 		post: postReducer,
+		dashboardProblems: problemReducer,
+		dashboardStats: dashboardReducer,
 	},
 });
 

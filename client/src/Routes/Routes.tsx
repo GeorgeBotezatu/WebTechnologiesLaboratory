@@ -2,14 +2,17 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AdminRoute from "../Components/Atoms/AdminRoute/AdminRoute";
 import PrivateRoute from "../Components/Atoms/PrivateRoute/PrivateRoute";
+import Footer from "../Components/Moleculs/Footer/Footer";
 import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
 import CommunityPage from "../Components/Pages/CommunityPage/CommunityPage";
 import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
 import CoursePage from "../Components/Pages/CoursePage/CoursePage";
+import CvModelOne from "../Components/Pages/CvModelOne/CvModelOne";
 import DashboardCreateChapter from "../Components/Pages/DashboardPages/DashboardCreateChapter/DashboardCreateChapter";
 import DashboardEditQuizPage from "../Components/Pages/DashboardPages/DashboardEditQuizPage/DashboardEditQuizPage";
 import DashboardLanding from "../Components/Pages/DashboardPages/DashboardLanding/DashboardLanding";
 import DashboardLearningPath from "../Components/Pages/DashboardPages/DashboardLearningPath/DashboardLearningPath";
+import DashboardProblems from "../Components/Pages/DashboardPages/DashboardProblems/DashboardProblems";
 import EditAboutPage from "../Components/Pages/EditAboutPage/EditAboutPage";
 import EditCoursePage from "../Components/Pages/EditCoursePage/EditCoursePage";
 import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducationPage";
@@ -18,6 +21,7 @@ import EditSocialPage from "../Components/Pages/EditSocialPage/EditSocialPage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
 import LearningPathPage from "../Components/Pages/LearningPathPage/LearningPathPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";
+import NotFoundPage from "../Components/Pages/NotFoundPage/NotFoundPage";
 import PostPage from "../Components/Pages/PostPage/PostPage";
 import ProfilePage from "../Components/Pages/ProfilePage/ProfilePage";
 import RegisterPage from "../Components/Pages/RegisterPage/RegisterPage";
@@ -52,6 +56,7 @@ import {
 	NEW_COURSE_PATH,
 	COMMUNITY_PATH,
 	POST_PATH,
+	CV_MODEL_ONE,
 } from "./routesPath";
 
 const PlatformRoutes = () => {
@@ -120,6 +125,14 @@ const PlatformRoutes = () => {
 								element={
 									<PrivateRoute>
 										<EditSocialPage />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path={CV_MODEL_ONE}
+								element={
+									<PrivateRoute>
+										<CvModelOne />
 									</PrivateRoute>
 								}
 							/>
@@ -248,18 +261,11 @@ const PlatformRoutes = () => {
 								path={DASHBOARD_REPORTS_PATH}
 								element={
 									<AdminRoute>
-										<DashboardLanding />
+										<DashboardProblems />
 									</AdminRoute>
 								}
 							/>
-							<Route
-								path={COMMUNITY_PATH}
-								element={
-									<PrivateRoute>
-										<CommunityPage />
-									</PrivateRoute>
-								}
-							/>
+							<Route path={COMMUNITY_PATH} element={<CommunityPage />} />
 							<Route
 								path={POST_PATH}
 								element={
@@ -268,8 +274,10 @@ const PlatformRoutes = () => {
 									</PrivateRoute>
 								}
 							/>
+							<Route path="*" element={<NotFoundPage />} />
 						</Routes>
 					</>
+					<Footer />
 				</>
 			</Router>
 		</>

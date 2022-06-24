@@ -11,3 +11,4 @@ export const CONSOLE_URLS = "/console/save-on-profile";
 export const GET_COURSES_LIST = "/courses/list";
 export const COURSES_URL = "/courses";
 export const POSTS_URL = "/posts";
+export const DASHBOARD_URL = "/dashboard";

@@ -1,0 +1,22 @@
+@use "../../../../Styles/default";
+@use "../../../../Styles/colors";
+@use "../../../../Styles/breakPoints";
+
+.wtl-dashboard-problems {
+	margin-left: 25vh;
+	min-height: 100vh;
+	background: colors.$mainDashboardGreen;
+	padding: 5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+	&--title {
+		font-size: 4rem;
+		font-family: "Permanent Marker";
+	}
+	&__problems {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+}

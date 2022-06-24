@@ -1,0 +1,158 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-footer {
+	margin-top: 15rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background: colors.$formsBackgroudGreenTint;
+	// border-top: 1px solid colors.$profileShadowColor;
+	padding: 2rem;
+	box-shadow: 0px 5px 20px -2px #ffffff;
+	&__upper {
+		width: 70%;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-around;
+		padding: 2rem;
+		&__contact {
+			h1 {
+				font-size: 3.5rem;
+				font-family: "Permanent Marker";
+			}
+			p {
+				padding-left: 1rem;
+				font-size: 1.7rem;
+			}
+		}
+		&__problem {
+			h1 {
+				font-size: 3.5rem;
+				font-family: "Permanent Marker";
+			}
+			button {
+				align-self: center;
+				font-size: 3rem;
+				background: none;
+				border: none;
+				color: colors.$red;
+				font-family: "Permanent Marker";
+				transition: all 1s ease;
+				&:hover {
+					transform: translateX(1rem);
+					text-shadow: 7px 9px 3px #491313;
+				}
+			}
+			button {
+				&::after {
+					content: "»";
+					opacity: 0;
+					transition: all 0.3s ease;
+					margin-left: 1rem;
+					font-size: 3rem;
+				}
+				&:hover::after {
+					opacity: 1;
+					right: 8%;
+				}
+			}
+		}
+	}
+	&--rights {
+		padding: 2rem 0;
+		font-size: 1.6rem;
+		text-align: center;
+	}
+}
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-footer {
+		&__upper {
+			width: 80%;
+			padding: 1rem;
+			&__contact {
+				h1 {
+					font-size: 3rem;
+				}
+				p {
+					font-size: 1.5rem;
+				}
+			}
+			&__problem {
+				h1 {
+					font-size: 3rem;
+				}
+				button {
+					font-size: 2.5rem;
+				}
+				button {
+					&::after {
+						font-size: 2.5rem;
+					}
+				}
+			}
+		}
+		&--rights {
+			font-size: 1.4rem;
+		}
+	}
+}
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-footer {
+		&__upper {
+			width: 90%;
+
+			&__contact {
+				h1 {
+					font-size: 2rem;
+				}
+				p {
+					font-size: 1.2rem;
+				}
+			}
+			&__problem {
+				h1 {
+					font-size: 2rem;
+				}
+				button {
+					font-size: 2rem;
+				}
+				button {
+					&::after {
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+		&--rights {
+			font-size: 1.2rem;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-footer {
+		&__upper {
+			width: 95%;
+			flex-direction: column;
+			align-items: center;
+
+			&__contact {
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+				flex-wrap: wrap;
+			}
+			&__problem {
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+				flex-wrap: wrap;
+			}
+		}
+		&--rights {
+			font-size: 1.2rem;
+		}
+	}
+}

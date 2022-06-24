@@ -24,3 +24,4 @@ export const QUIZ = "quiz";
 export const QUIZ_SCORE = "quizScore";
 export const TEXT = "text";
 export const CATEGORY = "category";
+export const DESCRIPTION = "description";
