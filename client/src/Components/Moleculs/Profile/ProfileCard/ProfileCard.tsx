@@ -16,9 +16,6 @@ import {
 	GITHUB_TXT,
 	REGISTERED_TXT,
 } from "../../../../Utils/constants";
-import { Link } from "react-router-dom";
-import { CV_MODEL_ONE } from "../../../../Routes/routesPath";
-import Example from "../../../Pages/CvModelOne/Pdf";
 
 const ProfileCard: React.FC<IProfileCard> = ({
 	github,

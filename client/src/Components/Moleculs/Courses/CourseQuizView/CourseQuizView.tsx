@@ -2,7 +2,7 @@ import "./CourseQuizView.scss";
 import React, { useState } from "react";
 import { ICourseChapterArr } from "../../../../Interfaces";
 import { completeCourseChapterQuiz } from "../../../../API/profileAPI";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
 	profileSaveQuizScoreFail,
@@ -39,7 +39,7 @@ const CourseQuizView: React.FC<IQuizView> = ({ chapter }) => {
 		};
 		setFormData(data);
 	};
-	const navigate = useNavigate();
+
 	const handleOnSubmit = async (e: any) => {
 		e.preventDefault();
 		try {

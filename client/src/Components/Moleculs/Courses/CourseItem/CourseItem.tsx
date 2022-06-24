@@ -50,7 +50,7 @@ const CourseItem: React.FC<ICoursesListItem> = ({
 			if (item.courseId === _id) setEnrolled(true);
 			return "";
 		});
-	}, []);
+	}, [_id]);
 	return (
 		<div className={componentClass}>
 			<h2 className={courseTitleClass}>{courseTitle}</h2>

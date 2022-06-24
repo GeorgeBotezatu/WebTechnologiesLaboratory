@@ -3,7 +3,7 @@ import React from "react";
 import { IPostsArr } from "../../../../Interfaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../Store/Store";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 interface ICategoriesMenu {
 	setTrigger: any;

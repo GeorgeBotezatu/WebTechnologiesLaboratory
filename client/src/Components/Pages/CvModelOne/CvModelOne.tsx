@@ -9,7 +9,6 @@ const CvModelOne: React.FC<any> = React.forwardRef((props, ref) => {
 	const { userProfile } = useSelector((state: RootState) => state.userProfile);
 
 	const generatePDF = async () => {
-		const input = document.getElementById("cv") as HTMLElement;
 		const report = new JsPDF("portrait", "px");
 		await report.html(document.querySelector("#cv") as HTMLElement).then(() => {
 			report.save("report.pdf");

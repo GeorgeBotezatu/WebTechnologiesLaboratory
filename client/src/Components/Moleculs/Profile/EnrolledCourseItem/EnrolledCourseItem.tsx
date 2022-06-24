@@ -41,6 +41,7 @@ const EnrolledCourseItem: React.FC<ICourseItem> = ({
 							</Link>
 						);
 					}
+					return "";
 				})}
 		</>
 	);
