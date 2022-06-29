@@ -14,10 +14,12 @@ import ExperienceItem from "../ExperienceItem/ExperienceItem";
 import { useLocation } from "react-router";
 
 const ProfileExperienceCard: React.FC = () => {
-	const { experience } = useSelector(
-		(state: RootState) => state.userProfile.userProfile
-	);
 	const { pathname } = useLocation();
+	const { experience } = useSelector((state: RootState) =>
+		!pathname.includes("/guest")
+			? state.userProfile.userProfile
+			: state.guestProfile.guestProfile
+	);
 	useEffect(() => {}, [experience]);
 	const classComponent = "wtl-experience-section";
 	const titleContainerClass = `${classComponent}__title-container`;

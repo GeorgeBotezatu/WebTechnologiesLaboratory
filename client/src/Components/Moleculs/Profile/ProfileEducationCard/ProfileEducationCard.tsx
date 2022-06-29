@@ -14,11 +14,14 @@ import EducationItem from "../EducationItem/EducationItem";
 import { useLocation } from "react-router";
 
 const ProfileEducationCard: React.FC = () => {
-	const { education } = useSelector(
-		(state: RootState) => state.userProfile.userProfile
-	);
-	useEffect(() => {}, [education]);
 	const { pathname } = useLocation();
+	const { education } = useSelector((state: RootState) =>
+		!pathname.includes("/guest")
+			? state.userProfile.userProfile
+			: state.guestProfile.guestProfile
+	);
+
+	useEffect(() => {}, [education]);
 	const classComponent = "wtl-education-section";
 	const titleContainerClass = `${classComponent}__title-container`;
 	const titileClass = `${titleContainerClass}--title`;

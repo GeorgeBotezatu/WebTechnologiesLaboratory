@@ -62,7 +62,6 @@ const GuestProfilePage = () => {
 					userCard={userCard}
 					profileDate={profileDate}
 				/>
-				<BadgesSection />
 				<ProfileAboutCard about={guestProfile?.about} />
 				<ProfileExperienceCard />
 				<ProfileEducationCard />
