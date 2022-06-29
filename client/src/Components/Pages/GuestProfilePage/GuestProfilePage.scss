@@ -1,0 +1,27 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-guest-profile-page {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+
+	margin: 0 auto;
+	margin-top: 8rem;
+	width: 80%;
+	&--content {
+		position: relative;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-guest-profile-page {
+		width: 85%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-guest-profile-page {
+		width: 90%;
+	}
+}

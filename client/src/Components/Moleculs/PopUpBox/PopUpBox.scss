@@ -57,3 +57,16 @@
 		opacity: 1;
 	}
 }
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-inner-popup {
+		max-width: 80vw;
+		right: 10%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint400) {
+	.wtl-inner-popup {
+		max-width: 90vw;
+		right: 5%;
+	}
+}

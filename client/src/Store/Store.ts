@@ -7,6 +7,7 @@ import postsReducer from "./features/postsSlice";
 import postReducer from "./features/postSlice";
 import problemReducer from "./features/problemSlice";
 import dashboardReducer from "./features/dashboardStatsSlice";
+import guestProfileReducer from "./features/userProfileSlice";
 export const store = configureStore({
 	reducer: {
 		auth: registerReducer,
@@ -17,6 +18,7 @@ export const store = configureStore({
 		post: postReducer,
 		dashboardProblems: problemReducer,
 		dashboardStats: dashboardReducer,
+		guestProfile: guestProfileReducer,
 	},
 });
 

@@ -96,3 +96,4 @@ export const CAN_NOT_GET_PROBLEMS = "Can't get problems!";
 export const CAN_NOT_DELETE_PROBLEM = "Can't delete problem!";
 export const CAN_NOT_CREATE_PROBLEM = "Can't create problem!";
 export const CAN_NOT_LOAD_DASHBOARD_STATS = "Can't load dashboard stats";
+export const CAN_NOT_LOAD_GUEST_PROFILE = "Can't load guest profile";

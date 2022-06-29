@@ -113,7 +113,12 @@ const PostBody: React.FC<IPostBody> = ({
 					</button>
 				)}
 			<div className={headerClass}>
-				<div className={imgConatinerClass}>
+				<div
+					onClick={() => {
+						navigate(`/guest/${userId}`);
+					}}
+					className={imgConatinerClass}
+				>
 					<img src={avatar} alt="avatar-img" />
 				</div>
 				<div className={userNameClass}>

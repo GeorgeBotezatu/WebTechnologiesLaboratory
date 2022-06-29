@@ -7,6 +7,7 @@ import {
 	EDUCATION_URLS,
 	EXPERIENCE_URLS,
 	LOAD_PROFILE_URL,
+	PROFILE_URL,
 	SOCIAL_URLS,
 	UPDATE_ABOUT_URL,
 	UPDATE_GITHUB_URL,
@@ -79,6 +80,28 @@ export const loadProfile = (token: string) => {
 				},
 			};
 			const res = await axiosInstance.get(LOAD_PROFILE_URL, requestHeader);
+			const { data }: { data: IUserState } = res;
+			resolve(data);
+		} catch (error: any) {
+			console.log(error);
+			reject(error);
+		}
+	});
+};
+
+export const loadProfileById = (userId: string) => {
+	return new Promise<IUserState>(async (resolve, reject) => {
+		try {
+			const requestHeader = {
+				headers: {
+					authorization: `Bearer ${getToken()}`,
+					"Content-type": "application/json",
+				},
+			};
+			const res = await axiosInstance.get(
+				PROFILE_URL + `/${userId}`,
+				requestHeader
+			);
 			const { data }: { data: IUserState } = res;
 			resolve(data);
 		} catch (error: any) {

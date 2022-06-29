@@ -54,7 +54,7 @@ const handleError=err=>{
 		}
 	},false)	
 
-${js}</script>
+${js && js}</script>
 <html>
 `);
 		}, 250);
@@ -107,7 +107,7 @@ ${js}</script>
 	useEffect(() => {
 		formatOnClick();
 	}, [id, state]); // eslint-disable-line react-hooks/exhaustive-deps
-
+	console.log(js);
 	const inputRef =
 		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
 	const componentClass = "wtl-console-page";

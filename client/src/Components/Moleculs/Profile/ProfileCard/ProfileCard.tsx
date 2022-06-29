@@ -16,6 +16,7 @@ import {
 	GITHUB_TXT,
 	REGISTERED_TXT,
 } from "../../../../Utils/constants";
+import { Link, useLocation } from "react-router-dom";
 
 const ProfileCard: React.FC<IProfileCard> = ({
 	github,
@@ -42,7 +43,7 @@ const ProfileCard: React.FC<IProfileCard> = ({
 			}
 		}
 	};
-
+	const { pathname } = useLocation();
 	const componentClass = "wtl-profile-card";
 	const usernameContainerClass = `${componentClass}__username-container`;
 	const cardContainerClass = `${componentClass}__card-container`;
@@ -68,32 +69,39 @@ const ProfileCard: React.FC<IProfileCard> = ({
 				</p>
 
 				<div className={githubContainerClass}>
-					<span>{GITHUB_TXT}</span>
-					<EditableTextField
-						text={githubField}
-						placeholder={GITHUB_PLACEHOLDER}
-						type="input"
-						childRef={inputRef}
-						updateFunction={updateGit}
-					>
-						<input
-							ref={inputRef}
-							type="text"
-							name="githubField"
-							placeholder={GITHUB_PLACEHOLDER}
-							value={githubField}
-							onChange={(e) => setGithubField(e.target.value)}
-						/>
-					</EditableTextField>
+					{pathname.includes("/guest") ? (
+						<p>
+							{GITHUB_TXT} {githubField}{" "}
+						</p>
+					) : (
+						<>
+							<span>{GITHUB_TXT}</span>
+							<EditableTextField
+								text={githubField}
+								placeholder={GITHUB_PLACEHOLDER}
+								type="input"
+								childRef={inputRef}
+								updateFunction={updateGit}
+							>
+								<input
+									ref={inputRef}
+									type="text"
+									name="githubField"
+									placeholder={GITHUB_PLACEHOLDER}
+									value={githubField}
+									onChange={(e) => setGithubField(e.target.value)}
+								/>
+							</EditableTextField>
+						</>
+					)}
 				</div>
 
 				<p className={registeredClass}>
 					{REGISTERED_TXT} {calcultateDays(profileDate)} days ago
 				</p>
-				{/* <Link className={registeredClass} to={CV_MODEL_ONE}>
-					Export profile as PDF
+				<Link className={registeredClass} to={`/guest/${userCard?._id}`}>
+					Get the profile link
 				</Link>
-				<Example /> */}
 			</div>
 		</div>
 	);

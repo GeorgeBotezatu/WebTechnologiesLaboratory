@@ -38,6 +38,25 @@ const getMyProfile = async (req, res) => {
 	}
 };
 
+const getProfileById = async (req, res) => {
+	try {
+		const profile = await Profile.findOne({ user: req.params.userId }).populate(
+			"user",
+			["name", "avatar", "email", "isAdmin"]
+		);
+		if (!profile) {
+			throw new CustomStatusCodeError(PROFILE_NOT_FOUND, 400);
+		}
+		res.status(200).json(profile);
+	} catch (error) {
+		if (error instanceof CustomStatusCodeError) {
+			return res.status(error.statusCode).json({ msg: error.message });
+		}
+		console.log(error);
+		res.status(500).send({ msg: SERVER_ERROR });
+	}
+};
+
 const createProfile = async (req, res) => {
 	try {
 		const userId = req.user.id;
@@ -536,6 +555,7 @@ async function verifyIfProfileDoesNotExist(userId) {
 }
 export {
 	getMyProfile,
+	getProfileById,
 	createProfile,
 	addAboutSection,
 	addGithubName,

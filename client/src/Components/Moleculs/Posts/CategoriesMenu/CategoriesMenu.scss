@@ -33,3 +33,20 @@
 		font-weight: bold;
 	}
 }
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-categories-menu-container {
+		flex-direction: column;
+		gap: 1rem;
+		position: relative;
+
+		&--title {
+			font-size: 3rem;
+		}
+		&--options {
+			font-size: 1.5rem;
+		}
+		&--my-posts {
+			font-size: 1.8rem;
+		}
+	}
+}

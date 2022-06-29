@@ -1,0 +1,69 @@
+@use "../../../Styles/default";
+@use "../../../Styles/colors";
+@use "../../../Styles/breakPoints";
+
+.wtl-about-page__container {
+	min-height: calc(100vh - 20rem);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	margin: 0 auto;
+	gap: 2rem;
+	&__content {
+		display: flex;
+		flex-direction: column;
+		h1 {
+			font-weight: 900;
+			font-family: "Permanent Marker";
+			font-size: 3rem;
+		}
+		p {
+			font-size: 1.8rem;
+		}
+		ul {
+			li {
+				font-size: 1.5rem;
+			}
+		}
+	}
+	&--image {
+		position: absolute;
+		background: url("../../../Assets//Images/aboutImg.svg");
+		background-position: bottom 20% right 10%;
+		background-repeat: no-repeat;
+		overflow: visible;
+		height: 100%;
+		width: 100%;
+		z-index: -1;
+	}
+}
+@media (max-width: breakPoints.$breakPoint1080) {
+	.wtl-about-page__container {
+		&--image {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-about-page__container {
+		&__content {
+			display: flex;
+			flex-direction: column;
+			h1 {
+				font-weight: 900;
+				font-family: "Permanent Marker";
+				font-size: 2.2rem;
+			}
+			p {
+				font-size: 1.5rem;
+			}
+			ul {
+				li {
+					font-size: 1.2rem;
+				}
+			}
+		}
+	}
+}

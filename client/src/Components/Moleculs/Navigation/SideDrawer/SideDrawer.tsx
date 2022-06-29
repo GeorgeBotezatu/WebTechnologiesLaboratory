@@ -20,6 +20,7 @@ import {
 	REGISTER_PATH,
 	LEARNING_PATH,
 	COMMUNITY_PATH,
+	ABOUT_PATH,
 } from "../../../../Routes/routesPath";
 import { RootState } from "../../../../Store/Store";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,7 +64,7 @@ const SideDrawer: React.FC<sideDrawerProps> = ({ show }) => {
 						show ? classNames(linkClass, aboutClass, OPEN) : aboutClass
 					}
 				>
-					<a href="/">{ABOUT}</a>
+					<Link to={ABOUT_PATH}>{ABOUT}</Link>
 				</li>
 				<li
 					className={

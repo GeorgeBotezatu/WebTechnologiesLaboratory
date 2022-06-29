@@ -11,13 +11,14 @@ import {
 import { ADD_EDUCATION_MSG } from "../../../../Utils/constants";
 import { ADD_EDUCATION } from "../../../../Routes/routesPath";
 import EducationItem from "../EducationItem/EducationItem";
+import { useLocation } from "react-router";
 
 const ProfileEducationCard: React.FC = () => {
 	const { education } = useSelector(
 		(state: RootState) => state.userProfile.userProfile
 	);
 	useEffect(() => {}, [education]);
-
+	const { pathname } = useLocation();
 	const classComponent = "wtl-education-section";
 	const titleContainerClass = `${classComponent}__title-container`;
 	const titileClass = `${titleContainerClass}--title`;
@@ -28,13 +29,15 @@ const ProfileEducationCard: React.FC = () => {
 				<>
 					<div className={titileClass}>
 						<h2 className={titileClass}>Education</h2>
-						<AnimatedButton
-							buttonColor={ORANGE}
-							buttonDimension={PROFILE_ADD_EXP_DIM}
-							buttonPosition={PROFILE_ADD_EXP_POS}
-							buttonMessage={ADD_EDUCATION_MSG}
-							buttonRoute={ADD_EDUCATION}
-						/>
+						{!pathname.includes("/guest") && (
+							<AnimatedButton
+								buttonColor={ORANGE}
+								buttonDimension={PROFILE_ADD_EXP_DIM}
+								buttonPosition={PROFILE_ADD_EXP_POS}
+								buttonMessage={ADD_EDUCATION_MSG}
+								buttonRoute={ADD_EDUCATION}
+							/>
+						)}
 					</div>
 					<div className={eduContainerClass}>
 						{education &&

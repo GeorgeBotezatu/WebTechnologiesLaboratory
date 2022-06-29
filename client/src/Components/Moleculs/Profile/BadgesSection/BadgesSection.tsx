@@ -35,7 +35,7 @@ const BadgesSection: React.FC = () => {
 		<div id="code-card" className={componentClass}>
 			<div className={titleContainerClass}>
 				<h2 className={titleClass}>Your badges</h2>
-				<h2 className={progressClass}> Total badges to colect 13</h2>
+				<h2 className={progressClass}> Total badges to colect 7</h2>
 			</div>
 			<div className={badgeContainerClass}>
 				{userProfile &&

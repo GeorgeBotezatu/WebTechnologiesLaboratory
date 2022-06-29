@@ -16,6 +16,7 @@ import {
 } from "../../../../Utils/constants";
 import { EDIT_SOCIAL } from "../../../../Routes/routesPath";
 import SocialItem from "../../../Atoms/SocialItem/SocialItem";
+import { useLocation } from "react-router";
 
 interface ISocialCard {
 	socialLinks:
@@ -34,7 +35,7 @@ const SocialCard: React.FC<ISocialCard> = ({ socialLinks }) => {
 		socialLinks,
 		buttonPressed: true,
 	};
-
+	const { pathname } = useLocation();
 	const classComponent = "wtl-social-section";
 	const titleContainerClass = `${classComponent}__title-container`;
 	const titleClass = `${titleContainerClass}--title`;
@@ -45,14 +46,16 @@ const SocialCard: React.FC<ISocialCard> = ({ socialLinks }) => {
 				<>
 					<div className={titleClass}>
 						<h2 className={titleClass}>Social</h2>
-						<AnimatedButton
-							buttonColor={ORANGE}
-							buttonDimension={PROFILE_ADD_EXP_DIM}
-							buttonPosition={PROFILE_SOCIAL_LINKS}
-							buttonMessage={EDIT_SOCIAL_LINKS}
-							buttonRoute={EDIT_SOCIAL}
-							routeState={buttonState}
-						/>
+						{!pathname.includes("/guest") && (
+							<AnimatedButton
+								buttonColor={ORANGE}
+								buttonDimension={PROFILE_ADD_EXP_DIM}
+								buttonPosition={PROFILE_SOCIAL_LINKS}
+								buttonMessage={EDIT_SOCIAL_LINKS}
+								buttonRoute={EDIT_SOCIAL}
+								routeState={buttonState}
+							/>
+						)}
 					</div>
 					<div className={socialContainerClass}>
 						{socialLinks?.youtube && (

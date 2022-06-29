@@ -4,6 +4,7 @@ import AdminRoute from "../Components/Atoms/AdminRoute/AdminRoute";
 import PrivateRoute from "../Components/Atoms/PrivateRoute/PrivateRoute";
 import Footer from "../Components/Moleculs/Footer/Footer";
 import Navbar from "../Components/Moleculs/Navigation/Navbar/Navbar";
+import AboutPage from "../Components/Pages/AboutPage/AboutPage";
 import CommunityPage from "../Components/Pages/CommunityPage/CommunityPage";
 import ConsolePage from "../Components/Pages/ConsolePage/ConsolePage";
 import CoursePage from "../Components/Pages/CoursePage/CoursePage";
@@ -18,6 +19,7 @@ import EditCoursePage from "../Components/Pages/EditCoursePage/EditCoursePage";
 import EditEducationPage from "../Components/Pages/EditEducationPage/EditEducationPage";
 import EditExperiencePage from "../Components/Pages/EditExperiencePage/EditExperiencePage";
 import EditSocialPage from "../Components/Pages/EditSocialPage/EditSocialPage";
+import GuestProfilePage from "../Components/Pages/GuestProfilePage/GuestProfilePage";
 import LandingPage from "../Components/Pages/LandingPage/LandingPage";
 import LearningPathPage from "../Components/Pages/LearningPathPage/LearningPathPage";
 import LoginPage from "../Components/Pages/LoginPage/LoginPage";
@@ -57,6 +59,8 @@ import {
 	COMMUNITY_PATH,
 	POST_PATH,
 	CV_MODEL_ONE,
+	ABOUT_PATH,
+	GUEST_PATH,
 } from "./routesPath";
 
 const PlatformRoutes = () => {
@@ -274,6 +278,8 @@ const PlatformRoutes = () => {
 									</PrivateRoute>
 								}
 							/>
+							<Route path={ABOUT_PATH} element={<AboutPage />} />
+							<Route path={GUEST_PATH} element={<GuestProfilePage />} />
 							<Route path="*" element={<NotFoundPage />} />
 						</Routes>
 					</>

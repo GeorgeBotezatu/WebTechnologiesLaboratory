@@ -17,6 +17,7 @@ import {
 	editExperience,
 	enroleToCourse,
 	getMyProfile,
+	getProfileById,
 } from "../controllers/profileController.js";
 import { auth } from "../middleware/auth.js";
 import {
@@ -58,6 +59,11 @@ import {
 //@desc   get my profile
 //@access private
 router.get("/me", auth, getMyProfile);
+
+//@roaute GET api/profile/:userId
+//@desc   get userProfile
+//@access
+router.get("/:userId", getProfileById);
 
 //@roaute POST api/profile/create
 //@desc   create my profile

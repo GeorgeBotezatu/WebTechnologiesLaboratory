@@ -26,3 +26,46 @@
 		width: 25%;
 	}
 }
+@media (max-width: breakPoints.$breakPoint1366) {
+	.wtl-community-page {
+		width: 85%;
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint800) {
+	.wtl-community-page {
+		width: 95%;
+		justify-content: space-between;
+
+		&__posts-container {
+			width: 60%;
+			display: flex;
+			flex-direction: column;
+			gap: 5rem;
+			div {
+				hr {
+					width: 100%;
+					margin: 2rem 0;
+				}
+			}
+		}
+		&--menu-container {
+			width: 20%;
+		}
+	}
+}
+
+@media (max-width: breakPoints.$breakPoint600) {
+	.wtl-community-page {
+		flex-direction: column;
+		justify-content: space-between;
+		width: 90%;
+
+		&__posts-container {
+			width: 100%;
+		}
+		&--menu-container {
+			width: 100%;
+		}
+	}
+}

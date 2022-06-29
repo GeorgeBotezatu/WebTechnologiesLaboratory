@@ -49,3 +49,9 @@ export const COURSE_PAGE_CHAPTER_QUIZ =
 //Community path
 export const COMMUNITY_PATH = "/community";
 export const POST_PATH = "/community/post/:postId";
+
+//About path
+export const ABOUT_PATH = "/about";
+
+//Guest path
+export const GUEST_PATH = "/guest/:userId";

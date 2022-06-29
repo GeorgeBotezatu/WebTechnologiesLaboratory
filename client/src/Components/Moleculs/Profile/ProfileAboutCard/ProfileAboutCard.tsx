@@ -9,6 +9,7 @@ import {
 } from "../../../Atoms/AnimatedButton/ButtonModifiers";
 import { MODIFY_ABOUT } from "../../../../Utils/constants";
 import { MODIFY_ABOUT_PATH } from "../../../../Routes/routesPath";
+import { useLocation } from "react-router";
 
 interface IProfileAboutCard {
 	about:
@@ -21,6 +22,7 @@ interface IProfileAboutCard {
 		| undefined;
 }
 const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
+	const { pathname } = useLocation();
 	const componentClass = "wtl-about-section";
 	const titleContainerClass = `${componentClass}__title-container`;
 	const aboutContainerClass = `${componentClass}__about-container`;
@@ -39,14 +41,16 @@ const ProfileAboutCard: React.FC<IProfileAboutCard> = ({ about }) => {
 				<>
 					<div className={titleContainerClass}>
 						<p className={`${titleContainerClass}--p`}>About</p>
-						<AnimatedButton
-							buttonColor={ORANGE}
-							buttonDimension={STANDARD_WITH_ABOUT}
-							buttonPosition={PROFILE_WITH_ABOUT}
-							buttonMessage={MODIFY_ABOUT}
-							buttonRoute={MODIFY_ABOUT_PATH}
-							routeState={routeState}
-						/>
+						{!pathname.includes("/guest") && (
+							<AnimatedButton
+								buttonColor={ORANGE}
+								buttonDimension={STANDARD_WITH_ABOUT}
+								buttonPosition={PROFILE_WITH_ABOUT}
+								buttonMessage={MODIFY_ABOUT}
+								buttonRoute={MODIFY_ABOUT_PATH}
+								routeState={routeState}
+							/>
+						)}
 					</div>
 					<div className={aboutContainerClass}>
 						<p className={websiteClass}>

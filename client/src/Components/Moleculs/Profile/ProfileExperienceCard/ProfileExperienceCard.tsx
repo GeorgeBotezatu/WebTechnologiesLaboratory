@@ -11,11 +11,13 @@ import {
 	PROFILE_ADD_EXP_POS,
 } from "../../../Atoms/AnimatedButton/ButtonModifiers";
 import ExperienceItem from "../ExperienceItem/ExperienceItem";
+import { useLocation } from "react-router";
 
 const ProfileExperienceCard: React.FC = () => {
 	const { experience } = useSelector(
 		(state: RootState) => state.userProfile.userProfile
 	);
+	const { pathname } = useLocation();
 	useEffect(() => {}, [experience]);
 	const classComponent = "wtl-experience-section";
 	const titleContainerClass = `${classComponent}__title-container`;
@@ -27,13 +29,15 @@ const ProfileExperienceCard: React.FC = () => {
 				<>
 					<div className={titileClass}>
 						<h2 className={titileClass}>Experience</h2>
-						<AnimatedButton
-							buttonColor={ORANGE}
-							buttonDimension={PROFILE_ADD_EXP_DIM}
-							buttonPosition={PROFILE_ADD_EXP_POS}
-							buttonMessage={ADD_EXPERIENCE_MSG}
-							buttonRoute={ADD_EXPERIENCE}
-						/>
+						{!pathname.includes("/guest") && (
+							<AnimatedButton
+								buttonColor={ORANGE}
+								buttonDimension={PROFILE_ADD_EXP_DIM}
+								buttonPosition={PROFILE_ADD_EXP_POS}
+								buttonMessage={ADD_EXPERIENCE_MSG}
+								buttonRoute={ADD_EXPERIENCE}
+							/>
+						)}
 					</div>
 					<div className={expContainerClass}>
 						{experience &&
